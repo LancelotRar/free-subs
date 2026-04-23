@@ -54,9 +54,8 @@
 
 **获取方式：**  
 * 关注 [TG频道](https://t.me/liqunchannel) ,查看置顶
-* [TG交流群](https://t.me/liqunbianlidian)   
-* 🔥如果你使用Clash系代理客户端，[点我](/src/README.md) 继续了解此订阅特点。     
-* 🔥🔥获取方式关注👉 [TG频道](https://t.me/liqunchannel)    
+* 加入 [TG交流群](https://t.me/liqunbianlidian)   
+* 🔥🔥🔥**如果你使用Clash系代理客户端**，[点我](/src/README.md) 继续了解此订阅特点。     
 
 ---
 

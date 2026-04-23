@@ -196,7 +196,6 @@ proxy-groups:
       - ⭕故障切换
 
 rules:
-  - AND,((DST-PORT,443),(NETWORK,UDP)),⚠️屏蔽广告  
   - GEOSITE,category-ads-all,⚠️屏蔽广告
   - GEOSITE,private,🎯全球直连
   - GEOIP,private,🎯全球直连,no-resolve
