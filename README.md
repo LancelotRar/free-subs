@@ -46,13 +46,14 @@
 [TG频道](https://t.me/liqunchannel)   
 [TG交流群](https://t.me/liqunbianlidian)  
 > [!TIP]
-> 更有适合要求不多，仅需国内外分流的手搓Clash订阅在频道内发布：国内地址全直连，国外地址全代理，简单明了易上手，消除你的分流规则选择困难症！！！
-
+> 更有适合要求不多，仅需国内外分流的手搓Clash订阅：国内地址全直连，国外地址全代理，简单明了易上手，消除你的分流规则选择困难症！！！
+[🔥🔥🔥如果你使用Clash系，点我了解](./src/README.md)
+[🔥🔥🔥Clash系专用优选订阅链接,免翻获取](https://t.me/liqunchannel)
 ---
-### 📋 代理客户端推荐  
+## 📋 代理客户端推荐  
 
-| 平台 | 推荐客户端 | 备注 |
-| :--- | :--- | :--- |
+| 平台 | 推荐客户端 | 备注 | 
+| :--- | :--- | :--- | 
 | **Windows** | [v2rayN](https://github.com/2dust/v2rayN), [FlClash](https://github.com/chen08209/FlClash), [mihomo-party](https://github.com/mihomo-party-org/mihomo-party), [Clash Verge Rev](https://github.com/ClashVerge/ClashVerge-Rev) | 全面支持 |
 | **Android** | [ClashMetaForAndroid](https://github.com/MetaCubeX/ClashMetaForAndroid), [FlClash](https://github.com/chen08209/FlClash), [v2rayNG](https://github.com/2dust/v2rayNG) | 建议使用 Meta 核心 |
 | **iOS** | [Surge](https://surgeapp.com/), [Shadowrocket](https://shadowrocket.com/), [Stash](https://stashapp.com/) | 完美适配 |

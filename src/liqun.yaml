@@ -196,19 +196,10 @@ proxy-groups:
       - ⭕故障切换
 
 rules:
-  # 白名单模式
   - AND,((DST-PORT,443),(NETWORK,UDP)),⚠️屏蔽广告  
   - GEOSITE,category-ads-all,⚠️屏蔽广告
   - GEOSITE,private,🎯全球直连
   - GEOIP,private,🎯全球直连,no-resolve
-  # 自定义直连
-  - DOMAIN-SUFFIX,vsean.net,🎯全球直连
-  - DOMAIN-SUFFIX,jsdelivr.net,🎯全球直连
-  - DOMAIN-SUFFIX,lancelot1988.dpdns.org,🎯全球直连
-  - DOMAIN-SUFFIX,lancelot.indevs.in,🎯全球直连
-  - DOMAIN-SUFFIX,19882008.xyz,🎯全球直连
-  - DOMAIN-SUFFIX,lancelot.dpdns.org,🎯全球直连
-  # 直连规则
   - GEOSITE,category-games@cn,🎯全球直连
   - GEOSITE,tld-cn,🎯全球直连
   - GEOSITE,cn,🎯全球直连
