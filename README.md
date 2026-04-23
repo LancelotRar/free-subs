@@ -52,11 +52,11 @@
 > [!TIP]  
 > 更有适合要求不多，仅需国内外分流的手搓Clash订阅：国内地址全直连，国外地址全代理，简单明了易上手，消除你对分流规则选择困难症！！！   
 
-获取方式：  
-[关注TG频道，查看置顶](https://t.me/liqunchannel)   
-[TG交流群](https://t.me/liqunbianlidian)  
-🔥如果你使用Clash系代理客户端，[点我](/src/README.md) 继续了解此订阅特点。
-🔥🔥获取方式关注👉 [TG频道](https://t.me/liqunchannel)    
+**获取方式：**  
+* 关注 [TG频道](https://t.me/liqunchannel) ,查看置顶
+* [TG交流群](https://t.me/liqunbianlidian)   
+* 🔥如果你使用Clash系代理客户端，[点我](/src/README.md) 继续了解此订阅特点。     
+* 🔥🔥获取方式关注👉 [TG频道](https://t.me/liqunchannel)    
 
 ---
 
