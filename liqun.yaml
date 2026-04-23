@@ -151,7 +151,7 @@ proxy-groups:
     interval: 300
     lazy: true
     tolerance: 200
-    url: https://cp.cloudflare.com/generate_204
+    url: https://www.gstatic.com/generate_204
     include-all: true
     timeout: 2000
 
@@ -164,7 +164,7 @@ proxy-groups:
     type: load-balance
     interval: 300
     lazy: true
-    url: https://cp.cloudflare.com/generate_204
+    url: https://www.gstatic.com/generate_204
     strategy: round-robin
     include-all: true
     timeout: 2000
@@ -173,7 +173,7 @@ proxy-groups:
     type: fallback
     interval: 300
     lazy: true
-    url: https://cp.cloudflare.com/generate_204
+    url: https://www.gstatic.com/generate_204
     include-all: true
     timeout: 2000
 
