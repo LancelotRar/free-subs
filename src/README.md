@@ -31,10 +31,10 @@
 <h2>✨ 核心特点</h2>
 
 <ul>
-    <li><strong>白名单配置：</strong> 除了可直连访问的地址，其余全部走代理。省时省力，分流规则再不眼花缭乱。</li>
-    <li><strong>懒人福音：</strong> 日常使用仅需调整打包代理与全球直连分组。且每个分组默认选择的最优策略。开箱即用。</li>
+    <li><strong>白名单配置：</strong> 按地理区域划分，国内网站，可以直连访问的，全部走直连。除此之外，全部走代理。省时省力，分流规则再不眼花缭乱。</li>
+    <li><strong>懒人福音：</strong> 日常使用仅需调整打包代理内的节点运行策略。且每个分组默认选择的最优策略。开箱即用。</li>
     <li><strong>多重代理策略：</strong> 预设了 <em>自动选择</em>、<em>负载均衡</em>、<em>故障切换</em> 和 <em>手动选择</em> 四种模式，满足从稳定性到高宽带的不同需求。</li>
-    <li><strong>现代 DNS 架构：</strong> 采用 <code>fake-ip</code> 模式，配合阿里、腾讯及 Cloudflare 的 DoH/DoT 解析，不仅提升了首包响应速度，更通过 <code>respect-rules</code> 确保了国内外域名解析不走弯路。</li>
+    <li><strong>DNS配置防泄露：</strong> 采用 <code>fake-ip</code> 模式，配合阿里、腾讯及 Cloudflare 的 DoH/DoT 解析，不仅提升了首包响应速度，更通过 <code>respect-rules</code> 确保了国内外域名解析不走弯路。且已多次迭代，参考十余份大佬的DNS配置，自测无DNS泄露</li>
     <li><strong>智能分流规则：</strong> 
         <ul>
             <li>自动屏蔽广告流量（拦截常见广告域名）。</li>
@@ -83,5 +83,6 @@
 
 <ol>
     <li><strong>核心依赖性：</strong> 请确保客户端使用的是最新的 Mihomo 核心，版本不要过于落后，以免代理客户端无法应对新的规则逻辑。</li>
-    <li><strong>不适合对IP地理位置有精细需求的人群：</strong> 目前代理落地IP在韩国或日本。可正常访问Gemini、Chatgpt、Google、Youtube </li>
+    <li><strong>不适合对IP地理位置有精细需求的人群：</strong> 目前代理落地IP在韩国或日本。可正常访问Gemini、Chatgpt、Google、Youtube.  
+    </li>
 </ol>
