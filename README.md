@@ -43,12 +43,20 @@
 
 ## 📥 订阅地址    
 
-[TG频道](https://t.me/liqunchannel)   
+**包含：**  
+* 单节点链接订阅    
+* 自适应订阅   
+* Base64订阅    
+* Clash订阅    
+* Singbox订阅  
+
+获取方式：  
+[订阅TG频道，查看置顶](https://t.me/liqunchannel)   
 [TG交流群](https://t.me/liqunbianlidian)  
 > [!TIP]  
 > 更有适合要求不多，仅需国内外分流的手搓Clash订阅：国内地址全直连，国外地址全代理，简单明了易上手，消除你对分流规则选择困难症！！！   
-[🔥🔥🔥如果你使用Clash系，点我了解](/src/README.md)  
-[🔥🔥🔥Clash系专用优选分流订阅链接,关注即可获取](https://t.me/liqunchannel)  
+[🔥🔥🔥如果你使用Clash系代理客户端，点我继续了解此订阅特点](/src/README.md)  
+[🔥🔥🔥获取方式，关注TG频道👉](https://t.me/liqunchannel)  
 ---
 ## 📋 代理客户端推荐  
 
