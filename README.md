@@ -45,10 +45,10 @@
 
 [TG频道](https://t.me/liqunchannel)   
 [TG交流群](https://t.me/liqunbianlidian)  
-> [!TIP]
-> 更有适合要求不多，仅需国内外分流的手搓Clash订阅：国内地址全直连，国外地址全代理，简单明了易上手，消除你的分流规则选择困难症！！！
-[🔥🔥🔥如果你使用Clash系，点我了解](./src/README.md)
-[🔥🔥🔥Clash系专用优选订阅链接,免翻获取](https://t.me/liqunchannel)
+> [!TIP]  
+> 更有适合要求不多，仅需国内外分流的手搓Clash订阅：国内地址全直连，国外地址全代理，简单明了易上手，消除你的分流规则选择困难症！！！   
+[🔥🔥🔥如果你使用Clash系，点我了解](/src/README.md)  
+[🔥🔥🔥Clash系专用优选订阅链接,免翻获取](https://t.me/liqunchannel)  
 ---
 ## 📋 代理客户端推荐  
 
