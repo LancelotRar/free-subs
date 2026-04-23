@@ -1,0 +1,216 @@
+mode: rule
+mixed-port: 7890
+port: 7891
+socks-port: 7892
+redir-port: 7893
+tproxy-port: 7894
+allow-lan: true
+global-ua: clash.meta
+log-level: warning
+external-controller: 0.0.0.0:9090
+bind-address: "*"
+ipv6: true
+tcp-concurrent: true
+unified-delay: true
+find-process-mode: strict
+
+tun:
+  enable: false
+  stack: mixed
+  dns-hijack:
+    - "any:53"
+    - "tcp://any:53"
+  auto-route: true
+  auto-redirect: true
+  auto-detect-interface: true
+
+dns:
+  enable: true
+  ipv6: true
+  prefer-h3: false
+  listen: 0.0.0.0:7874
+  use-hosts: false
+  use-system-hosts: false
+  respect-rules: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "+.lan"
+    - "+.local"
+    - time.*.com
+    - ntp.*.com
+    - "+.market.xiaomi.com"
+    - asusrouter.com
+    - router.asus.com
+    - www.asusrouter.com
+    - oasisauth.h3c.com
+    - routerlogin.com
+    - www.routerlogin.com
+    - tplogin.cn
+    - miwifi.com
+    - www.miwifi.com
+    - "+.internal"
+    - "+.localdomain"
+    - "+.example"
+    - "+.invalid"
+    - "+.localhost"
+    - "+.test"
+    - "+.local"
+    - "+.lan"
+    - "+.zte.home"
+    - "+.my.router"
+    - "+.ts.net"
+    - "+.home.arpa"
+    - "+.hiwifi.com"
+    - "+.tplinkwifi.net"
+    - "+.tendawifi.com"
+    - "+.leike.cc"
+    - "+.plex.direct"
+    - "+.router.ctc"
+    - "+.phicomm.me"
+    - "+.peiluyou.com"
+    - "+.127.in-addr.arpa"
+    - geosite:private
+    - geosite:cn
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 1.1.1.1
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  fallback:
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
+    - tls://8.8.4.4
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+  direct-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query  
+
+sniffer:
+  enable: true
+  override-destination: true
+  sniff:
+    QUIC:
+      ports:
+        - 443
+        - 8443
+    TLS:
+      ports:
+        - 443
+        - 8443
+    HTTP:
+      ports:
+        - 80
+        - 8080-8880
+      override-destination: true
+  parse-pure-ip: true
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24
+geodata-loader: memconservative
+geox-url:
+  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
+  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
+  mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
+  asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+proxy-providers:
+  利群公益:
+    type: http
+    url: "https://sharecm1.lancelot.dpdns.org/sub?token=4b518d6046b27568570c800c5f6e0234&clash"
+    interval: 10800
+    path: "./proxy_provider/liqun.yaml"
+    proxy: DIRECT
+    header:
+      User-Agent: 
+        - clash.meta
+    override:
+      additional-prefix: "[利群公益]"
+      skip-cert-verify: false
+      udp: true
+                 
+proxy-groups:
+  - name: 🥳打包代理
+    type: select
+    proxies:
+      - ✅自动选择
+      - ⚖️负载均衡
+      - 🫱手动选择
+      - ⭕故障切换
+      - 🎯全球直连
+
+  - name: ✅自动选择
+    type: url-test
+    interval: 300
+    lazy: true
+    tolerance: 200
+    url: https://cp.cloudflare.com/generate_204
+    include-all: true
+    timeout: 2000
+
+  - name: 🫱手动选择
+    type: select
+    include-all: true
+    timeout: 2000
+
+  - name: ⚖️负载均衡
+    type: load-balance
+    interval: 300
+    lazy: true
+    url: https://cp.cloudflare.com/generate_204
+    strategy: round-robin
+    include-all: true
+    timeout: 2000
+
+  - name: ⭕故障切换
+    type: fallback
+    interval: 300
+    lazy: true
+    url: https://cp.cloudflare.com/generate_204
+    include-all: true
+    timeout: 2000
+
+  - name: 🎯全球直连
+    type: select
+    proxies:
+      - DIRECT
+      - ✅自动选择
+      - ⚖️负载均衡
+      - 🫱手动选择
+      - ⭕故障切换
+
+  - name: ⚠️屏蔽广告
+    type: select
+    proxies:
+      - REJECT
+      - ✅自动选择
+      - ⚖️负载均衡
+      - 🫱手动选择
+      - ⭕故障切换
+
+rules:
+  # 白名单模式
+  - AND,((DST-PORT,443),(NETWORK,UDP)),⚠️屏蔽广告  
+  - GEOSITE,category-ads-all,⚠️屏蔽广告
+  - GEOSITE,private,🎯全球直连
+  - GEOIP,private,🎯全球直连,no-resolve
+  # 自定义直连
+  - DOMAIN-SUFFIX,vsean.net,🎯全球直连
+  - DOMAIN-SUFFIX,jsdelivr.net,🎯全球直连
+  - DOMAIN-SUFFIX,lancelot1988.dpdns.org,🎯全球直连
+  - DOMAIN-SUFFIX,lancelot.indevs.in,🎯全球直连
+  - DOMAIN-SUFFIX,19882008.xyz,🎯全球直连
+  - DOMAIN-SUFFIX,lancelot.dpdns.org,🎯全球直连
+  # 直连规则
+  - GEOSITE,category-games@cn,🎯全球直连
+  - GEOSITE,tld-cn,🎯全球直连
+  - GEOSITE,cn,🎯全球直连
+  - GEOIP,cn,🎯全球直连,no-resolve
+  - MATCH,🥳打包代理
