@@ -195,12 +195,63 @@ proxy-groups:
       - 🫱手动选择
       - ⭕故障切换
 
+rule-providers:
+  reject:
+    type: http
+    behavior: domain
+    proxy: DIRECT
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/reject.txt"
+    path: "./ruleset/dn/reject.yaml"
+
+  direct:
+    type: http
+    behavior: domain
+    proxy: DIRECT
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/direct.txt"
+    path: ./ruleset/dn/direct.yaml
+    interval: 86400
+
+
+  private:
+    type: http
+    behavior: domain
+    proxy: DIRECT
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt"
+    path: ./ruleset/dn/private.yaml
+    interval: 86400
+
+  # IP规则集
+  telegramcidr:
+    type: http
+    behavior: ipcidr
+    proxy: DIRECT
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/telegramcidr.txt"
+    path: ./ruleset/ip/telegramcidr.yaml
+    interval: 86400
+
+  cncidr:
+    type: http
+    behavior: ipcidr
+    proxy: DIRECT
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt"
+    path: ./ruleset/ip/cncidr.yaml
+    interval: 86400
+
+  lancidr:
+    type: http
+    behavior: ipcidr
+    proxy: DIRECT
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
+    path: ./ruleset/ip/lancidr.yaml
+    interval: 86400
+
 rules:
-  - GEOSITE,category-ads-all,⚠️屏蔽广告
-  - GEOSITE,private,🎯全球直连
-  - GEOIP,private,🎯全球直连,no-resolve
-  - GEOSITE,category-games@cn,🎯全球直连
-  - GEOSITE,tld-cn,🎯全球直连
-  - GEOSITE,cn,🎯全球直连
-  - GEOIP,cn,🎯全球直连,no-resolve
+  - RULE-SET,reject,⚠️屏蔽广告
+  - RULE-SET,telegramcidr,🥳打包代理
+  # rule-set规则集
+  - RULE-SET,private,🎯全球直连
+  - RULE-SET,direct,🎯全球直连
+  - RULE-SET,lancidr,🎯全球直连,no-resolve
+  - RULE-SET,cncidr,🎯全球直连,no-resolve
   - MATCH,🥳打包代理
