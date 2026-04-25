@@ -50,9 +50,9 @@
 * Clash订阅    
 * Singbox订阅    
 
-**获取方式：**  
-* 关注 [TG频道](https://t.me/liqunchannel)，查看置顶
-* 加入 [TG交流群](https://t.me/liqunchat)   
+**获取方式：（防止Github爬虫）**  
+* 加入 [TG交流群](https://t.me/liqunchat) ，回复“订阅”。
+* 关注 [TG频道](https://t.me/liqunchannel)，及时查看最新订阅信息。
 
 > [!TIP]  
 > 更有“非黑即白”，核心规则为国内外分流的手搓Clash订阅：按地理区域划分，国内网站，可以直连访问的，全走直连；除此之外，全部走代理。不折腾，开箱即用。简单明了易上手，消除你对分流规则的选择困难症！！！   
