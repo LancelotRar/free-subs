@@ -31,18 +31,10 @@
 <h2>✨ 核心特点</h2>
 
 <ul>
-    <li><strong>白名单配置：</strong> 按地理区域划分，国内网站，可以直连访问的，全部走直连。除此之外，全部走代理。省时省力，分流规则再不眼花缭乱。</li>
-    <li><strong>懒人福音：</strong> 日常使用仅需调整打包代理内的节点运行策略。且每个分组默认选择的最优策略。开箱即用。</li>
+    <li><strong>白名单配置：</strong> 按地理区域划分，国内网站，可以直连访问的，全部走直连。除此之外，全部走代理。省时省力，分流规则再不眼花缭乱。支持<code>sniffing</code> 流量嗅探，能够精准识别并分流被加密的流量。</li>
+    <li><strong>懒人福音：</strong> 日常使用仅需调整打包代理这一个策略组内的节点运行策略。开箱即用。通过 <code>proxy-providers</code> 远程引入节点，实现节点列表的自动更新，无需频繁手动更换配置文件。</li>
     <li><strong>多重代理策略：</strong> 预设了 <em>自动选择</em>、<em>负载均衡</em>、<em>故障切换</em> 和 <em>手动选择</em> 四种模式，满足从稳定性到高宽带的不同需求。</li>
     <li><strong>DNS配置防泄露：</strong> 采用 <code>fake-ip</code> 模式，配合阿里、腾讯及 Cloudflare 的 DoH/DoT 解析，不仅提升了首包响应速度，更通过 <code>respect-rules</code> 确保了国内外域名解析不走弯路。且已多次迭代，参考十余份大佬的DNS配置，自测无DNS泄露</li>
-    <li><strong>智能分流规则：</strong> 
-        <ul>
-            <li>自动屏蔽广告流量（拦截常见广告域名）。</li>
-            <li>内置大陆地理位置（GeoSite/GeoIP）直连，确保国内应用不掉线、不降速。</li>
-            <li>支持 <code>sniffing</code> 流量嗅探，能够精准识别并分流被加密的流量。</li>
-        </ul>
-    </li>
-    <li><strong>Provider 动态维护：</strong> 通过 <code>proxy-providers</code> 远程引入节点，实现节点列表的自动更新，无需频繁手动更换配置文件。</li>
     <li><strong>高性能设置：</strong> 开启了 <code>tcp-concurrent</code>（TCP 并发建立连接）和 <code>unified-delay</code>（统一延迟计算），优化了弱网环境下的连接体验。</li>
 </ul>
 
@@ -60,19 +52,19 @@
     <tbody>
         <tr>
             <td><strong>追求稳定的用户</strong></td>
-            <td>“故障切换”策略能确保当前节点失效时，秒级自动跳转至备用节点。</td>
+            <td>没理由，用就完了。</td>
         </tr>
         <tr>
             <td><strong>下载/看片爱好者</strong></td>
-            <td>“负载均衡”策略（round-robin）可以将流量分配到多个节点，最大化利用订阅宽带。</td>
+            <td>没理由，用就完了。</td>
         </tr>
         <tr>
             <td><strong>高级玩家</strong></td>
-            <td>配置文件支持 TUN 模式（预留接口）、IPv6 优化以及详尽的 Fake-IP 过滤名单。</td>
+            <td>没理由，用就完了。</td>
         </tr>
         <tr>
             <td><strong>懒人一族</strong></td>
-            <td>一次配置，长期自动更新，无需干预。</td>
+            <td>没理由，用就完了。</td>
         </tr>
     </tbody>
 </table>
