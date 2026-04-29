@@ -74,7 +74,17 @@
 
 ------
 
-## ⚖️ 免责声明
+## Star History
+
+<a href="https://www.star-history.com/?repos=LancelotRar%2Ffree-subs&type=date&legend=bottom-right">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=LancelotRar/free-subs&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=LancelotRar/free-subs&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=LancelotRar/free-subs&type=date&legend=top-left" />
+ </picture>
+</a>  
+
+## ⚖️ 免责声明  
 
 1.  本站所有资源均来自互联网公开渠道，仅供网络技术研究及开发人员交流使用。
 2.  请遵守当地相关法律法规，严禁用于任何非法用途。
