@@ -308,15 +308,6 @@ rule-providers:
     path: ./ruleset/ip/lancidr.yaml
     interval: 86400
 
-  googleip:
-    type: http
-    behavior: ipcidr
-    proxy: DIRECT
-    format: mrs
-    url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs"
-    path: ./ruleset/ip/google.mrs
-    interval: 86400
-
 rules:
   - AND,((DST-PORT,443),(NETWORK,UDP)),⚠️拒绝连接
   - RULE-SET,reject,⚠️拒绝连接
