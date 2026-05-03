@@ -263,7 +263,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs"
+    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs"
     path: ./ruleset/dn/microsoft.mrs
     interval: 86400
 
@@ -300,7 +300,7 @@ rule-providers:
     behavior: ipcidr
     proxy: DIRECT
     format: mrs
-    url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs"
+    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs"
     path: ./ruleset/ip/google.mrs
     interval: 86400
 
