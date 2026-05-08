@@ -33,6 +33,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "内容无变化，跳过更新。"
           else
-            git commit -m "防失联v2ray订阅更新-$(date)"
+            git commit -m "防失联v2ray订阅更新，发送“防失联”查看订阅链接-$(date)"
             git push
           fi
