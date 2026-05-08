@@ -6,7 +6,7 @@ on:
   workflow_dispatch: # 允许你随时在 GitHub 页面手动点击运行
 
 jobs:
-  update-file:
+  v2ray_update:
     runs-on: ubuntu-latest
     permissions:
       contents: write # 必须开启写入权限，否则无法推送修改
