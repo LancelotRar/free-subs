@@ -295,14 +295,8 @@ rule-providers:
     path: ./ruleset/ip/lancidr.yaml
     interval: 86400
 
-rules:
-  - AND,((DST-PORT,443),(NETWORK,UDP)),⚠️拒绝连接
+rules:   
   - RULE-SET,reject,⚠️拒绝连接
-  # 自定义直连
-  - DOMAIN-SUFFIX,jsdelivr.net,🎯全球直连
-  - DOMAIN-SUFFIX,jsdelivr.com,🎯全球直连
-  - DOMAIN-SUFFIX,googleapis.com,🥳打包代理 
-  - DOMAIN-SUFFIX,gstatic.com,🥳打包代理 
   # rule-set规则集
   - RULE-SET,private,🎯全球直连
   - RULE-SET,direct,🎯全球直连
