@@ -2,7 +2,7 @@ name: V2Ray Update
 
 on:
   schedule:
-    - cron: '0 * * * *' # 每小时执行一次（第0分钟执行）
+    - cron: '0 * * * * # 每小时执行一次（第0分钟执行）
   workflow_dispatch: # 允许你随时在 GitHub 页面手动点击运行
 
 jobs:
