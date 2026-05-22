@@ -22,7 +22,14 @@
 * **作者博客：** [https://joeyblog.net/](https://joeyblog.net/)
 * **YouTube 主页：** [joeyblog](https://www.youtube.com/@joeyblog)
 
-### 3. 作者：ygkkk
+### 3. 作者：佬王
+* **代表作：** `Cloudflare-proxy`
+* **项目地址：** [https://github.com/eooce/Cloudflare-proxy](https://github.com/eooce/Cloudflare-proxy)
+* **现 Star 数：** 2.4k
+* **作者博客：** 无
+* **YouTube 主页：** [eooce](https://www.youtube.com/@eooce)
+
+### 4. 作者：ygkkk
 * **代表作：** `Cloudflare-vless-trojan`
 * **项目地址：** [https://github.com/yonggekkk/Cloudflare-vless-trojan](https://github.com/yonggekkk/Cloudflare-vless-trojan)
 * **现 Star 数：** 13.9k
