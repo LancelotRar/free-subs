@@ -24,7 +24,7 @@ jobs:
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
         run: |
           cat > /tmp/check_release.py << 'PYEOF'
-          import json, os, urllib.request, sys
+          import json, os, re, urllib.request, sys
           from html import escape
 
           # --- Read last known release ID ---
@@ -61,7 +61,11 @@ jobs:
               f.write(str(latest_id))
 
           # --- Build message ---
-          body = escape((data.get("body") or "")[:1500])
+          raw_body = (data.get("body") or "")[:1500]
+          raw_body = re.sub(r'^###\s+', '', raw_body, flags=re.MULTILINE)
+          raw_body = re.sub(r'\n{3,}', '\n\n', raw_body)
+          raw_body = raw_body.strip()
+          body = escape(raw_body)
           rel_name = escape(data.get("name") or data["tag_name"])
           date = data["published_at"][:10]
           rel_url = data["html_url"]
