@@ -1,0 +1,74 @@
+name: Check WebHTV Release
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache last release ID
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: last_release_id.txt
+          key: webhtv-release-id
+
+      - name: Check and notify
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+        run: |
+          LAST_ID=$(cat last_release_id.txt 2>/dev/null || echo "0")
+          RESP=$(curl -sf https://api.github.com/repos/fish2018/webhtv/releases/latest) || {
+            echo "::error::Failed to fetch GitHub release API"
+            exit 1
+          }
+          LATEST_ID=$(echo "$RESP" | jq -r '.id')
+          echo "Last ID: $LAST_ID, Latest ID: $LATEST_ID"
+
+          if [ "$LATEST_ID" -le "$LAST_ID" ] 2>/dev/null; then
+            echo "No new release"
+            exit 0
+          fi
+
+          echo "New release found: $LATEST_ID"
+          echo "$LATEST_ID" > last_release_id.txt
+
+          PAYLOAD=$(echo "$RESP" | jq --arg chat_id "$TG_CHAT_ID" '
+            {
+              chat_id: $chat_id,
+              parse_mode: "HTML",
+              disable_web_page_preview: true,
+              text: ("🚀 <b>WebHTV 新版本发布！</b>\n\n"
+                + "<b>版本：</b>" + (.name // .tag_name) + "\n"
+                + "<b>发布时间：</b>" + (.published_at[0:10]) + "\n\n"
+                + "📝 <b>更新内容：</b>\n"
+                + (.body // "" | .[0:1500]
+                  | gsub("&"; "&amp;")
+                  | gsub("<"; "&lt;")
+                  | gsub(">"; "&gt;")
+                ) + "\n\n"
+                + "📦 <b>下载 Assets：</b>\n"
+                + ([.assets[]
+                  | "• <a href=\"" + .browser_download_url + "\">" + .name + "</a> ("
+                    + ((.size / 1048576 * 10 | round / 10) | tostring) + " MB)"
+                ] | join("\n")) + "\n\n"
+                + "🔗 <a href=\"" + .html_url + "\">查看完整 Release</a>"
+              )
+            }
+          ')
+
+          RESP=$(curl -s -X POST "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD")
+          if echo "$RESP" | jq -e '.ok' > /dev/null 2>&1; then
+            echo "Telegram notification sent successfully"
+          else
+            echo "::error::Telegram API error: $(echo "$RESP" | jq -r '.description')"
+            exit 1
+          fi
