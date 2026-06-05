@@ -79,16 +79,32 @@ jobs:
               f.write(str(latest_id))
 
           # --- Build message ---
-          raw_body = (data.get("body") or "")[:1500]
-          raw_body = re.sub(r"^\s*###+\s*", "", raw_body, flags=re.MULTILINE)
-          raw_body = re.sub(r"\n{3,}", "\n\n", raw_body)
-          raw_body = raw_body.strip()
-          body = escape(raw_body)
-          body = re.sub(
-              r"https?://[^\s<]+",
-              lambda m: f'<a href="{m.group(0)}">{m.group(0)}</a>',
-              body,
-          )
+          raw_body = (data.get("body") or "").strip()
+          if not raw_body:
+              commit_sha = data["target_commitish"]
+              commit_url = f"https://api.github.com/repos/{REPO}/commits/{commit_sha}"
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(
+                      commit_url,
+                      headers={"User-Agent": "GitHub-Actions", "Accept": "application/vnd.github+json"},
+                  )) as resp:
+                      commit_data = json.loads(resp.read())
+                  raw_body = commit_data["commit"]["message"]
+              except Exception:
+                  raw_body = ""
+          raw_body = raw_body[:1500]
+          if raw_body.strip():
+              raw_body = re.sub(r"^\s*###+\s*", "", raw_body, flags=re.MULTILINE)
+              raw_body = re.sub(r"\n{3,}", "\n\n", raw_body)
+              raw_body = raw_body.strip()
+              body = escape(raw_body)
+              body = re.sub(
+                  r"https?://[^\s<]+",
+                  lambda m: f'<a href="{m.group(0)}">{m.group(0)}</a>',
+                  body,
+              )
+          else:
+              body = "无"
 
           rel_name = escape(data.get("name") or data["tag_name"])
           date = data["published_at"][:10]
