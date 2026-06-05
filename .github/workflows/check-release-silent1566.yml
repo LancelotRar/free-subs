@@ -52,24 +52,24 @@ jobs:
           except Exception:
               pass
 
-          # --- Fetch latest release from GitHub ---
-          url = f"https://api.github.com/repos/{REPO}/releases/latest"
+          # --- Fetch latest release from GitHub (including pre-releases) ---
+          url = f"https://api.github.com/repos/{REPO}/releases?per_page=1"
           req = urllib.request.Request(
               url,
               headers={"User-Agent": "GitHub-Actions", "Accept": "application/vnd.github+json"},
           )
           try:
               with urllib.request.urlopen(req) as resp:
-                  data = json.loads(resp.read())
-          except urllib.error.HTTPError as e:
-              if e.code == 404:
-                  print("No releases yet — exiting normally")
-                  sys.exit(0)
-              print(f"::error::Failed to fetch GitHub release: {e}")
-              sys.exit(1)
+                  releases = json.loads(resp.read())
           except Exception as e:
-              print(f"::error::Failed to fetch GitHub release: {e}")
+              print(f"::error::Failed to fetch GitHub releases: {e}")
               sys.exit(1)
+
+          if not releases:
+              print("No releases yet — exiting normally")
+              sys.exit(0)
+
+          data = releases[0]
 
           latest_id = data["id"]
           print(f"Last ID: {last_id}, Latest ID: {latest_id}")
