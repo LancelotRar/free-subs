@@ -1,0 +1,142 @@
+name: Check Silent1566/webhtv Release
+
+on:
+  schedule:
+    - cron: '0 16 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Force re-notify even if already notified
+        type: boolean
+        default: false
+
+permissions: {}
+
+concurrency:
+  group: webhtv-silent1566-release
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      REPO: Silent1566/webhtv
+    steps:
+      - name: Cache last release ID
+        id: cache
+        uses: actions/cache@v5.0.5
+        with:
+          path: last_release_id.txt
+          key: webhtv-silent1566-release-id
+          restore-keys: webhtv-silent1566-release-id-
+
+      - name: Check and notify
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          FORCE: ${{ inputs.force || '' }}
+        run: |
+          cat > /tmp/check_release.py << 'PYEOF'
+          import json, os, re, urllib.request, sys
+          from html import escape
+
+          REPO = os.environ["REPO"]
+          FORCE = os.environ.get("FORCE", "").lower() == "true"
+
+          # --- Read last known release ID ---
+          last_id = 0
+          try:
+              with open("last_release_id.txt") as f:
+                  last_id = int(f.read().strip())
+          except Exception:
+              pass
+
+          # --- Fetch latest release from GitHub ---
+          url = f"https://api.github.com/repos/{REPO}/releases/latest"
+          req = urllib.request.Request(
+              url,
+              headers={"User-Agent": "GitHub-Actions", "Accept": "application/vnd.github+json"},
+          )
+          try:
+              with urllib.request.urlopen(req) as resp:
+                  data = json.loads(resp.read())
+          except Exception as e:
+              print(f"::error::Failed to fetch GitHub release: {e}")
+              sys.exit(1)
+
+          latest_id = data["id"]
+          print(f"Last ID: {last_id}, Latest ID: {latest_id}")
+
+          if not FORCE and latest_id <= last_id:
+              print("No new release")
+              sys.exit(0)
+
+          print("New release found, sending notification…")
+
+          # --- Persist new ID ---
+          with open("last_release_id.txt", "w") as f:
+              f.write(str(latest_id))
+
+          # --- Build message ---
+          raw_body = (data.get("body") or "")[:1500]
+          raw_body = re.sub(r"^\s*###+\s*", "", raw_body, flags=re.MULTILINE)
+          raw_body = re.sub(r"\n{3,}", "\n\n", raw_body)
+          raw_body = raw_body.strip()
+          body = escape(raw_body)
+          body = re.sub(
+              r"https?://[^\s<]+",
+              lambda m: f'<a href="{m.group(0)}">{m.group(0)}</a>',
+              body,
+          )
+
+          rel_name = escape(data.get("name") or data["tag_name"])
+          date = data["published_at"][:10]
+          rel_url = data["html_url"]
+
+          assets_lines = []
+          for a in data.get("assets", []):
+              size_mb = round(a["size"] / 1_048_576, 1)
+              name = escape(a["name"])
+              assets_lines.append(
+                  f'• <a href="{a["browser_download_url"]}">{name}</a> ({size_mb} MB)'
+              )
+          assets_text = "\n".join(assets_lines)
+
+          text = (
+              f"🚀 <b>WebHTV 新版本发布！</b>\n\n"
+              f"TG讨论群：<a href=\"https://t.me/webhtv\">https://t.me/webhtv</a>\n\n"
+              f"<b>版本：</b>{rel_name}\n"
+              f"<b>发布时间：</b>{date}\n\n"
+              f"📝 <b>更新内容：</b>\n{body}\n\n"
+              f"📦 <b>下载 Assets：</b>\n{assets_text}\n\n"
+              f'🔗 <a href="{rel_url}">查看完整 Release</a>'
+          )
+
+          # --- Send to Telegram ---
+          payload = json.dumps({
+              "chat_id": os.environ["TG_CHAT_ID"],
+              "parse_mode": "HTML",
+              "disable_web_page_preview": True,
+              "text": text,
+          }).encode()
+
+          req2 = urllib.request.Request(
+              f'https://api.telegram.org/bot{os.environ["TG_BOT_TOKEN"]}/sendMessage',
+              data=payload,
+              headers={"Content-Type": "application/json"},
+          )
+          try:
+              with urllib.request.urlopen(req2) as resp:
+                  result = json.loads(resp.read())
+              if result.get("ok"):
+                  print("Telegram notification sent successfully")
+              else:
+                  print(f'::error::Telegram error: {result.get("description")}')
+                  sys.exit(1)
+          except Exception as e:
+              print(f"::error::Failed to send Telegram message: {e}")
+              sys.exit(1)
+          PYEOF
+
+          python3 /tmp/check_release.py
