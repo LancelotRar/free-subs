@@ -85,8 +85,22 @@ jobs:
               f.write(str(latest_id))
 
           # --- Build message ---
-          raw_body = (data.get("body") or "").strip()[:1500]
-          if raw_body:
+          raw_body = (data.get("body") or "").strip()
+          if not raw_body:
+              # Fall back to commit message
+              commit_sha = data["target_commitish"]
+              commit_url = f"https://api.github.com/repos/{REPO}/commits/{commit_sha}"
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(
+                      commit_url,
+                      headers={"User-Agent": "GitHub-Actions", "Accept": "application/vnd.github+json"},
+                  )) as resp:
+                      commit_data = json.loads(resp.read())
+                  raw_body = commit_data["commit"]["message"]
+              except Exception:
+                  raw_body = ""
+          raw_body = raw_body[:1500]
+          if raw_body.strip():
               raw_body = re.sub(r"^\s*###+\s*", "", raw_body, flags=re.MULTILINE)
               raw_body = re.sub(r"\n{3,}", "\n\n", raw_body)
               raw_body = raw_body.strip()
