@@ -22,14 +22,15 @@ jobs:
     timeout-minutes: 10
     env:
       REPO: fish2018/webhtv
+      CACHE_KEY: webhtv-release-id
     steps:
       - name: Cache last release ID
         id: cache
         uses: actions/cache@v5.0.5
         with:
           path: last_release_id.txt
-          key: webhtv-release-id
-          restore-keys: webhtv-release-id-
+          key: ${{ env.CACHE_KEY }}
+          restore-keys: ${{ env.CACHE_KEY }}-
 
       - name: Check and notify
         env:
@@ -183,4 +184,4 @@ jobs:
         uses: actions/cache/save@v5.0.5
         with:
           path: last_release_id.txt
-          key: ${{ steps.cache.outputs.primary-key }}
+          key: ${{ env.CACHE_KEY }}
