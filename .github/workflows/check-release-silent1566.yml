@@ -42,7 +42,6 @@ jobs:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
           FORCE: ${{ inputs.force || '' }}
-          SKIP_PRE_RELEASE: "true"
         run: python3 scripts/check_release.py
 
       - name: Save cache

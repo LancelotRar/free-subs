@@ -8,7 +8,7 @@ from html import escape
 
 REPO = os.environ["REPO"]
 FORCE = os.environ.get("FORCE", "").lower() == "true"
-SKIP_PRE_RELEASE = os.environ.get("SKIP_PRE_RELEASE", "true").lower() == "true"
+
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 
 for var in ("TG_BOT_TOKEN", "TG_CHAT_ID"):
@@ -46,14 +46,7 @@ if not releases:
     print("No releases yet — exiting normally")
     sys.exit(0)
 
-if SKIP_PRE_RELEASE:
-    stable = [r for r in releases if not r.get("prerelease", False)]
-    if not stable:
-        print("Only pre-releases found — skipping")
-        sys.exit(0)
-    data = stable[0]
-else:
-    data = releases[0]
+data = releases[0]
 
 latest_id = data["id"]
 print(f"Last ID: {last_id}, Latest ID: {latest_id}, Force: {FORCE}")
