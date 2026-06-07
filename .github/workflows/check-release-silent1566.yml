@@ -33,16 +33,24 @@ jobs:
 
       - name: Check and notify
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
           FORCE: ${{ inputs.force || '' }}
         run: |
           cat > /tmp/check_release.py << 'PYEOF'
-          import json, os, re, urllib.error, urllib.request, sys
+          import json, os, re, sys, urllib.error, urllib.request
           from html import escape
 
           REPO = os.environ["REPO"]
           FORCE = os.environ.get("FORCE", "").lower() == "true"
+          GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
+
+          # --- Validate required secrets (fail fast with clear error) ---
+          for var in ("TG_BOT_TOKEN", "TG_CHAT_ID"):
+              if not os.environ.get(var):
+                  print(f"::error::Missing required env var: {var}")
+                  sys.exit(1)
 
           # --- Read last known release ID ---
           last_id = 0
@@ -52,15 +60,23 @@ jobs:
           except Exception:
               pass
 
+          # --- Build GitHub API headers (optional token raises limit 60 -> 5000/h) ---
+          api_headers = {
+              "User-Agent": "GitHub-Actions",
+              "Accept": "application/vnd.github+json",
+          }
+          if GITHUB_TOKEN:
+              api_headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
+
           # --- Fetch latest release from GitHub (including pre-releases) ---
           url = f"https://api.github.com/repos/{REPO}/releases?per_page=1"
-          req = urllib.request.Request(
-              url,
-              headers={"User-Agent": "GitHub-Actions", "Accept": "application/vnd.github+json"},
-          )
+          req = urllib.request.Request(url, headers=api_headers)
           try:
               with urllib.request.urlopen(req) as resp:
                   releases = json.loads(resp.read())
+          except urllib.error.HTTPError as e:
+              print(f"::error::GitHub API HTTP {e.code}: {e.reason}")
+              sys.exit(1)
           except Exception as e:
               print(f"::error::Failed to fetch GitHub releases: {e}")
               sys.exit(1)
@@ -70,9 +86,8 @@ jobs:
               sys.exit(0)
 
           data = releases[0]
-
           latest_id = data["id"]
-          print(f"Last ID: {last_id}, Latest ID: {latest_id}")
+          print(f"Last ID: {last_id}, Latest ID: {latest_id}, Force: {FORCE}")
 
           if not FORCE and latest_id <= last_id:
               print("No new release")
@@ -80,21 +95,16 @@ jobs:
 
           print("New release found, sending notification…")
 
-          # --- Persist new ID ---
-          with open("last_release_id.txt", "w") as f:
-              f.write(str(latest_id))
-
           # --- Build message ---
           raw_body = (data.get("body") or "").strip()
           if not raw_body:
-              # Fall back to commit message
-              commit_sha = data["target_commitish"]
-              commit_url = f"https://api.github.com/repos/{REPO}/commits/{commit_sha}"
+              # Fall back to commit message; target_commitish may be branch/tag/SHA
+              commit_ref = data["target_commitish"]
+              commit_url = f"https://api.github.com/repos/{REPO}/commits/{commit_ref}"
               try:
-                  with urllib.request.urlopen(urllib.request.Request(
-                      commit_url,
-                      headers={"User-Agent": "GitHub-Actions", "Accept": "application/vnd.github+json"},
-                  )) as resp:
+                  with urllib.request.urlopen(
+                      urllib.request.Request(commit_url, headers=api_headers)
+                  ) as resp:
                       commit_data = json.loads(resp.read())
                   raw_body = commit_data["commit"]["message"]
               except Exception:
@@ -114,7 +124,7 @@ jobs:
               body = "无"
 
           rel_name = escape(data.get("name") or data["tag_name"])
-          date = data["published_at"][:10]
+          pub_date = data["published_at"][:10]
           rel_url = data["html_url"]
 
           assets_lines = []
@@ -124,15 +134,15 @@ jobs:
               assets_lines.append(
                   f'• <a href="{a["browser_download_url"]}">{name}</a> ({size_mb} MB)'
               )
-          assets_text = "\n".join(assets_lines)
+          assets_text = "\n".join(assets_lines) if assets_lines else "（无 Assets）"
 
           text = (
               f"🚀<b>不懂佬WebHTV 新版本发布！</b>\n\n"
               f"📢<a href=\"https://t.me/Silent1566Group\">TG讨论群</a>\n\n"
               f"🌀<b>版本：</b>{rel_name}\n"
-              f"🍾<b>发布时间：</b>{date}\n"
+              f"🍾<b>发布时间：</b>{pub_date}\n"
               f'🔗<a href="{rel_url}">查看完整 Release</a>\n\n'
-              f"📦<b>下载 Assets：</b>\n{assets_text}"              
+              f"📦<b>下载 Assets：</b>\n{assets_text}"
           )
 
           # --- Send to Telegram ---
@@ -151,14 +161,26 @@ jobs:
           try:
               with urllib.request.urlopen(req2) as resp:
                   result = json.loads(resp.read())
-              if result.get("ok"):
-                  print("Telegram notification sent successfully")
-              else:
+              if not result.get("ok"):
                   print(f'::error::Telegram error: {result.get("description")}')
                   sys.exit(1)
           except Exception as e:
               print(f"::error::Failed to send Telegram message: {e}")
               sys.exit(1)
+
+          # --- Persist new ID only AFTER successful notification ---
+          # If Telegram fails above, last_release_id.txt is NOT updated, so the
+          # cache save step keeps the old ID and the next run will retry.
+          with open("last_release_id.txt", "w") as f:
+              f.write(str(latest_id))
+          print(f"Telegram notification sent and release ID persisted: {latest_id}")
           PYEOF
 
           python3 /tmp/check_release.py
+
+      - name: Save cache
+        if: always()
+        uses: actions/cache/save@v5.0.5
+        with:
+          path: last_release_id.txt
+          key: ${{ steps.cache.outputs.primary-key }}
