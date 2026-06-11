@@ -17,8 +17,6 @@ jobs:
 
       - name: 获取并覆盖内容
         run: |
-          # 确保 src 目录存在
-          mkdir -p src
           # 下载文件并直接覆盖目标路径
           curl -sL "https://ghfast.top/https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/v.txt" -o src/v2ray01.txt
           echo "文件已抓取完成"
