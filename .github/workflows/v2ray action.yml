@@ -20,7 +20,7 @@ jobs:
           # 确保 src 目录存在
           mkdir -p src
           # 下载文件并直接覆盖目标路径
-          curl -sL "https://ghfast.top/https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/v.txt" -o src/v2ray.txt
+          curl -sL "https://ghfast.top/https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/v.txt" -o src/v2ray01.txt
           echo "文件已抓取完成"
 
       - name: 提交并推送更改
@@ -31,7 +31,7 @@ jobs:
           git config --local user.name "Lancelot"
           
           # 检查文件是否有变动，避免没有更新时产生空的 commit
-          git add src/v2ray.txt
+          git add src/v2ray01.txt
           if git diff --staged --quiet; then
             echo "内容无变化，跳过更新。"
           else
