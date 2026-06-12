@@ -16,77 +16,66 @@ find-process-mode: strict
 
 tun:
   enable: false
-  stack: mixed
-  dns-hijack:
-    - "any:53"
-    - "tcp://any:53"
-  auto-route: true
-  auto-redirect: true
   auto-detect-interface: true
+  auto-route: true
+  device: Mihomo
+  dns-hijack:
+  - any:53
+  mtu: 1500
+  route-exclude-address: []
+  stack: gvisor
+  strict-route: false
 
 dns:
   enable: true
   ipv6: false
   prefer-h3: false
-  listen: 0.0.0.0:7874
+  listen: :53
   use-hosts: false
   use-system-hosts: false
-  respect-rules: true
+  respect-rules: false
   enhanced-mode: fake-ip
+  fake-ip-filter-mode: blacklist 
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - "+.lan"
     - "+.local"
+    - '*.arpa'    
     - time.*.com
     - ntp.*.com
-    - "+.market.xiaomi.com"
-    - asusrouter.com
-    - router.asus.com
-    - www.asusrouter.com
-    - oasisauth.h3c.com
-    - routerlogin.com
-    - www.routerlogin.com
-    - tplogin.cn
-    - miwifi.com
-    - www.miwifi.com
     - "+.internal"
     - "+.localdomain"
     - "+.example"
     - "+.invalid"
-    - "+.localhost"
     - "+.test"
-    - "+.zte.home"
-    - "+.my.router"
-    - "+.ts.net"
-    - "+.home.arpa"
-    - "+.hiwifi.com"
-    - "+.tplinkwifi.net"
-    - "+.tendawifi.com"
-    - "+.leike.cc"
-    - "+.plex.direct"
-    - "+.router.ctc"
-    - "+.phicomm.me"
-    - "+.peiluyou.com"
-    - "+.127.in-addr.arpa"
-    - geosite:private
-    - geosite:cn
-  default-nameserver:
-    - 223.5.5.5
+    - "+.localhost"
+    - '*.msftncsi.com'
+    - www.msftconnecttest.com
+  default-nameserver: 
+    - 223.6.6.6
+    - 8.8.8.8  
     - 119.29.29.29
-    - 1.1.1.1
+    - 2400:3200::1
+    - 2001:4860:4860::8888  
   nameserver:
+    - 8.8.8.8
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-  fallback:
-    - https://dns.google/dns-query
-    - https://cloudflare-dns.com/dns-query
+  fallback: [] 
+  nameserver-policy: {}
+  direct-nameserver: []
+  direct-nameserver-follow-policy: false
   proxy-server-nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
-  direct-nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query  
-
+  - https://doh.pub/dns-query
+  - https://dns.alidns.com/dns-query
+  - tls://223.5.5.5
+  fallback-filter:  
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32    
+      
 sniffer:
   enable: true
   override-destination: true
