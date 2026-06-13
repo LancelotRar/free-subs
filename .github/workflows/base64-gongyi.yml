@@ -1,0 +1,55 @@
+name: base64-gongyi-update
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'
+  workflow_dispatch: 
+
+jobs:
+  v2ray_update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 必须开启写入权限，否则无法推送修改
+
+    steps:
+      - name: 检出仓库代码
+        uses: actions/checkout@v6
+
+      - name: 获取并合并内容
+        run: |
+          # 定义下载地址
+          URL1="https://ghproxy.net/https://raw.githubusercontent.com/shaoyouvip/free/main/base64.txt"
+          URL2="https://share-main1c1m2.lancelot.dpdns.org/sub?token=f01050d65be928f27f8455ae15b1dfd8&b64"
+
+          # 下载两个订阅文件
+          echo "正在下载源1..."
+          curl -sL "$URL1" -o /tmp/sub1_base64.txt
+          echo "正在下载源2..."
+          curl -sL "$URL2" -o /tmp/sub2_base64.txt
+
+          # 解码并合并节点
+          echo "正在解码并合并节点..."
+          {
+            base64 -d /tmp/sub1_base64.txt 2>/dev/null
+            base64 -d /tmp/sub2_base64.txt 2>/dev/null
+          } | tr -d '\r' | sed '/^[[:space:]]*$/d' | sort -u > /tmp/merged_plain.txt
+
+          # 重新编码为 Base64 并写入目标文件
+          base64 -w0 /tmp/merged_plain.txt > src/base64-gongyi.txt
+          echo "合并完成，共 $(wc -l < /tmp/merged_plain.txt) 个节点"
+
+      - name: 提交并推送更改
+        env:
+          TZ: Asia/Shanghai
+        run: |
+          git config --local user.email "Lancelot@liqun.com"
+          git config --local user.name "Lancelot"
+          
+          # 检查文件是否有变动，避免没有更新时产生空的 commit
+          git add src/base64-gongyi.txt
+          if git diff --staged --quiet; then
+            echo "内容无变化，跳过更新。"
+          else
+            git commit -m "base64公益节点订阅更新，地址不变。$(date "+%Y/%m/%d %H:%M")"
+            git push
+          fi
