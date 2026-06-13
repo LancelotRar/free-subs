@@ -6,7 +6,7 @@ on:
   workflow_dispatch: 
 
 jobs:
-  v2ray_update:
+  base64-fangshilian-update:
     runs-on: ubuntu-latest
     permissions:
       contents: write # 必须开启写入权限，否则无法推送修改
@@ -15,11 +15,34 @@ jobs:
       - name: 检出仓库代码
         uses: actions/checkout@v6
 
-      - name: 获取并覆盖内容
+      - name: 获取并校验内容
         run: |
-          # 下载文件并直接覆盖目标路径
-          curl -sL "https://ghfast.top/https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/v.txt" -o src/base64-fangshilian.txt
-          echo "文件已抓取完成"
+          URL="https://ghfast.top/https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/v.txt"
+          OUTPUT="src/base64-fangshilian.txt"
+
+          echo "=== 下载 ==="
+          HTTP=$(curl -sL --max-time 15 -w "%{http_code}" -o /tmp/sub_base64.txt "$URL" 2>&1) || HTTP=000
+          echo "HTTP $HTTP | 大小: $(wc -c < /tmp/sub_base64.txt 2>/dev/null || echo 0)"
+
+          echo "=== 校验 ==="
+          if [ ! -s /tmp/sub_base64.txt ]; then
+            echo "❌ 下载为空，保留现有文件"
+            exit 0
+          fi
+
+          if ! base64 -d /tmp/sub_base64.txt > /tmp/decoded.txt 2>/dev/null; then
+            echo "❌ Base64 解码失败，保留现有文件"
+            exit 0
+          fi
+
+          if ! head -c 200 /tmp/decoded.txt | grep -qE '^[a-z]+://'; then
+            echo "❌ 解码后未发现有效代理链接，保留现有文件"
+            exit 0
+          fi
+
+          cnt=$(grep -cE '^[a-z]+://' /tmp/decoded.txt || true)
+          cp /tmp/sub_base64.txt "$OUTPUT"
+          echo "✅ 更新完成：$cnt 个节点"
 
       - name: 提交并推送更改
         env:

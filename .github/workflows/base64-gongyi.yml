@@ -17,26 +17,50 @@ jobs:
 
       - name: 获取并合并内容
         run: |
-          # 定义下载地址
           URL1="https://ghproxy.net/https://raw.githubusercontent.com/shaoyouvip/free/main/base64.txt"
           URL2="https://share-main1c1m2.lancelot.dpdns.org/sub?token=f01050d65be928f27f8455ae15b1dfd8&b64"
+          OUTPUT="src/base64-gongyi.txt"
 
-          # 下载两个订阅文件
-          echo "正在下载源1..."
-          curl -sL "$URL1" -o /tmp/sub1_base64.txt
-          echo "正在下载源2..."
-          curl -sL "$URL2" -o /tmp/sub2_base64.txt
+          rm -f /tmp/sub1_base64.txt /tmp/sub2_base64.txt /tmp/merged_plain.txt /tmp/decoded.txt
 
-          # 解码并合并节点
-          echo "正在解码并合并节点..."
-          {
-            base64 -d /tmp/sub1_base64.txt 2>/dev/null
-            base64 -d /tmp/sub2_base64.txt 2>/dev/null
-          } | tr -d '\r' | sed '/^[[:space:]]*$/d' | sort -u > /tmp/merged_plain.txt
+          echo "=== 下载源1 ==="
+          HTTP1=$(curl -sL --max-time 15 -w "%{http_code}" -o /tmp/sub1_base64.txt "$URL1" 2>&1) || HTTP1=000
+          echo "HTTP $HTTP1 | 大小: $(wc -c < /tmp/sub1_base64.txt 2>/dev/null || echo 0)"
 
-          # 重新编码为 Base64 并写入目标文件
-          base64 -w0 /tmp/merged_plain.txt > src/base64-gongyi.txt
-          echo "合并完成，共 $(wc -l < /tmp/merged_plain.txt) 个节点"
+          echo "=== 下载源2 ==="
+          HTTP2=$(curl -sL --max-time 15 -w "%{http_code}" -o /tmp/sub2_base64.txt "$URL2" 2>&1) || HTTP2=000
+          echo "HTTP $HTTP2 | 大小: $(wc -c < /tmp/sub2_base64.txt 2>/dev/null || echo 0)"
+
+          echo "=== 解码合并 ==="
+          : > /tmp/merged_plain.txt
+
+          for f in /tmp/sub1_base64.txt /tmp/sub2_base64.txt; do
+            if [ ! -s "$f" ]; then
+              echo "  ⚠️ 文件为空，跳过"
+              continue
+            fi
+            base64 -d "$f" > /tmp/decoded.txt 2>/dev/null || { echo "  ⚠️ Base64 解码失败，跳过"; continue; }
+            if ! head -c 200 /tmp/decoded.txt | grep -qE '^[a-z]+://'; then
+              echo "  ⚠️ 解码后未发现有效代理链接，跳过"
+              continue
+            fi
+            cnt=$(grep -cE '^[a-z]+://' /tmp/decoded.txt || true)
+            echo "  ✅ $cnt 个节点"
+            tr -d '\r' < /tmp/decoded.txt >> /tmp/merged_plain.txt
+          done
+
+          # 去重去空行
+          sed -i '/^[[:space:]]*$/d' /tmp/merged_plain.txt
+          sort -u /tmp/merged_plain.txt -o /tmp/merged_plain.txt
+
+          TOTAL=$(wc -l < /tmp/merged_plain.txt)
+
+          if [ "$TOTAL" -eq 0 ]; then
+            echo "❌ 所有源均无效，保留现有文件不变"
+          else
+            base64 -w0 /tmp/merged_plain.txt > "$OUTPUT"
+            echo "✅ 合并完成：$TOTAL 个节点（已去重）"
+          fi
 
       - name: 提交并推送更改
         env:
