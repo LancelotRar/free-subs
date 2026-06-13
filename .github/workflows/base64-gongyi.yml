@@ -19,9 +19,10 @@ jobs:
         run: |
           URL1="https://raw.githubusercontent.com/shaoyouvip/free/main/base64.txt"
           URL2="https://share-main1c1m2.lancelot.dpdns.org/sub?token=f01050d65be928f27f8455ae15b1dfd8&b64"
+          URL3="https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub"
           OUTPUT="src/base64-gongyi.txt"
 
-          rm -f /tmp/sub1_base64.txt /tmp/sub2_base64.txt /tmp/merged_plain.txt /tmp/decoded.txt
+          rm -f /tmp/sub1_base64.txt /tmp/sub2_base64.txt /tmp/sub3_base64.txt /tmp/merged_plain.txt /tmp/decoded.txt
 
           echo "=== 下载源1 ==="
           HTTP1=$(curl -sL --max-time 15 -w "%{http_code}" -o /tmp/sub1_base64.txt "$URL1" 2>&1) || HTTP1=000
@@ -31,10 +32,14 @@ jobs:
           HTTP2=$(curl -sL --max-time 15 -w "%{http_code}" -o /tmp/sub2_base64.txt "$URL2" 2>&1) || HTTP2=000
           echo "HTTP $HTTP2 | 大小: $(wc -c < /tmp/sub2_base64.txt 2>/dev/null || echo 0)"
 
+          echo "=== 下载源3 ==="
+          HTTP3=$(curl -sL --max-time 15 -w "%{http_code}" -o /tmp/sub3_base64.txt "$URL3" 2>&1) || HTTP3=000
+          echo "HTTP $HTTP3 | 大小: $(wc -c < /tmp/sub3_base64.txt 2>/dev/null || echo 0)"
+
           echo "=== 解码合并 ==="
           : > /tmp/merged_plain.txt
 
-          for f in /tmp/sub1_base64.txt /tmp/sub2_base64.txt; do
+          for f in /tmp/sub1_base64.txt /tmp/sub2_base64.txt /tmp/sub3_base64.txt; do
             if [ ! -s "$f" ]; then
               echo "  ⚠️ 文件为空，跳过"
               continue
