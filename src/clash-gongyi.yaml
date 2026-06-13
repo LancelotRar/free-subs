@@ -104,22 +104,22 @@ profile:
   store-fake-ip: true
 
 proxy-providers:
-  利群公益:
+  利群公益1:
     type: http
     url: "https://share-main1c1m2.lancelot.dpdns.org/sub?token=f01050d65be928f27f8455ae15b1dfd8&clash"
     interval: 86400
-    path: ./proxy_provider/liqungongyi.yaml
+    path: ./proxy_provider/liqungongyi1.yaml
     proxy: DIRECT
     header:
       User-Agent: 
         - clash.meta
     override:
-      additional-prefix: "[利群公益]"
+      additional-prefix: "[利群公益1]"
       skip-cert-verify: false
   zrf公益:
     type: http
-    url: "https://ghproxy.net/https://raw.githubusercontent.com/shaoyouvip/free/main/all.yaml"
-    interval: 86400
+    url: "https://ghfast.top/https://raw.githubusercontent.com/shaoyouvip/free/main/all.yaml"
+    interval: 12800
     path: ./proxy_provider/zrfgy.yaml
     proxy: DIRECT
     header:
@@ -127,8 +127,34 @@ proxy-providers:
         - clash.meta
     override:
       additional-prefix: "[zrf公益]"
-      skip-cert-verify: false         
+      skip-cert-verify: false      
+
+  利群公益2:
+    type: http
+    url: "https://ghfast.top/https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
+    interval: 3600
+    path: ./proxy_provider/liqungongyi2.yaml
+    proxy: DIRECT
+    header:
+      User-Agent: 
+        - clash.meta
+    override:
+      additional-prefix: "[利群公益2]"
+      skip-cert-verify: false            
              
+  利群公益3:
+    type: http
+    url: "https://ghfast.top/https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta-2.yaml"
+    interval: 3600
+    path: ./proxy_provider/liqungongyi3.yaml
+    proxy: DIRECT
+    header:
+      User-Agent: 
+        - clash.meta
+    override:
+      additional-prefix: "[利群公益3]"
+      skip-cert-verify: false  
+
 proxy-groups:
   - name: 🥳打包代理
     type: select
