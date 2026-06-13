@@ -116,7 +116,19 @@ proxy-providers:
     override:
       additional-prefix: "[利群公益]"
       skip-cert-verify: false
-                  
+  zrf公益:
+    type: http
+    url: "https://ghproxy.net/https://raw.githubusercontent.com/shaoyouvip/free/main/all.yaml"
+    interval: 86400
+    path: ./proxy_provider/zrfgy.yaml
+    proxy: DIRECT
+    header:
+      User-Agent: 
+        - clash.meta
+    override:
+      additional-prefix: "[zrf公益]"
+      skip-cert-verify: false         
+             
 proxy-groups:
   - name: 🥳打包代理
     type: select
