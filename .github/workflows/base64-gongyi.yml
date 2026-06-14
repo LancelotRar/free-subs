@@ -17,9 +17,9 @@ jobs:
 
       - name: 获取并合并内容
         run: |
-          URL1="https://raw.githubusercontent.com/shaoyouvip/free/main/base64.txt"
-          URL2="https://share-main1c1m2.lancelot.dpdns.org/sub?token=f01050d65be928f27f8455ae15b1dfd8&b64"
-          URL3="https://raw.githubusercontent.com/Pawdroid/Free-servers/main/sub"
+          URL1="${{ secrets.BASE64_GONGYI_URL1 }}"
+          URL2="${{ secrets.BASE64_GONGYI_URL2 }}"
+          URL3="${{ secrets.BASE64_GONGYI_URL3 }}"
           OUTPUT="src/base64-gongyi.txt"
 
           rm -f /tmp/sub1_base64.txt /tmp/sub2_base64.txt /tmp/sub3_base64.txt /tmp/merged_plain.txt /tmp/decoded.txt
