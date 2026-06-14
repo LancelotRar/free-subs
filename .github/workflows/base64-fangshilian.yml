@@ -32,20 +32,25 @@ jobs:
           echo "=== 解码处理 ==="
           base64 -d /tmp/sub_base64.txt > /tmp/decoded.txt 2>/dev/null || { echo "❌ Base64 解码失败"; exit 1; }
 
+          if ! head -c 200 /tmp/decoded.txt | grep -qE '^[a-z]+://'; then
+            echo "❌ 解码后未发现有效代理链接，保留现有文件"
+            exit 0
+          fi
+
           # 去 \r、去空行、去重、排序（同时确保末尾换行，防止行合并）
           tr -d '\r' < /tmp/decoded.txt > /tmp/merged_plain.txt
           echo >> /tmp/merged_plain.txt
           sed -i '/^[[:space:]]*$/d' /tmp/merged_plain.txt
           sort -u /tmp/merged_plain.txt -o /tmp/merged_plain.txt
 
-          TOTAL=$(wc -l < /tmp/merged_plain.txt)
+          TOTAL=$(grep -cE '^[a-z]+://' /tmp/merged_plain.txt || true)
           if [ "$TOTAL" -eq 0 ]; then
-            echo "❌ 解码后无有效内容，保留现有文件"
+            echo "❌ 处理后的有效节点数为零，保留现有文件"
             exit 0
           fi
 
           base64 -w0 /tmp/merged_plain.txt > "$OUTPUT"
-          echo "✅ 处理完成：$TOTAL 个节点"
+          echo "✅ 处理完成：$TOTAL 个有效节点"
 
       - name: 提交并推送更改
         env:
