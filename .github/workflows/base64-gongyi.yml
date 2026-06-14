@@ -79,6 +79,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "内容无变化，跳过更新。"
           else
-            git commit -m "base64公益节点订阅更新，地址不变。$(date "+%Y/%m/%d %H:%M")"
+            git commit -m "base64订阅节点更新，地址不变。$(date "+%Y/%m/%d %H:%M")"
             git push
           fi
