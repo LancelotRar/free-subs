@@ -52,9 +52,10 @@ jobs:
             cnt=$(grep -cE '^[a-z]+://' /tmp/decoded.txt || true)
             echo "  ✅ $cnt 个节点"
             tr -d '\r' < /tmp/decoded.txt >> /tmp/merged_plain.txt
+            echo >> /tmp/merged_plain.txt  # 确保末尾换行，防止跨源行合并
           done
 
-          # 去重去空行
+          # 去空行、去重、排序
           sed -i '/^[[:space:]]*$/d' /tmp/merged_plain.txt
           sort -u /tmp/merged_plain.txt -o /tmp/merged_plain.txt
 
