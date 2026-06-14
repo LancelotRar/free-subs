@@ -151,20 +151,6 @@ proxy-providers:
         - clash.meta
     override:
       additional-prefix: "[利群公益3]"
-
-proxy-providers:
-  cm:
-    type: http
-    url: "https://iijijisd-789.lancelot.dpdns.org/sub?token=c0e976dc9168d74b69865d71d7a02688&clash"
-    interval: 3600
-    path: ./proxy_provider/cm.yaml
-    proxy: DIRECT
-    header:
-      User-Agent: 
-        - clash.meta
-    override:
-      additional-prefix: "[老大牛啊！]"
-      skip-cert-verify: false
                   
 proxy-groups:
   - name: 🥳打包代理
