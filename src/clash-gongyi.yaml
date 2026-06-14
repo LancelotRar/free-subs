@@ -152,6 +152,20 @@ proxy-providers:
     override:
       additional-prefix: "[利群公益3]"
 
+proxy-providers:
+  cm:
+    type: http
+    url: "https://iijijisd-789.lancelot.dpdns.org/sub?token=c0e976dc9168d74b69865d71d7a02688&clash"
+    interval: 3600
+    path: ./proxy_provider/cm.yaml
+    proxy: DIRECT
+    header:
+      User-Agent: 
+        - clash.meta
+    override:
+      additional-prefix: "[老大牛啊！]"
+      skip-cert-verify: false
+                  
 proxy-groups:
   - name: 🥳打包代理
     type: select
@@ -200,7 +214,6 @@ proxy-groups:
 
   - name: 🫱手动选择
     type: select
-    interval: 300
     lazy: true
     include-all: true
     timeout: 2000         
@@ -212,7 +225,7 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     strategy: consistent-hashing
     include-all: true
-    timeout: 1000
+    timeout: 2000
 
   - name: ⭕故障切换
     type: fallback
@@ -220,7 +233,7 @@ proxy-groups:
     lazy: true
     url: https://www.gstatic.com/generate_204
     include-all: true
-    timeout: 1000
+    timeout: 2000
 
 rule-providers:
   category-ads-all:

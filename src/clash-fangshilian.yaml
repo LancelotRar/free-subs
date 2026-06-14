@@ -104,17 +104,17 @@ profile:
   store-fake-ip: true
 
 proxy-providers:
-  利群防失联:
+  cm:
     type: http
-    url: "https://ghfast.top/https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/c.yaml"
-    interval: 10800
-    path: ./proxy_provider/liqungongyi.yaml
+    url: "https://iijijisd-789.lancelot.dpdns.org/sub?token=c0e976dc9168d74b69865d71d7a02688&clash"
+    interval: 3600
+    path: ./proxy_provider/cm.yaml
     proxy: DIRECT
     header:
       User-Agent: 
         - clash.meta
     override:
-      additional-prefix: "[利群防失联]"
+      additional-prefix: "[老大牛啊！]"
       skip-cert-verify: false
                   
 proxy-groups:
@@ -165,7 +165,6 @@ proxy-groups:
 
   - name: 🫱手动选择
     type: select
-    interval: 300
     lazy: true
     include-all: true
     timeout: 2000         
