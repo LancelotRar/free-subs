@@ -37,11 +37,11 @@ jobs:
           FORCE: ${{ inputs.force || '' }}
         run: python3 .github/scripts/check_release.py
 
-      - name: Persist release ID
+      - name: Persist release data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add "${{ env.DATA_FILE }}"
           git diff --cached --quiet && echo "No changes to commit" && exit 0
-          git commit -m "update last release ID [skip ci]"
+          git commit -m "update last release data [skip ci]"
           git push
