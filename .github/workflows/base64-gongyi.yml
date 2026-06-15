@@ -24,7 +24,7 @@ jobs:
           URL1="${{ secrets.BASE64_GONGYI_URL1 }}"
           URL2="${{ secrets.BASE64_GONGYI_URL2 }}"
           URL3="${{ secrets.BASE64_GONGYI_URL3 }}"
-          OUTPUT="src/base64-gongyi.txt"
+          OUTPUT="src/base64-gongyi01.txt"
 
           rm -f /tmp/sub1_base64.txt /tmp/sub2_base64.txt /tmp/sub3_base64.txt /tmp/merged_plain.txt /tmp/decoded.txt
 
@@ -80,7 +80,7 @@ jobs:
           git config --local user.name "Lancelot"
           
           # 检查文件是否有变动，避免没有更新时产生空的 commit
-          git add src/base64-gongyi.txt
+          git add src/base64-gongyi01.txt
           if git diff --staged --quiet; then
             echo "内容无变化，跳过更新。"
           else
