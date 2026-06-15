@@ -51,9 +51,8 @@ if not releases:
 
 data = releases[0]
 
-latest_id = data["id"]
 latest_updated = data.get("updated_at", "")
-print(f"Last Updated: {last_updated}, Latest Updated: {latest_updated}, Latest ID: {latest_id}, Force: {FORCE}")
+print(f"Last Updated: {last_updated}, Latest Updated: {latest_updated}, Latest Release: {escape(data.get('name') or data['tag_name'])}, Force: {FORCE}")
 
 if not FORCE and latest_updated == last_updated:
     print("No new release")
