@@ -18,9 +18,13 @@ for var in ("TG_BOT_TOKEN", "TG_CHAT_ID"):
         sys.exit(1)
 
 last_id = 0
+last_updated = ""
 try:
     with open(DATA_FILE) as f:
-        last_id = int(f.read().strip())
+        line_id = f.readline().strip()
+        if line_id:
+            last_id = int(line_id)
+        last_updated = f.readline().strip() or ""
 except Exception:
     pass
 
@@ -50,13 +54,23 @@ if not releases:
 data = releases[0]
 
 latest_id = data["id"]
-print(f"Last ID: {last_id}, Latest ID: {latest_id}, Force: {FORCE}")
+latest_updated = data.get("updated_at", "")
+print(f"Last ID: {last_id}, Latest ID: {latest_id}, Last Updated: {last_updated}, Latest Updated: {latest_updated}, Force: {FORCE}")
 
-if not FORCE and latest_id <= last_id:
+is_new_release = latest_id > last_id
+is_deletion = latest_id < last_id  # latest release was deleted/retracted, older one is now top
+is_updated = latest_id == last_id and latest_updated != last_updated
+
+if not FORCE and not is_new_release and not is_deletion and not is_updated:
     print("No new release")
     sys.exit(0)
 
-print("New release found, sending notification…")
+if is_new_release:
+    print("New release found, sending notification…")
+elif is_deletion:
+    print("Latest release was deleted/retracted, new latest found, sending notification…")
+else:
+    print("Release updated, sending notification…")
 
 rel_name = escape(data.get("name") or data["tag_name"])
 pub_date = data["published_at"][:10]
@@ -71,8 +85,15 @@ for a in data.get("assets", []):
     )
 assets_text = "\n".join(assets_lines) if assets_lines else "（无 Assets）"
 
+if is_new_release:
+    header = f"🚀<b>{NOTIFY_TITLE} 新版本发布！</b>"
+elif is_deletion:
+    header = f"⚠️<b>{NOTIFY_TITLE} Release 已变更（原版本可能已被撤回）</b>"
+else:
+    header = f"🔄<b>{NOTIFY_TITLE} 版本更新！</b>"
+
 text = (
-    f"🚀<b>{NOTIFY_TITLE} 新版本发布！</b>\n\n"
+    f"{header}\n\n"
     f'📢<a href="{NOTIFY_GROUP_URL}">TG讨论群</a>\n\n'
     f"🌀<b>版本：</b>{rel_name}\n"
     f"🍾<b>发布时间：</b>{pub_date}\n"
@@ -114,5 +135,6 @@ if not send_ok:
     sys.exit(1)
 
 with open(DATA_FILE, "w") as f:
-    f.write(str(latest_id))
-print(f"Telegram notification sent and release ID persisted: {latest_id}")
+    f.write(str(latest_id) + "\n")
+    f.write(latest_updated + "\n")
+print(f"Telegram notification sent and release data persisted: {latest_id} / {latest_updated[:19]}")
