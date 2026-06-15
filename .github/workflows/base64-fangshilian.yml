@@ -18,7 +18,7 @@ jobs:
       - name: 获取并覆盖内容
         run: |
           # 下载文件并直接覆盖目标路径
-          curl -sL "https://raw.githubusercontent.com/free18/v2ray/main/v.txt" -o src/base64-fangshilian.txt
+          curl -sL "${{ secrets.BASE64_FSL_URL1 }}" -o src/base64-fangshilian.txt
           echo "文件已抓取完成"
 
       - name: 提交并推送更改
