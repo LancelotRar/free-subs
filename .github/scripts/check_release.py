@@ -18,13 +18,9 @@ for var in ("TG_BOT_TOKEN", "TG_CHAT_ID"):
         sys.exit(1)
 
 last_id = 0
-last_updated = ""
 try:
     with open(DATA_FILE) as f:
-        line_id = f.readline().strip()
-        if line_id:
-            last_id = int(line_id)
-        last_updated = f.readline().strip() or ""
+        last_id = int(f.read().strip())
 except Exception:
     pass
 
@@ -54,26 +50,12 @@ if not releases:
 data = releases[0]
 
 latest_id = data["id"]
-latest_updated = data.get("updated_at", "")
-print(f"Last ID: {last_id}, Latest ID: {latest_id}, Last Updated: {last_updated}, Latest Updated: {latest_updated}, Force: {FORCE}")
+print(f"Last ID: {last_id}, Latest ID: {latest_id}, Force: {FORCE}")
 
-is_new_release = latest_id > last_id
-is_deletion = latest_id < last_id  # latest release was deleted/retracted, older one is now top
-is_updated = latest_id == last_id and latest_updated != last_updated
-
-if not FORCE and not is_new_release and not is_deletion and not is_updated:
+if not FORCE and latest_id <= last_id:
     print("No new release")
     sys.exit(0)
 
-# For edit/deletion: silently persist data update without notification
-if not is_new_release:
-    with open(DATA_FILE, "w") as f:
-        f.write(str(latest_id) + "\n")
-        f.write(latest_updated + "\n")
-    print(f"Release data updated silently (edit/deletion): {latest_id} / {latest_updated[:19]}")
-    sys.exit(0)
-
-# Only send notification for genuinely new releases
 print("New release found, sending notification…")
 
 rel_name = escape(data.get("name") or data["tag_name"])
@@ -132,6 +114,5 @@ if not send_ok:
     sys.exit(1)
 
 with open(DATA_FILE, "w") as f:
-    f.write(str(latest_id) + "\n")
-    f.write(latest_updated + "\n")
-print(f"Telegram notification sent and release data persisted: {latest_id} / {latest_updated[:19]}")
+    f.write(str(latest_id))
+print(f"Telegram notification sent and release ID persisted: {latest_id}")
