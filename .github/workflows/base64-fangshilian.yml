@@ -2,16 +2,12 @@ name: base64-fangshilian-update
 
 on:
   schedule:
-    - cron: '0 */1 * * *'
+    - cron: '0 */12 * * *'
   workflow_dispatch: 
 
 jobs:
   base64-fangshilian-update:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
-    concurrency:
-      group: base64-fangshilian
-      cancel-in-progress: true
     permissions:
       contents: write # 必须开启写入权限，否则无法推送修改
 
@@ -19,42 +15,11 @@ jobs:
       - name: 检出仓库代码
         uses: actions/checkout@v6
 
-      - name: 获取并保存内容
+      - name: 获取并覆盖内容
         run: |
-          URL="${{ secrets.BASE64_FSL_URL1 }}"
-          OUTPUT="src/base64-fangshilian.txt"
-
-          echo "=== 下载 ==="
-          HTTP=$(curl -sL --max-time 15 -w "%{http_code}" -o /tmp/sub_base64.txt "$URL" 2>&1) || HTTP=000
-          echo "HTTP $HTTP | 大小: $(wc -c < /tmp/sub_base64.txt 2>/dev/null || echo 0)"
-
-          if [ ! -s /tmp/sub_base64.txt ]; then
-            echo "❌ 下载为空，保留现有文件"
-            exit 0
-          fi
-
-          echo "=== 解码处理 ==="
-          base64 -d /tmp/sub_base64.txt > /tmp/decoded.txt 2>/dev/null || { echo "❌ Base64 解码失败"; exit 1; }
-
-          if ! head -c 200 /tmp/decoded.txt | grep -qE '^[a-z]+://'; then
-            echo "❌ 解码后未发现有效代理链接，保留现有文件"
-            exit 0
-          fi
-
-          # 去 \r、去空行、去重、排序（同时确保末尾换行，防止行合并）
-          tr -d '\r' < /tmp/decoded.txt > /tmp/merged_plain.txt
-          echo >> /tmp/merged_plain.txt
-          sed -i '/^[[:space:]]*$/d' /tmp/merged_plain.txt
-          sort -u /tmp/merged_plain.txt -o /tmp/merged_plain.txt
-
-          TOTAL=$(grep -cE '^[a-z]+://' /tmp/merged_plain.txt || true)
-          if [ "$TOTAL" -eq 0 ]; then
-            echo "❌ 处理后的有效节点数为零，保留现有文件"
-            exit 0
-          fi
-
-          base64 -w0 /tmp/merged_plain.txt > "$OUTPUT"
-          echo "✅ 处理完成：$TOTAL 个有效节点"
+          # 下载文件并直接覆盖目标路径
+          curl -sL "https://raw.githubusercontent.com/free18/v2ray/main/v.txt" -o src/base64-fangshilian.txt
+          echo "文件已抓取完成"
 
       - name: 提交并推送更改
         env:
