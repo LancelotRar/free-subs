@@ -65,12 +65,16 @@ if not FORCE and not is_new_release and not is_deletion and not is_updated:
     print("No new release")
     sys.exit(0)
 
-if is_new_release:
-    print("New release found, sending notification…")
-elif is_deletion:
-    print("Latest release was deleted/retracted, new latest found, sending notification…")
-else:
-    print("Release updated, sending notification…")
+# For edit/deletion: silently persist data update without notification
+if not is_new_release:
+    with open(DATA_FILE, "w") as f:
+        f.write(str(latest_id) + "\n")
+        f.write(latest_updated + "\n")
+    print(f"Release data updated silently (edit/deletion): {latest_id} / {latest_updated[:19]}")
+    sys.exit(0)
+
+# Only send notification for genuinely new releases
+print("New release found, sending notification…")
 
 rel_name = escape(data.get("name") or data["tag_name"])
 pub_date = data["published_at"][:10]
@@ -85,15 +89,8 @@ for a in data.get("assets", []):
     )
 assets_text = "\n".join(assets_lines) if assets_lines else "（无 Assets）"
 
-if is_new_release:
-    header = f"🚀<b>{NOTIFY_TITLE} 新版本发布！</b>"
-elif is_deletion:
-    header = f"⚠️<b>{NOTIFY_TITLE} Release 已变更（原版本可能已被撤回）</b>"
-else:
-    header = f"🔄<b>{NOTIFY_TITLE} 版本更新！</b>"
-
 text = (
-    f"{header}\n\n"
+    f"🚀<b>{NOTIFY_TITLE} 新版本发布！</b>\n\n"
     f'📢<a href="{NOTIFY_GROUP_URL}">TG讨论群</a>\n\n'
     f"🌀<b>版本：</b>{rel_name}\n"
     f"🍾<b>发布时间：</b>{pub_date}\n"
