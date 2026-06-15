@@ -8,6 +8,10 @@ on:
 jobs:
   base64-fangshilian-update:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    concurrency:
+      group: base64-fangshilian
+      cancel-in-progress: true
     permissions:
       contents: write # 必须开启写入权限，否则无法推送修改
 
