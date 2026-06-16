@@ -104,7 +104,7 @@ profile:
   store-fake-ip: true
 
 proxy-providers:
-  利群公益1:
+  利群公益:
     type: http
     url: "https://gy-cffc4-main-v0.lancelot.dpdns.org/sub?token=9e8669cf0aa200bcab8c6a70a5679a6e&clash"
     interval: 86400
@@ -114,9 +114,9 @@ proxy-providers:
       User-Agent: 
         - clash.meta
     override:
-      additional-prefix: "[利群公益1]"
+      additional-prefix: "[利群公益]"
 
-  zrf公益:
+  周润发公益:
     type: http
     url: "https://gh-proxy.org/https://raw.githubusercontent.com/shaoyouvip/free/main/all.yaml"
     interval: 3600
@@ -126,19 +126,19 @@ proxy-providers:
       User-Agent: 
         - clash.meta
     override:
-      additional-prefix: "[zrf公益]"   
+      additional-prefix: "[周润发公益]"   
 
-  利群公益2:
+  snakem982:
     type: http
     url: "https://gh-proxy.org/https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
     interval: 3600
-    path: ./proxy_provider/liqungongyi2.yaml
+    path: ./proxy_provider/snakem982.yaml
     proxy: DIRECT
     header:
       User-Agent: 
         - clash.meta
     override:
-      additional-prefix: "[利群公益2]"      
+      additional-prefix: "[snakem982]"      
              
   Jsnzkpg:
     type: http
@@ -150,7 +150,7 @@ proxy-providers:
       User-Agent: 
         - clash.meta
     override:
-      additional-prefix: "[Jsnzkpg公益]"
+      additional-prefix: "[裤佬公益]"
                   
 proxy-groups:
   - name: 🥳打包代理

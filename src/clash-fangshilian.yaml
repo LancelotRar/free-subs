@@ -108,13 +108,13 @@ proxy-providers:
     type: http
     url: "https://gh-proxy.org/https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/c.yaml"
     interval: 3600
-    path: ./proxy_provider/liqungongyi.yaml
+    path: ./proxy_provider/fangshilian.yaml
     proxy: DIRECT
     header:
       User-Agent: 
         - clash.meta
     override:
-      additional-prefix: "[利群防失联]"
+      additional-prefix: "[防失联]"
 
 proxy-groups:
   - name: 🥳打包代理
