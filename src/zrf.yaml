@@ -108,41 +108,17 @@ proxies:
   - {name: '[A利群公益]群组https://t.me/liqunchat01', server: www.shopify.com, port: 443, type: vless, uuid: 31f549bd-6265-4099-a9c2-5ef86aada3a2, tls: true, skip-cert-verify: false, servername: gy-cffc3-node-v0.lancelot.dpdns.org, client-fingerprint: chrome, network: ws, ws-opts: {path: /soft, headers: {Host: gy-cffc3-node-v0.lancelot.dpdns.org}}, ech-opts: {enable: true, query-server-name: cloudflare-ech.com}}
 
 proxy-providers:
-  利群公益:
+  周润发公益:
     type: http
-    url: "https://gy-cffc4-main-v0.lancelot.dpdns.org/sub?token=9e8669cf0aa200bcab8c6a70a5679a6e&clash"
-    interval: 86400
-    path: ./proxy_provider/liqungongyi1.yaml
-    proxy: DIRECT
-    header:
-      User-Agent: 
-        - clash.meta
-    override:
-      additional-prefix: "[A利群公益]"
-
-  哄哄公益:
-    type: http
-    url: "https://bbtj.hhllfly.kdns.fr/sub?token=UskScIOwDqOPIJVykJqwB6lRy&clash"
+    url: "https://gh-proxy.org/https://raw.githubusercontent.com/shaoyouvip/free/main/all.yaml"
     interval: 3600
-    path: ./proxy_provider/hhgy.yaml
+    path: ./proxy_provider/zrfgy.yaml
     proxy: DIRECT
     header:
       User-Agent: 
         - clash.meta
     override:
-      additional-prefix: "[哄哄公益]"  
-
-  snakem982:
-    type: http
-    url: "https://gh-proxy.org/https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
-    interval: 3600
-    path: ./proxy_provider/snakem982.yaml
-    proxy: DIRECT
-    header:
-      User-Agent: 
-        - clash.meta
-    override:
-      additional-prefix: "[snakem982]"      
+      additional-prefix: "[周润发公益]"      
                   
 proxy-groups:
   - name: 🥳打包代理
