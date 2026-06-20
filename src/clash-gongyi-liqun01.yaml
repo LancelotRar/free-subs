@@ -114,31 +114,7 @@ proxy-providers:
       User-Agent: 
         - clash.meta
     override:
-      additional-prefix: "[A利群]"
-
-  哄哄公益:
-    type: http
-    url: "https://bbtj.hhllfly.kdns.fr/sub?token=UskScIOwDqOPIJVykJqwB6lRy&clash"
-    interval: 3600
-    path: ./proxy_provider/hhgy.yaml
-    proxy: DIRECT
-    header:
-      User-Agent: 
-        - clash.meta
-    override:
-      additional-prefix: "[哄哄]"  
-
-  snakem982:
-    type: http
-    url: "https://gh-proxy.org/https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
-    interval: 3600
-    path: ./proxy_provider/snakem982.yaml
-    proxy: DIRECT
-    header:
-      User-Agent: 
-        - clash.meta
-    override:
-      additional-prefix: "[982]"      
+      additional-prefix: "[A利群]" 
                   
 proxy-groups:
   - name: 🥳打包代理
