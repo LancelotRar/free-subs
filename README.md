@@ -15,28 +15,28 @@
 ### 1. 作者：Cmliu
 * **代表作：** `edgetunnel`
 * **项目地址：** [https://github.com/cmliu/edgetunnel](https://github.com/cmliu/edgetunnel)
-* **现 Star 数：** <img src="https://img.shields.io/github/stars/cmliu/edgetunnel?style=flat-square&label=" style="vertical-align: middle;">
+* **现 Star 数：** <img src="https://img.shields.io/github/stars/cmliu/edgetunnel?style=flat-square&label=" style="vertical-align: -3px;">
 * **作者博客：** [https://blog.cmliussss.com/](https://blog.cmliussss.com/)
 * **YouTube 主页：** [CMLiussss](https://www.youtube.com/@CMLiussss)
 
 ### 2. 作者：Joey
 * **代表作：** `cfnew`
 * **项目地址：** [https://github.com/byJoey/cfnew](https://github.com/byJoey/cfnew)
-* **现 Star 数：** <img src="https://img.shields.io/github/stars/byJoey/cfnew?style=flat-square&label=" style="vertical-align: middle;">
+* **现 Star 数：** <img src="https://img.shields.io/github/stars/byJoey/cfnew?style=flat-square&label=" style="vertical-align: -3px;">
 * **作者博客：** [https://joeyblog.net/](https://joeyblog.net/)
 * **YouTube 主页：** [joeyblog](https://www.youtube.com/@joeyblog)
 
 ### 3. 作者：佬王
 * **代表作：** `Cloudflare-proxy`
 * **项目地址：** [https://github.com/eooce/Cloudflare-proxy](https://github.com/eooce/Cloudflare-proxy)
-* **现 Star 数：** <img src="https://img.shields.io/github/stars/eooce/Cloudflare-proxy?style=flat-square&label=" style="vertical-align: middle;">
+* **现 Star 数：** <img src="https://img.shields.io/github/stars/eooce/Cloudflare-proxy?style=flat-square&label=" style="vertical-align: -3px;">
 * **作者博客：** 无
 * **YouTube 主页：** [eooce](https://www.youtube.com/@eooce)
 
 ### 4. 作者：ygkkk
 * **代表作：** `Cloudflare-vless-trojan`
 * **项目地址：** [https://github.com/yonggekkk/Cloudflare-vless-trojan](https://github.com/yonggekkk/Cloudflare-vless-trojan)
-* **现 Star 数：** <img src="https://img.shields.io/github/stars/yonggekkk/Cloudflare-vless-trojan?style=flat-square&label=" style="vertical-align: middle;">
+* **现 Star 数：** <img src="https://img.shields.io/github/stars/yonggekkk/Cloudflare-vless-trojan?style=flat-square&label=" style="vertical-align: -3px;">
 * **作者博客：** [https://ygkkk.blogspot.com/](https://ygkkk.blogspot.com/)
 * **YouTube 主页：** [ygkkk](https://www.youtube.com/@ygkkk)
 
