@@ -104,29 +104,17 @@ profile:
   store-fake-ip: true
 
 proxy-providers:
-  利群公益:
+  snakem982:
     type: http
-    url: "https://gy-cffc1-main-v0.lancelot.dpdns.org/sub?token=6e69f5742be0c0f684c43c936158e314"
+    url: "https://gh-proxy.org/https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml"
     interval: 3600
-    path: ./proxy_provider/liqungongyi-solo.yaml
+    path: ./proxy_provider/snakem982.yaml
     proxy: DIRECT
     header:
       User-Agent: 
         - clash.meta
     override:
-      additional-prefix: "[A利群]"
-
-  哄哄公益:
-    type: http
-    url: "https://bbtj.hhllfly.kdns.fr/sub?token=UskScIOwDqOPIJVykJqwB6lRy"
-    interval: 3600
-    path: ./proxy_provider/hhgy.yaml
-    proxy: DIRECT
-    header:
-      User-Agent: 
-        - clash.meta
-    override:
-      additional-prefix: "[哄哄]"      
+      additional-prefix: "[982]"      
                   
 proxy-groups:
   - name: 🥳打包代理
