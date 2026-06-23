@@ -104,29 +104,15 @@ profile:
   store-fake-ip: true
 
 proxy-providers:
-  利群公益:
+  利群优选:
     type: http
-    url: "https://gy-cffc1-main-v0.lancelot.dpdns.org/sub?token=6e69f5742be0c0f684c43c936158e314"
+    url: "https://lq-free.lancelot.dpdns.org/c/?token=5a0f3bc2dabb6ae2ab3e03c5e66337a6"
     interval: 3600
-    path: ./proxy_provider/liqungongyi-solo.yaml
+    path: ./proxy_provider/liqungongyi-good.yaml
     proxy: DIRECT
     header:
       User-Agent: 
-        - clash.meta
-    override:
-      additional-prefix: "[A利群]"
-
-  哄哄公益:
-    type: http
-    url: "https://bbtj.hhllfly.kdns.fr/sub?token=UskScIOwDqOPIJVykJqwB6lRy"
-    interval: 3600
-    path: ./proxy_provider/hhgy.yaml
-    proxy: DIRECT
-    header:
-      User-Agent: 
-        - clash.meta
-    override:
-      additional-prefix: "[哄哄]"      
+        - clash.meta 
                   
 proxy-groups:
   - name: 🥳打包代理
