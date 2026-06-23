@@ -106,15 +106,13 @@ profile:
 proxy-providers:
   利群公益:
     type: http
-    url: "https://gy-cffc1-main-v0.lancelot.dpdns.org/sub?token=6e69f5742be0c0f684c43c936158e314"
+    url: "https://lq-free.lancelot.dpdns.org/c/?token=60ce86d8d4e640e5360761c0ac251a2d"
     interval: 3600
     path: ./proxy_provider/liqungongyi-solo.yaml
     proxy: DIRECT
     header:
       User-Agent: 
         - clash.meta
-    override:
-      additional-prefix: "[A利群]" 
                   
 proxy-groups:
   - name: 🥳打包代理
