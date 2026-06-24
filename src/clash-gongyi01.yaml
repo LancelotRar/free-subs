@@ -5,76 +5,84 @@ socks-port: 7892
 redir-port: 7893
 tproxy-port: 7894
 allow-lan: true
-global-ua: clash.meta
-log-level: warning
+log-level: info
 external-controller: 0.0.0.0:9090
 bind-address: "*"
+external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+external-ui-name: zashboard
+external-ui: ui
+secret: ""
 ipv6: false
 tcp-concurrent: true
 unified-delay: true
 find-process-mode: strict
+keep-alive-interval: 60
+keep-alive-idle: 600
+global-ua: clash.meta
+
+experimental:
+  quic-go-disable-gso: true
 
 tun:
   enable: false
   auto-detect-interface: true
   auto-route: true
+  auto-redirect: true
   device: Mihomo
   dns-hijack:
   - any:53
+  - tcp://any:53
   mtu: 1500
-  stack: gvisor
-  strict-route: false
+  stack: mixed
 
 dns:
   enable: true
   ipv6: false
-  prefer-h3: false
-  listen: :53
-  use-hosts: false
-  use-system-hosts: false
-  respect-rules: false
+  listen: :1053
+  cache-algorithm: arc
+  use-hosts: true
+  respect-rules: true
+  use-system-hosts: true
   enhanced-mode: fake-ip
-  fake-ip-filter-mode: blacklist 
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-    - "+.lan"
-    - "+.local"
-    - '*.arpa'    
-    - time.*.com
-    - ntp.*.com
-    - "+.internal"
-    - "+.localdomain"
-    - "+.example"
-    - "+.invalid"
-    - "+.test"
-    - "+.localhost"
-    - '*.msftncsi.com'
-    - www.msftconnecttest.com
-  default-nameserver: 
+    - rule-set:private
+  default-nameserver:
     - 223.6.6.6
     - 8.8.8.8  
     - 119.29.29.29
-    - 2400:3200::1
-    - 2001:4860:4860::8888  
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
   nameserver:
     - 8.8.8.8
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
-  direct-nameserver-follow-policy: false
-  proxy-server-nameserver:
-  - https://doh.pub/dns-query
-  - https://dns.alidns.com/dns-query
-  - tls://223.5.5.5
-  fallback-filter:  
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 240.0.0.0/4
-      - 0.0.0.0/32    
-      
+  direct-nameserver:
+    - system
+    - 223.5.5.5
+    - 119.29.29.29
+    
+hosts:
+  dns.alidns.com:
+    - 223.5.5.5
+    - 223.6.6.6
+  doh.pub:
+    - 1.12.12.12
+    - 120.53.53.53
+  dns.cloudflare.com:
+    - 1.1.1.1
+    - 1.0.0.1
+  dns.google:
+    - 8.8.8.8
+    - 8.8.4.4
+  services.googleapis.cn:
+    - services.googleapis.com
+
 sniffer:
   enable: true
-  override-destination: true
+  override-destination: false
+  parse-pure-ip: false
   sniff:
     QUIC:
       ports:
@@ -89,16 +97,17 @@ sniffer:
         - 80
         - 8080-8880
       override-destination: true
-  parse-pure-ip: true
+
 geodata-mode: true
 geo-auto-update: true
 geo-update-interval: 24
-geodata-loader: standard
+geodata-loader: memconservative
 geox-url:
-  geoip: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geoip.dat"
-  geosite: "https://cdn.jsdelivr.net/gh/Loyalsoldier/v2ray-rules-dat@release/geosite.dat"
-  mmdb: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/Country.mmdb"
-  asn: "https://cdn.jsdelivr.net/gh/Loyalsoldier/geoip@release/GeoLite2-ASN.mmdb"
+  geoip: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat
+  geosite: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat
+  mmdb: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb
+  asn: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb
+
 profile:
   store-selected: true
   store-fake-ip: true
@@ -106,9 +115,10 @@ profile:
 proxy-providers:
   利群优选公益订阅:
     type: http
-    url: "https://lq-free.lancelot.dpdns.org/c/?token=@liqunchannel-fd"
+    lazy: true
+    url: https://lq-free.lancelot.dpdns.org/c/?token=@liqunchannel-yx
     interval: 3600
-    path: ./proxy_provider/clash-gy-lq-good.yaml
+    path: ./proxy_provider/clash-gy-lq-yx.yaml
     proxy: DIRECT
     header:
       User-Agent: 
@@ -123,7 +133,7 @@ proxy-groups:
       - DIRECT
       - ⚖️负载均衡
       - ⭕故障切换
-      
+
   - name: 🎯国内直连
     type: select
     proxies:
@@ -140,7 +150,7 @@ proxy-groups:
       - ✅自动选择
       - 🫱手动选择
       - ⚖️负载均衡
-      - ⭕故障切换    
+      - ⭕故障切换
 
   - name: ⚠️拒绝连接
     type: select
@@ -149,22 +159,22 @@ proxy-groups:
       - ✅自动选择
       - 🫱手动选择
       - ⚖️负载均衡
-      - ⭕故障切换  
+      - ⭕故障切换
 
   - name: ✅自动选择
     type: url-test
     interval: 300
     lazy: true
-    tolerance: 200
+    tolerance: 100
     url: https://www.gstatic.com/generate_204
     include-all: true
-    timeout: 1000
+    timeout: 2000
 
   - name: 🫱手动选择
     type: select
     lazy: true
     include-all: true
-    timeout: 1000         
+    timeout: 2000
 
   - name: ⚖️负载均衡
     type: load-balance
@@ -173,7 +183,7 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     strategy: consistent-hashing
     include-all: true
-    timeout: 1000
+    timeout: 2000
 
   - name: ⭕故障切换
     type: fallback
@@ -181,7 +191,7 @@ proxy-groups:
     lazy: true
     url: https://www.gstatic.com/generate_204
     include-all: true
-    timeout: 1000
+    timeout: 2000
 
 rule-providers:
   category-ads-all:
@@ -189,16 +199,25 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs  
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs"
+    url: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs
     path: ./ruleset/dn/category-ads-all.mrs
     interval: 86400
-
+  
+  tracking:
+    type: http
+    behavior: domain
+    proxy: DIRECT
+    format: mrs
+    url: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-tracker.mrs
+    path: ./ruleset/dn/tracking.mrs
+    interval: 86400
+  
   cn:
     type: http
     behavior: domain
     proxy: DIRECT
     format: mrs    
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs"  
+    url: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs 
     path: ./ruleset/dn/cn.mrs
     interval: 86400  
 
@@ -207,7 +226,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs"
+    url: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs
     path: ./ruleset/dn/private.mrs
     interval: 86400
 
@@ -216,7 +235,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs"
+    url: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs
     path: ./ruleset/dn/google.mrs
     interval: 86400
 
@@ -225,7 +244,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/gfw.mrs"
+    url: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/gfw.mrs
     path: ./ruleset/dn/gfw.mrs
     interval: 86400
 
@@ -234,7 +253,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/github.mrs"
+    url: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/github.mrs
     path: ./ruleset/dn/github.mrs
     interval: 86400
 
@@ -243,7 +262,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs"
+    url: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs
     path: ./ruleset/dn/microsoft.mrs
     interval: 86400
 
@@ -252,9 +271,9 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs"
+    url: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs
     path: ./ruleset/dn/telegram.mrs
-    interval: 86400    
+    interval: 86400
 
   # IP规则集
   telegramip:
@@ -262,7 +281,7 @@ rule-providers:
     behavior: ipcidr
     proxy: DIRECT
     format: mrs 
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs"
+    url: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs
     path: ./ruleset/ip/telegramip.mrs
     interval: 86400
 
@@ -271,7 +290,7 @@ rule-providers:
     behavior: ipcidr
     proxy: DIRECT
     format: mrs 
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs"
+    url: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs
     path: ./ruleset/ip/googleip.mrs
     interval: 86400    
 
@@ -280,7 +299,7 @@ rule-providers:
     behavior: ipcidr
     proxy: DIRECT
     format: mrs    
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs"
+    url: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs
     path: ./ruleset/ip/privateip.mrs
     interval: 86400
 
@@ -289,22 +308,34 @@ rule-providers:
     behavior: ipcidr
     proxy: DIRECT
     format: mrs 
-    url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs"
+    url: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs
     path: ./ruleset/ip/cnip.mrs
     interval: 86400
 
 rules:
+  # 拦截规则
   - RULE-SET,category-ads-all,⚠️拒绝连接
-  - DOMAIN-SUFFIX,dpdns.org,🎯国内直连   
-  - RULE-SET,telegram,🥳打包代理   
-  - RULE-SET,google,🥳打包代理  
-  - RULE-SET,github,🥳打包代理  
-  - RULE-SET,microsoft,🥳打包代理 
-  - RULE-SET,gfw,🥳打包代理 
-  - RULE-SET,telegramip,🥳打包代理,no-resolve  
-  - RULE-SET,googleip,🥳打包代理,no-resolve   
-  - RULE-SET,private,🎯国内直连 
-  - RULE-SET,cn,🎯国内直连 
-  - RULE-SET,privateip,🎯国内直连,no-resolve   
-  - RULE-SET,cnip,🎯国内直连,no-resolve   
+  - RULE-SET,tracking,⚠️拒绝连接
+ 
+  # 自定义直连
+  - DOMAIN-SUFFIX,dpdns.org,🎯国内直连
+
+  # 私有网络直连
+  - RULE-SET,private,🎯国内直连
+  - RULE-SET,privateip,🎯国内直连,no-resolve
+
+  # 代理规则
+  - RULE-SET,telegram,🥳打包代理
+  - RULE-SET,google,🥳打包代理
+  - RULE-SET,github,🥳打包代理
+  - RULE-SET,microsoft,🥳打包代理
+  - RULE-SET,gfw,🥳打包代理
+  - RULE-SET,telegramip,🥳打包代理,no-resolve
+  - RULE-SET,googleip,🥳打包代理,no-resolve
+
+  # 国内直连
+  - RULE-SET,cn,🎯国内直连
+  - RULE-SET,cnip,🎯国内直连,no-resolve
+
+  # 兜底规则
   - MATCH,🌀境外畅通

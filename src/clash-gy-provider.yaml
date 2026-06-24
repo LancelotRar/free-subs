@@ -1,0 +1,40 @@
+proxy-providers:
+  snakem982:
+    type: http
+    lazy: true
+    url: https://gh-proxy.org/https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml
+    interval: 3600
+    path: ./proxy_provider/snakem982.yaml
+    proxy: DIRECT
+    header:
+      User-Agent: 
+        - clash.meta
+    override:
+      additional-prefix: "[982]"
+    
+proxy-providers:
+  jsnzkpg:
+    type: http
+    lazy: true
+    url: https://codeberg.org/Jsnzkpg/Jsnzkpg/raw/branch/Jsnzkpg/Jsnzkpg
+    interval: 3600
+    path: ./proxy_provider/jsnzkpg.yaml
+    proxy: DIRECT
+    header:
+      User-Agent: 
+        - clash.meta
+    override:
+      additional-prefix: "[裤佬]"    
+
+proxy-providers:
+  利群公益订阅:
+    type: http
+    lazy: true
+    url: https://lq-free.lancelot.dpdns.org/c/?token=@liqunchannel-solo
+    interval: 3600
+    path: ./proxy_provider/clash-gy-lq-solo.yaml
+    proxy: DIRECT
+    header:
+      User-Agent: 
+        - clash.meta                  
+ 
