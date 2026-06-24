@@ -18,7 +18,6 @@ unified-delay: true
 find-process-mode: strict
 keep-alive-interval: 60
 keep-alive-idle: 600
-global-ua: clash.meta
 
 experimental:
   quic-go-disable-gso: true
@@ -97,16 +96,6 @@ sniffer:
         - 80
         - 8080-8880
       override-destination: true
-
-geodata-mode: true
-geo-auto-update: true
-geo-update-interval: 24
-geodata-loader: memconservative
-geox-url:
-  geoip: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat
-  geosite: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat
-  mmdb: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb
-  asn: https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb
 
 profile:
   store-selected: true
