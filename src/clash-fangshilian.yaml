@@ -193,15 +193,6 @@ rule-providers:
     path: ./ruleset/dn/category-ads-all.mrs
     interval: 86400
   
-  category-tracker:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-tracker.mrs
-    path: ./ruleset/dn/category-tracker.mrs
-    interval: 86400
-  
   cn:
     type: http
     behavior: domain
@@ -416,7 +407,6 @@ rules:
 
   # 拦截规则
   - RULE-SET,category-ads-all,⚠️拒绝连接
-  - RULE-SET,category-tracker,⚠️拒绝连接
 
   # 域名代理规则
   - RULE-SET,telegram,🥳打包代理
