@@ -142,15 +142,6 @@ proxy-groups:
       - ⚖️负载均衡
       - ⭕故障切换
 
-  - name: ⚠️拒绝连接
-    type: select
-    proxies:
-      - REJECT
-      - ✅自动选择
-      - 🫱手动选择
-      - ⚖️负载均衡
-      - ⭕故障切换
-
   - name: ✅自动选择
     type: url-test
     interval: 300
@@ -182,6 +173,15 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     include-all: true
     timeout: 2000
+
+  - name: ⚠️拒绝连接
+    type: select
+    proxies:
+      - REJECT
+      - ✅自动选择
+      - 🫱手动选择
+      - ⚖️负载均衡
+      - ⭕故障切换    
 
 rule-providers:
   category-ads-all:
