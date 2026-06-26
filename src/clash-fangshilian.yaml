@@ -25,8 +25,10 @@ tun:
   enable: false
   auto-detect-interface: true
   auto-route: true
+  strict-route: true
   auto-redirect: true
-  device: Mihomo
+  device: mihomo
+  disable-icmp-forwarding: true
   dns-hijack:
   - any:53
   - tcp://any:53
@@ -47,20 +49,18 @@ dns:
     - rule-set:private
   default-nameserver:
     - 223.6.6.6
-    - 8.8.8.8  
     - 119.29.29.29
   proxy-server-nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
   nameserver:
-    - 8.8.8.8
-    - https://dns.alidns.com/dns-query
-    - https://doh.pub/dns-query
+    - https://dns.google/dns-query
+    - https://dns.cloudflare.com/dns-query
   direct-nameserver:
     - system
-    - 223.5.5.5
-    - 119.29.29.29
-    
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+
 hosts:
   dns.alidns.com:
     - 223.5.5.5
@@ -76,26 +76,7 @@ hosts:
     - 8.8.4.4
   services.googleapis.cn:
     - services.googleapis.com
-
-sniffer:
-  enable: true
-  override-destination: false
-  parse-pure-ip: false
-  sniff:
-    QUIC:
-      ports:
-        - 443
-        - 8443
-    TLS:
-      ports:
-        - 443
-        - 8443
-    HTTP:
-      ports:
-        - 80
-        - 8080-8880
-      override-destination: true
-
+    
 profile:
   store-selected: true
   store-fake-ip: true
