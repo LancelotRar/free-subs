@@ -125,7 +125,7 @@ def download_assets(release_data: dict, dest_dir: str) -> list[str]:
             req.headers["Authorization"] = f"Bearer {GITHUB_TOKEN}"
 
         try:
-            with urllib.request.urlopen(req, timeout=120) as resp:
+            with urllib.request.urlopen(req, timeout=3600) as resp:
                 with open(local_path, "wb") as f:
                     f.write(resp.read())
             print(f"Downloaded  {name}  → {local_path}", flush=True)
@@ -204,7 +204,7 @@ async def notify(release_data: dict, asset_paths: list[str]) -> None:
                                 parse_mode="html",
                                 force_document=True,
                             ),
-                            timeout=600,
+                            timeout=3600,
                         )
                         print(f"Assets sent to  {raw_cid}", flush=True)
                     except asyncio.TimeoutError:
