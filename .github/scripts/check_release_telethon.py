@@ -24,7 +24,7 @@ import sys
 import tempfile
 import urllib.error
 import urllib.request
-import zipfile
+
 from html import escape
 from pathlib import Path
 
@@ -186,45 +186,28 @@ async def notify(release_data: dict, asset_paths: list[str]) -> None:
                 entity = raw_cid.lstrip("@")
 
             try:
-                # Package all assets into a single zip, then send one message
-                # with the notification text as caption.
-                zip_path = None
-                if asset_paths:
-                    rel_tag = escape(release_data.get("tag_name", "release"))
-                    zip_name = f"{NOTIFY_TITLE}-{rel_tag}.zip".replace(" ", "_")
-                    zip_path = Path(asset_paths[0]).parent / zip_name
-                    zip_size_mb = 0
-
-                    print(f"Archiving {len(asset_paths)} assets into {zip_name} …", flush=True)
-                    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_STORED) as zf:
-                        for ap in asset_paths:
-                            fname = Path(ap).name
-                            fsize = Path(ap).stat().st_size
-                            if fsize == 0:
-                                print(f"::warning::Skipping empty asset: {fname}", flush=True)
-                                continue
-                            zf.write(ap, fname)
-                            zip_size_mb += fsize
-                    zip_size_mb = round(zip_size_mb / 1_048_576, 1)
-                    print(f"Archive created: {zip_name} ({zip_size_mb} MB)", flush=True)
-
-                    print(f"Uploading archive ({zip_size_mb} MB) …", flush=True)
+                # Send all assets as a single grouped message (media group).
+                # Telethon's send_file with a list uses messages.sendMultiMedia,
+                # which bundles multiple documents into one message with a shared caption.
+                valid_paths = [ap for ap in asset_paths if Path(ap).stat().st_size > 0]
+                if valid_paths:
+                    print(f"Uploading {len(valid_paths)} assets as grouped message …", flush=True)
                     try:
                         await asyncio.wait_for(
                             client.send_file(
                                 entity,
-                                str(zip_path),
+                                valid_paths,
                                 caption=text,
                                 parse_mode="html",
                                 force_document=True,
                             ),
-                            timeout=600,  # 10 min for the combined zip
+                            timeout=600,
                         )
-                        print(f"Archive sent to  {raw_cid}", flush=True)
+                        print(f"Assets sent to  {raw_cid}", flush=True)
                     except asyncio.TimeoutError:
-                        print(f"::error::Upload timeout for archive ({zip_size_mb} MB) — skipped", flush=True)
+                        print(f"::error::Upload timeout for assets — skipped", flush=True)
                 else:
-                    # No assets — plain text message
+                    # No valid assets — plain text message
                     await client.send_message(entity, text, parse_mode="html")
                     print(f"Notification sent to  {raw_cid} (no assets)", flush=True)
 
