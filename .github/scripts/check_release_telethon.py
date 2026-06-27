@@ -29,7 +29,7 @@ import urllib.request
 from html import escape
 from pathlib import Path
 
-from telethon import TelegramClient, errors as tg_errors
+from telethon import TelegramClient, errors as tg_errors, utils
 from telethon.sessions import StringSession
 
 # ---------------------------------------------------------------------------
@@ -228,14 +228,21 @@ async def notify(release_data: dict, asset_paths: list[str]) -> bool:
                             timeout=3600,
                         )
                         print("All assets uploaded, sending media group …", flush=True)
-                        # Step 2: Send as grouped message (already uploaded, near-instant)
-                        await client.send_file(
-                            entity,
-                            uploaded,
-                            caption=text,
-                            parse_mode="html",
-                            force_document=True,
-                        )
+                        # Step 2: Build InputMediaUploadedDocument with attributes
+                        # from original file paths (bare InputFile lacks filename/mime).
+                        from telethon.tl import types as _tg_types
+
+                        media_entries = []
+                        for path, uf in zip(valid_paths, uploaded):
+                            attrs, mime = utils.get_attributes(path, force_document=True)
+                            media_entries.append(_tg_types.InputMediaUploadedDocument(
+                                file=uf,
+                                mime_type=mime,
+                                attributes=attrs,  # type: ignore[arg-type]
+                                force_file=True,
+                            ))
+
+                        await client.send_file(entity, media_entries, caption=text, parse_mode="html")
                         print(f"Assets sent to  {raw_cid}", flush=True)
                     except asyncio.TimeoutError:
                         print(f"::error::Upload timeout for assets — skipped", flush=True)
