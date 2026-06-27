@@ -22,6 +22,7 @@ import json
 import os
 import sys
 import tempfile
+import time
 import urllib.error
 import urllib.request
 
@@ -79,15 +80,30 @@ def fetch_latest_release() -> dict:
     url = f"https://api.github.com/repos/{REPO}/releases?per_page=1"
     req = urllib.request.Request(url, headers=headers)
 
-    try:
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            releases = json.loads(resp.read())
-    except urllib.error.HTTPError as e:
-        print(f"::error::GitHub API HTTP {e.code}: {e.reason}")
-        sys.exit(1)
-    except (json.JSONDecodeError, OSError) as e:
-        print(f"::error::Failed to fetch GitHub releases: {e}")
-        sys.exit(1)
+    releases: list[dict] = []
+    max_attempts = 3
+    for attempt in range(1, max_attempts + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                releases = json.loads(resp.read())
+        except urllib.error.HTTPError as e:
+            if e.code >= 500 and attempt < max_attempts:
+                sleep_time = 2**attempt
+                print(f"GitHub API HTTP {e.code} (attempt {attempt}/{max_attempts}), retrying in {sleep_time}s …")
+                time.sleep(sleep_time)
+                continue
+            raise RuntimeError(f"GitHub API HTTP {e.code}: {e.reason}")
+        except OSError as e:
+            if attempt < max_attempts:
+                sleep_time = 2**attempt
+                print(f"Connection error (attempt {attempt}/{max_attempts}), retrying in {sleep_time}s …")
+                time.sleep(sleep_time)
+                continue
+            raise RuntimeError(f"Failed to fetch GitHub releases: {e}")
+        except json.JSONDecodeError as e:
+            raise RuntimeError(f"Failed to fetch GitHub releases: {e}")
+        else:
+            break
 
     if not releases:
         print("No releases yet — exiting normally")
@@ -148,8 +164,7 @@ async def notify(release_data: dict, asset_paths: list[str]) -> bool:
     """
     chat_ids = [c.strip() for c in TG_CHAT_ID.split(",") if c.strip()]
     if not chat_ids:
-        print("::error::TG_CHAT_ID is empty after splitting")
-        sys.exit(1)
+        raise ValueError("TG_CHAT_ID is empty after splitting")
 
     # --- build message text ---
     rel_name = escape(release_data.get("name") or release_data["tag_name"])
@@ -179,8 +194,7 @@ async def notify(release_data: dict, asset_paths: list[str]) -> bool:
     try:
         await client.start(bot_token=TG_BOT_TOKEN)  # type: ignore[misc]
     except tg_errors.RPCError as e:
-        print(f"::error::Telegram auth failed — check TG_API_ID / TG_API_HASH / TG_BOT_TOKEN: {e}")
-        sys.exit(1)
+        raise RuntimeError(f"Telegram auth failed — check TG_API_ID / TG_API_HASH / TG_BOT_TOKEN: {e}")
     print("Telethon client started")
     all_ok = True
     try:
@@ -201,8 +215,16 @@ async def notify(release_data: dict, asset_paths: list[str]) -> bool:
                     print(f"Uploading {len(valid_paths)} assets in parallel …", flush=True)
                     try:
                         # Step 1: Upload all files concurrently to Telegram CDN
+                        def progress_callback(sent: int, total: int) -> None:
+                            pct = sent * 100 // total
+                            sent_mb = sent / 1_048_576
+                            total_mb = total / 1_048_576
+                            print(f"  Upload progress: {sent_mb:.1f}/{total_mb:.1f} MB ({pct}%)", flush=True)
+
                         uploaded = await asyncio.wait_for(
-                            asyncio.gather(*[client.upload_file(p) for p in valid_paths]),
+                            asyncio.gather(
+                                *[client.upload_file(p, progress_callback=progress_callback) for p in valid_paths]
+                            ),
                             timeout=3600,
                         )
                         print("All assets uploaded, sending media group …", flush=True)
@@ -255,34 +277,38 @@ async def notify(release_data: dict, asset_paths: list[str]) -> bool:
 
 
 async def main() -> None:
-    last_updated = get_last_updated()
-    release_data = fetch_latest_release()
-    latest_updated = release_data.get("updated_at", "")
-    rel_name = release_data.get("name") or release_data["tag_name"]
+    try:
+        last_updated = get_last_updated()
+        release_data = fetch_latest_release()
+        latest_updated = release_data.get("updated_at", "")
+        rel_name = release_data.get("name") or release_data["tag_name"]
 
-    print(
-        f"Last Updated: {last_updated}  |  "
-        f"Latest Updated: {latest_updated}  |  "
-        f"Release: {rel_name}  |  Force: {FORCE}"
-    )
+        print(
+            f"Last Updated: {last_updated}  |  "
+            f"Latest Updated: {latest_updated}  |  "
+            f"Release: {rel_name}  |  Force: {FORCE}"
+        )
 
-    if not FORCE and latest_updated == last_updated:
-        print("No new release — exiting")
-        sys.exit(0)
+        if not FORCE and latest_updated == last_updated:
+            print("No new release — exiting")
+            sys.exit(0)
 
-    print("New release found, proceeding …")
+        print("New release found, proceeding …")
 
-    # Download assets to tmpdir, then notify
-    with tempfile.TemporaryDirectory(prefix="gh_assets_") as tmpdir:
-        asset_paths = download_assets(release_data, tmpdir)
-        ok = await notify(release_data, asset_paths)
-        if not ok:
-            print("::error::Notification failed — will retry on next run")
-            sys.exit(1)
+        # Download assets to tmpdir, then notify
+        with tempfile.TemporaryDirectory(prefix="gh_assets_") as tmpdir:
+            asset_paths = download_assets(release_data, tmpdir)
+            ok = await notify(release_data, asset_paths)
+            if not ok:
+                print("::error::Notification failed — will retry on next run")
+                sys.exit(1)
 
-    with open(DATA_FILE, "w") as f:
-        f.write(latest_updated + "\n")
-    print(f"Release data persisted: {latest_updated[:19]}")
+        with open(DATA_FILE, "w") as f:
+            f.write(latest_updated + "\n")
+        print(f"Release data persisted: {latest_updated[:19]}")
+    except (RuntimeError, ValueError) as e:
+        print(f"::error::{e}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
