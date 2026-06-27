@@ -198,13 +198,29 @@ async def notify(release_data: dict, asset_paths: list[str]) -> None:
                         continue
                     fsize_mb = round(fsize / 1_048_576, 1)
 
-                    await client.send_file(
-                        entity,
-                        ap,
-                        caption=fname,
-                        force_document=True,
-                    )
-                    print(f"Asset  {fname} ({fsize_mb} MB)  sent to  {raw_cid}")
+                    # Telegram bot file size limit via MTProto is 50 MB
+                    MAX_BOT_FILE_MB = 50
+                    if fsize_mb > MAX_BOT_FILE_MB:
+                        print(
+                            f"::warning::Skipping {fname} ({fsize_mb} MB) "
+                            f"— exceeds {MAX_BOT_FILE_MB} MB bot limit"
+                        )
+                        continue
+
+                    try:
+                        await asyncio.wait_for(
+                            client.send_file(
+                                entity,
+                                ap,
+                                caption=fname,
+                                force_document=True,
+                            ),
+                            timeout=300,  # 5 min per file upload
+                        )
+                        print(f"Asset  {fname} ({fsize_mb} MB)  sent to  {raw_cid}")
+                    except asyncio.TimeoutError:
+                        print(f"::error::Upload timeout for {fname} ({fsize_mb} MB) — skipping")
+                        continue
 
             except tg_errors.FloodWaitError as e:
                 print(
