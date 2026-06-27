@@ -1,0 +1,58 @@
+name: Check fish2018/webhtv Release (Telethon)
+
+on:
+  schedule:
+    # Stagger from original HTTP-API workflow (47th min) to avoid DATA_FILE race
+    - cron: '17 16 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: Force re-notify even if already notified
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: webhtv-telethon-release
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      REPO: fish2018/webhtv
+      DATA_FILE: .github/data/last-release-webhtv-telethon.txt
+      NOTIFY_TITLE: 鱼佬WebHTV
+      NOTIFY_GROUP_URL: https://t.me/webhtv
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Telethon
+        run: pip install --upgrade telethon
+
+      - name: Check and notify
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN_WEBHTV }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID_WEBHTV }}
+          TG_API_ID: ${{ secrets.TG_API_ID }}
+          TG_API_HASH: ${{ secrets.TG_API_HASH }}
+          FORCE: ${{ inputs.force || '' }}
+        run: python3 .github/scripts/check_release_telethon.py
+
+      - name: Persist release data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${{ env.DATA_FILE }}"
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          git commit -m "update last release data [skip ci]"
+          git push
