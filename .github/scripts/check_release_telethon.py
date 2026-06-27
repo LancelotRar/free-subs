@@ -194,17 +194,21 @@ async def notify(release_data: dict, asset_paths: list[str]) -> None:
                 # which bundles multiple documents into one message with a shared caption.
                 valid_paths = [ap for ap in asset_paths if Path(ap).stat().st_size > 0]
                 if valid_paths:
-                    print(f"Uploading {len(valid_paths)} assets as grouped message …", flush=True)
+                    print(f"Uploading {len(valid_paths)} assets in parallel …", flush=True)
                     try:
-                        await asyncio.wait_for(
-                            client.send_file(
-                                entity,
-                                valid_paths,
-                                caption=text,
-                                parse_mode="html",
-                                force_document=True,
-                            ),
+                        # Step 1: Upload all files concurrently to Telegram CDN
+                        uploaded = await asyncio.wait_for(
+                            asyncio.gather(*[client.upload_file(p) for p in valid_paths]),
                             timeout=3600,
+                        )
+                        print("All assets uploaded, sending media group …", flush=True)
+                        # Step 2: Send as grouped message (already uploaded, near-instant)
+                        await client.send_file(
+                            entity,
+                            uploaded,
+                            caption=text,
+                            parse_mode="html",
+                            force_document=True,
                         )
                         print(f"Assets sent to  {raw_cid}", flush=True)
                     except asyncio.TimeoutError:
