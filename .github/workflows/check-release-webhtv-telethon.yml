@@ -1,9 +1,6 @@
 name: Check fish2018/webhtv Release (Telethon)
 
 on:
-  schedule:
-    # Stagger from original HTTP-API workflow (47th min) to avoid DATA_FILE race
-    - cron: '17 16 * * *'
   workflow_dispatch:
     inputs:
       force:
