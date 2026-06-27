@@ -242,11 +242,13 @@ async def notify(release_data: dict, asset_paths: list[str]) -> bool:
                                 force_file=True,
                             ))
 
-                        # Put caption on the LAST file so it renders below all files
-                        # (Telegram renders caption on the item it's attached to)
-                        captions_list = [""] * (len(media_entries) - 1) + [text]
-                        await client.send_file(entity, media_entries, caption=captions_list, parse_mode="html")
+                        # Send media group without caption so all 4 files render
+                        # as a clean album (2×2 grid), then send the text as a
+                        # separate message below the album.
+                        await client.send_file(entity, media_entries, caption="")
                         print(f"Assets sent to  {raw_cid}", flush=True)
+                        await client.send_message(entity, text, parse_mode="html")
+                        print(f"Text message sent to  {raw_cid}", flush=True)
                     except asyncio.TimeoutError:
                         print(f"::error::Upload timeout for assets — skipped", flush=True)
                         all_ok = False
