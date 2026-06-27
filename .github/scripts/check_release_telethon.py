@@ -141,8 +141,11 @@ def download_assets(release_data: dict, dest_dir: str) -> list[str]:
 # ---------------------------------------------------------------------------
 
 
-async def notify(release_data: dict, asset_paths: list[str]) -> None:
-    """Send HTML notification message + asset files to every chat in TG_CHAT_ID."""
+async def notify(release_data: dict, asset_paths: list[str]) -> bool:
+    """Send HTML notification message + asset files to every chat in TG_CHAT_ID.
+
+    Returns True if all chats were notified successfully, False otherwise.
+    """
     chat_ids = [c.strip() for c in TG_CHAT_ID.split(",") if c.strip()]
     if not chat_ids:
         print("::error::TG_CHAT_ID is empty after splitting")
@@ -179,6 +182,7 @@ async def notify(release_data: dict, asset_paths: list[str]) -> None:
         print(f"::error::Telegram auth failed — check TG_API_ID / TG_API_HASH / TG_BOT_TOKEN: {e}")
         sys.exit(1)
     print("Telethon client started")
+    all_ok = True
     try:
         for raw_cid in chat_ids:
             # Numeric chat ID or @username (strip @ for Telethon)
@@ -213,6 +217,7 @@ async def notify(release_data: dict, asset_paths: list[str]) -> None:
                         print(f"Assets sent to  {raw_cid}", flush=True)
                     except asyncio.TimeoutError:
                         print(f"::error::Upload timeout for assets — skipped", flush=True)
+                        all_ok = False
                 else:
                     # No valid assets — plain text message
                     await client.send_message(entity, text, parse_mode="html")
@@ -223,19 +228,25 @@ async def notify(release_data: dict, asset_paths: list[str]) -> None:
                     f"::error::Flood wait {e.seconds}s on {raw_cid}"
                     " — skipping remaining chats"
                 )
+                all_ok = False
                 break
             except tg_errors.RPCError as e:
                 print(f"::error::Telegram RPC error for {raw_cid}: {e}")
+                all_ok = False
                 continue
             except ValueError as e:
                 print(f"::error::Invalid chat ID '{raw_cid}': {e}")
+                all_ok = False
                 continue
             except Exception as e:
                 print(f"::error::Failed to send to {raw_cid}: {e}")
+                all_ok = False
                 continue
     finally:
         await client.disconnect()  # type: ignore[misc]
         print("Telethon client disconnected")
+
+    return all_ok
 
 
 # ---------------------------------------------------------------------------
@@ -264,7 +275,10 @@ async def main() -> None:
     # Download assets to tmpdir, then notify
     with tempfile.TemporaryDirectory(prefix="gh_assets_") as tmpdir:
         asset_paths = download_assets(release_data, tmpdir)
-        await notify(release_data, asset_paths)
+        ok = await notify(release_data, asset_paths)
+        if not ok:
+            print("::error::Notification failed — will retry on next run")
+            sys.exit(1)
 
     with open(DATA_FILE, "w") as f:
         f.write(latest_updated + "\n")
