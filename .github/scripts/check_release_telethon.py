@@ -185,11 +185,10 @@ async def notify(release_data: dict, asset_paths: list[str]) -> None:
                 entity = raw_cid.lstrip("@")
 
             try:
-                # 1. Send notification text
-                await client.send_message(entity, text, parse_mode="html")
-                print(f"Notification sent to  {raw_cid}")
-
-                # 2. Send each downloaded asset as a document
+                # Send notification AND assets as a single combined flow:
+                # first file carries the full notification text as caption,
+                # subsequent files use just the filename.
+                sent_first = False
                 for ap in asset_paths:
                     fname = Path(ap).name
                     fsize = Path(ap).stat().st_size
@@ -198,21 +197,30 @@ async def notify(release_data: dict, asset_paths: list[str]) -> None:
                         continue
                     fsize_mb = round(fsize / 1_048_576, 1)
 
+                    caption = text if not sent_first else fname
+
                     print(f"Uploading  {fname}  ({fsize_mb} MB) …", flush=True)
                     try:
                         await asyncio.wait_for(
                             client.send_file(
                                 entity,
                                 ap,
-                                caption=fname,
+                                caption=caption,
+                                parse_mode="html" if not sent_first else None,
                                 force_document=True,
                             ),
                             timeout=300,  # 5 min per file upload
                         )
                         print(f"Uploaded  {fname}  to  {raw_cid}", flush=True)
+                        sent_first = True
                     except asyncio.TimeoutError:
                         print(f"::error::Upload timeout for {fname} ({fsize_mb} MB) — skipped", flush=True)
                         continue
+
+                # If no assets, fall back to a plain text message
+                if not sent_first:
+                    await client.send_message(entity, text, parse_mode="html")
+                    print(f"Notification sent to  {raw_cid} (no assets)", flush=True)
 
             except tg_errors.FloodWaitError as e:
                 print(
