@@ -242,8 +242,13 @@ async def notify(release_data: dict, asset_paths: list[str]) -> bool:
                                 force_file=True,
                             ))
 
-                        await client.send_file(entity, media_entries, caption=text, parse_mode="html")
+                        # Step 2: Send media group WITHOUT caption — all 4 files
+                        # grouped cleanly.
+                        await client.send_file(entity, media_entries, caption="", parse_mode="html")
                         print(f"Assets sent to  {raw_cid}", flush=True)
+                        # Step 3: Send text notification as a separate message.
+                        await client.send_message(entity, text, parse_mode="html")
+                        print(f"Text notification sent to  {raw_cid}", flush=True)
                     except asyncio.TimeoutError:
                         print(f"::error::Upload timeout for assets — skipped", flush=True)
                         all_ok = False
