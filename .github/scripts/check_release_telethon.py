@@ -97,14 +97,17 @@ def fetch_latest_release() -> dict:
 
 
 def download_assets(release_data: dict, dest_dir: str) -> list[str]:
-    """Download all release assets into *dest_dir*.  Returns list of local paths."""
+    """Download .apk release assets into *dest_dir*.  Returns list of local paths."""
     assets = release_data.get("assets", [])
-    if not assets:
-        print("No assets to download")
+    apk_assets = [a for a in assets if a["name"].endswith(".apk")]
+    if not apk_assets:
+        print("No APK assets to download")
         return []
+    if len(apk_assets) < len(assets):
+        print(f"Filtered to {len(apk_assets)} APK files (skipped {len(assets) - len(apk_assets)} non-APK)")
 
     paths: list[str] = []
-    for a in assets:
+    for a in apk_assets:
         url = a["browser_download_url"]
         name = a["name"]
         local_path = Path(dest_dir) / name
