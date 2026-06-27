@@ -24,6 +24,7 @@ import sys
 import tempfile
 import urllib.error
 import urllib.request
+import zipfile
 from html import escape
 from pathlib import Path
 
@@ -185,40 +186,45 @@ async def notify(release_data: dict, asset_paths: list[str]) -> None:
                 entity = raw_cid.lstrip("@")
 
             try:
-                # Send notification AND assets as a single combined flow:
-                # first file carries the full notification text as caption,
-                # subsequent files use just the filename.
-                sent_first = False
-                for ap in asset_paths:
-                    fname = Path(ap).name
-                    fsize = Path(ap).stat().st_size
-                    if fsize == 0:
-                        print(f"::warning::Skipping empty asset: {fname}", flush=True)
-                        continue
-                    fsize_mb = round(fsize / 1_048_576, 1)
+                # Package all assets into a single zip, then send one message
+                # with the notification text as caption.
+                zip_path = None
+                if asset_paths:
+                    rel_tag = escape(release_data.get("tag_name", "release"))
+                    zip_name = f"{NOTIFY_TITLE}-{rel_tag}.zip".replace(" ", "_")
+                    zip_path = Path(asset_paths[0]).parent / zip_name
+                    zip_size_mb = 0
 
-                    caption = text if not sent_first else fname
+                    print(f"Archiving {len(asset_paths)} assets into {zip_name} …", flush=True)
+                    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_STORED) as zf:
+                        for ap in asset_paths:
+                            fname = Path(ap).name
+                            fsize = Path(ap).stat().st_size
+                            if fsize == 0:
+                                print(f"::warning::Skipping empty asset: {fname}", flush=True)
+                                continue
+                            zf.write(ap, fname)
+                            zip_size_mb += fsize
+                    zip_size_mb = round(zip_size_mb / 1_048_576, 1)
+                    print(f"Archive created: {zip_name} ({zip_size_mb} MB)", flush=True)
 
-                    print(f"Uploading  {fname}  ({fsize_mb} MB) …", flush=True)
+                    print(f"Uploading archive ({zip_size_mb} MB) …", flush=True)
                     try:
                         await asyncio.wait_for(
                             client.send_file(
                                 entity,
-                                ap,
-                                caption=caption,
-                                parse_mode="html" if not sent_first else None,
+                                str(zip_path),
+                                caption=text,
+                                parse_mode="html",
                                 force_document=True,
                             ),
-                            timeout=300,  # 5 min per file upload
+                            timeout=600,  # 10 min for the combined zip
                         )
-                        print(f"Uploaded  {fname}  to  {raw_cid}", flush=True)
-                        sent_first = True
+                        print(f"Archive sent to  {raw_cid}", flush=True)
                     except asyncio.TimeoutError:
-                        print(f"::error::Upload timeout for {fname} ({fsize_mb} MB) — skipped", flush=True)
-                        continue
-
-                # If no assets, fall back to a plain text message
-                if not sent_first:
+                        print(f"::error::Upload timeout for archive ({zip_size_mb} MB) — skipped", flush=True)
+                else:
+                    # No assets — plain text message
                     await client.send_message(entity, text, parse_mode="html")
                     print(f"Notification sent to  {raw_cid} (no assets)", flush=True)
 
