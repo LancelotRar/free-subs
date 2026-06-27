@@ -109,7 +109,7 @@ def download_assets(release_data: dict, dest_dir: str) -> list[str]:
         local_path = Path(dest_dir) / name
         size_mb = round(a["size"] / 1_048_576, 1)
 
-        print(f"Downloading  {name}  ({size_mb} MB) …")
+        print(f"Downloading  {name}  ({size_mb} MB) …", flush=True)
         req = urllib.request.Request(
             url,
             headers={
@@ -124,7 +124,7 @@ def download_assets(release_data: dict, dest_dir: str) -> list[str]:
             with urllib.request.urlopen(req, timeout=120) as resp:
                 with open(local_path, "wb") as f:
                     f.write(resp.read())
-            print(f"Downloaded  {name}  → {local_path}")
+            print(f"Downloaded  {name}  → {local_path}", flush=True)
             paths.append(str(local_path))
         except Exception as e:
             print(f"::warning::Failed to download asset {name}: {e}")
@@ -194,19 +194,11 @@ async def notify(release_data: dict, asset_paths: list[str]) -> None:
                     fname = Path(ap).name
                     fsize = Path(ap).stat().st_size
                     if fsize == 0:
-                        print(f"::warning::Skipping empty asset: {fname}")
+                        print(f"::warning::Skipping empty asset: {fname}", flush=True)
                         continue
                     fsize_mb = round(fsize / 1_048_576, 1)
 
-                    # Telegram bot file size limit via MTProto is 50 MB
-                    MAX_BOT_FILE_MB = 50
-                    if fsize_mb > MAX_BOT_FILE_MB:
-                        print(
-                            f"::warning::Skipping {fname} ({fsize_mb} MB) "
-                            f"— exceeds {MAX_BOT_FILE_MB} MB bot limit"
-                        )
-                        continue
-
+                    print(f"Uploading  {fname}  ({fsize_mb} MB) …", flush=True)
                     try:
                         await asyncio.wait_for(
                             client.send_file(
@@ -217,9 +209,9 @@ async def notify(release_data: dict, asset_paths: list[str]) -> None:
                             ),
                             timeout=300,  # 5 min per file upload
                         )
-                        print(f"Asset  {fname} ({fsize_mb} MB)  sent to  {raw_cid}")
+                        print(f"Uploaded  {fname}  to  {raw_cid}", flush=True)
                     except asyncio.TimeoutError:
-                        print(f"::error::Upload timeout for {fname} ({fsize_mb} MB) — skipping")
+                        print(f"::error::Upload timeout for {fname} ({fsize_mb} MB) — skipped", flush=True)
                         continue
 
             except tg_errors.FloodWaitError as e:
