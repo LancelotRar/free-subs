@@ -158,23 +158,24 @@ async def notify(release_data: dict, asset_paths: list[str]) -> None:
     )
 
     # --- Telethon client ---
-    # Note: `start()` and `disconnect()` are async at runtime in Telethon v1,
-    # but the shipped type stubs declare them as sync.
-    # The `async with` context manager handles disconnect automatically.
+    # NOTE: Do NOT use `async with TelegramClient(...)` — its `__aenter__`
+    # calls `self.start()` with no arguments, which would fall back to
+    # interactive phone/token input (impossible in CI).
+    # Instead, manage start/disconnect explicitly.
     print("Starting Telethon client …")
     # StringSession: zero-disk session, no .session file left behind in CI
     # connection_retries: handle transient network failures
-    async with TelegramClient(
+    client = TelegramClient(
         StringSession(), TG_API_ID, TG_API_HASH,
         connection_retries=3,
-    ) as client:
-        try:
-            await client.start(bot_token=TG_BOT_TOKEN)  # type: ignore[misc]
-        except tg_errors.RPCError as e:
-            print(f"::error::Telegram auth failed — check TG_API_ID / TG_API_HASH / TG_BOT_TOKEN: {e}")
-            sys.exit(1)
-        print("Telethon client started")
-
+    )
+    try:
+        await client.start(bot_token=TG_BOT_TOKEN)  # type: ignore[misc]
+    except tg_errors.RPCError as e:
+        print(f"::error::Telegram auth failed — check TG_API_ID / TG_API_HASH / TG_BOT_TOKEN: {e}")
+        sys.exit(1)
+    print("Telethon client started")
+    try:
         for raw_cid in chat_ids:
             # Numeric chat ID or @username (strip @ for Telethon)
             entity: int | str
@@ -220,8 +221,9 @@ async def notify(release_data: dict, asset_paths: list[str]) -> None:
             except Exception as e:
                 print(f"::error::Failed to send to {raw_cid}: {e}")
                 continue
-
-    print("Telethon client disconnected")
+    finally:
+        await client.disconnect()  # type: ignore[misc]
+        print("Telethon client disconnected")
 
 
 # ---------------------------------------------------------------------------
