@@ -1,0 +1,124 @@
+
+## 🏪 利群Public Proxy - 利群便利店公益订阅
+
+欢迎来到 **利群便利店**。本项目致力于通过 Cloudflare 边缘计算技术，为广大网友提供稳定、高速且永久免费的公益网络订阅服务。  
+
+<p align="center">
+  <img src="https://count.getloli.com/@:LancelotRar?name=%3ALancelotRar&theme=booru-koe&padding=7&offset=0&align=top&scale=1&pixelated=1&darkmode=auto">
+</p>
+
+> [!IMPORTANT]
+>无论你是从哪里、从谁的教程知道了 Cloudflare（以下简称 CF），知道了 CF 上可以免费搭建科学上网项目，你都应该知道项目作者是谁，项目名字是什么。 
+>
+>很多 YouTube 博主靠这几个项目赚足了流量，但多数都不露出作者和项目名。本人看不惯，故做以下盘点，希望大家多多去给作者点赞和 **Star** ⭐️⭐️⭐️！  
+
+### 1. 作者：Cmliu
+* **代表作：** `edgetunnel`
+* **项目地址：** [https://github.com/cmliu/edgetunnel](https://github.com/cmliu/edgetunnel)
+* **现 Star 数：** <img src="https://img.shields.io/github/stars/cmliu/edgetunnel?style=flat-square&label=" style="vertical-align: -3px;">
+* **作者博客：** [https://blog.cmliussss.com/](https://blog.cmliussss.com/)
+* **YouTube 主页：** [CMLiussss](https://www.youtube.com/@CMLiussss)
+
+### 2. 作者：Joey
+* **代表作：** `cfnew`
+* **项目地址：** [https://github.com/byJoey/cfnew](https://github.com/byJoey/cfnew)
+* **现 Star 数：** <img src="https://img.shields.io/github/stars/byJoey/cfnew?style=flat-square&label=" style="vertical-align: -3px;">
+* **作者博客：** [https://joeyblog.net/](https://joeyblog.net/)
+* **YouTube 主页：** [joeyblog](https://www.youtube.com/@joeyblog)
+
+### 3. 作者：佬王
+* **代表作：** `Cloudflare-proxy`
+* **项目地址：** [https://github.com/eooce/Cloudflare-proxy](https://github.com/eooce/Cloudflare-proxy)
+* **现 Star 数：** <img src="https://img.shields.io/github/stars/eooce/Cloudflare-proxy?style=flat-square&label=" style="vertical-align: -3px;">
+* **作者博客：** 无
+* **YouTube 主页：** [eooce](https://www.youtube.com/@eooce)
+
+### 4. 作者：ygkkk
+* **代表作：** `Cloudflare-vless-trojan`
+* **项目地址：** [https://github.com/yonggekkk/Cloudflare-vless-trojan](https://github.com/yonggekkk/Cloudflare-vless-trojan)
+* **现 Star 数：** <img src="https://img.shields.io/github/stars/yonggekkk/Cloudflare-vless-trojan?style=flat-square&label=" style="vertical-align: -3px;">
+* **作者博客：** [https://ygkkk.blogspot.com/](https://ygkkk.blogspot.com/)
+* **YouTube 主页：** [ygkkk](https://www.youtube.com/@ygkkk)
+
+-----
+
+## 🚀 本项目亮点
+
+  -  **永久固定：** 订阅链接长期有效，一次导入，终身自动更新。
+  -  **主流支持：** 深度适配 Mihomo、xray、Sing-box内核为代表的主流代理客户端。
+  -  **Cloudflare赋能：** 基于 Cloudflare 高性能开源方案搭建，兼顾速度与稳定性。
+  -  **全协议覆盖：** 提供单节点及全平台订阅格式，灵活切换。
+  -  **本项目当前使用Cmliu edgetunnel 搭建**
+
+-----
+
+## 📥 订阅地址    
+
+**包含：**  
+* 自适应订阅     
+* Base64订阅    
+* Clash.meta订阅    
+
+**获取方式：（防止Github爬虫）**  
+* 关注 [利群便利店『频道』](https://t.me/liqunchannel) ，关注公益订阅信息。或加入频道关联群组，回复“订阅”，即可获取更多公益订阅地址。
+
+> [!TIP]  
+>### 其中Clash.meta订阅分流规则已手搓至v8版本
+>### 1. 科学的自上而下匹配架构
+>
+>规则链条严格遵循“**去广告 ➔ 常用域名精准分流 ➔ 国内外 IP 补漏 ➔ 最终>兜底**”的逻辑。
+>
+>* 在请求发起的第一时间拦截广告，省去不必要的域名解析与流量损耗。
+>* 将 Google、GitHub、Telegram、Microsoft 等高频海外生产力工具前置，确保日常开发与沟通秒级响应。
+>
+>### 2. 严谨的 `no-resolve` 设计，杜绝 DNS 泄漏
+>
+>我们在所有的 IP 规则（如 `cnip`、`telegramip` 等）中均启用了 `,no-resolve` 标记。
+>
+>* **隐私保护**：防止内核为了匹配 IP 规则而强制在本地解析被墙的域名，从根源上杜绝了 DNS 污染与隐私泄漏风险。
+>* **性能优化**：大幅减少无用的本地 DNS 查询，降低网络请求延迟。
+>
+>### 3. “国内白名单”式的策略兜底
+>
+>针对国内复杂的网络环境，本配置采用了更聪明的路由闭环：
+>
+>* 优先通过 `cn` 和 `cnip` 规则将绝大多数国内已知网站、APP 及大陆 IP 剥离，确保**国内流量 100% 直连**，不占用代理带宽。
+>* 尾部采用 `MATCH,🌀境外畅通` 进行防御性兜底。这意味着任何冷门、新出的海外网站或小众服务，无需手动添加规则，均可自动走代理顺畅访问。
+>
+>* 🔥🔥🔥可以 **[点我](/src/README.md)** 继续了解此分流规则特点。 
+
+---
+
+## 📋 代理客户端推荐  
+
+> <b>点击客户端名称可跳转至项目发布页下载</b>
+
+| 平台 | 推荐客户端 |
+| :--- | :--- |
+| **Windows** | [v2rayN](https://github.com/2dust/v2rayN/releases)、[Hiddify](https://github.com/hiddify/hiddify-app/releases)、[FlClash](https://github.com/chen08209/FlClash/releases)、[mihomo-party](https://github.com/mihomo-party-org/clash-party/releases)、[Clash Verge Rev](https://github.com/clash-verge-rev/clash-verge-rev/releases)、[Clashmi](https://github.com/KaringX/clashmi/releases)、[FlyClash](https://github.com/GtxFury/FlyClash/releases)、[Karing](https://github.com/KaringX/karing/releases)、[Bettbox](https://github.com/appshubcc/Bettbox/releases) |
+| **Android** | [v2rayNG](https://github.com/2dust/v2rayNG/releases)、[ClashMetaForAndroid](https://github.com/MetaCubeX/ClashMetaForAndroid/releases/)、[FlClash](https://github.com/chen08209/FlClash/releases)、[Clashmi](https://github.com/KaringX/clashmi/releases)、[Hiddify](https://github.com/hiddify/hiddify-app/releases)、[NekoBox](https://github.com/MatsuriDayo/NekoBoxForAndroid/releases)、[FlyClash](https://github.com/GtxFury/FlyClash/releases)、[Karing](https://github.com/KaringX/karing/releases)、[Bettbox](https://github.com/appshubcc/Bettbox/releases) |
+| **iOS** | Surge、Shadowrocket、Stash、[Hiddify](https://github.com/hiddify/hiddify-app/releases)、Loon、Egern、[Clashmi](https://clashmi.app/download)、[Karing](https://karing.app/)、Quantumult X |
+| **macOS** | [FlClash](https://github.com/chen08209/FlClash/releases)、[mihomo-party](https://github.com/mihomo-party-org/clash-party/releases)、[Clash Verge Rev](https://github.com/clash-verge-rev/clash-verge-rev/releases)、Surge、[Clashmi](https://clashmi.app/download)、[Karing](https://karing.app/)、[FlyClash](https://github.com/GtxFury/FlyClash/releases) |
+| **鸿蒙** | [ClashBox](https://github.com/xiaobaigroup/ClashBox/releases) |
+
+
+> [!TIP]
+> 强烈建议在客户端内设置 **“自动更新频率 (Update Interval)”** 为 1 小时，以减少CF Workers请求数，以免刷爆导致订阅不可用。 完全不影响使用。
+
+------
+
+## Star History
+
+<a href="https://www.star-history.com/?repos=LancelotRar%2Ffree-subs&type=date&legend=bottom-right">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=LancelotRar/free-subs&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=LancelotRar/free-subs&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=LancelotRar/free-subs&type=date&legend=top-left" />
+ </picture>
+</a>  
+
+## ⚖️ 免责声明  
+
+1.  本站所有资源均来自互联网公开渠道，仅供网络技术研究及开发人员交流使用。
+2.  请遵守当地相关法律法规，严禁用于任何非法用途。
+3.  作为公益项目，不保证服务的绝对稳定性及可用性，请勿用于重要生产环境。

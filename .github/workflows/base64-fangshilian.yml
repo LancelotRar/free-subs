@@ -1,0 +1,38 @@
+name: base64-fangshilian-update
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'
+  workflow_dispatch: 
+
+jobs:
+  base64-fangshilian-update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 必须开启写入权限，否则无法推送修改
+
+    steps:
+      - name: 检出仓库代码
+        uses: actions/checkout@v6
+
+      - name: 获取并覆盖内容
+        run: |
+          # 下载文件并直接覆盖目标路径
+          curl -sL "${{ secrets.BASE64_FSL_URL1 }}" -o src/base64-fangshilian.txt
+          echo "文件已抓取完成"
+
+      - name: 提交并推送更改
+        env:
+          TZ: Asia/Shanghai
+        run: |
+          git config --local user.email "Lancelot@liqun.com"
+          git config --local user.name "Lancelot"
+          
+          # 检查文件是否有变动，避免没有更新时产生空的 commit
+          git add src/base64-fangshilian.txt
+          if git diff --staged --quiet; then
+            echo "内容无变化，跳过更新。"
+          else
+            git commit -m "防失联base64订阅节点更新，地址不变。$(date "+%Y/%m/%d %H:%M")"
+            git push
+          fi
