@@ -30,8 +30,8 @@ tun:
   device: mihomo
   disable-icmp-forwarding: true
   dns-hijack:
-  - any:53
-  - tcp://any:53
+    - udp://any:53
+    - tcp://any:53
   stack: mixed
 
 dns:
