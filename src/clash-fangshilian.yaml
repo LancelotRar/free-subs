@@ -46,7 +46,6 @@ dns:
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - rule-set:private
-    - rule-set:cn
   default-nameserver:
     - 223.6.6.6
     - 119.29.29.29
@@ -61,7 +60,6 @@ dns:
       - https://dns.alidns.com/dns-query
       - https://doh.pub/dns-query
   direct-nameserver:
-    - system
     - 223.5.5.5
     - 223.6.6.6
 
