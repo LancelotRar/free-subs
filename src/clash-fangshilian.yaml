@@ -219,6 +219,15 @@ rule-providers:
     path: ./ruleset/dn/google.mrs
     interval: 86400
 
+  youtube:
+    type: http
+    behavior: domain
+    proxy: DIRECT
+    format: mrs
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs
+    path: ./ruleset/dn/youtube.mrs
+    interval: 86400
+
   docker:
     type: http
     behavior: domain
@@ -416,17 +425,17 @@ rules:
   - RULE-SET,microsoft_cn,🎯国内直连
   - RULE-SET,cloudflare_cn,🎯国内直连
 
-
   # 拦截规则
   - RULE-SET,category-ads-all,⚠️拒绝连接
 
   # 域名代理规则
   - RULE-SET,telegram,🥳打包代理
   - RULE-SET,steam,🥳打包代理
-  - RULE-SET,ai,🥳打包代理  
+  - RULE-SET,ai,🥳打包代理
   - RULE-SET,apple,🥳打包代理
   - RULE-SET,cloudflare,🥳打包代理
-  - RULE-SET,googlefcm,🥳打包代理  
+  - RULE-SET,googlefcm,🥳打包代理
+  - RULE-SET,youtube,🥳打包代理
   - RULE-SET,google,🥳打包代理
   - RULE-SET,docker,🥳打包代理
   - RULE-SET,github,🥳打包代理
@@ -440,7 +449,7 @@ rules:
   - RULE-SET,twitterip,🥳打包代理,no-resolve
 
   # 兜底规则
-  - RULE-SET,gfw,🥳打包代理  
-  - RULE-SET,cn,🎯国内直连  
-  - RULE-SET,cnip,🎯国内直连  
+  - RULE-SET,gfw,🥳打包代理
+  - RULE-SET,cn,🎯国内直连
+  - RULE-SET,cnip,🎯国内直连
   - MATCH,🌀境外畅通
