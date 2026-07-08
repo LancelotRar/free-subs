@@ -129,7 +129,7 @@ proxy-groups:
     type: select
     proxies:
       - DIRECT
-      - ✅自动选择       
+      - ✅自动选择
       - 🫱手动选择
       - ⚖️负载均衡
       - ⭕故障切换
@@ -139,7 +139,6 @@ proxy-groups:
     interval: 300
     lazy: true
     max-failed-times: 3
-    empty-fallback: REJECT
     exclude-type: DIRECT
     tolerance: 100
     url: https://www.gstatic.com/generate_204
@@ -150,7 +149,6 @@ proxy-groups:
     type: select
     lazy: true
     max-failed-times: 3
-    empty-fallback: REJECT
     include-all: true
     timeout: 2000
 
@@ -159,8 +157,7 @@ proxy-groups:
     interval: 300
     lazy: true
     max-failed-times: 3
-    empty-fallback: REJECT
-    exclude-type: DIRECT    
+    exclude-type: DIRECT
     url: https://www.gstatic.com/generate_204
     strategy: sticky-sessions
     include-all: true
@@ -171,8 +168,7 @@ proxy-groups:
     interval: 300
     lazy: true
     max-failed-times: 3
-    empty-fallback: REJECT
-    exclude-type: DIRECT    
+    exclude-type: DIRECT
     url: https://www.gstatic.com/generate_204
     include-all: true
     timeout: 2000
@@ -191,7 +187,7 @@ rule-providers:
     type: http
     behavior: domain
     proxy: DIRECT
-    format: mrs  
+    format: mrs
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs
     path: ./ruleset/dn/category-ads-all.mrs
     interval: 86400
@@ -200,10 +196,10 @@ rule-providers:
     type: http
     behavior: domain
     proxy: DIRECT
-    format: mrs    
+    format: mrs
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs 
     path: ./ruleset/dn/cn.mrs
-    interval: 86400  
+    interval: 86400
 
   private:
     type: http
@@ -223,6 +219,15 @@ rule-providers:
     path: ./ruleset/dn/google.mrs
     interval: 86400
 
+  docker:
+    type: http
+    behavior: domain
+    proxy: DIRECT
+    format: mrs
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/docker.mrs
+    path: ./ruleset/dn/docker.mrs
+    interval: 86400
+
   googlefcm:
     type: http
     behavior: domain
@@ -230,7 +235,7 @@ rule-providers:
     format: mrs
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs
     path: ./ruleset/dn/googlefcm.mrs
-    interval: 86400    
+    interval: 86400
 
   ai:
     type: http
@@ -239,7 +244,7 @@ rule-providers:
     format: mrs
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ai-!cn.mrs
     path: ./ruleset/dn/ai.mrs
-    interval: 86400   
+    interval: 86400
 
   steam:
     type: http
@@ -248,7 +253,7 @@ rule-providers:
     format: mrs
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam.mrs
     path: ./ruleset/dn/steam.mrs
-    interval: 86400     
+    interval: 86400
 
   apple:
     type: http
@@ -266,7 +271,7 @@ rule-providers:
     format: mrs
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple@cn.mrs
     path: ./ruleset/dn/apple_cn.mrs
-    interval: 86400    
+    interval: 86400
 
   gfw:
     type: http
@@ -293,7 +298,7 @@ rule-providers:
     format: mrs
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cloudflare@cn.mrs
     path: ./ruleset/dn/cloudflare_cn.mrs
-    interval: 86400    
+    interval: 86400
 
   github:
     type: http
@@ -311,7 +316,7 @@ rule-providers:
     format: mrs
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs
     path: ./ruleset/dn/twitter.mrs
-    interval: 86400        
+    interval: 86400
 
   microsoft:
     type: http
@@ -329,7 +334,7 @@ rule-providers:
     format: mrs
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft@cn.mrs
     path: ./ruleset/dn/microsoft_cn.mrs
-    interval: 86400    
+    interval: 86400
 
   telegram:
     type: http
@@ -345,7 +350,7 @@ rule-providers:
     type: http
     behavior: ipcidr
     proxy: DIRECT
-    format: mrs 
+    format: mrs
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs
     path: ./ruleset/ip/telegramip.mrs
     interval: 86400
@@ -354,34 +359,34 @@ rule-providers:
     type: http
     behavior: ipcidr
     proxy: DIRECT
-    format: mrs 
+    format: mrs
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs
     path: ./ruleset/ip/twitterip.mrs
-    interval: 86400    
+    interval: 86400
 
   cloudflareip:
     type: http
     behavior: ipcidr
     proxy: DIRECT
-    format: mrs 
+    format: mrs
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cloudflare.mrs
     path: ./ruleset/ip/cloudflareip.mrs
-    interval: 86400    
+    interval: 86400
 
   googleip:
     type: http
     behavior: ipcidr
     proxy: DIRECT
-    format: mrs 
+    format: mrs
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs
     path: ./ruleset/ip/googleip.mrs
-    interval: 86400    
+    interval: 86400
 
   privateip:
     type: http
     behavior: ipcidr
     proxy: DIRECT
-    format: mrs    
+    format: mrs
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs
     path: ./ruleset/ip/privateip.mrs
     interval: 86400
@@ -390,7 +395,7 @@ rule-providers:
     type: http
     behavior: ipcidr
     proxy: DIRECT
-    format: mrs 
+    format: mrs
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs
     path: ./ruleset/ip/cnip.mrs
     interval: 86400
@@ -402,11 +407,15 @@ rules:
 
   # 自定义直连
   - DOMAIN-SUFFIX,dpdns.org,🎯国内直连
+  - DOMAIN-SUFFIX,cnb.cool,🎯国内直连
+  - DOMAIN-SUFFIX,1ms.run,🎯国内直连
+  - DOMAIN-SUFFIX,1panel.live,🎯国内直连
 
   # 国内直连
   - RULE-SET,apple_cn,🎯国内直连
   - RULE-SET,microsoft_cn,🎯国内直连
   - RULE-SET,cloudflare_cn,🎯国内直连
+
 
   # 拦截规则
   - RULE-SET,category-ads-all,⚠️拒绝连接
@@ -419,6 +428,7 @@ rules:
   - RULE-SET,cloudflare,🥳打包代理
   - RULE-SET,googlefcm,🥳打包代理  
   - RULE-SET,google,🥳打包代理
+  - RULE-SET,docker,🥳打包代理
   - RULE-SET,github,🥳打包代理
   - RULE-SET,twitter,🥳打包代理
   - RULE-SET,microsoft,🥳打包代理
