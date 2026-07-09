@@ -5,6 +5,7 @@
 
 <p align="center">
   <a href="https://t.me/liqunchannel"><img src="https://img.shields.io/badge/利群便利店-频道-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"></a>
+  <a href="https://t.me/liqunchat01"><img src="https://img.shields.io/badge/利群便利店-交流群-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"></a>
 </p>
 <p align="center">
   <img src="https://count.getloli.com/@:LancelotRar?name=%3ALancelotRar&theme=booru-koe&padding=7&offset=0&align=top&scale=1&pixelated=1&darkmode=auto">
