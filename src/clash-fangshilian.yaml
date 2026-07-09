@@ -105,6 +105,11 @@ proxy-providers:
         - clash.meta
     override:
       additional-prefix: '[防失联]'
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 300
+      lazy: true      
                   
 proxy-groups:
   - name: 🥳打包代理
