@@ -4,6 +4,9 @@
 欢迎来到 **利群便利店**。本项目致力于通过 Cloudflare 边缘计算技术，为广大网友提供稳定、高速且永久免费的公益网络订阅服务。  
 
 <p align="center">
+  <a href="https://t.me/liqunchannel"><img src="https://img.shields.io/badge/利群便利店-频道-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"></a>
+</p>
+<p align="center">
   <img src="https://count.getloli.com/@:LancelotRar?name=%3ALancelotRar&theme=booru-koe&padding=7&offset=0&align=top&scale=1&pixelated=1&darkmode=auto">
 </p>
 
@@ -58,7 +61,7 @@
 * Clash.meta订阅    
 
 **获取方式：（防止Github爬虫）**  
-* 关注 [![Telegram Channel](https://img.shields.io/badge/利群便利店-频道-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/liqunchannel) ，关注公益订阅信息（一般在置顶）。或加入频道关联群组，回复“订阅”，即可获取更多公益订阅地址。
+* 关注 [利群便利店『频道』](https://t.me/liqunchannel) ，关注公益订阅信息（一般在置顶）。或加入频道关联群组，回复“订阅”，即可获取更多公益订阅地址。
 
 > [!TIP]  
 > ### Clash.Meta 精简分流规则 v8 版技术解析
