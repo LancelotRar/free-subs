@@ -3,6 +3,8 @@
 
 欢迎来到 **利群便利店**。本项目致力于通过 Cloudflare 边缘计算技术，为广大网友提供稳定、高速且永久免费的公益网络订阅服务。  
 
+[🌐 中文](README.md) | [🇮🇷 فارسی](README.fa.md) | [🇷🇺 Русский](README.ru.md)
+
 <p align="center">
   <a href="https://t.me/liqunchannel"><img src="https://badgen.net/badge/利群便利店/频道/2CA5E0" align="absmiddle" style="height:28px"></a>
   <a href="https://t.me/liqunchat01"><img src="https://badgen.net/badge/利群便利店/交流群/2CA5E0" align="absmiddle" style="height:28px"></a>
