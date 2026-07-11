@@ -129,18 +129,9 @@
 
 ------
 
-## Star History
-
-<a href="https://www.star-history.com/?repos=LancelotRar%2Ffree-subs&type=date&legend=bottom-right">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=LancelotRar/free-subs&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=LancelotRar/free-subs&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=LancelotRar/free-subs&type=date&legend=top-left" />
- </picture>
-</a>  
-
 ## ⚖️ 免责声明  
 
-1.  本站所有资源均来自互联网公开渠道，仅供网络技术研究及开发人员交流使用。
-2.  请遵守当地相关法律法规，严禁用于任何非法用途。
-3.  作为公益项目，不保证服务的绝对稳定性及可用性，请勿用于重要生产环境。
+1. **信息来源声明**：本项目所提供之订阅资源均采集自互联网公开渠道，仅供网络技术研究、学术交流及开发人员学习参考之用。
+2. **合法使用义务**：使用者应严格遵守所在地相关法律法规。禁止将本项目任何资源用于违反国家法律、法规及政策的任何用途。使用者须自行承担因不当使用所引致的一切法律责任。
+3. **服务性质声明**：本项目系以公益目的提供，不对服务的连续性、稳定性、可用性及准确性作出任何明示或暗示的保证。本项目不对因使用或无法使用本服务所导致的任何直接或间接损失承担责任。
+4. **知识产权保护**：如任何组织或个人认为本项目内容侵犯其合法权益，请通过项目 Issues 页面向我们反馈，我们将在核实后及时处理。
