@@ -100,7 +100,7 @@ geox-url:
 
 geo-auto-update: true
 geo-update-interval: 24
-
+            
 proxy-providers:
   利群防失联:
     type: http
@@ -119,7 +119,7 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      lazy: true
+      lazy: true            
                   
 proxy-groups:
   - name: 🚀打包代理
@@ -149,6 +149,14 @@ proxy-groups:
       - ⚖️负载均衡
       - ⚙️故障切换
 
+  - name: ⚽️国外QUIC
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+      - 🍀自动选择
+      - 🫱手动选择 
+
   - name: 🍀自动选择
     type: url-test
     interval: 300
@@ -156,13 +164,11 @@ proxy-groups:
     tolerance: 200
     url: https://www.gstatic.com/generate_204
     include-all: true
-    timeout: 3000
 
   - name: 🫱手动选择
     type: select
     lazy: true
     include-all: true
-    timeout: 3000
 
   - name: ⚖️负载均衡
     type: load-balance
@@ -171,7 +177,6 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     strategy: sticky-sessions
     include-all: true
-    timeout: 3000
 
   - name: ⚙️故障切换
     type: fallback
@@ -179,17 +184,14 @@ proxy-groups:
     lazy: true
     url: https://www.gstatic.com/generate_204
     include-all: true
-    timeout: 3000
 
-  - name: ❗️拒绝连接
+  - name: ❗️广告拦截
     type: select
     proxies:
       - REJECT
       - DIRECT
       - 🍀自动选择
       - 🫱手动选择
-      - ⚖️负载均衡
-      - ⚙️故障切换
 
 rule-providers:
   category-ads-all:
@@ -419,6 +421,9 @@ rule-providers:
     interval: 86400
 
 rules:
+  # 禁用国外 QUIC 流量
+  - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,cn),(RULE-SET,cnip,no-resolve)))))),⚽️国外QUIC
+
   # 私有网络直连
   - RULE-SET,private,🇨🇳打包直连
   - RULE-SET,privateip,🇨🇳打包直连,no-resolve
@@ -435,7 +440,7 @@ rules:
   - RULE-SET,cloudflare_cn,🇨🇳打包直连
 
   # 拦截规则
-  - RULE-SET,category-ads-all,❗️拒绝连接
+  - RULE-SET,category-ads-all,❗️广告拦截
 
   # 域名代理规则
   - RULE-SET,telegram,🚀打包代理
