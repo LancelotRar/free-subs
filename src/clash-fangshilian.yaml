@@ -32,7 +32,7 @@ tun:
   dns-hijack:
     - udp://any:53
     - tcp://any:53
-  stack: system
+  stack: mixed
 
 dns:
   enable: true
@@ -47,7 +47,7 @@ dns:
   fake-ip-filter-mode: blacklist
   fake-ip-filter:
     - rule-set:private
-    - rule-set:cn     
+    - rule-set:cn    
   default-nameserver:
     - 223.6.6.6
     - 119.29.29.29
@@ -88,9 +88,18 @@ profile:
 ntp:
   enable: true
   write-to-system: false
-  server: 'ntp.aliyun.com'
+  server: ntp.aliyun.com
   port: 123
   interval: 60
+
+geox-url:
+  geoip: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat
+  geosite: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat
+  mmdb: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb
+  asn: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb
+
+geo-auto-update: true
+geo-update-interval: 24
 
 proxy-providers:
   利群防失联:
@@ -110,83 +119,77 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      lazy: true      
+      lazy: true
                   
 proxy-groups:
-  - name: 🥳打包代理
+  - name: 🚀打包代理
     type: select
     proxies:
-      - ✅自动选择
+      - 🍀自动选择
       - 🫱手动选择
       - DIRECT
       - ⚖️负载均衡
-      - ⭕故障切换
+      - ⚙️故障切换
 
-  - name: 🎯国内直连
+  - name: 🇨🇳打包直连
     type: select
     proxies:
       - DIRECT
-      - ✅自动选择
+      - 🍀自动选择
       - 🫱手动选择
       - ⚖️负载均衡
-      - ⭕故障切换
+      - ⚙️故障切换
 
-  - name: 🌀境外畅通
+  - name: 🐠漏网之鱼
     type: select
     proxies:
       - DIRECT
-      - ✅自动选择
+      - 🍀自动选择
       - 🫱手动选择
       - ⚖️负载均衡
-      - ⭕故障切换
+      - ⚙️故障切换
 
-  - name: ✅自动选择
+  - name: 🍀自动选择
     type: url-test
     interval: 300
     lazy: true
-    max-failed-times: 3
-    exclude-type: DIRECT
-    tolerance: 100
+    tolerance: 200
     url: https://www.gstatic.com/generate_204
     include-all: true
-    timeout: 2000
+    timeout: 3000
 
   - name: 🫱手动选择
     type: select
     lazy: true
-    max-failed-times: 3
     include-all: true
-    timeout: 2000
+    timeout: 3000
 
   - name: ⚖️负载均衡
     type: load-balance
     interval: 300
     lazy: true
-    max-failed-times: 3
-    exclude-type: DIRECT
     url: https://www.gstatic.com/generate_204
     strategy: sticky-sessions
     include-all: true
-    timeout: 2000
+    timeout: 3000
 
-  - name: ⭕故障切换
+  - name: ⚙️故障切换
     type: fallback
     interval: 300
     lazy: true
-    max-failed-times: 3
-    exclude-type: DIRECT
     url: https://www.gstatic.com/generate_204
     include-all: true
-    timeout: 2000
+    timeout: 3000
 
-  - name: ⚠️拒绝连接
+  - name: ❗️拒绝连接
     type: select
     proxies:
       - REJECT
-      - ✅自动选择
+      - DIRECT
+      - 🍀自动选择
       - 🫱手动选择
       - ⚖️负载均衡
-      - ⭕故障切换    
+      - ⚙️故障切换
 
 rule-providers:
   category-ads-all:
@@ -417,45 +420,45 @@ rule-providers:
 
 rules:
   # 私有网络直连
-  - RULE-SET,private,🎯国内直连
-  - RULE-SET,privateip,🎯国内直连,no-resolve
+  - RULE-SET,private,🇨🇳打包直连
+  - RULE-SET,privateip,🇨🇳打包直连,no-resolve
 
   # 自定义直连
-  - DOMAIN-SUFFIX,dpdns.org,🎯国内直连
-  - DOMAIN-SUFFIX,cnb.cool,🎯国内直连
-  - DOMAIN-SUFFIX,1ms.run,🎯国内直连
-  - DOMAIN-SUFFIX,1panel.live,🎯国内直连
+  - DOMAIN-SUFFIX,dpdns.org,🇨🇳打包直连
+  - DOMAIN-SUFFIX,cnb.cool,🇨🇳打包直连
+  - DOMAIN-SUFFIX,1ms.run,🇨🇳打包直连
+  - DOMAIN-SUFFIX,1panel.live,🇨🇳打包直连
 
   # 国内直连
-  - RULE-SET,apple_cn,🎯国内直连
-  - RULE-SET,microsoft_cn,🎯国内直连
-  - RULE-SET,cloudflare_cn,🎯国内直连
+  - RULE-SET,apple_cn,🇨🇳打包直连
+  - RULE-SET,microsoft_cn,🇨🇳打包直连
+  - RULE-SET,cloudflare_cn,🇨🇳打包直连
 
   # 拦截规则
-  - RULE-SET,category-ads-all,⚠️拒绝连接
+  - RULE-SET,category-ads-all,❗️拒绝连接
 
   # 域名代理规则
-  - RULE-SET,telegram,🥳打包代理
-  - RULE-SET,steam,🥳打包代理
-  - RULE-SET,ai,🥳打包代理
-  - RULE-SET,apple,🥳打包代理
-  - RULE-SET,cloudflare,🥳打包代理
-  - RULE-SET,googlefcm,🥳打包代理
-  - RULE-SET,youtube,🥳打包代理
-  - RULE-SET,google,🥳打包代理
-  - RULE-SET,docker,🥳打包代理
-  - RULE-SET,github,🥳打包代理
-  - RULE-SET,twitter,🥳打包代理
-  - RULE-SET,microsoft,🥳打包代理
+  - RULE-SET,telegram,🚀打包代理
+  - RULE-SET,steam,🚀打包代理
+  - RULE-SET,ai,🚀打包代理
+  - RULE-SET,apple,🚀打包代理
+  - RULE-SET,cloudflare,🚀打包代理
+  - RULE-SET,googlefcm,🚀打包代理
+  - RULE-SET,youtube,🚀打包代理
+  - RULE-SET,google,🚀打包代理
+  - RULE-SET,docker,🚀打包代理
+  - RULE-SET,github,🚀打包代理
+  - RULE-SET,twitter,🚀打包代理
+  - RULE-SET,microsoft,🚀打包代理
 
   # IP代理规则
-  - RULE-SET,telegramip,🥳打包代理,no-resolve
-  - RULE-SET,googleip,🥳打包代理,no-resolve
-  - RULE-SET,cloudflareip,🥳打包代理,no-resolve
-  - RULE-SET,twitterip,🥳打包代理,no-resolve
+  - RULE-SET,telegramip,🚀打包代理,no-resolve
+  - RULE-SET,googleip,🚀打包代理,no-resolve
+  - RULE-SET,cloudflareip,🚀打包代理,no-resolve
+  - RULE-SET,twitterip,🚀打包代理,no-resolve
 
   # 兜底规则
-  - RULE-SET,gfw,🥳打包代理
-  - RULE-SET,cn,🎯国内直连
-  - RULE-SET,cnip,🎯国内直连
-  - MATCH,🌀境外畅通
+  - RULE-SET,gfw,🚀打包代理
+  - RULE-SET,cn,🇨🇳打包直连
+  - RULE-SET,cnip,🇨🇳打包直连
+  - MATCH,🐠漏网之鱼
