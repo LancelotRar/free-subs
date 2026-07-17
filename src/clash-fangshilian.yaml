@@ -40,7 +40,7 @@ dns:
   listen: '0.0.0.0:1053'
   cache-algorithm: arc
   use-hosts: true
-  respect-rules: false
+  respect-rules: true
   use-system-hosts: true
   enhanced-mode: fake-ip
   fake-ip-range: '198.18.0.1/16'
@@ -52,15 +52,15 @@ dns:
     - '223.6.6.6'
     - '119.29.29.29'
   proxy-server-nameserver:
-    - 'https://dns.alidns.com/dns-query#DIRECT'
-    - 'https://doh.pub/dns-query#DIRECT'
+    - 'https://dns.alidns.com/dns-query'
+    - 'https://doh.pub/dns-query'
   nameserver:
-    - 'https://dns.google/dns-query#🍀自动选择'
-    - 'https://dns.cloudflare.com/dns-query#🍀自动选择'
+    - 'https://dns.google/dns-query'
+    - 'https://dns.cloudflare.com/dns-query'
   nameserver-policy:
     rule-set:cn:
-      - 'https://dns.alidns.com/dns-query#DIRECT'
-      - 'https://doh.pub/dns-query#DIRECT'
+      - 'https://dns.alidns.com/dns-query'
+      - 'https://doh.pub/dns-query'
   direct-nameserver:
     - '223.5.5.5'
     - '223.6.6.6'
@@ -100,7 +100,7 @@ geox-url:
 
 geo-auto-update: true
 geo-update-interval: 24
-                  
+
 proxy-providers:
   利群防失联:
     type: http
@@ -117,9 +117,9 @@ proxy-providers:
       additional-prefix: '[防失联]'
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: 'https://www.gstatic.com/generate_204'
       interval: 300
-      lazy: true                     
+      lazy: true   
                   
 proxy-groups:
   - name: 🚀打包代理
@@ -429,6 +429,8 @@ rules:
   - RULE-SET,privateip,🇨🇳打包直连,no-resolve
 
   # 自定义直连
+  - DOMAIN-SUFFIX,lancelot.indevs.in,🇨🇳打包直连
+  - DOMAIN-SUFFIX,19882008.xyz,🇨🇳打包直连
   - DOMAIN-SUFFIX,dpdns.org,🇨🇳打包直连
   - DOMAIN-SUFFIX,cnb.cool,🇨🇳打包直连
   - DOMAIN-SUFFIX,1ms.run,🇨🇳打包直连
