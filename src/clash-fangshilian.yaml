@@ -1,112 +1,9 @@
-mode: rule
-mixed-port: 7890
-port: 7891
-socks-port: 7892
-redir-port: 7893
-tproxy-port: 7894
-allow-lan: true
-log-level: info
-external-controller: '0.0.0.0:9090'
-bind-address: '*'
-external-ui-url: 'https://gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
-external-ui-name: zashboard
-external-ui: ui
-ipv6: false
-tcp-concurrent: true
-unified-delay: true
-find-process-mode: strict
-keep-alive-interval: 60
-keep-alive-idle: 600
-
-experimental:
-  quic-go-disable-gso: true
-
-tun:
-  enable: false
-  auto-detect-interface: true
-  auto-route: true
-  strict-route: true
-  auto-redirect: true
-  device: mihomo
-  disable-icmp-forwarding: true
-  dns-hijack:
-    - 'udp://any:53'
-    - 'tcp://any:53'
-  stack: mixed
-
-dns:
-  enable: true
-  ipv6: false
-  listen: '0.0.0.0:1053'
-  cache-algorithm: arc
-  use-hosts: true
-  respect-rules: true
-  use-system-hosts: true
-  enhanced-mode: fake-ip
-  fake-ip-range: '198.18.0.1/16'
-  fake-ip-filter-mode: blacklist
-  fake-ip-filter:
-    - rule-set:private
-    - rule-set:cn    
-  default-nameserver:
-    - '223.6.6.6'
-    - '119.29.29.29'
-  proxy-server-nameserver:
-    - 'https://dns.alidns.com/dns-query'
-    - 'https://doh.pub/dns-query'
-  nameserver:
-    - 'https://dns.google/dns-query'
-    - 'https://dns.cloudflare.com/dns-query'
-  nameserver-policy:
-    rule-set:cn:
-      - 'https://dns.alidns.com/dns-query'
-      - 'https://doh.pub/dns-query'
-  direct-nameserver:
-    - '223.5.5.5'
-    - '223.6.6.6'
-
-hosts:
-  'dns.alidns.com':
-    - '223.5.5.5'
-    - '223.6.6.6'
-  'doh.pub':
-    - '1.12.12.12'
-    - '120.53.53.53'
-  'dns.cloudflare.com':
-    - '1.1.1.1'
-    - '1.0.0.1'
-  'dns.google':
-    - '8.8.8.8'
-    - '8.8.4.4'
-  'services.googleapis.cn':
-    - 'services.googleapis.com'
-
-profile:
-  store-selected: true
-  store-fake-ip: true
-
-ntp:
-  enable: true
-  write-to-system: false
-  server: 'ntp.aliyun.com'
-  port: 123
-  interval: 60
-
-geox-url:
-  geoip: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat'
-  geosite: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat'
-  mmdb: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb'
-  asn: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb'
-
-geo-auto-update: true
-geo-update-interval: 24
-
 proxy-providers:
   利群防失联:
     type: http
     lazy: true
     age-secret-key: ''
-    url: 'https://gh-proxy.org/https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/c.yaml'
+    url: https://gh-proxy.org/https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/c.yaml
     interval: 3600
     path: ./proxy_provider/fangshilian.yaml
     proxy: DIRECT
@@ -117,10 +14,88 @@ proxy-providers:
       additional-prefix: '[防失联]'
     health-check:
       enable: true
-      url: 'https://www.gstatic.com/generate_204'
+      url: https://www.gstatic.com/generate_204
       interval: 300
       lazy: true   
-                  
+
+mode: rule
+mixed-port: 7890
+port: 7891
+socks-port: 7892
+redir-port: 7893
+tproxy-port: 7894
+allow-lan: true
+log-level: info
+external-controller: 0.0.0.0:9090
+bind-address: '*'
+external-ui-url: https://gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+external-ui-name: zashboard
+external-ui: ui
+ipv6: false
+tcp-concurrent: true
+unified-delay: true
+find-process-mode: strict
+keep-alive-interval: 60
+keep-alive-idle: 60
+
+experimental:
+  quic-go-disable-gso: true
+
+tun:
+  enable: false
+  auto-detect-interface: true
+  auto-route: true
+  strict-route: true
+  auto-redirect: true
+  mtu: 1450
+  device: mihomo
+  disable-icmp-forwarding: true
+  dns-hijack:
+    - udp://any:53
+    - tcp://any:53
+  stack: mixed
+
+dns:
+  enable: true
+  ipv6: false
+  listen: 0.0.0.0:1053
+  cache-algorithm: arc
+  use-hosts: true
+  respect-rules: true
+  use-system-hosts: true
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - rule-set:private
+    - rule-set:cn    
+  default-nameserver:
+    - 223.5.5.5
+  proxy-server-nameserver:
+    - https://dns.alidns.com/dns-query
+  nameserver:
+    - https://dns.google/dns-query
+  nameserver-policy:
+    'rule-set:cn':
+      - https://dns.alidns.com/dns-query
+    'rule-set:gfw':
+      - https://dns.google/dns-query
+  direct-nameserver:
+    - 223.5.5.5
+
+hosts:
+  dns.alidns.com:
+    - 223.5.5.5
+    - 223.6.6.6
+  dns.google:
+    - 8.8.8.8
+    - 8.8.4.4
+  services.googleapis.cn:
+    - services.googleapis.com
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
 proxy-groups:
   - name: 🚀打包代理
     type: select
@@ -154,7 +129,7 @@ proxy-groups:
     interval: 300
     lazy: true
     tolerance: 200
-    url: 'https://www.gstatic.com/generate_204'
+    url: https://www.gstatic.com/generate_204
     include-all: true
 
   - name: 🫱手动选择
@@ -166,7 +141,7 @@ proxy-groups:
     type: load-balance
     interval: 300
     lazy: true
-    url: 'https://www.gstatic.com/generate_204'
+    url: https://www.gstatic.com/generate_204
     strategy: sticky-sessions
     include-all: true
 
@@ -174,16 +149,8 @@ proxy-groups:
     type: fallback
     interval: 300
     lazy: true
-    url: 'https://www.gstatic.com/generate_204'
+    url: https://www.gstatic.com/generate_204
     include-all: true
-
-  - name: ⚽️国外QUIC
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
-      - 🍀自动选择
-      - 🫱手动选择 
 
   - name: ❗️广告拦截
     type: select
@@ -199,7 +166,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs
     path: ./ruleset/dn/category-ads-all.mrs
     interval: 86400
   
@@ -208,7 +175,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs
     path: ./ruleset/dn/cn.mrs
     interval: 86400
 
@@ -217,7 +184,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs
     path: ./ruleset/dn/private.mrs
     interval: 86400
 
@@ -226,7 +193,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs
     path: ./ruleset/dn/google.mrs
     interval: 86400
 
@@ -235,7 +202,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs
     path: ./ruleset/dn/youtube.mrs
     interval: 86400
 
@@ -244,7 +211,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/docker.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/docker.mrs
     path: ./ruleset/dn/docker.mrs
     interval: 86400
 
@@ -253,7 +220,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs
     path: ./ruleset/dn/googlefcm.mrs
     interval: 86400
 
@@ -262,7 +229,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ai-!cn.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ai-!cn.mrs
     path: ./ruleset/dn/ai.mrs
     interval: 86400
 
@@ -271,7 +238,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam.mrs
     path: ./ruleset/dn/steam.mrs
     interval: 86400
 
@@ -280,7 +247,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple.mrs
     path: ./ruleset/dn/apple.mrs
     interval: 86400
 
@@ -289,7 +256,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple@cn.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple@cn.mrs
     path: ./ruleset/dn/apple_cn.mrs
     interval: 86400
 
@@ -298,7 +265,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/gfw.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/gfw.mrs
     path: ./ruleset/dn/gfw.mrs
     interval: 86400
 
@@ -307,7 +274,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cloudflare.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cloudflare.mrs
     path: ./ruleset/dn/cloudflare.mrs
     interval: 86400
 
@@ -316,7 +283,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cloudflare@cn.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cloudflare@cn.mrs
     path: ./ruleset/dn/cloudflare_cn.mrs
     interval: 86400
 
@@ -325,7 +292,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/github.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/github.mrs
     path: ./ruleset/dn/github.mrs
     interval: 86400
 
@@ -334,7 +301,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs
     path: ./ruleset/dn/twitter.mrs
     interval: 86400
 
@@ -343,7 +310,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs
     path: ./ruleset/dn/microsoft.mrs
     interval: 86400
 
@@ -352,7 +319,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft@cn.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft@cn.mrs
     path: ./ruleset/dn/microsoft_cn.mrs
     interval: 86400
 
@@ -361,7 +328,7 @@ rule-providers:
     behavior: domain
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs
     path: ./ruleset/dn/telegram.mrs
     interval: 86400
 
@@ -371,7 +338,7 @@ rule-providers:
     behavior: ipcidr
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs'
     path: ./ruleset/ip/telegramip.mrs
     interval: 86400
 
@@ -380,7 +347,7 @@ rule-providers:
     behavior: ipcidr
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs
     path: ./ruleset/ip/twitterip.mrs
     interval: 86400
 
@@ -389,7 +356,7 @@ rule-providers:
     behavior: ipcidr
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cloudflare.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cloudflare.mrs
     path: ./ruleset/ip/cloudflareip.mrs
     interval: 86400
 
@@ -398,7 +365,7 @@ rule-providers:
     behavior: ipcidr
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs
     path: ./ruleset/ip/googleip.mrs
     interval: 86400
 
@@ -407,7 +374,7 @@ rule-providers:
     behavior: ipcidr
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs
     path: ./ruleset/ip/privateip.mrs
     interval: 86400
 
@@ -416,21 +383,16 @@ rule-providers:
     behavior: ipcidr
     proxy: DIRECT
     format: mrs
-    url: 'https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs
     path: ./ruleset/ip/cnip.mrs
     interval: 86400
 
 rules:
-  # 禁用国外 QUIC 流量
-  - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,cn),(RULE-SET,cnip,no-resolve)))))),⚽️国外QUIC
-
   # 私有网络直连
   - RULE-SET,private,🇨🇳打包直连
   - RULE-SET,privateip,🇨🇳打包直连,no-resolve
 
   # 自定义直连
-  - DOMAIN-SUFFIX,lancelot.indevs.in,🇨🇳打包直连
-  - DOMAIN-SUFFIX,19882008.xyz,🇨🇳打包直连
   - DOMAIN-SUFFIX,dpdns.org,🇨🇳打包直连
   - DOMAIN-SUFFIX,cnb.cool,🇨🇳打包直连
   - DOMAIN-SUFFIX,1ms.run,🇨🇳打包直连
