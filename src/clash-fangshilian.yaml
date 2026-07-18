@@ -17,7 +17,7 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
       interval: 300
       lazy: true   
-
+      
 mode: rule
 mixed-port: 7890
 port: 7891
@@ -51,8 +51,7 @@ tun:
   device: mihomo
   disable-icmp-forwarding: true
   dns-hijack:
-    - udp://any:53
-    - tcp://any:53
+    - 0.0.0.0:53
   stack: mixed
 
 dns:
@@ -75,9 +74,9 @@ dns:
   nameserver:
     - https://dns.google/dns-query
   nameserver-policy:
-    'rule-set:cn':
+    rule-set:cn:
       - https://dns.alidns.com/dns-query
-    'rule-set:gfw':
+    rule-set:gfw:
       - https://dns.google/dns-query
   direct-nameserver:
     - 223.5.5.5
@@ -338,7 +337,7 @@ rule-providers:
     behavior: ipcidr
     proxy: DIRECT
     format: mrs
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs'
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs
     path: ./ruleset/ip/telegramip.mrs
     interval: 86400
 
