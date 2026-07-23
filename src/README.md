@@ -152,7 +152,6 @@ rule-providers:
 
 <ol>
     <li><strong>核心依赖性：</strong> 请确保客户端使用的是最新的 Mihomo 核心，版本不要过于落后，以免代理客户端无法应对新的规则逻辑。</li>
-    <li><strong>不适合对IP地理位置有精细需求的人群：</strong> 目前代理落地IP在韩国或日本。可正常访问Gemini、Chatgpt、Google、Youtube等几乎所有国外知名站点。</li>
     <li><strong>占位符替换：</strong> <code>example.yaml</code> 中 <code>proxy-providers</code> 的 <code>***</code> 和 <code>url</code> 为占位符，使用前请替换为真实的订阅链接和节点名称前缀。</li>
     <li><strong>gh-proxy 可用性：</strong> <code>external-ui-url</code> 使用 <code>gh-proxy.org</code> 镜像加速下载 zashboard，如果该镜像不可用，可替换为原始 GitHub Release 链接或手动下载 UI 到 <code>ui/</code> 目录。</li>
     <li><strong>MRS 规则格式：</strong> <code>rule-providers</code> 使用 <code>format: mrs</code> 二进制规则集，需要 Clash.Meta v1.14+ 或 Mihomo 内核支持，旧版本核心无法解析。</li>
