@@ -1,23 +1,22 @@
 proxy-providers:
-  利群防失联:
+  ***:
     type: http
-    lazy: true
+    url: ***
     age-secret-key: ''
-    url: https://gh-proxy.org/https://raw.githubusercontent.com/free18/v2ray/refs/heads/main/c.yaml
     interval: 3600
-    path: ./proxy_provider/fangshilian.yaml
+    path: ./proxy_provider/***.yaml
     proxy: DIRECT
     header:
       User-Agent: 
         - clash.meta
     override:
-      additional-prefix: '[防失联]'
+      additional-prefix: '[***]'
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 300
-      lazy: true   
-      
+      lazy: true
+
 mode: rule
 mixed-port: 7890
 port: 7891
@@ -100,8 +99,15 @@ proxy-groups:
     type: select
     proxies:
       - 🍀自动选择
-      - 🫱手动选择
       - DIRECT
+      - 🫱手动选择
+      - 香港
+      - 日本
+      - 韩国
+      - 美国
+      - 新加坡
+      - 台湾省
+      - 其他节点
       - ⚖️负载均衡
       - ⚙️故障切换
 
@@ -111,6 +117,13 @@ proxy-groups:
       - DIRECT
       - 🍀自动选择
       - 🫱手动选择
+      - 香港
+      - 日本
+      - 韩国
+      - 美国
+      - 新加坡
+      - 台湾省
+      - 其他节点
       - ⚖️负载均衡
       - ⚙️故障切换
 
@@ -120,6 +133,13 @@ proxy-groups:
       - DIRECT
       - 🍀自动选择
       - 🫱手动选择
+      - 香港
+      - 日本
+      - 韩国
+      - 美国
+      - 新加坡
+      - 台湾省
+      - 其他节点
       - ⚖️负载均衡
       - ⚙️故障切换
 
@@ -128,8 +148,13 @@ proxy-groups:
     interval: 300
     lazy: true
     tolerance: 200
+    timeout: 3000
+    max-failed-times: 3
+    empty-fallback: REJECT
+    exclude-type: DIRECT    
     url: https://www.gstatic.com/generate_204
     include-all: true
+    hidden: true
 
   - name: 🫱手动选择
     type: select
@@ -140,16 +165,23 @@ proxy-groups:
     type: load-balance
     interval: 300
     lazy: true
+    exclude-type: DIRECT    
     url: https://www.gstatic.com/generate_204
     strategy: sticky-sessions
     include-all: true
+    hidden: true
 
   - name: ⚙️故障切换
     type: fallback
     interval: 300
     lazy: true
+    timeout: 3000
+    max-failed-times: 3
+    exclude-type: DIRECT    
+    empty-fallback: REJECT
     url: https://www.gstatic.com/generate_204
     include-all: true
+    hidden: true
 
   - name: ❗️广告拦截
     type: select
@@ -158,6 +190,196 @@ proxy-groups:
       - DIRECT
       - 🍀自动选择
       - 🫱手动选择
+
+  - name: 香港
+    type: select
+    proxies:
+      - 香港-自动选择
+    filter: '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG)).*$'
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 3000
+    max-failed-times: 3
+    empty-fallback: REJECT
+    lazy: true
+
+  - name: 香港-自动选择
+    type: url-test
+    filter: '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG)).*$'
+    exclude-type: DIRECT
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 3000
+    max-failed-times: 3
+    empty-fallback: REJECT
+    lazy: true
+    tolerance: 200
+    hidden: true
+
+  - name: 日本
+    type: select
+    proxies:
+      - 日本-自动选择
+    filter: '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)).*$'
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 3000
+    max-failed-times: 3
+    empty-fallback: REJECT
+    lazy: true
+
+  - name: 日本-自动选择
+    type: url-test
+    filter: '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)).*$'
+    exclude-type: DIRECT
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 3000
+    max-failed-times: 3
+    empty-fallback: REJECT
+    lazy: true
+    tolerance: 200
+    hidden: true
+
+  - name: 韩国
+    type: select
+    proxies:
+      - 韩国-自动选择
+    filter: '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South)).*$'
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 3000
+    max-failed-times: 3
+    empty-fallback: REJECT
+    lazy: true
+
+  - name: 韩国-自动选择
+    type: url-test
+    filter: '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South)).*$'
+    exclude-type: DIRECT
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 3000
+    max-failed-times: 3
+    empty-fallback: REJECT
+    lazy: true
+    tolerance: 200
+    hidden: true
+
+  - name: 美国
+    type: select
+    proxies:
+      - 美国-自动选择
+    filter: '^(?=.*(?i)(美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)).*$'
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 3000
+    max-failed-times: 3
+    empty-fallback: REJECT
+    lazy: true
+
+  - name: 美国-自动选择
+    type: url-test
+    filter: '^(?=.*(?i)(美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)).*$'
+    exclude-type: DIRECT
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 3000
+    max-failed-times: 3
+    empty-fallback: REJECT
+    lazy: true
+    tolerance: 200
+    hidden: true
+
+  - name: 新加坡
+    type: select
+    proxies:
+      - 新加坡-自动选择
+    filter: '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|狮城|XSP)).*$'
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 3000
+    max-failed-times: 3
+    empty-fallback: REJECT
+    lazy: true
+
+  - name: 新加坡-自动选择
+    type: url-test
+    filter: '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|狮城|XSP)).*$'
+    exclude-type: DIRECT
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 3000
+    max-failed-times: 3
+    empty-fallback: REJECT
+    lazy: true
+    tolerance: 200
+    hidden: true
+
+  - name: 台湾省
+    type: select
+    proxies:
+      - 台湾省-自动选择
+    filter: '^(?=.*(?i)(台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH)).*$'
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 3000
+    max-failed-times: 3
+    empty-fallback: REJECT
+    lazy: true
+
+  - name: 台湾省-自动选择
+    type: url-test
+    filter: '^(?=.*(?i)(台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH)).*$'
+    exclude-type: DIRECT
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 3000
+    max-failed-times: 3
+    empty-fallback: REJECT
+    lazy: true
+    tolerance: 200
+    hidden: true
+
+  - name: 其他节点
+    type: select
+    proxies:
+      - 其他节点-自动选择
+    exclude-filter: '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK|韩|韓國|🇰🇷|首尔|南朝鲜|KR|KOR|Korea|South|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|坡|🇸🇬|SG|Sing|SIN|狮城|XSP|台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH)).*$'
+    exclude-type: DIRECT
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 3000
+    max-failed-times: 3
+    empty-fallback: REJECT
+    lazy: true
+
+  - name: 其他节点-自动选择
+    type: url-test
+    exclude-filter: '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK|韩|韓國|🇰🇷|首尔|南朝鲜|KR|KOR|Korea|South|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|坡|🇸🇬|SG|Sing|SIN|狮城|XSP|台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH)).*$'
+    exclude-type: DIRECT
+    include-all: true
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 3000
+    max-failed-times: 3
+    empty-fallback: REJECT
+    lazy: true
+    tolerance: 200
+    hidden: true
 
 rule-providers:
   category-ads-all:
@@ -392,7 +614,6 @@ rules:
   - RULE-SET,privateip,🇨🇳打包直连,no-resolve
 
   # 自定义直连
-  - DOMAIN-SUFFIX,dpdns.org,🇨🇳打包直连
   - DOMAIN-SUFFIX,cnb.cool,🇨🇳打包直连
   - DOMAIN-SUFFIX,1ms.run,🇨🇳打包直连
   - DOMAIN-SUFFIX,1panel.live,🇨🇳打包直连
