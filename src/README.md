@@ -46,12 +46,12 @@
 * **隐私保护**：防止内核为了匹配 IP 规则而强制在本地解析被墙的域名，从根源上杜绝了 DNS 污染与隐私泄漏风险。
 * **性能优化**：大幅减少无用的本地 DNS 查询，降低网络请求延迟。
 
-### 3. "国内白名单"式的策略兜底
+### 3. "兜底黑白名单灵活切换"
 
 针对国内复杂的网络环境，本配置采用了更聪明的路由闭环：
 
 * 优先通过 `cn` 和 `cnip` 规则将绝大多数国内已知网站、APP 及大陆 IP 剥离，确保**国内流量 100% 直连**，不占用代理带宽。
-* 尾部采用 `MATCH,🐠漏网之鱼` 进行防御性兜底。这意味着任何冷门、新出的海外网站或小众服务，无需手动添加规则，均可自动走代理顺畅访问。
+* 尾部采用 `MATCH,🐠漏网之鱼` 进行防御性兜底。这意味着任何冷门、新出的海外网站或小众服务，无需手动添加规则，均可根据手动选择是直连还是代理。
 
 ### 4. 规则集直连拉取，避免代理环路
 
@@ -152,6 +152,9 @@ rule-providers:
 
 <ol>
     <li><strong>核心依赖性：</strong> 请确保客户端使用的是最新的 Mihomo 核心，版本不要过于落后，以免代理客户端无法应对新的规则逻辑。</li>
-    <li><strong>不适合对IP地理位置有精细需求的人群：</strong> 目前代理落地IP在韩国或日本。可正常访问Gemini、Chatgpt、Google、Youtube等几乎所有国外知名站点。 
-    </li>
+    <li><strong>不适合对IP地理位置有精细需求的人群：</strong> 目前代理落地IP在韩国或日本。可正常访问Gemini、Chatgpt、Google、Youtube等几乎所有国外知名站点。</li>
+    <li><strong>占位符替换：</strong> <code>example.yaml</code> 中 <code>proxy-providers</code> 的 <code>***</code> 和 <code>url</code> 为占位符，使用前请替换为真实的订阅链接和节点名称前缀。</li>
+    <li><strong>gh-proxy 可用性：</strong> <code>external-ui-url</code> 使用 <code>gh-proxy.org</code> 镜像加速下载 zashboard，如果该镜像不可用，可替换为原始 GitHub Release 链接或手动下载 UI 到 <code>ui/</code> 目录。</li>
+    <li><strong>MRS 规则格式：</strong> <code>rule-providers</code> 使用 <code>format: mrs</code> 二进制规则集，需要 Clash.Meta v1.14+ 或 Mihomo 内核支持，旧版本核心无法解析。</li>
+    <li><strong>端口冲突：</strong> 配置开启了 <code>mixed-port: 7890</code>、<code>port: 7891</code>、<code>socks-port: 7892</code> 等多个端口，请确保这些端口未被其他程序占用。</li>
 </ol>
