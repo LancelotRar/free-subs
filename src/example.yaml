@@ -1,21 +1,26 @@
+baseProvider: &baseProvider {type: http, interval: 3600, proxy: DIRECT, header: {User-Agent: ['clash.meta', 'clash.verge', 'mihomo']}, override: {additional-prefix: ['[***]']}, health-check: {enable: true, interval: 3600, lazy: true, url: 'https://www.gstatic.com/generate_204'}}
+filterHK: &filterHK {filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG)'}
+filterSG: &filterSG {filter: '(?i)(坡|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Sing|SIN|XSP)'}
+filterJP: &filterJP {filter: '(?i)(日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|NRT|HND|KIX|CTS|FUK)'}
+filterKR: &filterKR {filter: '(?i)(韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|South)'}
+filterUS: &filterUS {filter: '(?i)(美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)'}
+filterTW: &filterTW {filter: '(?i)(台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE|TSA|KHH)'}
+filterOther: &filterOther {exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Sing|SIN|XSP|日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|NRT|HND|KIX|CTS|FUK|韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|South|美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE|TSA|KHH)'}
+preferUrltest: &preferUrltest {proxies: [🍀自动选择, DIRECT, 🫱手动选择, REJECT, 🇭🇰香港, 🇯🇵日本, 🇰🇷韩国, 🇺🇸美国, 🇸🇬新加坡, 🇨🇳台湾省, ⚽️其他节点, ⚖️负载均衡, ⚙️故障切换]}
+preferDirect: &preferDirect {proxies: [DIRECT, 🍀自动选择, 🫱手动选择, REJECT, 🇭🇰香港, 🇯🇵日本, 🇰🇷韩国, 🇺🇸美国, 🇸🇬新加坡, 🇨🇳台湾省, ⚽️其他节点, ⚖️负载均衡, ⚙️故障切换]}
+preferReject: &preferReject {proxies: [REJECT, 🍀自动选择, 🫱手动选择, DIRECT, 🇭🇰香港, 🇯🇵日本, 🇰🇷韩国, 🇺🇸美国, 🇸🇬新加坡, 🇨🇳台湾省, ⚽️其他节点, ⚖️负载均衡, ⚙️故障切换]}
+baseSelect: &baseSelect {type: select, interval: 3600, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, hidden: false, url: 'https://www.gstatic.com/generate_204'}
+baseUrltest: &baseUrltest {type: url-test, interval: 3600, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, tolerance: 200, hidden: true, url: 'https://www.gstatic.com/generate_204'}
+baseFallback: &baseFallback {type: fallback, interval: 3600, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, hidden: true, url: 'https://www.gstatic.com/generate_204'}
+baseLoadbalance: &baseLoadbalance {type: load-balance, interval: 3600, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, strategy: sticky-sessions, hidden: true, url: 'https://www.gstatic.com/generate_204'}
+rulesetDN: &rulesetDN {type: http, behavior: domain, proxy: DIRECT, format: mrs, interval: 86400}
+rulesetIP: &rulesetIP {type: http, behavior: ipcidr, proxy: DIRECT, format: mrs, interval: 86400}
+
 proxy-providers:
-  ***:
-    type: http
-    url: ***
+  provider1:
+    <<: *baseProvider
+    url: https://
     age-secret-key: ''
-    interval: 3600
-    path: ./proxy_provider/***.yaml
-    proxy: DIRECT
-    header:
-      User-Agent: 
-        - clash.meta
-    override:
-      additional-prefix: '[***]'
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-      lazy: true
 
 mode: rule
 mixed-port: 7890
@@ -27,15 +32,15 @@ allow-lan: true
 log-level: info
 external-controller: 0.0.0.0:9090
 bind-address: '*'
-external-ui-url: https://gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+external-ui-url: 'https://gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
 external-ui-name: zashboard
 external-ui: ui
 ipv6: false
 tcp-concurrent: true
 unified-delay: true
 find-process-mode: strict
-keep-alive-interval: 60
-keep-alive-idle: 60
+keep-alive-interval: 15
+keep-alive-idle: 600
 
 experimental:
   quic-go-disable-gso: true
@@ -46,7 +51,6 @@ tun:
   auto-route: true
   strict-route: true
   auto-redirect: true
-  mtu: 1450
   device: mihomo
   disable-icmp-forwarding: true
   dns-hijack:
@@ -60,35 +64,23 @@ dns:
   cache-algorithm: arc
   use-hosts: true
   respect-rules: true
-  use-system-hosts: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - rule-set:private
-    - rule-set:cn    
-  default-nameserver:
-    - 223.5.5.5
-  proxy-server-nameserver:
-    - https://dns.alidns.com/dns-query
-  nameserver:
-    - https://dns.google/dns-query
+  fake-ip-filter: ['rule-set:private']
+  default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
+  proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
+  nameserver: ['https://dns.google/dns-query', 'https://doh.opendns.com/dns-query']
   nameserver-policy:
-    rule-set:cn:
-      - https://dns.alidns.com/dns-query
-    rule-set:gfw:
-      - https://dns.google/dns-query
-  direct-nameserver:
-    - 223.5.5.5
+    'rule-set:geolocation-cn': ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
+  direct-nameserver: ['223.6.6.6#DIRECT', '119.29.29.29#DIRECT']
 
 hosts:
-  dns.alidns.com:
-    - 223.5.5.5
-    - 223.6.6.6
-  dns.google:
-    - 8.8.8.8
-    - 8.8.4.4
-  services.googleapis.cn:
-    - services.googleapis.com
+  'dns.alidns.com': ['223.5.5.5', '223.6.6.6']
+  'doh.pub': ['1.12.12.12', '120.53.53.53']
+  'dns.google': ['8.8.8.8', '8.8.4.4']
+  'dns.cloudflare.com': ['1.1.1.1', '1.0.0.1']
+  'doh.opendns.com': ['208.67.222.222', '208.67.220.220']
+  'services.googleapis.cn': 'services.googleapis.com'
 
 profile:
   store-selected: true
@@ -96,542 +88,203 @@ profile:
 
 proxy-groups:
   - name: 🚀打包代理
-    type: select
-    proxies:
-      - 🍀自动选择
-      - DIRECT
-      - 🫱手动选择
-      - 香港
-      - 日本
-      - 韩国
-      - 美国
-      - 新加坡
-      - 台湾省
-      - 其他节点
-      - ⚖️负载均衡
-      - ⚙️故障切换
+    <<: [*baseSelect, *preferUrltest]
 
-  - name: 🇨🇳打包直连
-    type: select
-    proxies:
-      - DIRECT
-      - 🍀自动选择
-      - 🫱手动选择
-      - 香港
-      - 日本
-      - 韩国
-      - 美国
-      - 新加坡
-      - 台湾省
-      - 其他节点
-      - ⚖️负载均衡
-      - ⚙️故障切换
+  - name: ☀️打包直连
+    <<: [*baseSelect, *preferDirect]
 
   - name: 🐠漏网之鱼
-    type: select
-    proxies:
-      - DIRECT
-      - 🍀自动选择
-      - 🫱手动选择
-      - 香港
-      - 日本
-      - 韩国
-      - 美国
-      - 新加坡
-      - 台湾省
-      - 其他节点
-      - ⚖️负载均衡
-      - ⚙️故障切换
+    <<: [*baseSelect, *preferReject]
 
   - name: 🍀自动选择
-    type: url-test
-    interval: 300
-    lazy: true
-    tolerance: 200
-    timeout: 3000
-    max-failed-times: 3
-    empty-fallback: REJECT
-    exclude-type: DIRECT    
-    url: https://www.gstatic.com/generate_204
-    include-all: true
-    hidden: true
+    <<: *baseUrltest
 
   - name: 🫱手动选择
-    type: select
-    lazy: true
+    <<: *baseSelect
     include-all: true
 
   - name: ⚖️负载均衡
-    type: load-balance
-    interval: 300
-    lazy: true
-    exclude-type: DIRECT    
-    url: https://www.gstatic.com/generate_204
-    strategy: sticky-sessions
-    include-all: true
-    hidden: true
+    <<: *baseLoadbalance
 
   - name: ⚙️故障切换
-    type: fallback
-    interval: 300
-    lazy: true
-    timeout: 3000
-    max-failed-times: 3
-    exclude-type: DIRECT    
-    empty-fallback: REJECT
-    url: https://www.gstatic.com/generate_204
-    include-all: true
-    hidden: true
+    <<: *baseFallback
 
   - name: ❗️广告拦截
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
-      - 🍀自动选择
-      - 🫱手动选择
+    <<: [*baseSelect, *preferReject]
 
-  - name: 香港
-    type: select
-    proxies:
-      - 香港-自动选择
-    filter: '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG)).*$'
-    include-all: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 3000
-    max-failed-times: 3
-    empty-fallback: REJECT
-    lazy: true
+  - name: ☁️Cloudflare
+    <<: [*baseSelect, *preferDirect]
 
-  - name: 香港-自动选择
-    type: url-test
-    filter: '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG)).*$'
-    exclude-type: DIRECT
+  - name: 🇭🇰香港
+    <<: [*baseSelect, *filterHK]
     include-all: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 3000
-    max-failed-times: 3
-    empty-fallback: REJECT
-    lazy: true
-    tolerance: 200
-    hidden: true
+    proxies: [🇭🇰香港-自动选择]
 
-  - name: 日本
-    type: select
-    proxies:
-      - 日本-自动选择
-    filter: '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)).*$'
-    include-all: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 3000
-    max-failed-times: 3
-    empty-fallback: REJECT
-    lazy: true
+  - name: 🇭🇰香港-自动选择
+    <<: [*baseUrltest, *filterHK]
 
-  - name: 日本-自动选择
-    type: url-test
-    filter: '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)).*$'
-    exclude-type: DIRECT
+  - name: 🇯🇵日本
+    <<: [*baseSelect, *filterJP]
     include-all: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 3000
-    max-failed-times: 3
-    empty-fallback: REJECT
-    lazy: true
-    tolerance: 200
-    hidden: true
+    proxies: [🇯🇵日本-自动选择]
 
-  - name: 韩国
-    type: select
-    proxies:
-      - 韩国-自动选择
-    filter: '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South)).*$'
-    include-all: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 3000
-    max-failed-times: 3
-    empty-fallback: REJECT
-    lazy: true
+  - name: 🇯🇵日本-自动选择
+    <<: [*baseUrltest, *filterJP]
 
-  - name: 韩国-自动选择
-    type: url-test
-    filter: '^(?=.*(?i)(韩|🇰🇷|韓|首尔|南朝鲜|KR|KOR|Korea|South)).*$'
-    exclude-type: DIRECT
+  - name: 🇰🇷韩国
+    <<: [*baseSelect, *filterKR]
     include-all: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 3000
-    max-failed-times: 3
-    empty-fallback: REJECT
-    lazy: true
-    tolerance: 200
-    hidden: true
+    proxies: [🇰🇷韩国-自动选择]
 
-  - name: 美国
-    type: select
-    proxies:
-      - 美国-自动选择
-    filter: '^(?=.*(?i)(美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)).*$'
-    include-all: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 3000
-    max-failed-times: 3
-    empty-fallback: REJECT
-    lazy: true
+  - name: 🇰🇷韩国-自动选择
+    <<: [*baseUrltest, *filterKR]
 
-  - name: 美国-自动选择
-    type: url-test
-    filter: '^(?=.*(?i)(美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)).*$'
-    exclude-type: DIRECT
+  - name: 🇺🇸美国
+    <<: [*baseSelect, *filterUS]
     include-all: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 3000
-    max-failed-times: 3
-    empty-fallback: REJECT
-    lazy: true
-    tolerance: 200
-    hidden: true
+    proxies: [🇺🇸美国-自动选择]
 
-  - name: 新加坡
-    type: select
-    proxies:
-      - 新加坡-自动选择
-    filter: '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|狮城|XSP)).*$'
-    include-all: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 3000
-    max-failed-times: 3
-    empty-fallback: REJECT
-    lazy: true
+  - name: 🇺🇸美国-自动选择
+    <<: [*baseUrltest, *filterUS]
 
-  - name: 新加坡-自动选择
-    type: url-test
-    filter: '^(?=.*(?i)(坡|🇸🇬|SG|Sing|SIN|狮城|XSP)).*$'
-    exclude-type: DIRECT
+  - name: 🇸🇬新加坡
+    <<: [*baseSelect, *filterSG]
     include-all: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 3000
-    max-failed-times: 3
-    empty-fallback: REJECT
-    lazy: true
-    tolerance: 200
-    hidden: true
+    proxies: [🇸🇬新加坡-自动选择]
 
-  - name: 台湾省
-    type: select
-    proxies:
-      - 台湾省-自动选择
-    filter: '^(?=.*(?i)(台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH)).*$'
-    include-all: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 3000
-    max-failed-times: 3
-    empty-fallback: REJECT
-    lazy: true
+  - name: 🇸🇬新加坡-自动选择
+    <<: [*baseUrltest, *filterSG]
 
-  - name: 台湾省-自动选择
-    type: url-test
-    filter: '^(?=.*(?i)(台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH)).*$'
-    exclude-type: DIRECT
+  - name: 🇨🇳台湾省
+    <<: [*baseSelect, *filterTW]
     include-all: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 3000
-    max-failed-times: 3
-    empty-fallback: REJECT
-    lazy: true
-    tolerance: 200
-    hidden: true
+    proxies: [🇨🇳台湾省-自动选择]
 
-  - name: 其他节点
-    type: select
-    proxies:
-      - 其他节点-自动选择
-    exclude-filter: '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK|韩|韓國|🇰🇷|首尔|南朝鲜|KR|KOR|Korea|South|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|坡|🇸🇬|SG|Sing|SIN|狮城|XSP|台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH)).*$'
-    exclude-type: DIRECT
-    include-all: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 3000
-    max-failed-times: 3
-    empty-fallback: REJECT
-    lazy: true
+  - name: 🇨🇳台湾省-自动选择
+    <<: [*baseUrltest, *filterTW]
 
-  - name: 其他节点-自动选择
-    type: url-test
-    exclude-filter: '^(?=.*(?i)(港|🇭🇰|HK|Hong|HKG|日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK|韩|韓國|🇰🇷|首尔|南朝鲜|KR|KOR|Korea|South|美|🇺🇸|US|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|坡|🇸🇬|SG|Sing|SIN|狮城|XSP|台|🇼🇸|🇹🇼|TW|tai|TPE|TSA|KHH)).*$'
-    exclude-type: DIRECT
+  - name: ⚽️其他节点
+    <<: [*baseSelect, *filterOther]
     include-all: true
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 3000
-    max-failed-times: 3
-    empty-fallback: REJECT
-    lazy: true
-    tolerance: 200
-    hidden: true
+    proxies: [⚽️其他节点-自动选择]
+
+  - name: ⚽️其他节点-自动选择
+    <<: [*baseUrltest, *filterOther]
 
 rule-providers:
   category-ads-all:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
+    <<: *rulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs
-    path: ./ruleset/dn/category-ads-all.mrs
-    interval: 86400
-  
-  cn:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs
-    path: ./ruleset/dn/cn.mrs
-    interval: 86400
+
+  geolocation-cn:
+    <<: *rulesetDN
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-cn.mrs
 
   private:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
+    <<: *rulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs
-    path: ./ruleset/dn/private.mrs
-    interval: 86400
 
   google:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
+    <<: *rulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs
-    path: ./ruleset/dn/google.mrs
-    interval: 86400
-
-  youtube:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs
-    path: ./ruleset/dn/youtube.mrs
-    interval: 86400
-
-  docker:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/docker.mrs
-    path: ./ruleset/dn/docker.mrs
-    interval: 86400
-
-  googlefcm:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs
-    path: ./ruleset/dn/googlefcm.mrs
-    interval: 86400
-
-  ai:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ai-!cn.mrs
-    path: ./ruleset/dn/ai.mrs
-    interval: 86400
-
-  steam:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam.mrs
-    path: ./ruleset/dn/steam.mrs
-    interval: 86400
-
-  apple:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple.mrs
-    path: ./ruleset/dn/apple.mrs
-    interval: 86400
-
-  apple_cn:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple@cn.mrs
-    path: ./ruleset/dn/apple_cn.mrs
-    interval: 86400
-
-  gfw:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/gfw.mrs
-    path: ./ruleset/dn/gfw.mrs
-    interval: 86400
 
   cloudflare:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
+    <<: *rulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cloudflare.mrs
-    path: ./ruleset/dn/cloudflare.mrs
-    interval: 86400
 
-  cloudflare_cn:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cloudflare@cn.mrs
-    path: ./ruleset/dn/cloudflare_cn.mrs
-    interval: 86400
+  youtube:
+    <<: *rulesetDN
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs
+
+  docker:
+    <<: *rulesetDN
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/docker.mrs
+
+  googlefcm:
+    <<: *rulesetDN
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs
+
+  ai:
+    <<: *rulesetDN
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ai-!cn.mrs
+
+  steam:
+    <<: *rulesetDN
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam.mrs
+
+  apple:
+    <<: *rulesetDN
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple.mrs
+
+  apple_cn:
+    <<: *rulesetDN
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple@cn.mrs
+
+  gfw:
+    <<: *rulesetDN
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/gfw.mrs
 
   github:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
+    <<: *rulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/github.mrs
-    path: ./ruleset/dn/github.mrs
-    interval: 86400
 
   twitter:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
+    <<: *rulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs
-    path: ./ruleset/dn/twitter.mrs
-    interval: 86400
 
   microsoft:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
+    <<: *rulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs
-    path: ./ruleset/dn/microsoft.mrs
-    interval: 86400
 
   microsoft_cn:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
+    <<: *rulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft@cn.mrs
-    path: ./ruleset/dn/microsoft_cn.mrs
-    interval: 86400
 
   telegram:
-    type: http
-    behavior: domain
-    proxy: DIRECT
-    format: mrs
+    <<: *rulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs
-    path: ./ruleset/dn/telegram.mrs
-    interval: 86400
 
-  # IP规则集
   telegramip:
-    type: http
-    behavior: ipcidr
-    proxy: DIRECT
-    format: mrs
+    <<: *rulesetIP
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs
-    path: ./ruleset/ip/telegramip.mrs
-    interval: 86400
-
-  twitterip:
-    type: http
-    behavior: ipcidr
-    proxy: DIRECT
-    format: mrs
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs
-    path: ./ruleset/ip/twitterip.mrs
-    interval: 86400
 
   cloudflareip:
-    type: http
-    behavior: ipcidr
-    proxy: DIRECT
-    format: mrs
+    <<: *rulesetIP
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cloudflare.mrs
-    path: ./ruleset/ip/cloudflareip.mrs
-    interval: 86400
+
+  twitterip:
+    <<: *rulesetIP
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs
 
   googleip:
-    type: http
-    behavior: ipcidr
-    proxy: DIRECT
-    format: mrs
+    <<: *rulesetIP
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs
-    path: ./ruleset/ip/googleip.mrs
-    interval: 86400
 
   privateip:
-    type: http
-    behavior: ipcidr
-    proxy: DIRECT
-    format: mrs
+    <<: *rulesetIP
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs
-    path: ./ruleset/ip/privateip.mrs
-    interval: 86400
 
   cnip:
-    type: http
-    behavior: ipcidr
-    proxy: DIRECT
-    format: mrs
+    <<: *rulesetIP
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs
-    path: ./ruleset/ip/cnip.mrs
-    interval: 86400
 
 rules:
-  # 私有网络直连
-  - RULE-SET,private,🇨🇳打包直连
-  - RULE-SET,privateip,🇨🇳打包直连,no-resolve
 
-  # 自定义直连
-  - DOMAIN-SUFFIX,cnb.cool,🇨🇳打包直连
-  - DOMAIN-SUFFIX,1ms.run,🇨🇳打包直连
-  - DOMAIN-SUFFIX,1panel.live,🇨🇳打包直连
-
-  # 国内直连
-  - RULE-SET,apple_cn,🇨🇳打包直连
-  - RULE-SET,microsoft_cn,🇨🇳打包直连
-  - RULE-SET,cloudflare_cn,🇨🇳打包直连
-
-  # 拦截规则
   - RULE-SET,category-ads-all,❗️广告拦截
-
-  # 域名代理规则
+  - RULE-SET,cloudflare,☁️Cloudflare
+  - RULE-SET,cloudflareip,☁️Cloudflare
+  - RULE-SET,private,☀️打包直连
+  - RULE-SET,privateip,☀️打包直连,no-resolve
+  - RULE-SET,apple_cn,☀️打包直连
+  - RULE-SET,microsoft_cn,☀️打包直连
+  - DOMAIN-SUFFIX,dpdns.org,☀️打包直连
+  - DOMAIN-SUFFIX,cnb.cool,☀️打包直连
+  - DOMAIN-SUFFIX,1ms.run,☀️打包直连
+  - DOMAIN-SUFFIX,1panel.live,☀️打包直连
   - RULE-SET,telegram,🚀打包代理
   - RULE-SET,steam,🚀打包代理
   - RULE-SET,ai,🚀打包代理
   - RULE-SET,apple,🚀打包代理
-  - RULE-SET,cloudflare,🚀打包代理
   - RULE-SET,googlefcm,🚀打包代理
   - RULE-SET,youtube,🚀打包代理
   - RULE-SET,google,🚀打包代理
@@ -639,15 +292,10 @@ rules:
   - RULE-SET,github,🚀打包代理
   - RULE-SET,twitter,🚀打包代理
   - RULE-SET,microsoft,🚀打包代理
-
-  # IP代理规则
   - RULE-SET,telegramip,🚀打包代理,no-resolve
   - RULE-SET,googleip,🚀打包代理,no-resolve
-  - RULE-SET,cloudflareip,🚀打包代理,no-resolve
   - RULE-SET,twitterip,🚀打包代理,no-resolve
-
-  # 兜底规则
   - RULE-SET,gfw,🚀打包代理
-  - RULE-SET,cn,🇨🇳打包直连
-  - RULE-SET,cnip,🇨🇳打包直连
+  - RULE-SET,geolocation-cn,☀️打包直连
+  - RULE-SET,cnip,☀️打包直连
   - MATCH,🐠漏网之鱼

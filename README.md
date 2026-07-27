@@ -58,54 +58,51 @@
 
 ## 📥 订阅地址    
 
-**包含：**  
-* 自适应订阅     
-* Base64订阅    
-* Clash.meta订阅    
-
 **获取方式：（防止Github爬虫）**  
 * 关注上方利群便利店『频道』，注意公益订阅信息（一般在置顶）。或加入群组，回复“订阅”，即可获取更多公益订阅地址。
 
 > [!TIP]  
-> ### Clash.Meta 精简分流规则 v8 版技术解析
+> ### Clash.Meta 精简分流规则 v8 版 — 配置特性说明
 >
-> #### 1. 分层优先级匹配架构（Hierarchical Matching）
+> #### 1. YAML 锚点模板复用（Anchors）
 >
-> 规则采用**优先级递进式匹配策略**，遵循「广告拦截 → 精准分流 → IP 路由 → 兜底策略」的处理链路：
+> 配置通过 `&anchor` 定义基础参数模板，`<<: *anchor` 引用复用：
+> - `&baseProvider` 定义代理集通用参数（type/interval/header/health-check），proxy-providers 只需补充 url
+> - `&baseSelect` / `&baseUrltest` / `&baseFallback` / `&baseLoadbalance` 定义四种代理组策略骨架
+> - `&rulesetDN` / `&rulesetIP` 定义规则集通用参数（type/behavior/format/interval），rule-providers 仅需指定 url
 >
-> - **广告拦截前置**：在 DNS 解析前拦截广告域名，降低无效请求与流量消耗
-> - **高频服务优先**：Google、GitHub、Telegram、Microsoft 等海外基础设施前置匹配，保障即时响应
+> #### 2. 代理组多锚点组合（Array Merge）
 >
-> #### 2. DNS 无解析特性（no-resolve）
+> 支持 `<<: [*anchorA, *anchorB]` 数组合并语法，将策略类型、偏好优先级、地域过滤解耦组合：
+> - `🚀打包代理` = `baseSelect`（选择器）+ `preferUrltest`（自动优先）
+> - `🇭🇰香港` = `baseSelect`（选择器）+ `filterHK`（地域过滤）
+> - 三组策略优先级锚点 `preferUrltest` / `preferDirect` / `preferReject` 分别注入三个入口组
 >
-> 所有 IP 路由规则（如 `cnip`、`telegramip` 等）均启用 `,no-resolve` 标记：
+> #### 3. 七维地域过滤与分级代理
 >
-> - **隐私防护**：避免内核为匹配 IP 规则而触发本地 DNS 解析，从源头规避 DNS 污染与隐私泄露
-> - **性能优化**：减少冗余本地 DNS 查询，降低网络延迟
+> - 7 组正则过滤锚点覆盖 HK/SG/JP/KR/US/TW/Other，匹配维度含国家代码、中文名、国旗 emoji、机场代码
+> - 每地区设两级代理组：地区选择器（手动固定节点）+ 自动选择器（url-test 自动测速优选）
+> - `filterOther` 采用 `exclude-filter` 反选策略，兜底未被其他筛选捕获的节点
 >
-> #### 3. 国内流量直连策略（China Direct）
+> #### 4. DNS 路由与缓存优化
 >
-> 采用**白名单直连 + 黑名单兜底**的混合路由模式：
+> - `enhanced-mode: fake-ip` + `fake-ip-filter: ['rule-set:private']` 规避私有地址虚假 IP 冲突
+> - `respect-rules: true` 确保 DNS 请求遵循规则匹配链路
+> - `cache-algorithm: arc` 自适应替换缓存算法，提升 DNS 缓存命中率
+> - `nameserver-policy` 实现规则集级 DNS 路由：国内域名走阿里 DNS（DIRECT），其他走 Google/OpenDNS
+> - `hosts` 显式映射 DNS 服务器域名为固定 IP，消除递归解析额外延迟
 >
-> - **直连优先**：通过 `cn` 与 `cnip` 规则识别并直连国内已知网站、应用及大陆 IP 段，确保国内流量 100% 不走代理
-> - **未墙域名自动放行**：以 `MATCH,🌀境外畅通` 作为最终策略，自动放行未被墙的其他域名，亦可切换为走代理节点，黑白名单双吃，更加节省流量。
+> #### 5. 透明代理与持久化
 >
-> #### 4. 元规则集架构（MetaRuleSet / mrs 格式）
+> - 内置 TUN 模块：支持 `auto-route` / `auto-redirect` / `dns-hijack` / `stack: mixed` 全栈透明代理
+> - `profile.store-selected: true` 持久化用户节点选择，重启不丢失
+> - `profile.store-fake-ip: true` 持久化 FakeIP 映射缓存，加速 DNS 重解析
 >
-> - 采用 MetaCubeX 官方维护的 **mrs 格式规则集**，相比传统 `.mrs` 文件具有更优的匹配效率
-> - 规则源统一托管于 `testingcf.jsdelivr.net`，支持**86400s 自动更新**
-> - 涵盖域名规则（geosite）与 IP 规则（geoip）双维度，覆盖广告、服务分类、国家区域等场景
+> #### 6. 多端口监听与兼容
 >
-> #### 5. 代理节点懒加载机制（Lazy Proxy Providers）
->
-> - 启用 `lazy: true` 配置，避免因远程配置源异常导致订阅失效
-> - 支持通过 `override.additional-prefix` 实现多源容灾切换
-> - 代理组内置**自动选节点**、**负载均衡**、**故障切换**三重保障策略
->
-> #### 6. FakeIP 加速模式
->
-> - 启用 `enhanced-mode: fake-ip`，对指定规则集应用虚假 IP 技术
-> - 覆盖私有域名（`rule-set:private`）与国内域名（`rule-set:cn`），减少 IPv6 支持系统的性能损耗
+> - 同时监听 `mixed-port` / `port` / `socks-port` / `redir-port` / `tproxy-port` 五种端口，兼容各类客户端接入模式
+> - TCP 并发（`tcp-concurrent: true`）+ `unified-delay: true` 统一延迟统计
+> - `find-process-mode: strict` 精确进程识别
 >
 > * 🔥🔥🔥 更多分流规则细节请查看 → **[📄 分流规则详解](/src/README.md)**
 
