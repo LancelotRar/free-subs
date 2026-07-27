@@ -71,7 +71,7 @@ rule-providers:
 
 ```yaml
 - name: 日本
-  filter: '^(?=.*(?i)(日|🇯🇵|JP|Japan|NRT|HND|KIX|CTS|FUK)).*$'
+  filter: '(?i)(日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|NRT|HND|KIX|CTS|FUK)'
   include-all: true
 ```
 
@@ -99,9 +99,9 @@ rule-providers:
 
 采用 `fake-ip` 模式 + `nameserver-policy` 实现 DNS 分流：
 
-- `rule-set:cn` 走阿里 DNS（直连解析）
-- `rule-set:gfw` 走 Google DNS（代理解析）
-- `proxy-server-nameserver` 用于解析代理服务器域名，避免 DNS 污染
+- `rule-set:geolocation-cn` 走阿里 DNS（直连解析）
+- 其余境外域名走 Google DNS、OpenDNS 等公共 DNS（代理解析）
+- `proxy-server-nameserver` 同样使用国内 DNS 直连解析代理服务器域名，避免 DNS 污染
 
 ### 6. 自动化的代理提供者
 
