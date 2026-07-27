@@ -10,10 +10,10 @@ preferUrltest: &preferUrltest {proxies: [🍀自动选择, DIRECT, 🫱手动选
 preferDirect: &preferDirect {proxies: [DIRECT, 🍀自动选择, 🫱手动选择, REJECT, 🇭🇰香港, 🇯🇵日本, 🇰🇷韩国, 🇺🇸美国, 🇸🇬新加坡, 🇨🇳台湾省, ⚽️其他节点, ⚖️负载均衡, ⚙️故障切换]}
 preferReject: &preferReject {proxies: [REJECT, 🍀自动选择, 🫱手动选择, DIRECT, 🇭🇰香港, 🇯🇵日本, 🇰🇷韩国, 🇺🇸美国, 🇸🇬新加坡, 🇨🇳台湾省, ⚽️其他节点, ⚖️负载均衡, ⚙️故障切换]}
 baseDns: &baseDns {proxies: [🍀自动选择, 🇭🇰香港, 🇯🇵日本, 🇰🇷韩国, 🇺🇸美国, 🇸🇬新加坡, 🇨🇳台湾省, ⚽️其他节点]}
-baseSelect: &baseSelect {type: select, interval: 3600, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, hidden: false, url: 'https://www.gstatic.com/generate_204'}
-baseUrltest: &baseUrltest {type: url-test, interval: 3600, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, tolerance: 200, hidden: true, url: 'https://www.gstatic.com/generate_204'}
-baseFallback: &baseFallback {type: fallback, interval: 3600, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, hidden: true, url: 'https://www.gstatic.com/generate_204'}
-baseLoadbalance: &baseLoadbalance {type: load-balance, interval: 3600, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, strategy: sticky-sessions, hidden: true, url: 'https://www.gstatic.com/generate_204'}
+baseSelect: &baseSelect {type: select, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, hidden: false, url: 'https://www.gstatic.com/generate_204'}
+baseUrltest: &baseUrltest {type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, tolerance: 200, hidden: true, url: 'https://www.gstatic.com/generate_204'}
+baseFallback: &baseFallback {type: fallback, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, hidden: true, url: 'https://www.gstatic.com/generate_204'}
+baseLoadbalance: &baseLoadbalance {type: load-balance, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, strategy: sticky-sessions, hidden: true, url: 'https://www.gstatic.com/generate_204'}
 rulesetDN: &rulesetDN {type: http, behavior: domain, proxy: DIRECT, format: mrs, interval: 86400}
 rulesetIP: &rulesetIP {type: http, behavior: ipcidr, proxy: DIRECT, format: mrs, interval: 86400}
 
@@ -67,7 +67,7 @@ dns:
   respect-rules: false
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  fake-ip-filter: ['rule-set:private']
+  fake-ip-filter: ['rule-set:private', 'rule-set:fakeip_filter', 'rule-set:geolocation-cn']
   default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
   proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
   nameserver: ['https://dns.google/dns-query#🪛DNS防泄露', 'https://doh.opendns.com/dns-query#🪛DNS防泄露']
@@ -188,6 +188,10 @@ rule-providers:
     <<: *rulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs
 
+  fakeip-filter:
+    <<: *rulesetDN
+    url: https://testingcf.jsdelivr.net/gh/wwqgtxx/clash-rules@release/fakeip-filter.mrs    
+
   google:
     <<: *rulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs
@@ -276,6 +280,7 @@ rules:
   - RULE-SET,privateip,☀️打包直连,no-resolve
   - RULE-SET,apple_cn,☀️打包直连
   - RULE-SET,microsoft_cn,☀️打包直连
+  - DOMAIN-SUFFIX,19882008.xyz,☀️打包直连
   - DOMAIN-SUFFIX,dpdns.org,☀️打包直连
   - DOMAIN-SUFFIX,cnb.cool,☀️打包直连
   - DOMAIN-SUFFIX,1ms.run,☀️打包直连
