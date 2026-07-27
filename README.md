@@ -62,49 +62,30 @@
 * 关注上方利群便利店『频道』，注意公益订阅信息（一般在置顶）。或加入群组，回复“订阅”，即可获取更多公益订阅地址。
 
 > [!TIP]  
-> ### Clash.Meta 精简分流规则 v8 版 — 配置特性说明
+> ### 🎯 配置文件特点
 >
-> #### 1. YAML 锚点模板复用（Anchors）
+> #### 1. 按国家分组，一目了然
 >
-> 配置通过 `&anchor` 定义基础参数模板，`<<: *anchor` 引用复用：
-> - `&baseProvider` 定义代理集通用参数（type/interval/header/health-check），proxy-providers 只需补充 url
-> - `&baseSelect` / `&baseUrltest` / `&baseFallback` / `&baseLoadbalance` 定义四种代理组策略骨架
-> - `&rulesetDN` / `&rulesetIP` 定义规则集通用参数（type/behavior/format/interval），rule-providers 仅需指定 url
+> 节点自动按国家归类——**香港、日本、韩国、美国、新加坡、台湾省**各成一列，剩余节点归入「其他节点」。你可以在客户端里像点菜一样，直接选中想用的国家线路，不用在一大堆节点名里翻找。
 >
-> #### 2. 代理组多锚点组合（Array Merge）
+> #### 2. 国内直连 + 国外代理，自动分流
 >
-> 支持 `<<: [*anchorA, *anchorB]` 数组合并语法，将策略类型、偏好优先级、地域过滤解耦组合：
-> - `🚀打包代理` = `baseSelect`（选择器）+ `preferUrltest`（自动优先）
-> - `🇭🇰香港` = `baseSelect`（选择器）+ `filterHK`（地域过滤）
-> - 三组策略优先级锚点 `preferUrltest` / `preferDirect` / `preferReject` 分别注入三个入口组
+> 规则开箱即用：访问国内网站自动走直连，不影响日常网速；访问国外网站自动走代理节点，无需手动切换。广告和隐私域名在源头就被拦截，省心又干净。
 >
-> #### 3. 七维地域过滤与分级代理
+> #### 3. 每个国家都有自动优选
 >
-> - 7 组正则过滤锚点覆盖 HK/SG/JP/KR/US/TW/Other，匹配维度含国家代码、中文名、国旗 emoji、机场代码
-> - 每地区设两级代理组：地区选择器（手动固定节点）+ 自动选择器（url-test 自动测速优选）
-> - `filterOther` 采用 `exclude-filter` 反选策略，兜底未被其他筛选捕获的节点
+> 每个国家分组都内置了**自动选择**子组，系统会自动测速并挑出当前最快的节点。你也可以手动固定某个节点，灵活自由。
 >
-> #### 4. DNS 路由与缓存优化
+> #### 4. 四重兜底策略
 >
-> - `enhanced-mode: fake-ip` + `fake-ip-filter: ['rule-set:private']` 规避私有地址虚假 IP 冲突
-> - `respect-rules: true` 确保 DNS 请求遵循规则匹配链路
-> - `cache-algorithm: arc` 自适应替换缓存算法，提升 DNS 缓存命中率
-> - `nameserver-policy` 实现规则集级 DNS 路由：国内域名走阿里 DNS（DIRECT），其他走 Google/OpenDNS
-> - `hosts` 显式映射 DNS 服务器域名为固定 IP，消除递归解析额外延迟
+> - **自动选择**：交给系统自动测速选最优节点
+> - **手动选择**：自己从所有节点里挑
+> - **负载均衡**：多节点同时使用，分摊流量
+> - **故障切换**：当前节点挂了自动切换到可用节点
 >
-> #### 5. 透明代理与持久化
+> 日常使用基本不用操心，规则自己会处理好一切。
 >
-> - 内置 TUN 模块：支持 `auto-route` / `auto-redirect` / `dns-hijack` / `stack: mixed` 全栈透明代理
-> - `profile.store-selected: true` 持久化用户节点选择，重启不丢失
-> - `profile.store-fake-ip: true` 持久化 FakeIP 映射缓存，加速 DNS 重解析
->
-> #### 6. 多端口监听与兼容
->
-> - 同时监听 `mixed-port` / `port` / `socks-port` / `redir-port` / `tproxy-port` 五种端口，兼容各类客户端接入模式
-> - TCP 并发（`tcp-concurrent: true`）+ `unified-delay: true` 统一延迟统计
-> - `find-process-mode: strict` 精确进程识别
->
-> * 🔥🔥🔥 更多分流规则细节请查看 → **[📄 分流规则详解](/src/README.md)**
+> * 🔥🔥🔥 详细规则清单请查看 → **[📄 分流规则详解](/src/README.md)**
 
 ---
 
