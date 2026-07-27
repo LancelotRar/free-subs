@@ -252,10 +252,6 @@ rule-providers:
     <<: *rulesetIP
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs
 
-  cloudflareip:
-    <<: *rulesetIP
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cloudflare.mrs
-
   twitterip:
     <<: *rulesetIP
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs
@@ -276,7 +272,6 @@ rules:
 
   - RULE-SET,category-ads-all,❗️广告拦截
   - RULE-SET,cloudflare,☁️Cloudflare
-  - RULE-SET,cloudflareip,☁️Cloudflare
   - RULE-SET,private,☀️打包直连
   - RULE-SET,privateip,☀️打包直连,no-resolve
   - RULE-SET,apple_cn,☀️打包直连
