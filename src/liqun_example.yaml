@@ -9,7 +9,6 @@ filterOther: &filterOther {exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?!
 preferUrltest: &preferUrltest {proxies: [自动选择, DIRECT, 手动选择, REJECT, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
 preferDirect: &preferDirect {proxies: [DIRECT, 自动选择, 手动选择, REJECT, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
 preferReject: &preferReject {proxies: [REJECT, 自动选择, 手动选择, DIRECT, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
-baseDns: &baseDns {proxies: [自动选择, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点]}
 baseSelect: &baseSelect {type: select, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, hidden: false, url: 'https://g.cn/generate_204'}
 baseUrltest: &baseUrltest {type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, tolerance: 200, hidden: true, url: 'https://g.cn/generate_204'}
 baseFallback: &baseFallback {type: fallback, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, hidden: true, url: 'https://g.cn/generate_204', icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bypass.png'}
@@ -120,7 +119,7 @@ proxy-groups:
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png'
 
   - name: DNS防泄露
-    <<: [*baseSelect, *baseDns]
+    <<: [*baseSelect, *preferUrltest]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cellular.png'
 
   - name: Cloudflare
