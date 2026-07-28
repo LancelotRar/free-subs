@@ -6,10 +6,10 @@ filterKR: &filterKR {filter: '(?i)(韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z
 filterUS: &filterUS {filter: '(?i)(美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)'}
 filterTW: &filterTW {filter: '(?i)(台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE|TSA|KHH)'}
 filterOther: &filterOther {exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Sing|SIN|XSP|日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|NRT|HND|KIX|CTS|FUK|韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|South|美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE|TSA|KHH)'}
-preferUrltest: &preferUrltest {proxies: [🍀自动选择, DIRECT, 🫱手动选择, REJECT, 🇭🇰香港, 🇯🇵日本, 🇰🇷韩国, 🇺🇸美国, 🇸🇬新加坡, 🇨🇳台湾省, ⚽️其他节点, ⚖️负载均衡, ⚙️故障切换]}
-preferDirect: &preferDirect {proxies: [DIRECT, 🍀自动选择, 🫱手动选择, REJECT, 🇭🇰香港, 🇯🇵日本, 🇰🇷韩国, 🇺🇸美国, 🇸🇬新加坡, 🇨🇳台湾省, ⚽️其他节点, ⚖️负载均衡, ⚙️故障切换]}
-preferReject: &preferReject {proxies: [REJECT, 🍀自动选择, 🫱手动选择, DIRECT, 🇭🇰香港, 🇯🇵日本, 🇰🇷韩国, 🇺🇸美国, 🇸🇬新加坡, 🇨🇳台湾省, ⚽️其他节点, ⚖️负载均衡, ⚙️故障切换]}
-baseDns: &baseDns {proxies: [🍀自动选择, 🇭🇰香港, 🇯🇵日本, 🇰🇷韩国, 🇺🇸美国, 🇸🇬新加坡, 🇨🇳台湾省, ⚽️其他节点]}
+preferUrltest: &preferUrltest {proxies: [自动选择, DIRECT, 手动选择, REJECT, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
+preferDirect: &preferDirect {proxies: [DIRECT, 自动选择, 手动选择, REJECT, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
+preferReject: &preferReject {proxies: [REJECT, 自动选择, 手动选择, DIRECT, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
+baseDns: &baseDns {proxies: [自动选择, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点]}
 baseSelect: &baseSelect {type: select, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, hidden: false, url: 'https://g.cn/generate_204'}
 baseUrltest: &baseUrltest {type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, tolerance: 200, hidden: true, url: 'https://g.cn/generate_204'}
 baseFallback: &baseFallback {type: fallback, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, hidden: true, url: 'https://g.cn/generate_204'}
@@ -70,7 +70,7 @@ dns:
   fake-ip-filter: ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:geolocation-cn']
   default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
   proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
-  nameserver: ['https://dns.google/dns-query#🪛DNS防泄露', 'https://doh.opendns.com/dns-query#🪛DNS防泄露']
+  nameserver: ['https://dns.google/dns-query#DNS防泄露', 'https://doh.opendns.com/dns-query#DNS防泄露']
   nameserver-policy:
     'rule-set:geolocation-cn': ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
   direct-nameserver: ['223.6.6.6#DIRECT', '119.29.29.29#DIRECT']
@@ -88,98 +88,108 @@ profile:
   store-fake-ip: true
 
 proxy-groups:
-  - name: 🚀打包代理
+  - name: 打包代理
     <<: [*baseSelect, *preferUrltest]
+    icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Rocket.png'
 
-  - name: ☀️打包直连
+  - name: 打包直连
     <<: [*baseSelect, *preferDirect]
+    icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Daily.png'
 
-  - name: 🐠漏网之鱼
+  - name: 漏网之鱼
     <<: [*baseSelect, *preferDirect]
+    icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Drill.png'
 
-  - name: 🍀自动选择
+  - name: 自动选择
     <<: *baseUrltest
+    icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/LinkCube.png'
 
-  - name: 🫱手动选择
+  - name: 手动选择
     <<: *baseSelect
     include-all: true
+    icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Clubhouse.png'
 
-  - name: ⚖️负载均衡
+  - name: 负载均衡
     <<: *baseLoadbalance
+    icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/friDay.png'
 
-  - name: ⚙️故障切换
+  - name: 故障切换
     <<: *baseFallback
+    icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bypass.png'
 
-  - name: ❗️广告拦截
+  - name: 广告拦截
     <<: [*baseSelect, *preferReject]
+    icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png'
 
-  - name: 🪛DNS防泄露
+  - name: DNS防泄露
     <<: [*baseSelect, *baseDns]
+    icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cellular.png'
 
-  - name: ☁️Cloudflare
+  - name: Cloudflare
     <<: [*baseSelect, *preferDirect]
+    icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png'
 
-  - name: 🇭🇰香港
+  - name: 香港
     <<: [*baseSelect, *filterHK]
     include-all: true
-    proxies: [🇭🇰香港-自动选择]
+    proxies: [香港-自动选择]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png'
 
-  - name: 🇭🇰香港-自动选择
+  - name: 香港-自动选择
     <<: [*baseUrltest, *filterHK]
 
-  - name: 🇯🇵日本
+  - name: 日本
     <<: [*baseSelect, *filterJP]
     include-all: true
-    proxies: [🇯🇵日本-自动选择]
+    proxies: [日本-自动选择]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png'
 
-  - name: 🇯🇵日本-自动选择
+  - name: 日本-自动选择
     <<: [*baseUrltest, *filterJP]
 
-  - name: 🇰🇷韩国
+  - name: 韩国
     <<: [*baseSelect, *filterKR]
     include-all: true
-    proxies: [🇰🇷韩国-自动选择]
+    proxies: [韩国-自动选择]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png'
 
-  - name: 🇰🇷韩国-自动选择
+  - name: 韩国-自动选择
     <<: [*baseUrltest, *filterKR]
 
-  - name: 🇺🇸美国
+  - name: 美国
     <<: [*baseSelect, *filterUS]
     include-all: true
-    proxies: [🇺🇸美国-自动选择]
+    proxies: [美国-自动选择]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png'
 
-  - name: 🇺🇸美国-自动选择
+  - name: 美国-自动选择
     <<: [*baseUrltest, *filterUS]
 
-  - name: 🇸🇬新加坡
+  - name: 新加坡
     <<: [*baseSelect, *filterSG]
     include-all: true
-    proxies: [🇸🇬新加坡-自动选择]
+    proxies: [新加坡-自动选择]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png'
 
-  - name: 🇸🇬新加坡-自动选择
+  - name: 新加坡-自动选择
     <<: [*baseUrltest, *filterSG]
 
-  - name: 🇨🇳台湾省
+  - name: 台湾省
     <<: [*baseSelect, *filterTW]
     include-all: true
-    proxies: [🇨🇳台湾省-自动选择]
+    proxies: [台湾省-自动选择]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/China.png'
 
-  - name: 🇨🇳台湾省-自动选择
+  - name: 台湾省-自动选择
     <<: [*baseUrltest, *filterTW]
 
-  - name: ⚽️其他节点
+  - name: 其他节点
     <<: [*baseSelect, *filterOther]
     include-all: true
-    proxies: [⚽️其他节点-自动选择]
+    proxies: [其他节点-自动选择]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/World_Map.png'
 
-  - name: ⚽️其他节点-自动选择
+  - name: 其他节点-自动选择
     <<: [*baseUrltest, *filterOther]
 
 rule-providers:
@@ -281,32 +291,32 @@ rule-providers:
 
 rules:
 
-  - RULE-SET,category-ads-all,❗️广告拦截
-  - RULE-SET,cloudflare,☁️Cloudflare
-  - RULE-SET,private,☀️打包直连
-  - RULE-SET,fakeip-filter,☀️打包直连
-  - RULE-SET,privateip,☀️打包直连,no-resolve
-  - RULE-SET,apple_cn,☀️打包直连
-  - RULE-SET,microsoft_cn,☀️打包直连
-  - DOMAIN-SUFFIX,dpdns.org,☀️打包直连
-  - DOMAIN-SUFFIX,cnb.cool,☀️打包直连
-  - DOMAIN-SUFFIX,1ms.run,☀️打包直连
-  - DOMAIN-SUFFIX,1panel.live,☀️打包直连
-  - RULE-SET,telegram,🚀打包代理
-  - RULE-SET,steam,🚀打包代理
-  - RULE-SET,ai,🚀打包代理
-  - RULE-SET,apple,🚀打包代理
-  - RULE-SET,googlefcm,🚀打包代理
-  - RULE-SET,youtube,🚀打包代理
-  - RULE-SET,google,🚀打包代理
-  - RULE-SET,docker,🚀打包代理
-  - RULE-SET,github,🚀打包代理
-  - RULE-SET,twitter,🚀打包代理
-  - RULE-SET,microsoft,🚀打包代理
-  - RULE-SET,telegramip,🚀打包代理,no-resolve
-  - RULE-SET,googleip,🚀打包代理,no-resolve
-  - RULE-SET,twitterip,🚀打包代理,no-resolve
-  - RULE-SET,gfw,🚀打包代理
-  - RULE-SET,geolocation-cn,☀️打包直连
-  - RULE-SET,cnip,☀️打包直连
-  - MATCH,🐠漏网之鱼
+  - RULE-SET,category-ads-all,广告拦截
+  - RULE-SET,cloudflare,Cloudflare
+  - RULE-SET,private,打包直连
+  - RULE-SET,fakeip-filter,打包直连
+  - RULE-SET,privateip,打包直连,no-resolve
+  - RULE-SET,apple_cn,打包直连
+  - RULE-SET,microsoft_cn,打包直连
+  - DOMAIN-SUFFIX,dpdns.org,打包直连
+  - DOMAIN-SUFFIX,cnb.cool,打包直连
+  - DOMAIN-SUFFIX,1ms.run,打包直连
+  - DOMAIN-SUFFIX,1panel.live,打包直连
+  - RULE-SET,telegram,打包代理
+  - RULE-SET,steam,打包代理
+  - RULE-SET,ai,打包代理
+  - RULE-SET,apple,打包代理
+  - RULE-SET,googlefcm,打包代理
+  - RULE-SET,youtube,打包代理
+  - RULE-SET,google,打包代理
+  - RULE-SET,docker,打包代理
+  - RULE-SET,github,打包代理
+  - RULE-SET,twitter,打包代理
+  - RULE-SET,microsoft,打包代理
+  - RULE-SET,telegramip,打包代理,no-resolve
+  - RULE-SET,googleip,打包代理,no-resolve
+  - RULE-SET,twitterip,打包代理,no-resolve
+  - RULE-SET,gfw,打包代理
+  - RULE-SET,geolocation-cn,打包直连
+  - RULE-SET,cnip,打包直连
+  - MATCH,漏网之鱼
