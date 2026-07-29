@@ -86,6 +86,13 @@ profile:
   store-selected: true
   store-fake-ip: true
 
+ntp:
+  enable: true
+  write-to-system: false
+  server: 'ntp.aliyun.com'
+  port: 123
+  interval: 60
+
 proxy-groups:
   - name: 打包代理
     <<: [*baseSelect, *preferUrltest]
@@ -111,7 +118,7 @@ proxy-groups:
   - name: 负载均衡
     <<: *baseLoadbalance
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/friDay.png'
-    
+
   - name: 故障切换
     <<: *baseFallback
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bypass.png'
