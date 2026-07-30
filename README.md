@@ -54,6 +54,19 @@
 
 -----
 
+## 👊 节点及分组
+<p align="center">
+  <img src="src/free2.png" alt="效果图2">
+</p>
+<p align="center">
+  <img src="src/free1.png" alt="效果图1">
+</p>
+<p align="center">
+  <img src="src/free3.png" alt="效果图3">
+</p>
+
+-----
+
 ## 📥 订阅地址    
 
 * **订阅地址获取方式：**  关注上方利群便利店『频道』，注意公益订阅信息（一般在置顶）。或加入群组，回复“订阅”，即可获取更多公益订阅地址。
