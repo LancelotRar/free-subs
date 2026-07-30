@@ -7,9 +7,9 @@ filterUS: &filterUS {filter: '(?i)(美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|
 filterTW: &filterTW {filter: '(?i)(台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE|TSA|KHH)', icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/China.png'}
 filterYXYM: &filterYXYM {filter: '(?i)(优|优选|域名|(?<![A-Za-z])TG(?![A-Za-z])|channel|liqun)'}
 filterOther: &filterOther {exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Sing|SIN|XSP|日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|NRT|HND|KIX|CTS|FUK|韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|South|美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE|TSA|KHH|优|优选|域名|(?<![A-Za-z])TG(?![A-Za-z])|channel|liqun)', icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/World_Map.png'}
-preferUrltest: &preferUrltest {proxies: [自动选择, DIRECT, 手动选择, REJECT, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
-preferDirect: &preferDirect {proxies: [DIRECT, 自动选择, 手动选择, REJECT, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
-preferReject: &preferReject {proxies: [REJECT, 自动选择, 手动选择, DIRECT, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
+preferUrltest: &preferUrltest {proxies: [自动选择, DIRECT, 手动选择, REJECT, 优选域名, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
+preferDirect: &preferDirect {proxies: [DIRECT, 自动选择, 手动选择, REJECT, 优选域名, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
+preferReject: &preferReject {proxies: [REJECT, 自动选择, 手动选择, DIRECT, 优选域名, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
 baseSelect: &baseSelect {type: select, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, hidden: false, url: 'https://g.cn/generate_204'}
 baseUrltest: &baseUrltest {type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, tolerance: 200, hidden: true, url: 'https://g.cn/generate_204'}
 baseFallback: &baseFallback {type: fallback, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, hidden: true, url: 'https://g.cn/generate_204'}
