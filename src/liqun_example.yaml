@@ -136,6 +136,14 @@ proxy-groups:
     <<: [*baseSelect, *preferDirect]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png'
 
+  - name: 优选域名
+    <<: [*baseSelect, *filterYXYM]
+    include-all: true
+    proxies: [优选域名-自动选择]
+
+  - name: 优选域名-自动选择
+    <<: [*baseUrltest, *filterYXYM]
+
   - name: 香港
     <<: [*baseSelect, *filterHK]
     include-all: true
@@ -183,14 +191,6 @@ proxy-groups:
 
   - name: 台湾省-自动选择
     <<: [*baseUrltest, *filterTW]
-
-  - name: 优选域名
-    <<: [*baseSelect, *filterYXYM]
-    include-all: true
-    proxies: [优选域名-自动选择]
-
-  - name: 优选域名-自动选择
-    <<: [*baseUrltest, *filterYXYM]
 
   - name: 其他节点
     <<: [*baseSelect, *filterOther]
