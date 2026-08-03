@@ -1,26 +1,27 @@
-baseProvider: &baseProvider {type: http, interval: 3600, proxy: DIRECT, header: {User-Agent: ['clash.meta', 'clash.verge', 'mihomo']}, override: {additional-prefix: ['[***]']}, health-check: {enable: true, interval: 3600, lazy: true, url: 'https://g.cn/generate_204'}}
-filterHK: &filterHK {filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png'}
-filterSG: &filterSG {filter: '(?i)(坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Sing|SIN|XSP)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png'}
-filterJP: &filterJP {filter: '(?i)(日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|NRT|HND|KIX|CTS|FUK)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png'}
-filterKR: &filterKR {filter: '(?i)(韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|South)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png'}
-filterUS: &filterUS {filter: '(?i)(美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png'}
-filterTW: &filterTW {filter: '(?i)(台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE|TSA|KHH)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/China.png'}
-filterYXYM: &filterYXYM {filter: '(?i)(优|优选|域名|(?<![A-Za-z])TG(?![A-Za-z])|channel|liqun)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Siri.png'}
-filterOther: &filterOther {exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Sing|SIN|XSP|日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|NRT|HND|KIX|CTS|FUK|韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|South|美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE|TSA|KHH|优|优选|域名|(?<![A-Za-z])TG(?![A-Za-z])|channel|liqun)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/World_Map.png'}
-preferUrltest: &preferUrltest {proxies: [自动选择, DIRECT, 手动选择, REJECT, 优选域名, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
-preferDirect: &preferDirect {proxies: [DIRECT, 自动选择, 手动选择, REJECT, 优选域名, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
-preferReject: &preferReject {proxies: [REJECT, 自动选择, 手动选择, DIRECT, 优选域名, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
-baseSelect: &baseSelect {type: select, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, hidden: false, url: 'https://g.cn/generate_204'}
-baseUrltest: &baseUrltest {type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, tolerance: 200, hidden: true, url: 'https://g.cn/generate_204'}
-baseFallback: &baseFallback {type: fallback, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, hidden: true, url: 'https://g.cn/generate_204'}
-baseLoadbalance: &baseLoadbalance {type: load-balance, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, strategy: sticky-sessions, hidden: true, url: 'https://g.cn/generate_204'}
-rulesetDN: &rulesetDN {type: http, behavior: domain, proxy: DIRECT, format: mrs, interval: 86400}
-rulesetIP: &rulesetIP {type: http, behavior: ipcidr, proxy: DIRECT, format: mrs, interval: 86400}
+BaseProvider: &BaseProvider {type: http, interval: 3600, proxy: DIRECT, header: {User-Agent: ['clash.meta', 'clash.verge', 'mihomo']}, override: {additional-prefix: ['[***]']}, health-check: {enable: true, interval: 3600, lazy: true, url: 'https://g.cn/generate_204'}}
+FilterHK: &FilterHK {filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png'}
+FilterSG: &FilterSG {filter: '(?i)(坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Sing|SIN|XSP)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png'}
+FilterJP: &FilterJP {filter: '(?i)(日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|NRT|HND|KIX|CTS|FUK)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png'}
+FilterKR: &FilterKR {filter: '(?i)(韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|South)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png'}
+FilterUS: &FilterUS {filter: '(?i)(美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png'}
+FilterTW: &FilterTW {filter: '(?i)(台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE|TSA|KHH)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/China.png'}
+FilterYXYM: &FilterYXYM {filter: '(?i)(优|优选|域名|(?<![A-Za-z])TG(?![A-Za-z])|channel|liqun)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Siri.png'}
+FilterOther: &FilterOther {exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Sing|SIN|XSP|日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|NRT|HND|KIX|CTS|FUK|韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|South|美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE|TSA|KHH|优|优选|域名|(?<![A-Za-z])TG(?![A-Za-z])|channel|liqun)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/World_Map.png'}
+ForDNS: &ForDNS {proxies: [自动选择, 优选域名, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
+UrltestFirst: &UrltestFirst {proxies: [自动选择, DIRECT, 手动选择, REJECT, 优选域名, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
+DirectFirst: &DirectFirst {proxies: [DIRECT, 自动选择, 手动选择, REJECT, 优选域名, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
+RejectFirst: &RejectFirst {proxies: [REJECT, 自动选择, 手动选择, DIRECT, 优选域名, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
+ASelect: &ASelect {type: select, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, hidden: false, url: 'https://g.cn/generate_204'}
+AUrltest: &AUrltest {type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, tolerance: 200, hidden: true, url: 'https://g.cn/generate_204'}
+AFallback: &AFallback {type: fallback, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, hidden: true, url: 'https://g.cn/generate_204'}
+ALoadbalance: &ALoadbalance {type: load-balance, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, strategy: sticky-sessions, hidden: true, url: 'https://g.cn/generate_204'}
+RulesetDN: &RulesetDN {type: http, behavior: domain, proxy: DIRECT, format: mrs, interval: 86400}
+RulesetIP: &RulesetIP {type: http, behavior: ipcidr, proxy: DIRECT, format: mrs, interval: 86400}
 
 proxy-providers:
   provider1:
-    <<: *baseProvider
-    url: https://
+    <<: *BaseProvider
+    url: '机场订阅地址1'
     age-secret-key: ''
 
 mode: rule
@@ -34,7 +35,7 @@ log-level: info
 external-controller: 0.0.0.0:9090
 bind-address: '*'
 external-ui-url: 'https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
-external-ui-name: zashboard
+external-ui-name: 'zashboard'
 external-ui: ui
 ipv6: false
 tcp-concurrent: true
@@ -96,198 +97,198 @@ ntp:
 
 proxy-groups:
   - name: 打包代理
-    <<: [*baseSelect, *preferUrltest]
+    <<: [*ASelect, *UrltestFirst]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Rocket.png'
 
   - name: 打包直连
-    <<: [*baseSelect, *preferDirect]
+    <<: [*ASelect, *DirectFirst]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Daily.png'
 
   - name: 漏网之鱼
-    <<: [*baseSelect, *preferDirect]
+    <<: [*ASelect, *DirectFirst]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Drill.png'
 
   - name: 自动选择
-    <<: *baseUrltest
+    <<: *AUrltest
     include-all: true
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/LinkCube.png'
 
   - name: 手动选择
-    <<: *baseSelect
+    <<: *ASelect
     include-all: true
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Clubhouse.png'
 
   - name: 负载均衡
-    <<: *baseLoadbalance
+    <<: *ALoadbalance
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/friDay.png'
 
   - name: 故障切换
-    <<: *baseFallback
+    <<: *AFallback
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bypass.png'
 
   - name: 广告拦截
-    <<: [*baseSelect, *preferReject]
+    <<: [*ASelect, *RejectFirst]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png'
 
   - name: DNS防泄露
-    <<: [*baseSelect, *preferUrltest]
+    <<: [*ASelect, *ForDNS]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cellular.png'
 
   - name: Cloudflare
-    <<: [*baseSelect, *preferDirect]
+    <<: [*ASelect, *DirectFirst]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png'
 
   - name: 优选域名
-    <<: [*baseSelect, *filterYXYM]
+    <<: [*ASelect, *FilterYXYM]
     proxies: [优选域名-自动选择]
 
   - name: 优选域名-自动选择
-    <<: [*baseUrltest, *filterYXYM]
+    <<: [*AUrltest, *FilterYXYM]
 
   - name: 香港
-    <<: [*baseSelect, *filterHK]
+    <<: [*ASelect, *FilterHK]
     proxies: [香港-自动选择]
 
   - name: 香港-自动选择
-    <<: [*baseUrltest, *filterHK]
+    <<: [*AUrltest, *FilterHK]
 
   - name: 日本
-    <<: [*baseSelect, *filterJP]
+    <<: [*ASelect, *FilterJP]
     proxies: [日本-自动选择]
 
   - name: 日本-自动选择
-    <<: [*baseUrltest, *filterJP]
+    <<: [*AUrltest, *FilterJP]
 
   - name: 韩国
-    <<: [*baseSelect, *filterKR]
+    <<: [*ASelect, *FilterKR]
     proxies: [韩国-自动选择]
 
   - name: 韩国-自动选择
-    <<: [*baseUrltest, *filterKR]
+    <<: [*AUrltest, *FilterKR]
 
   - name: 美国
-    <<: [*baseSelect, *filterUS]
+    <<: [*ASelect, *FilterUS]
     proxies: [美国-自动选择]
 
   - name: 美国-自动选择
-    <<: [*baseUrltest, *filterUS]
+    <<: [*AUrltest, *FilterUS]
 
   - name: 新加坡
-    <<: [*baseSelect, *filterSG]
+    <<: [*ASelect, *FilterSG]
     proxies: [新加坡-自动选择]
 
   - name: 新加坡-自动选择
-    <<: [*baseUrltest, *filterSG]
+    <<: [*AUrltest, *FilterSG]
 
   - name: 台湾省
-    <<: [*baseSelect, *filterTW]
+    <<: [*ASelect, *FilterTW]
     proxies: [台湾省-自动选择]
 
   - name: 台湾省-自动选择
-    <<: [*baseUrltest, *filterTW]
+    <<: [*AUrltest, *FilterTW]
 
   - name: 其他节点
-    <<: [*baseSelect, *filterOther]
+    <<: [*ASelect, *FilterOther]
     proxies: [其他节点-自动选择]
 
   - name: 其他节点-自动选择
-    <<: [*baseUrltest, *filterOther]
+    <<: [*AUrltest, *FilterOther]
 
 rule-providers:
   category-ads-all:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs
 
   geolocation-cn:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-cn.mrs
 
   private:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs
 
   fakeip-filter:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/wwqgtxx/clash-rules@release/fakeip-filter.mrs
 
   google:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs
 
   cloudflare:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cloudflare.mrs
 
   youtube:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs
 
   docker:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/docker.mrs
 
   googlefcm:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs
 
   ai:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ai-!cn.mrs
 
   steam:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam.mrs
 
   apple:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple.mrs
 
   apple_cn:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple@cn.mrs
 
   gfw:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/gfw.mrs
 
   github:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/github.mrs
 
   twitter:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs
 
   microsoft:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs
 
   microsoft_cn:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft@cn.mrs
 
   telegram:
-    <<: *rulesetDN
+    <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs
 
   telegramip:
-    <<: *rulesetIP
+    <<: *RulesetIP
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs
 
   twitterip:
-    <<: *rulesetIP
+    <<: *RulesetIP
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs
 
   googleip:
-    <<: *rulesetIP
+    <<: *RulesetIP
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs
 
   privateip:
-    <<: *rulesetIP
+    <<: *RulesetIP
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs
 
   cnip:
-    <<: *rulesetIP
+    <<: *RulesetIP
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs
 
 rules:
