@@ -7,14 +7,14 @@ FilterUS: &FilterUS {filter: '(?i)(美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|
 FilterTW: &FilterTW {filter: '(?i)(台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE|TSA|KHH)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/China.png'}
 FilterYXYM: &FilterYXYM {filter: '(?i)(优|优选|域名|(?<![A-Za-z])TG(?![A-Za-z])|channel|liqun)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Siri.png'}
 FilterOther: &FilterOther {exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Sing|SIN|XSP|日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|NRT|HND|KIX|CTS|FUK|韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|South|美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|SJC|JFK|LAX|ORD|ATL|DFW|SFO|MIA|SEA|IAD|台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE|TSA|KHH|优|优选|域名|(?<![A-Za-z])TG(?![A-Za-z])|channel|liqun)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/World_Map.png'}
-ForDNS: &ForDNS {proxies: [自动选择, 优选域名, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
+BaseDNS: &BaseDNS {proxies: [自动选择, 优选域名, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
 UrltestFirst: &UrltestFirst {proxies: [自动选择, DIRECT, 手动选择, REJECT, 优选域名, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
 DirectFirst: &DirectFirst {proxies: [DIRECT, 自动选择, 手动选择, REJECT, 优选域名, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
 RejectFirst: &RejectFirst {proxies: [REJECT, 自动选择, 手动选择, DIRECT, 优选域名, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障切换]}
-ASelect: &ASelect {type: select, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, hidden: false, url: 'https://g.cn/generate_204'}
-AUrltest: &AUrltest {type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, tolerance: 200, hidden: true, url: 'https://g.cn/generate_204'}
-AFallback: &AFallback {type: fallback, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, hidden: true, url: 'https://g.cn/generate_204'}
-ALoadbalance: &ALoadbalance {type: load-balance, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, strategy: sticky-sessions, hidden: true, url: 'https://g.cn/generate_204'}
+BaseSelect: &BaseSelect {type: select, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, hidden: false, url: 'https://g.cn/generate_204'}
+BaseUrltest: &BaseUrltest {type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, tolerance: 200, hidden: true, url: 'https://g.cn/generate_204'}
+BaseFallback: &BaseFallback {type: fallback, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, hidden: true, url: 'https://g.cn/generate_204'}
+BaseLoadbalance: &BaseLoadbalance {type: load-balance, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, strategy: sticky-sessions, hidden: true, url: 'https://g.cn/generate_204'}
 RulesetDN: &RulesetDN {type: http, behavior: domain, proxy: DIRECT, format: mrs, interval: 86400}
 RulesetIP: &RulesetIP {type: http, behavior: ipcidr, proxy: DIRECT, format: mrs, interval: 86400}
 
@@ -97,102 +97,102 @@ ntp:
 
 proxy-groups:
   - name: 打包代理
-    <<: [*ASelect, *UrltestFirst]
+    <<: [*BaseSelect, *UrltestFirst]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Rocket.png'
 
   - name: 打包直连
-    <<: [*ASelect, *DirectFirst]
+    <<: [*BaseSelect, *DirectFirst]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Daily.png'
 
   - name: 漏网之鱼
-    <<: [*ASelect, *DirectFirst]
+    <<: [*BaseSelect, *DirectFirst]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Drill.png'
 
   - name: 自动选择
-    <<: *AUrltest
+    <<: *BaseUrltest
     include-all: true
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/LinkCube.png'
 
   - name: 手动选择
-    <<: *ASelect
+    <<: *BaseSelect
     include-all: true
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Clubhouse.png'
 
   - name: 负载均衡
-    <<: *ALoadbalance
+    <<: *BaseLoadbalance
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/friDay.png'
 
   - name: 故障切换
-    <<: *AFallback
+    <<: *BaseFallback
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bypass.png'
 
   - name: 广告拦截
-    <<: [*ASelect, *RejectFirst]
+    <<: [*BaseSelect, *RejectFirst]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png'
 
   - name: DNS防泄露
-    <<: [*ASelect, *ForDNS]
+    <<: [*BaseSelect, *BaseDNS]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cellular.png'
 
   - name: Cloudflare
-    <<: [*ASelect, *DirectFirst]
+    <<: [*BaseSelect, *DirectFirst]
     icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png'
 
   - name: 优选域名
-    <<: [*ASelect, *FilterYXYM]
+    <<: [*BaseSelect, *FilterYXYM]
     proxies: [优选域名-自动选择]
 
   - name: 优选域名-自动选择
-    <<: [*AUrltest, *FilterYXYM]
+    <<: [*BaseUrltest, *FilterYXYM]
 
   - name: 香港
-    <<: [*ASelect, *FilterHK]
+    <<: [*BaseSelect, *FilterHK]
     proxies: [香港-自动选择]
 
   - name: 香港-自动选择
-    <<: [*AUrltest, *FilterHK]
+    <<: [*BaseUrltest, *FilterHK]
 
   - name: 日本
-    <<: [*ASelect, *FilterJP]
+    <<: [*BaseSelect, *FilterJP]
     proxies: [日本-自动选择]
 
   - name: 日本-自动选择
-    <<: [*AUrltest, *FilterJP]
+    <<: [*BaseUrltest, *FilterJP]
 
   - name: 韩国
-    <<: [*ASelect, *FilterKR]
+    <<: [*BaseSelect, *FilterKR]
     proxies: [韩国-自动选择]
 
   - name: 韩国-自动选择
-    <<: [*AUrltest, *FilterKR]
+    <<: [*BaseUrltest, *FilterKR]
 
   - name: 美国
-    <<: [*ASelect, *FilterUS]
+    <<: [*BaseSelect, *FilterUS]
     proxies: [美国-自动选择]
 
   - name: 美国-自动选择
-    <<: [*AUrltest, *FilterUS]
+    <<: [*BaseUrltest, *FilterUS]
 
   - name: 新加坡
-    <<: [*ASelect, *FilterSG]
+    <<: [*BaseSelect, *FilterSG]
     proxies: [新加坡-自动选择]
 
   - name: 新加坡-自动选择
-    <<: [*AUrltest, *FilterSG]
+    <<: [*BaseUrltest, *FilterSG]
 
   - name: 台湾省
-    <<: [*ASelect, *FilterTW]
+    <<: [*BaseSelect, *FilterTW]
     proxies: [台湾省-自动选择]
 
   - name: 台湾省-自动选择
-    <<: [*AUrltest, *FilterTW]
+    <<: [*BaseUrltest, *FilterTW]
 
   - name: 其他节点
-    <<: [*ASelect, *FilterOther]
+    <<: [*BaseSelect, *FilterOther]
     proxies: [其他节点-自动选择]
 
   - name: 其他节点-自动选择
-    <<: [*AUrltest, *FilterOther]
+    <<: [*BaseUrltest, *FilterOther]
 
 rule-providers:
   category-ads-all:
