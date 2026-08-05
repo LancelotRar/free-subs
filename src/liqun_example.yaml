@@ -1,14 +1,14 @@
 #机场设置锚点
 BaseProvider: &BaseProvider {type: http, interval: 3600, proxy: DIRECT, header: {User-Agent: ['clash.meta', 'clash.verge', 'mihomo']}, override: {additional-prefix: ['[机场名]']}, health-check: {enable: true, interval: 3600, lazy: true, url: 'https://g.cn/generate_204'}}
 #过滤器锚点
-FilterHK: &FilterHK {filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png'}
-FilterSG: &FilterSG {filter: '(?i)(坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png'}
-FilterJP: &FilterJP {filter: '(?i)(日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png'}
-FilterKR: &FilterKR {filter: '(?i)(韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png'}
-FilterUS: &FilterUS {filter: '(?i)(美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png'}
-FilterTW: &FilterTW {filter: '(?i)(台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/China.png'}
-FilterCFYX: &FilterCFYX {filter: '(?i)(优|优选|域名)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Siri.png'}
-FilterOther: &FilterOther {exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|优|优选|域名)', include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/World_Map.png'}
+FilterHK: &FilterHK {filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG)', icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png'}
+FilterSG: &FilterSG {filter: '(?i)(坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore)', icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png'}
+FilterJP: &FilterJP {filter: '(?i)(日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan)', icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png'}
+FilterKR: &FilterKR {filter: '(?i)(韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea)', icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png'}
+FilterUS: &FilterUS {filter: '(?i)(美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA)', icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png'}
+FilterTW: &FilterTW {filter: '(?i)(台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE)', icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/China.png'}
+FilterCFYX: &FilterCFYX {filter: '(?i)(优|优选|域名)', icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Siri.png'}
+FilterOther: &FilterOther {exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|优|优选|域名)', icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/World_Map.png'}
 #DNS代理锚点
 BaseDNS: &BaseDNS {type: select, proxies: [自动选择, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障转移]}
 #默认策略锚点
@@ -16,9 +16,9 @@ UrltestFirst: &UrltestFirst {type: select, proxies: [自动选择, DIRECT, 手�
 DirectFirst: &DirectFirst {type: select, proxies: [DIRECT, 自动选择, 手动选择, REJECT, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障转移]}
 RejectFirst: &RejectFirst {type: select, proxies: [REJECT, 自动选择, 手动选择, DIRECT, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障转移]}
 #基础策略锚点
-BaseUrltest: &BaseUrltest {type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, tolerance: 200, hidden: true, url: 'https://g.cn/generate_204'}
-BaseFallback: &BaseFallback {type: fallback, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, hidden: true, url: 'https://g.cn/generate_204'}
-BaseLoadbalance: &BaseLoadbalance {type: load-balance, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, strategy: sticky-sessions, hidden: true, url: 'https://g.cn/generate_204'}
+BaseUrltest: &BaseUrltest {type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, tolerance: 200, hidden: true, url: 'https://g.cn/generate_204'}
+BaseFallback: &BaseFallback {type: fallback, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, hidden: true, url: 'https://g.cn/generate_204'}
+BaseLoadbalance: &BaseLoadbalance {type: load-balance, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, strategy: sticky-sessions, hidden: true, url: 'https://g.cn/generate_204'}
 #规则集锚点
 RulesetDN: &RulesetDN {type: http, behavior: domain, proxy: DIRECT, format: mrs, interval: 86400}
 RulesetIP: &RulesetIP {type: http, behavior: ipcidr, proxy: DIRECT, format: mrs, interval: 86400}
@@ -104,23 +104,23 @@ proxy-groups:
   - {name: 打包代理, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Rocket.png'}
   - {name: 打包直连, <<: *DirectFirst, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Daily.png'}
   - {name: 漏网之鱼, <<: *DirectFirst, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Drill.png'}
-  - {name: 自动选择, <<: *BaseUrltest, include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/LinkCube.png'}
+  - {name: 自动选择, <<: *BaseUrltest, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/LinkCube.png'}
   - {name: 手动选择, type: select, include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Clubhouse.png'}
-  - {name: 负载均衡, <<: *BaseLoadbalance, include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/friDay.png'}
-  - {name: 故障转移, <<: *BaseFallback, include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bypass.png'}
+  - {name: 负载均衡, <<: *BaseLoadbalance, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/friDay.png'}
+  - {name: 故障转移, <<: *BaseFallback, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bypass.png'}
   - {name: 广告拦截, <<: *RejectFirst, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png'}
   
   - {name: DNS防泄露, <<: *BaseDNS, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cellular.png'}
   - {name: Cloudflare, <<: *DirectFirst, icon: 'https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Cloudflare.png'}
   
-  - {name: CF优选, <<: *FilterCFYX, type: select, proxies: [CF优选-自动, CF优选-故转]}
-  - {name: 香港, <<: *FilterHK, type: select, proxies: [香港-自动, 香港-故转]}
-  - {name: 日本, <<: *FilterJP, type: select, proxies: [日本-自动, 日本-故转]}
-  - {name: 韩国, <<: *FilterKR, type: select, proxies: [韩国-自动, 韩国-故转]}
-  - {name: 美国, <<: *FilterUS, type: select, proxies: [美国-自动, 美国-故转]}
-  - {name: 新加坡, <<: *FilterSG, type: select, proxies: [新加坡-自动, 新加坡-故转]}
-  - {name: 台湾省, <<: *FilterTW, type: select, proxies: [台湾省-自动, 台湾省-故转]}
-  - {name: 其他节点, <<: *FilterOther, type: select, proxies: [其他节点-自动, 其他节点-故转]}
+  - {name: CF优选, <<: *FilterCFYX, type: select, include-all: true, proxies: [CF优选-自动, CF优选-故转]}
+  - {name: 香港, <<: *FilterHK, type: select, include-all: true, proxies: [香港-自动, 香港-故转]}
+  - {name: 日本, <<: *FilterJP, type: select, include-all: true, proxies: [日本-自动, 日本-故转]}
+  - {name: 韩国, <<: *FilterKR, type: select, include-all: true, proxies: [韩国-自动, 韩国-故转]}
+  - {name: 美国, <<: *FilterUS, type: select, include-all: true, proxies: [美国-自动, 美国-故转]}
+  - {name: 新加坡, <<: *FilterSG, type: select, include-all: true, proxies: [新加坡-自动, 新加坡-故转]}
+  - {name: 台湾省, <<: *FilterTW, type: select, include-all: true, proxies: [台湾省-自动, 台湾省-故转]}
+  - {name: 其他节点, <<: *FilterOther, type: select, include-all: true, proxies: [其他节点-自动, 其他节点-故转]}
 
   - {name: CF优选-自动, <<: [*BaseUrltest, *FilterCFYX]}
   - {name: 香港-自动, <<: [*BaseUrltest, *FilterHK]}
