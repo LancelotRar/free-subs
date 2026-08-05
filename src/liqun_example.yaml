@@ -205,9 +205,21 @@ rule-providers:
     <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/github.mrs
 
+  spotify:
+    <<: *RulesetDN
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/spotify.mrs
+
+  tiktok:
+    <<: *RulesetDN
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs        
+
   twitter:
     <<: *RulesetDN
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs
+
+  netflix:
+    <<: *RulesetDN
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/netflix.mrs    
 
   microsoft:
     <<: *RulesetDN
@@ -262,6 +274,9 @@ rules:
   - DOMAIN-SUFFIX,1panel.live,打包直连
   - DOMAIN-SUFFIX,hdslb.com,打包直连
   - RULE-SET,telegram,打包代理
+  - RULE-SET,netflix,打包代理
+  - RULE-SET,tiktok,打包代理
+  - RULE-SET,spotify,打包代理
   - RULE-SET,steam,打包代理
   - RULE-SET,ai,打包代理
   - RULE-SET,apple,打包代理
