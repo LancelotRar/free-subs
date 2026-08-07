@@ -73,7 +73,7 @@ dns:
   respect-rules: false
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  fake-ip-filter: ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:geolocation-cn']
+  fake-ip-filter: ['rule-set:private', 'rule-set:fakeip-filter']
   default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
   proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
   nameserver: ['https://dns.google/dns-query#DNS防泄露', 'https://doh.opendns.com/dns-query#DNS防泄露']
