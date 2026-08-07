@@ -1,5 +1,5 @@
 #机场设置锚点
-BaseProvider: &BaseProvider {type: http, interval: 3600, proxy: DIRECT, header: {User-Agent: ['clash.meta', 'clash.verge', 'mihomo']}, override: {additional-prefix: ['[机场名]']}, health-check: {enable: true, interval: 3600, lazy: true, url: 'https://g.cn/generate_204'}}
+BaseProvider: &BaseProvider {type: http, interval: 3600, proxy: DIRECT, header: {User-Agent: ['clash.meta/v1.19.29', 'clash-verge/v2.5.2', 'mihomo']}, override: {additional-prefix: ['[机场名]']}, health-check: {enable: true, interval: 3600, lazy: true, url: 'https://g.cn/generate_204'}}
 #过滤器锚点
 FilterHK: &FilterHK {filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Hong_Kong.png'}
 FilterSG: &FilterSG {filter: '(?i)(坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Singapore.png'}
@@ -114,6 +114,11 @@ proxy-groups:
   - {name: Cloudflare, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cloudflare.png'}
   - {name: Opencode, <<: *DirectFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Additional/Opencode.png'}
   - {name: AgentRouter, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Additional/Agentrouter.png'}
+  - {name: Telegram, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Telegram.png'}
+  - {name: Google, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png'}
+  - {name: GoogleFCM, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png'}  
+  - {name: Youtube, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/YouTube.png'}
+  - {name: AI, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png'}
 
   - {name: CF优选, <<: *FilterCFYX, type: select, include-all: true, proxies: [CF优选-自动, CF优选-故转]}
   - {name: 香港, <<: *FilterHK, type: select, include-all: true, proxies: [香港-自动, 香港-故转]}
@@ -275,22 +280,22 @@ rules:
   - DOMAIN-SUFFIX,hdslb.com,打包直连
   - DOMAIN-SUFFIX,opencode.ai,Opencode
   - DOMAIN-SUFFIX,agentrouter.org,AgentRouter
-  - RULE-SET,telegram,打包代理
+  - RULE-SET,telegram,Telegram
   - RULE-SET,netflix,打包代理
   - RULE-SET,tiktok,打包代理
   - RULE-SET,spotify,打包代理
   - RULE-SET,steam,打包代理
-  - RULE-SET,ai,打包代理
+  - RULE-SET,ai,AI
   - RULE-SET,apple,打包代理
-  - RULE-SET,googlefcm,打包代理
-  - RULE-SET,youtube,打包代理
-  - RULE-SET,google,打包代理
+  - RULE-SET,googlefcm,GoogleFCM
+  - RULE-SET,youtube,Youtube
+  - RULE-SET,google,Google
   - RULE-SET,docker,打包代理
   - RULE-SET,github,打包代理
   - RULE-SET,twitter,打包代理
   - RULE-SET,microsoft,打包代理
-  - RULE-SET,telegramip,打包代理,no-resolve
-  - RULE-SET,googleip,打包代理,no-resolve
+  - RULE-SET,telegramip,Telegram,no-resolve
+  - RULE-SET,googleip,Google,no-resolve
   - RULE-SET,twitterip,打包代理,no-resolve
   - RULE-SET,gfw,打包代理
   - RULE-SET,geolocation-cn,打包直连
