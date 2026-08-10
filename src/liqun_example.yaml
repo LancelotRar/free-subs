@@ -10,14 +10,13 @@ FilterTW: &FilterTW {filter: '(?i)(台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|
 FilterCFYX: &FilterCFYX {filter: '(?i)(优|优选|域名)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Siri.png'}
 FilterOther: &FilterOther {exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|优|优选|域名)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/World_Map.png'}
 #DNS代理锚点
-BaseDNS: &BaseDNS {type: select, proxies: [自动选择, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障转移]}
+BaseDNS: &BaseDNS {type: select, proxies: [自动选择, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡]}
 #默认策略锚点
-UrltestFirst: &UrltestFirst {type: select, proxies: [自动选择, DIRECT, 手动选择, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障转移]}
-DirectFirst: &DirectFirst {type: select, proxies: [DIRECT, 自动选择, 手动选择, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障转移]}
-RejectFirst: &RejectFirst {type: select, proxies: [REJECT, 自动选择, 手动选择, DIRECT, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡, 故障转移]}
+UrltestFirst: &UrltestFirst {type: select, proxies: [自动选择, DIRECT, 手动选择, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡]}
+DirectFirst: &DirectFirst {type: select, proxies: [DIRECT, 自动选择, 手动选择, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡]}
+RejectFirst: &RejectFirst {type: select, proxies: [REJECT, 自动选择, 手动选择, DIRECT, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡]}
 #基础策略锚点
 BaseUrltest: &BaseUrltest {type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, tolerance: 200, hidden: true, url: 'https://g.cn/generate_204'}
-BaseFallback: &BaseFallback {type: fallback, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, hidden: true, url: 'https://g.cn/generate_204'}
 BaseLoadbalance: &BaseLoadbalance {type: load-balance, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, strategy: sticky-sessions, hidden: true, url: 'https://g.cn/generate_204'}
 #规则集锚点
 RulesetDN: &RulesetDN {type: http, behavior: domain, proxy: DIRECT, format: mrs, interval: 86400}
@@ -107,7 +106,6 @@ proxy-groups:
   - {name: 自动选择, <<: *BaseUrltest, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/LinkCube.png'}
   - {name: 手动选择, type: select, include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Clubhouse.png'}
   - {name: 负载均衡, <<: *BaseLoadbalance, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/friDay.png'}
-  - {name: 故障转移, <<: *BaseFallback, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Bypass.png'}
   - {name: 广告拦截, <<: *RejectFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AdBlack.png'}
 
   - {name: DNS防泄露, <<: *BaseDNS, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cellular.png'}
@@ -120,14 +118,14 @@ proxy-groups:
   - {name: Youtube, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/YouTube.png'}
   - {name: AI, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png'}
 
-  - {name: CF优选, <<: *FilterCFYX, type: select, include-all: true, proxies: [CF优选-自动, CF优选-故转]}
-  - {name: 香港, <<: *FilterHK, type: select, include-all: true, proxies: [香港-自动, 香港-故转]}
-  - {name: 日本, <<: *FilterJP, type: select, include-all: true, proxies: [日本-自动, 日本-故转]}
-  - {name: 韩国, <<: *FilterKR, type: select, include-all: true, proxies: [韩国-自动, 韩国-故转]}
-  - {name: 美国, <<: *FilterUS, type: select, include-all: true, proxies: [美国-自动, 美国-故转]}
-  - {name: 新加坡, <<: *FilterSG, type: select, include-all: true, proxies: [新加坡-自动, 新加坡-故转]}
-  - {name: 台湾省, <<: *FilterTW, type: select, include-all: true, proxies: [台湾省-自动, 台湾省-故转]}
-  - {name: 其他节点, <<: *FilterOther, type: select, include-all: true, proxies: [其他节点-自动, 其他节点-故转]}
+  - {name: CF优选, <<: *FilterCFYX, type: select, include-all: true, proxies: [CF优选-自动]}
+  - {name: 香港, <<: *FilterHK, type: select, include-all: true, proxies: [香港-自动]}
+  - {name: 日本, <<: *FilterJP, type: select, include-all: true, proxies: [日本-自动]}
+  - {name: 韩国, <<: *FilterKR, type: select, include-all: true, proxies: [韩国-自动]}
+  - {name: 美国, <<: *FilterUS, type: select, include-all: true, proxies: [美国-自动]}
+  - {name: 新加坡, <<: *FilterSG, type: select, include-all: true, proxies: [新加坡-自动]}
+  - {name: 台湾省, <<: *FilterTW, type: select, include-all: true, proxies: [台湾省-自动]}
+  - {name: 其他节点, <<: *FilterOther, type: select, include-all: true, proxies: [其他节点-自动]}
 
   - {name: CF优选-自动, <<: [*BaseUrltest, *FilterCFYX]}
   - {name: 香港-自动, <<: [*BaseUrltest, *FilterHK]}
@@ -137,15 +135,6 @@ proxy-groups:
   - {name: 新加坡-自动, <<: [*BaseUrltest, *FilterSG]}
   - {name: 台湾省-自动, <<: [*BaseUrltest, *FilterTW]}
   - {name: 其他节点-自动, <<: [*BaseUrltest, *FilterOther]}
-
-  - {name: CF优选-故转, <<: [*BaseFallback, *FilterCFYX]}
-  - {name: 香港-故转, <<: [*BaseFallback, *FilterHK]}
-  - {name: 日本-故转, <<: [*BaseFallback, *FilterJP]}
-  - {name: 韩国-故转, <<: [*BaseFallback, *FilterKR]}
-  - {name: 美国-故转, <<: [*BaseFallback, *FilterUS]}
-  - {name: 新加坡-故转, <<: [*BaseFallback, *FilterSG]}
-  - {name: 台湾省-故转, <<: [*BaseFallback, *FilterTW]}
-  - {name: 其他节点-故转, <<: [*BaseFallback, *FilterOther]}
 
 rule-providers:
   category-ads-all:
