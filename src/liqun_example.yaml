@@ -1,30 +1,30 @@
 #机场设置锚点
-BaseProvider: &BaseProvider {type: http, interval: 3600, proxy: DIRECT, header: {User-Agent: ['clash.meta/v1.19.29', 'clash-verge/v2.5.2', 'mihomo']}, override: {additional-prefix: '[机场名]'}, health-check: {enable: true, interval: 3600, lazy: true, url: 'https://g.cn/generate_204'}}
+base-provider: &base-provider {type: http, interval: 3600, proxy: DIRECT, header: {User-Agent: ['clash.meta/v1.19.29', 'clash-verge/v2.5.2', 'mihomo']}, override: {additional-prefix: '[机场名]'}, health-check: {enable: true, interval: 3600, lazy: true, url: 'https://g.cn/generate_204'}}
 #过滤器锚点
-FilterHK: &FilterHK {filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Hong_Kong.png'}
-FilterSG: &FilterSG {filter: '(?i)(坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Singapore.png'}
-FilterJP: &FilterJP {filter: '(?i)(日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Japan.png'}
-FilterKR: &FilterKR {filter: '(?i)(韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Korea.png'}
-FilterUS: &FilterUS {filter: '(?i)(美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/United_States.png'}
-FilterTW: &FilterTW {filter: '(?i)(台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/China.png'}
-FilterCFYX: &FilterCFYX {filter: '(?i)(优|优选|域名)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Siri.png'}
-FilterOther: &FilterOther {exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|优|优选|域名)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/World_Map.png'}
+base-filter-hk: &base-filter-hk {filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Hong_Kong.png'}
+base-filter-sg: &base-filter-sg {filter: '(?i)(坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Singapore.png'}
+base-filter-jp: &base-filter-jp {filter: '(?i)(日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Japan.png'}
+base-filter-kr: &base-filter-kr {filter: '(?i)(韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Korea.png'}
+base-filter-us: &base-filter-us {filter: '(?i)(美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/United_States.png'}
+base-filter-tw: &base-filter-tw {filter: '(?i)(台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/China.png'}
+base-filter-yxym: &base-filter-yxym {filter: '(?i)(优|优选|域名)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Siri.png'}
+base-filter-other: &base-filter-other {exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|优|优选|域名)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/World_Map.png'}
 #DNS代理锚点
-BaseDNS: &BaseDNS {type: select, proxies: [自动选择, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡]}
+base-dns: &base-dns {type: select, proxies: [自动选择, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡]}
 #默认策略锚点
-UrltestFirst: &UrltestFirst {type: select, proxies: [自动选择, DIRECT, 手动选择, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡]}
-DirectFirst: &DirectFirst {type: select, proxies: [DIRECT, 自动选择, 手动选择, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡]}
-RejectFirst: &RejectFirst {type: select, proxies: [REJECT, 自动选择, 手动选择, DIRECT, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡]}
+urltest-first: &urltest-first {type: select, proxies: [自动选择, DIRECT, 手动选择, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡]}
+direct-first: &direct-first {type: select, proxies: [DIRECT, 自动选择, 手动选择, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡]}
+reject-first: &reject-first {type: select, proxies: [REJECT, 自动选择, 手动选择, DIRECT, CF优选, 香港, 日本, 韩国, 美国, 新加坡, 台湾省, 其他节点, 负载均衡]}
 #基础策略锚点
-BaseUrltest: &BaseUrltest {type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, tolerance: 200, hidden: true, url: 'https://g.cn/generate_204'}
-BaseLoadbalance: &BaseLoadbalance {type: load-balance, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, strategy: sticky-sessions, hidden: true, url: 'https://g.cn/generate_204'}
+base-urltest: &base-urltest {type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, tolerance: 200, hidden: true, url: 'https://g.cn/generate_204'}
+base-loadbalance: &base-loadbalance {type: load-balance, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, strategy: sticky-sessions, hidden: true, url: 'https://g.cn/generate_204'}
 #规则集锚点
-RulesetDN: &RulesetDN {type: http, behavior: domain, proxy: DIRECT, format: mrs, interval: 86400}
-RulesetIP: &RulesetIP {type: http, behavior: ipcidr, proxy: DIRECT, format: mrs, interval: 86400}
+base-ruleset-dn: &base-ruleset-dn {type: http, behavior: domain, proxy: DIRECT, format: mrs, interval: 86400}
+base-ruleset-ip: &base-ruleset-ip {type: http, behavior: ipcidr, proxy: DIRECT, format: mrs, interval: 86400}
 
 proxy-providers:
   provider1:
-    <<: *BaseProvider
+    <<: *base-provider
     url: '机场订阅地址1'
     age-secret-key: ''
 
@@ -89,9 +89,7 @@ hosts:
   'doh.opendns.com': ['208.67.222.222', '208.67.220.220']
   'services.googleapis.cn': 'services.googleapis.com'
 
-profile:
-  store-selected: true
-  store-fake-ip: true
+profile: {store-selected: true, store-fake-ip: true}
 
 ntp:
   enable: true
@@ -101,157 +99,157 @@ ntp:
   interval: 60
 
 proxy-groups:
-  - {name: 打包代理, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Rocket.png'}
-  - {name: 打包直连, <<: *DirectFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Daily.png'}
-  - {name: 漏网之鱼, <<: *DirectFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Drill.png'}
-  - {name: 自动选择, <<: *BaseUrltest, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/LinkCube.png'}
+  - {name: 打包代理, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Rocket.png'}
+  - {name: 打包直连, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Daily.png'}
+  - {name: 漏网之鱼, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Drill.png'}
+  - {name: 自动选择, <<: *base-urltest, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/LinkCube.png'}
   - {name: 手动选择, type: select, include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Clubhouse.png'}
-  - {name: 负载均衡, <<: *BaseLoadbalance, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/friDay.png'}
-  - {name: 广告拦截, <<: *RejectFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AdBlack.png'}
+  - {name: 负载均衡, <<: *base-loadbalance, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/friDay.png'}
+  - {name: 广告拦截, <<: *reject-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AdBlack.png'}
 
-  - {name: DNS防泄露, <<: *BaseDNS, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cellular.png'}
-  - {name: Cloudflare, <<: *DirectFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cloudflare.png'}
-  - {name: Opencode, <<: *DirectFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Additional/Opencode.png'}
-  - {name: AgentRouter, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Additional/Agentrouter.png'}
-  - {name: Telegram, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Telegram.png'}
-  - {name: Google, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png'}
-  - {name: GoogleFCM, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png'}  
-  - {name: Youtube, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/YouTube.png'}
-  - {name: AI, <<: *UrltestFirst, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png'}
+  - {name: DNS防泄露, <<: *base-dns, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cellular.png'}
+  - {name: Cloudflare, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cloudflare.png'}
+  - {name: Opencode, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Additional/Opencode.png'}
+  - {name: AgentRouter, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Additional/Agentrouter.png'}
+  - {name: Telegram, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Telegram.png'}
+  - {name: Google, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png'}
+  - {name: GoogleFCM, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png'}  
+  - {name: Youtube, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/YouTube.png'}
+  - {name: AI, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png'}
 
-  - {name: CF优选, <<: *FilterCFYX, type: select, include-all: true, proxies: [CF优选-自动]}
-  - {name: 香港, <<: *FilterHK, type: select, include-all: true, proxies: [香港-自动]}
-  - {name: 日本, <<: *FilterJP, type: select, include-all: true, proxies: [日本-自动]}
-  - {name: 韩国, <<: *FilterKR, type: select, include-all: true, proxies: [韩国-自动]}
-  - {name: 美国, <<: *FilterUS, type: select, include-all: true, proxies: [美国-自动]}
-  - {name: 新加坡, <<: *FilterSG, type: select, include-all: true, proxies: [新加坡-自动]}
-  - {name: 台湾省, <<: *FilterTW, type: select, include-all: true, proxies: [台湾省-自动]}
-  - {name: 其他节点, <<: *FilterOther, type: select, include-all: true, proxies: [其他节点-自动]}
+  - {name: CF优选, <<: *base-filter-yxym, type: select, include-all: true, proxies: [CF优选-自动]}
+  - {name: 香港, <<: *base-filter-hk, type: select, include-all: true, proxies: [香港-自动]}
+  - {name: 日本, <<: *base-filter-jp, type: select, include-all: true, proxies: [日本-自动]}
+  - {name: 韩国, <<: *base-filter-kr, type: select, include-all: true, proxies: [韩国-自动]}
+  - {name: 美国, <<: *base-filter-us, type: select, include-all: true, proxies: [美国-自动]}
+  - {name: 新加坡, <<: *base-filter-sg, type: select, include-all: true, proxies: [新加坡-自动]}
+  - {name: 台湾省, <<: *base-filter-tw, type: select, include-all: true, proxies: [台湾省-自动]}
+  - {name: 其他节点, <<: *base-filter-other, type: select, include-all: true, proxies: [其他节点-自动]}
 
-  - {name: CF优选-自动, <<: [*BaseUrltest, *FilterCFYX]}
-  - {name: 香港-自动, <<: [*BaseUrltest, *FilterHK]}
-  - {name: 日本-自动, <<: [*BaseUrltest, *FilterJP]}
-  - {name: 韩国-自动, <<: [*BaseUrltest, *FilterKR]}
-  - {name: 美国-自动, <<: [*BaseUrltest, *FilterUS]}
-  - {name: 新加坡-自动, <<: [*BaseUrltest, *FilterSG]}
-  - {name: 台湾省-自动, <<: [*BaseUrltest, *FilterTW]}
-  - {name: 其他节点-自动, <<: [*BaseUrltest, *FilterOther]}
+  - {name: CF优选-自动, <<: [*base-urltest, *base-filter-yxym]}
+  - {name: 香港-自动, <<: [*base-urltest, *base-filter-hk]}
+  - {name: 日本-自动, <<: [*base-urltest, *base-filter-jp]}
+  - {name: 韩国-自动, <<: [*base-urltest, *base-filter-kr]}
+  - {name: 美国-自动, <<: [*base-urltest, *base-filter-us]}
+  - {name: 新加坡-自动, <<: [*base-urltest, *base-filter-sg]}
+  - {name: 台湾省-自动, <<: [*base-urltest, *base-filter-tw]}
+  - {name: 其他节点-自动, <<: [*base-urltest, *base-filter-other]}
 
 rule-providers:
   category-ads-all:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs
 
   geolocation-cn:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-cn.mrs
 
   games-cn:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-games@cn.mrs
 
   private:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs
 
   fakeip-filter:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/wwqgtxx/clash-rules@release/fakeip-filter.mrs
 
   google:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/google.mrs
 
   cloudflare:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cloudflare.mrs
 
   youtube:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/youtube.mrs
 
   docker:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/docker.mrs
 
   googlefcm:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/googlefcm.mrs
 
   ai:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ai-!cn.mrs
 
   steam:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam.mrs
 
   apple:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple.mrs
 
   apple-cn:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple@cn.mrs
 
   gfw:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/gfw.mrs
 
   github:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/github.mrs
 
   spotify:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/spotify.mrs
 
   tiktok:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs        
 
   twitter:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/twitter.mrs
 
   netflix:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/netflix.mrs    
 
   microsoft:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft.mrs
 
   microsoft-cn:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft@cn.mrs
 
   nvidia-cn:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/nvidia@cn.mrs
 
   telegram:
-    <<: *RulesetDN
+    <<: *base-ruleset-dn
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs
 
   telegramip:
-    <<: *RulesetIP
+    <<: *base-ruleset-ip
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs
 
   twitterip:
-    <<: *RulesetIP
+    <<: *base-ruleset-ip
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs
 
   googleip:
-    <<: *RulesetIP
+    <<: *base-ruleset-ip
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/google.mrs
 
   privateip:
-    <<: *RulesetIP
+    <<: *base-ruleset-ip
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/private.mrs
 
   cnip:
-    <<: *RulesetIP
+    <<: *base-ruleset-ip
     url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs
 
 rules:
