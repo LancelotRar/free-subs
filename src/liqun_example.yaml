@@ -1,5 +1,5 @@
 #机场设置锚点
-BaseProvider: &BaseProvider {type: http, interval: 3600, proxy: DIRECT, header: {User-Agent: ['clash.meta/v1.19.29', 'clash-verge/v2.5.2', 'mihomo']}, override: {additional-prefix: ['[机场名]']}, health-check: {enable: true, interval: 3600, lazy: true, url: 'https://g.cn/generate_204'}}
+BaseProvider: &BaseProvider {type: http, interval: 3600, proxy: DIRECT, header: {User-Agent: ['clash.meta/v1.19.29', 'clash-verge/v2.5.2', 'mihomo']}, override: {additional-prefix: '[机场名]'}, health-check: {enable: true, interval: 3600, lazy: true, url: 'https://g.cn/generate_204'}}
 #过滤器锚点
 FilterHK: &FilterHK {filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Hong_Kong.png'}
 FilterSG: &FilterSG {filter: '(?i)(坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Singapore.png'}
