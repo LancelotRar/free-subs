@@ -72,7 +72,7 @@ dns:
   respect-rules: false
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
-  fake-ip-range6: fdfe:dcba:9876::1/64
+  fake-ip-range6: 2001:2::0/64
   fake-ip-filter: ['rule-set:private', 'rule-set:fakeip-filter']
   default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
   proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
