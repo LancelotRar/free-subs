@@ -119,6 +119,8 @@ proxy-groups:
   - {name: GoogleFCM, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png'}  
   - {name: Youtube, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/YouTube.png'}
   - {name: AI, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png'}
+  - {name: Tiktok, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/TikTok.png'}
+  - {name: Netflix, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Netflix.png'}
 
   - {name: CF优选, <<: *base-filter-yxym, type: select, include-all: true, proxies: [CF优选-自动]}
   - {name: 美国, <<: *base-filter-us, type: select, include-all: true, proxies: [美国-自动]}
@@ -282,8 +284,8 @@ rules:
   - DOMAIN-SUFFIX,opencode.ai,Opencode
   - DOMAIN-SUFFIX,agentrouter.org,AgentRouter
   - RULE-SET,telegram,Telegram
-  - RULE-SET,netflix,打包代理
-  - RULE-SET,tiktok,打包代理
+  - RULE-SET,netflix,Netflix
+  - RULE-SET,tiktok,Tiktok
   - RULE-SET,spotify,打包代理
   - RULE-SET,steam,打包代理
   - RULE-SET,ai,AI
