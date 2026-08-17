@@ -7,7 +7,6 @@
 
 <p align="center">
   <a href="https://t.me/liqunchannel"><img src="https://badgen.net/badge/利群便利店/频道/2CA5E0" align="absmiddle" style="height:28px"></a>
-  <a href="https://t.me/liqunchat01"><img src="https://badgen.net/badge/利群便利店/交流群/2CA5E0" align="absmiddle" style="height:28px"></a>
 </p>
 <p align="center">
   <img src="https://count.getloli.com/@:LancelotRar?name=%3ALancelotRar&theme=booru-koe&padding=7&offset=0&align=top&scale=1&pixelated=1&darkmode=auto">
@@ -48,28 +47,21 @@
 
 ## 🚀 本项目亮点
 
-  -  **主流支持：** 自适应 Mihomo、xray、Sing-box内核为代表的主流代理客户端。
-  -  **Cloudflare赋能：** 基于 Cloudflare 高性能开源方案搭建，兼顾速度与稳定性，同时提供优选域名与优选IP双方案。
-  -  **本项目当前使用Cmliu edgetunnel 搭建**
+  -  **主流支持：** 自适应 Mihomo、xray、Sing-box 内核为代表的主流代理客户端。
+  -  **Cloudflare赋能：** 基于 Cloudflare 高性能开源方案搭建，兼顾速度与稳定性。[同时提供优选域名与优选IP双方案](https://github.com/LancelotRar/best-cf-ips)。
+  -  **本项目当前使用 Cmliu edgetunnel 搭建**
 
 -----
 
 ## 👊 节点及分组
-<p align="center">
-  <img src="src/free2.png" alt="效果图2">
-</p>
+
 <p align="center">
   <img src="src/free1.png" alt="效果图1">
 </p>
-<p align="center">
-  <img src="src/free3.png" alt="效果图3">
-</p>
-
------
 
 ## 📥 订阅地址    
 
-* **订阅地址获取方式：**  关注上方利群便利店『频道』，注意置顶信息，具有时效性。或加入群组获取长期公益订阅地址。
+* **订阅地址获取方式：**  关注上方利群便利店『频道』，注意置顶信息，具有时效性。
 * **Mihomo配置文件模板（仅模板，不含订阅）:** 📄[**配置文件模板**](/src/liqun_example.yaml)，不断优化最佳实践。可fork后自行修改。
 
 ---

@@ -7,7 +7,6 @@
 
 <p align="center">
   <a href="https://t.me/liqunchannel"><img src="https://badgen.net/badge/فروشگاه%20رفاه%20Liqun/کانال/2CA5E0" align="absmiddle" style="height:28px"></a>
-  <a href="https://t.me/liqunchat01"><img src="https://badgen.net/badge/فروشگاه%20رفاه%20Liqun/گروه%20گفتگو/2CA5E0" align="absmiddle" style="height:28px"></a>
 </p>
 <p align="center">
   <img src="https://count.getloli.com/@:LancelotRar?name=%3ALancelotRar&theme=booru-koe&padding=7&offset=0&align=top&scale=1&pixelated=1&darkmode=auto">
@@ -30,7 +29,7 @@
 * **وبلاگ نویسنده:** [https://joeyblog.net/](https://joeyblog.net/)
 * **کانال YouTube:** [joeyblog](https://www.youtube.com/@joeyblog)
 
-### 3. نویسنده: Wang
+### 3. نویسنده: لائو وانگ
 * **اثر شاخص:** `Cloudflare-proxy`
 * **آدرس پروژه:** [https://github.com/eooce/Cloudflare-proxy](https://github.com/eooce/Cloudflare-proxy)
 * **تعداد Star کنونی:** <img src="https://badgen.net/github/stars/eooce/Cloudflare-proxy" align="absmiddle">
@@ -48,28 +47,21 @@
 
 ## 🚀 ویژگی‌های برجسته این پروژه
 
-  - **پشتیبانی主流:** سازگاری با هسته‌های Mihomo، xray و Sing-box به عنوان کلاینت‌های اصلی پروکسی.
-  - **قدرت گرفته از Cloudflare:** ساخته شده بر اساس راه‌حل‌های متن‌باز高性能 Cloudflare، با تعادل بین سرعت و پایداری، همراه با دامنه‌های بهینه و IPهای بهینه.
+  - **پشتیبانی از هسته‌های اصلی:** سازگاری خودکار با هسته‌های Mihomo، xray و Sing-box به عنوان کلاینت‌های اصلی پروکسی.
+  - **قدرت گرفته از Cloudflare:** ساخته شده بر اساس راه‌حل‌های متن‌باز با کارایی بالا از Cloudflare، با تعادل بین سرعت و پایداری، [همراه با دامنه‌های بهینه و IPهای بهینه](https://github.com/LancelotRar/best-cf-ips).
   - **این پروژه در حال حاضر با Cmliu edgetunnel ساخته شده است**
 
 -----
 
 ## 👊 گره‌ها و گروه‌ها
-<p align="center">
-  <img src="src/free2.png" alt="تصویر ۲">
-</p>
+
 <p align="center">
   <img src="src/free1.png" alt="تصویر ۱">
 </p>
-<p align="center">
-  <img src="src/free3.png" alt="تصویر ۳">
-</p>
-
------
 
 ## 📥 آدرس اشتراک
 
-* **روش دریافت اشتراک:** کانال «فروشگاه رفاه Liqun» در بالا را دنبال کنید، به پست‌های سنجاق شده توجه کنید — آنها دارای اعتبار محدود هستند. یا به گروه بپیوندید تا آدرس‌های اشتراک عمومی بلندمدت دریافت کنید.
+* **روش دریافت اشتراک:** کانال «فروشگاه رفاه Liqun» در بالا را دنبال کنید، به پست‌های سنجاق شده توجه کنید — آنها دارای اعتبار محدود هستند.
 * **قالب پیکربندی Mihomo (فقط قالب، بدون اشتراک):** 📄[**قالب پیکربندی**](/src/liqun_example.yaml)، به‌طور مداوم بهترین روش‌ها را بهینه‌سازی می‌کند. می‌توانید fork کنید و خودتان تغییر دهید.
 
 ---

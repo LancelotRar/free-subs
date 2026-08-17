@@ -6,7 +6,6 @@
 
 <p align="center">
   <a href="https://t.me/liqunchannel"><img src="https://badgen.net/badge/Liqun/Канал/2CA5E0" align="absmiddle" style="height:28px"></a>
-  <a href="https://t.me/liqunchat01"><img src="https://badgen.net/badge/Liqun/Чат/2CA5E0" align="absmiddle" style="height:28px"></a>
 </p>
 <p align="center">
   <img src="https://count.getloli.com/@:LancelotRar?name=%3ALancelotRar&theme=booru-koe&padding=7&offset=0&align=top&scale=1&pixelated=1&darkmode=auto">
@@ -29,7 +28,7 @@
 * **Блог автора:** [https://joeyblog.net/](https://joeyblog.net/)
 * **YouTube:** [joeyblog](https://www.youtube.com/@joeyblog)
 
-### 3. Автор: Wang
+### 3. Автор: Лао Ван
 * **Основная работа:** `Cloudflare-proxy`
 * **Адрес проекта:** [https://github.com/eooce/Cloudflare-proxy](https://github.com/eooce/Cloudflare-proxy)
 * **Звёзд:** <img src="https://badgen.net/github/stars/eooce/Cloudflare-proxy" align="absmiddle">
@@ -47,28 +46,21 @@
 
 ## 🚀 Особенности проекта
 
-  - **Поддержка основных клиентов:** совместимость с ядрами Mihomo, xray и Sing-box.
-  - **На базе Cloudflare:** построено на высокопроизводительных решениях Cloudflare, баланс скорости и стабильности, с оптимальными доменами и оптимальными IP-адресами.
+  - **Поддержка основных клиентов:** адаптивная совместимость с ядрами Mihomo, xray и Sing-box.
+  - **На базе Cloudflare:** построено на высокопроизводительных решениях Cloudflare, баланс скорости и стабильности, [с оптимальными доменами и оптимальными IP-адресами](https://github.com/LancelotRar/best-cf-ips).
   - **В данный момент проект использует Cmliu edgetunnel**
 
 -----
 
 ## 👊 Узлы и группы
-<p align="center">
-  <img src="src/free2.png" alt="Скриншот 2">
-</p>
+
 <p align="center">
   <img src="src/free1.png" alt="Скриншот 1">
 </p>
-<p align="center">
-  <img src="src/free3.png" alt="Скриншот 3">
-</p>
-
------
 
 ## 📥 Адрес подписки
 
-* **Получение адреса подписки:** Подпишитесь на канал «Liqun» выше, обращайте внимание на закреплённые сообщения — они имеют ограниченный срок действия. Или вступите в группу, чтобы получить долгосрочные общественные адреса подписки.
+* **Получение адреса подписки:** Подпишитесь на канал «Liqun» выше, обращайте внимание на закреплённые сообщения — они имеют ограниченный срок действия.
 * **Шаблон конфигурации Mihomo (только шаблон, без подписок):** 📄[**Шаблон конфигурации**](/src/liqun_example.yaml)，постоянно оптимизируются лучшие практики. Можно сделать fork и изменять самостоятельно.
 
 ---
