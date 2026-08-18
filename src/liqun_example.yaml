@@ -17,7 +17,7 @@ base-dns: &base-dns {type: select, proxies: [自动选择, 负载均衡, CF优�
 #默认策略锚点
 urltest-first: &urltest-first {type: select, proxies: [自动选择, DIRECT, 手动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点]}
 direct-first: &direct-first {type: select, proxies: [DIRECT, 自动选择, 手动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点]}
-reject-first: &reject-first {type: select, proxies: [REJECT, 自动选择, 手动选择, DIRECT, 负载均衡]}
+reject-first: &reject-first {type: select, proxies: [REJECT, 自动选择, 手动选择, DIRECT]}
 #基础策略锚点
 base-urltest: &base-urltest {type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, tolerance: 200, hidden: true, url: 'https://www.gstatic.com/generate_204'}
 base-loadbalance: &base-loadbalance {type: load-balance, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, strategy: sticky-sessions, hidden: true, url: 'https://www.gstatic.com/generate_204'}
