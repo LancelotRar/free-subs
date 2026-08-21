@@ -113,10 +113,9 @@ proxy-groups:
   - {name: DNS, <<: *base-dns, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cellular.png'}
   - {name: Cloudflare, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cloudflare.png'}
   - {name: Opencode, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Additional/Opencode.png'}
-  - {name: AgentRouter, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Additional/Agentrouter.png'}
   - {name: Telegram, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Telegram.png'}
   - {name: Google, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png'}
-  - {name: GoogleFCM, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png'}  
+  - {name: GoogleFCM, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png'}
   - {name: Youtube, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/YouTube.png'}
   - {name: AI, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png'}
   - {name: Tiktok, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/TikTok.png'}
@@ -282,7 +281,6 @@ rules:
   - DOMAIN-SUFFIX,1panel.live,打包直连
   - DOMAIN-SUFFIX,hdslb.com,打包直连
   - DOMAIN-SUFFIX,opencode.ai,Opencode
-  - DOMAIN-SUFFIX,agentrouter.org,AgentRouter
   - RULE-SET,telegram,Telegram
   - RULE-SET,netflix,Netflix
   - RULE-SET,tiktok,Tiktok
