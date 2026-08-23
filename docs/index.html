@@ -25,29 +25,33 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background-image: url('background-pc.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
       background-color: var(--bg-color);
       color: var(--text-color);
       min-height: 100vh;
       position: relative;
     }
 
-    /* ===== Scroll Background Crossfade ===== */
-    .bg-scroll {
+    /* ===== Fixed Background Layers (crossfade on scroll) =====
+       position:fixed divs are used INSTEAD of background-attachment:fixed,
+       which is broken on iOS Safari. Both desktop and mobile get the
+       scroll crossfade this way. */
+    .bg-layer {
       position: fixed;
       inset: 0;
-      background-image: url('background2-pc.jpg');
-      background-attachment: fixed;
+      z-index: -1;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      z-index: -1;
-      opacity: 0;
       pointer-events: none;
+    }
+
+    .bg-1 {
+      background-image: url('background-pc.jpg');
+    }
+
+    .bg-2 {
+      background-image: url('background2-pc.jpg');
+      opacity: 0;
       will-change: opacity;
     }
 
@@ -240,38 +244,25 @@
         white-space: nowrap;
       }
 
-      /* background-attachment:fixed breaks on iOS/Android —
-         paint one full-bleed background per section instead.
-         Portrait wallpaper falls back to the landscape original until
-         background-mobile.jpg / background2-mobile.jpg are added. */
-      body {
-        background-image: none;
-      }
-
-      .bg-scroll {
-        display: none;
-      }
-
-      .hero {
-        background-image: url('background-mobile.jpg'), url('background-pc.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-      }
-
       .registration {
         padding: 2rem 1rem;
-        background-image: url('background2-mobile.jpg'), url('background2-pc.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+      }
+
+      /* Portrait wallpapers on small screens (crossfade layers stay active) */
+      .bg-1 {
+        background-image: url('background-mobile.jpg');
+      }
+
+      .bg-2 {
+        background-image: url('background2-mobile.jpg');
       }
     }
   </style>
 </head>
 <body>
-  <!-- Scroll-triggered second background (fades in as user scrolls) -->
-  <div class="bg-scroll"></div>
+  <!-- Fixed background layers: bg-2 fades in as the user scrolls -->
+  <div class="bg-layer bg-1"></div>
+  <div class="bg-layer bg-2"></div>
 
   <section class="hero">
     <div class="container">
@@ -302,7 +293,7 @@
 
   <script>
     // ===== Scroll Crossfade: background.jpg → background2.jpg =====
-    const bgScroll = document.querySelector('.bg-scroll');
+    const bgScroll = document.querySelector('.bg-2');
     const scrollHint = document.querySelector('.scroll-hint');
 
     function updateBgOpacity() {
