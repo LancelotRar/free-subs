@@ -41,7 +41,14 @@
        scroll crossfade this way. */
     .bg-layer {
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      /* Fixed height instead of inset:0 — a dynamic viewport (mobile URL bar
+         collapsing) would otherwise resize the layer and make `cover` re-scale,
+         causing a visible size jump mid-scroll. lvh stays constant. */
+      height: 100vh;
+      height: 100lvh;
       z-index: -1;
       background-size: cover;
       background-position: center;
@@ -300,14 +307,18 @@
   </main>
 
   <script>
-    // ===== Scroll Crossfade: background.jpg → background2.jpg =====
+    // ===== Scroll Crossfade: bg-1 → bg-2 =====
     const bgScroll = document.querySelector('.bg-2');
     const scrollHint = document.querySelector('.scroll-hint');
 
+    // Cached viewport height. Mobile browsers change innerHeight when the URL
+    // bar collapses; recomputing on every scroll would make the crossfade rate
+    // jump mid-gesture. Only a real resize (rotation) refreshes it.
+    let viewportH = window.innerHeight;
+
     function updateBgOpacity() {
       const scrollY = window.scrollY;
-      const maxScroll = window.innerHeight;
-      const progress = Math.min(scrollY / maxScroll, 1);
+      const progress = Math.min(scrollY / viewportH, 1);
       bgScroll.style.opacity = progress;
 
       // Fade out scroll hint as soon as the user starts scrolling
@@ -319,6 +330,13 @@
     }
 
     window.addEventListener('scroll', updateBgOpacity, { passive: true });
+    window.addEventListener('resize', function() {
+      // Ignore small deltas (URL bar show/hide), react to real layout changes
+      if (Math.abs(window.innerHeight - viewportH) > 120) {
+        viewportH = window.innerHeight;
+        updateBgOpacity();
+      }
+    }, { passive: true });
     updateBgOpacity();
 
     // Smooth-scroll to the next section on hint click.
