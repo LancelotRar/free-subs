@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>利群公益</title>
+    <title>利群公益</title>
+    <meta name="description" content="利群公益频道主页——关注 Telegram 频道获取免费订阅服务与最新动态。" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ccircle%20cx='50'%20cy='50'%20r='46'%20fill='%230071e3'/%3E%3C/svg%3E" />
+    <link rel="preload" as="image" href="background-mobile.jpg" media="(max-width: 768px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="background-pc.jpg" media="(min-width: 769px)" fetchpriority="high" />
   <style>
     /* ===== CSS Custom Properties ===== */
     :root {
@@ -169,6 +173,8 @@
     /* Looping diagonal shine sweep, clipped to the glyphs */
     h1::after {
       content: attr(data-text);
+      /* Alternative-text syntax hides the decorative duplicate from screen readers */
+      content: attr(data-text) / "";
       position: absolute;
       inset: 0;
       color: transparent;
@@ -264,13 +270,14 @@
   <div class="bg-layer bg-1"></div>
   <div class="bg-layer bg-2"></div>
 
+  <main>
   <section class="hero">
     <div class="container">
       <h1 data-text="利群公益">利群公益</h1>
     </div>
 
     <!-- Scroll Hint -->
-    <a class="scroll-hint" href="#registration" aria-label="滚动到下一屏">
+    <a class="scroll-hint" href="#registration">
       <span class="scroll-hint-mouse" aria-hidden="true"></span>
       <span class="scroll-hint-text">向下滑动</span>
     </a>
@@ -290,6 +297,7 @@
       关注频道
     </a>
   </section>
+  </main>
 
   <script>
     // ===== Scroll Crossfade: background.jpg → background2.jpg =====
