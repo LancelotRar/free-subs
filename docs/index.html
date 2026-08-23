@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>利群公益</title>
+  <style>
+    /* ===== CSS Custom Properties ===== */
+    :root {
+      --bg-color: #f5f5f7;
+      --text-color: #1d1d1f;
+      --subtext-color: #6e6e73;
+      --card-bg: #ffffff;
+      --btn-bg: #e8e8ed;
+      --btn-hover-bg: #d1d1d6;
+      --accent-color: #0071e3;
+    }
+
+    /* ===== Global Styles ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* ===== Scroll Background Crossfade ===== */
+    .bg-scroll {
+      position: fixed;
+      inset: 0;
+      background-image: url('background2.jpg');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -1;
+      opacity: 0;
+      pointer-events: none;
+      will-change: opacity;
+    }
+
+    /* ===== Scroll Hint (bottom of hero) ===== */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--subtext-color);
+      text-decoration: none;
+      transition: opacity 0.2s ease, color 0.2s ease;
+    }
+
+    .scroll-hint:hover {
+      color: var(--accent-color);
+    }
+
+    .scroll-hint-mouse {
+      width: 24px;
+      height: 38px;
+      border: 2px solid currentColor;
+      border-radius: 14px;
+      position: relative;
+    }
+
+    .scroll-hint-mouse::after {
+      content: '';
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      width: 4px;
+      height: 7px;
+      margin-left: -2px;
+      border-radius: 2px;
+      background: currentColor;
+      animation: scroll-wheel 1.8s ease-in-out infinite;
+    }
+
+    .scroll-hint-text {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      margin-right: -0.25em;
+    }
+
+    @keyframes scroll-wheel {
+      0% { opacity: 1; transform: translateY(0); }
+      65% { opacity: 0; transform: translateY(11px); }
+      66% { opacity: 0; transform: translateY(-1px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .scroll-hint-mouse::after {
+        animation: none;
+      }
+
+      h1,
+      h1::after {
+        animation: none;
+      }
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== Registration Section (Centered Flex) ===== */
+    .registration {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .registration {
+        padding: 2rem 1rem;
+      }
+
+      h1 {
+        font-size: 4.5rem;
+        -webkit-text-stroke-width: 2px;
+      }
+    }
+
+    /* ===== Shared Content Styles ===== */
+    .container {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+      font-size: 6rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+      margin-right: -0.03em;
+      position: relative;
+      -webkit-text-stroke: 3px #ffffff;
+      paint-order: stroke fill;
+      text-shadow:
+        0 6px 24px rgba(0, 0, 0, 0.35),
+        0 2px 6px rgba(0, 0, 0, 0.2);
+      animation: hero-title-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    /* Looping diagonal shine sweep, clipped to the glyphs */
+    h1::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      color: transparent;
+      -webkit-text-stroke: 0;
+      background-image: linear-gradient(
+        115deg,
+        transparent 40%,
+        rgba(255, 255, 255, 0.9) 50%,
+        transparent 60%
+      );
+      background-repeat: no-repeat;
+      background-size: 250% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: title-shine 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes title-shine {
+      0% { background-position: 120% 0; }
+      45% { background-position: -20% 0; }
+      100% { background-position: -20% 0; }
+    }
+
+    @keyframes hero-title-in {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== Telegram Link (CTA) ===== */
+    .telegram-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.8rem 1.4rem;
+      background: var(--card-bg);
+      color: var(--text-color);
+      border: 1px solid var(--btn-bg);
+      border-radius: 38px;
+      font-size: 2.1rem;
+      font-weight: 500;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .telegram-link:hover {
+      background: var(--btn-hover-bg);
+      transform: translateY(-2px);
+    }
+
+    .telegram-link svg {
+      width: 36px;
+      height: 36px;
+      fill: var(--text-color);
+    }
+  </style>
+</head>
+<body>
+  <!-- Scroll-triggered second background (fades in as user scrolls) -->
+  <div class="bg-scroll"></div>
+
+  <section class="hero">
+    <div class="container">
+      <h1 data-text="利群公益">利群公益</h1>
+    </div>
+
+    <!-- Scroll Hint -->
+    <a class="scroll-hint" href="#registration" aria-label="向下滚动查看更多内容">
+      <span class="scroll-hint-mouse" aria-hidden="true"></span>
+      <span class="scroll-hint-text">向下滑动</span>
+    </a>
+  </section>
+
+  <section class="registration" id="registration">
+    <!-- Channel CTA -->
+    <a
+      class="telegram-link"
+      href="https://t.me/liqunchannel"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+      </svg>
+      关注频道
+    </a>
+  </section>
+
+  <script>
+    // ===== Scroll Crossfade: background.jpg → background2.jpg =====
+    const bgScroll = document.querySelector('.bg-scroll');
+    const scrollHint = document.querySelector('.scroll-hint');
+
+    function updateBgOpacity() {
+      const scrollY = window.scrollY;
+      const maxScroll = window.innerHeight;
+      const progress = Math.min(scrollY / maxScroll, 1);
+      bgScroll.style.opacity = progress;
+
+      // Fade out scroll hint as soon as the user starts scrolling
+      if (scrollHint) {
+        const hintProgress = Math.min(scrollY / 120, 1);
+        scrollHint.style.opacity = String(1 - hintProgress);
+        scrollHint.style.visibility = hintProgress >= 1 ? 'hidden' : 'visible';
+      }
+    }
+
+    window.addEventListener('scroll', updateBgOpacity, { passive: true });
+    updateBgOpacity();
+  </script>
+</body>
+</html>
