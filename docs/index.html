@@ -23,10 +23,6 @@
       box-sizing: border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       background-image: url('background.jpg');
@@ -66,13 +62,13 @@
       flex-direction: column;
       align-items: center;
       gap: 0.6rem;
-      color: var(--subtext-color);
+      color: #ffffff;
       text-decoration: none;
-      transition: opacity 0.2s ease, color 0.2s ease;
+      transition: color 0.2s ease;
     }
 
     .scroll-hint:hover {
-      color: var(--accent-color);
+      color: #34c759;
     }
 
     .scroll-hint-mouse {
@@ -111,14 +107,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      .scroll-hint-mouse::after {
-        animation: none;
-      }
-
+      .scroll-hint-mouse::after,
       h1,
       h1::after {
         animation: none;
@@ -159,7 +148,7 @@
 
       h1 {
         font-size: 4.5rem;
-        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-width: 4px;
       }
     }
 
@@ -172,17 +161,15 @@
     h1 {
       font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
       font-size: 6rem;
-      font-weight: 900;
+      font-weight: 700;
       margin-bottom: 0.5rem;
       letter-spacing: 0.03em;
       margin-right: -0.03em;
       position: relative;
-      -webkit-text-stroke: 3px #ffffff;
+      -webkit-text-stroke: 6px #ffffff;
       paint-order: stroke fill;
-      text-shadow:
-        0 6px 24px rgba(0, 0, 0, 0.35),
-        0 2px 6px rgba(0, 0, 0, 0.2);
-      animation: hero-title-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+      text-shadow: 10px 12px 8px rgba(0, 0, 0, 0.3);
+      animation: hero-title-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards;
     }
 
     /* Looping diagonal shine sweep, clipped to the glyphs */
@@ -227,13 +214,16 @@
     .telegram-link {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.75rem;
-      padding: 0.8rem 1.4rem;
+      width: 230px;
+      height: 62px;
       background: var(--card-bg);
       color: var(--text-color);
       border: 1px solid var(--btn-bg);
       border-radius: 38px;
-      font-size: 2.1rem;
+      font-size: 1.8rem;
+      line-height: 1;
       font-weight: 500;
       text-decoration: none;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
@@ -249,6 +239,7 @@
       width: 36px;
       height: 36px;
       fill: var(--text-color);
+      transform: translate(-5px, 0);
     }
   </style>
 </head>
@@ -262,7 +253,7 @@
     </div>
 
     <!-- Scroll Hint -->
-    <a class="scroll-hint" href="#registration" aria-label="向下滚动查看更多内容">
+    <a class="scroll-hint" href="#registration" aria-label="滚动到下一屏">
       <span class="scroll-hint-mouse" aria-hidden="true"></span>
       <span class="scroll-hint-text">向下滑动</span>
     </a>
@@ -304,6 +295,14 @@
 
     window.addEventListener('scroll', updateBgOpacity, { passive: true });
     updateBgOpacity();
+
+    // Smooth-scroll to the next section on hint click.
+    // Explicit JS scrolling ignores the OS "reduced motion" setting,
+    // so it stays smooth on every device.
+    document.querySelector('.scroll-hint').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('registration').scrollIntoView({ behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>
