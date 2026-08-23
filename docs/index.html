@@ -62,8 +62,10 @@
       background-image: url('background-pc.webp');
     }
 
+    /* .bg-2 has no background-image here on purpose: it is invisible at first
+       paint, so the image is injected by JS (bottom of file) once the page is
+       idle or the user starts scrolling — keeping it out of the initial load. */
     .bg-2 {
-      background-image: url('background2-pc.webp');
       opacity: 0;
       will-change: opacity;
     }
@@ -263,13 +265,10 @@
         padding: 2rem 1rem;
       }
 
-      /* Portrait wallpapers on small screens (crossfade layers stay active) */
+      /* Portrait wallpapers on small screens (crossfade layers stay active).
+         .bg-2's portrait source is chosen by JS at injection time. */
       .bg-1 {
         background-image: url('background-mobile.webp');
-      }
-
-      .bg-2 {
-        background-image: url('background2-mobile.webp');
       }
     }
   </style>
@@ -312,11 +311,34 @@
     // ===== Scroll Crossfade: bg-1 → bg-2 =====
     const bgScroll = document.querySelector('.bg-2');
     const scrollHint = document.querySelector('.scroll-hint');
+    const mqMobile = window.matchMedia('(max-width: 768px)');
 
     // Cached viewport height. Mobile browsers change innerHeight when the URL
     // bar collapses; recomputing on every scroll would make the crossfade rate
     // jump mid-gesture. Only a real resize (rotation) refreshes it.
     let viewportH = window.innerHeight;
+
+    // ---- Second wallpaper: deferred load ----
+    // It is fully transparent at first paint, so it must not compete with the
+    // first wallpaper for bandwidth. Injected on first scroll or when idle.
+    let bg2Requested = false;
+
+    function bg2Source() {
+      return mqMobile.matches ? 'background2-mobile.webp' : 'background2-pc.webp';
+    }
+
+    function loadBg2() {
+      if (bg2Requested) return;
+      bg2Requested = true;
+      bgScroll.style.backgroundImage = "url('" + bg2Source() + "')";
+    }
+
+    // Swap portrait/landscape source if the breakpoint changes after loading
+    mqMobile.addEventListener('change', function () {
+      if (bg2Requested) {
+        bgScroll.style.backgroundImage = "url('" + bg2Source() + "')";
+      }
+    });
 
     function updateBgOpacity() {
       const scrollY = window.scrollY;
@@ -331,8 +353,22 @@
       }
     }
 
-    window.addEventListener('scroll', updateBgOpacity, { passive: true });
-    window.addEventListener('resize', function() {
+    // rAF-throttled: coalesces bursts of scroll events into one style write
+    // per frame, so low-end devices never thrash layout mid-gesture.
+    let framePending = false;
+
+    function onScroll() {
+      loadBg2();
+      if (framePending) return;
+      framePending = true;
+      requestAnimationFrame(function () {
+        framePending = false;
+        updateBgOpacity();
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function () {
       // Ignore small deltas (URL bar show/hide), react to real layout changes
       if (Math.abs(window.innerHeight - viewportH) > 120) {
         viewportH = window.innerHeight;
@@ -340,6 +376,16 @@
       }
     }, { passive: true });
     updateBgOpacity();
+
+    // Warm the second wallpaper only after the page has loaded, and then only
+    // while the browser is idle — so it never competes with the first paint.
+    window.addEventListener('load', function () {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadBg2, { timeout: 3000 });
+      } else {
+        setTimeout(loadBg2, 800);
+      }
+    });
 
     // Smooth-scroll to the next section on hint click.
     // Explicit JS scrolling ignores the OS "reduced motion" setting,
