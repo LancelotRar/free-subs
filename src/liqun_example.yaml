@@ -152,11 +152,11 @@ rule-providers:
 
   geolocation-cn:
     <<: *base-ruleset-dn
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-cn.mrs
+    url: https://testingcf.jsdelivr.net/gh/appshubcc/bett-rules@meta/geo/geosite/geolocation-cn.mrs
 
   cn:
     <<: *base-ruleset-dn
-    url: https://testingcf.jsdelivr.net/gh/wwqgtxx/clash-rules@release/direct.mrs
+    url: https://testingcf.jsdelivr.net/gh/appshubcc/bett-rules@meta/geo/geosite/cn.mrs
 
   games-cn:
     <<: *base-ruleset-dn
@@ -164,7 +164,7 @@ rule-providers:
 
   private:
     <<: *base-ruleset-dn
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs
+    url: https://testingcf.jsdelivr.net/gh/appshubcc/bett-rules@meta/geo/geosite/private.mrs
 
   fakeip-filter:
     <<: *base-ruleset-dn
@@ -278,7 +278,6 @@ rules:
   - DOMAIN-SUFFIX,cnb.cool,打包直连
   - DOMAIN-SUFFIX,1ms.run,打包直连
   - DOMAIN-SUFFIX,1panel.live,打包直连
-  - DOMAIN-SUFFIX,hdslb.com,打包直连
   - RULE-SET,cloudflare,Cloudflare
   - DOMAIN-SUFFIX,opencode.ai,AI直连
   - DOMAIN-SUFFIX,models.dev,AI代理
