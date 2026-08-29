@@ -112,12 +112,12 @@ proxy-groups:
 
   - {name: DNS, <<: *base-dns, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cellular.png'}
   - {name: Cloudflare, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cloudflare.png'}
-  - {name: Opencode, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Additional/Opencode.png'}
   - {name: Telegram, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Telegram.png'}
   - {name: Google, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png'}
   - {name: GoogleFCM, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png'}
   - {name: Youtube, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/YouTube.png'}
-  - {name: AI相关, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png'}
+  - {name: AI代理, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png'}
+  - {name: AI直连, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Additional/Magic.png'}
   - {name: Tiktok, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/TikTok.png'}
   - {name: Netflix, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Netflix.png'}
 
@@ -280,15 +280,15 @@ rules:
   - DOMAIN-SUFFIX,1panel.live,打包直连
   - DOMAIN-SUFFIX,hdslb.com,打包直连
   - RULE-SET,cloudflare,Cloudflare
-  - DOMAIN-SUFFIX,opencode.ai,Opencode
-  - DOMAIN-SUFFIX,models.dev,AI相关
-  - DOMAIN-SUFFIX,agentrouter.org,AI相关
+  - DOMAIN-SUFFIX,opencode.ai,AI直连
+  - DOMAIN-SUFFIX,models.dev,AI代理
+  - DOMAIN-SUFFIX,agentrouter.org,AI代理
   - RULE-SET,telegram,Telegram
   - RULE-SET,netflix,Netflix
   - RULE-SET,tiktok,Tiktok
   - RULE-SET,spotify,打包代理
   - RULE-SET,steam,打包代理
-  - RULE-SET,ai,AI相关
+  - RULE-SET,ai,AI代理
   - RULE-SET,apple,打包代理
   - RULE-SET,youtube,Youtube
   - RULE-SET,googlefcm,GoogleFCM
