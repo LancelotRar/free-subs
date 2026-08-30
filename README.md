@@ -62,8 +62,8 @@
 ## 📥 订阅地址    
 
 * **订阅地址获取方式：**  关注上方利群便利店『频道』，注意**置顶信息**。
-* [**自用Mihomo配置文件模板**](/src/liqun_example.yaml)，不断优化最佳实践，可fork后自行修改，亦可直接使用。
-* 因CF节点具有**时效性**，本公益推荐使用**Mihomo客户端**。可以做到**定时拉取订阅，自动测延迟，自动选择延迟最低节点**，实现懒人一键代理。个人推荐轻量好用的 [**Bettbox**](https://github.com/appshubcc/Bettbox)。如果你曾经是Flclash用户，你会很快熟悉并上手。[**Bettbox交流群**](https://t.me/appshub_chat)。
+* [**自用 Mihomo 配置文件模板**](/src/liqun_example.yaml)，不断优化最佳实践，可fork后自行修改，亦可直接使用。
+* 因CF节点具有**时效性**，本公益推荐使用**Mihomo客户端**。可以做到**定时拉取订阅，自动测延迟，自动选择延迟最低节点**，实现懒人一键代理。个人推荐轻量好用的 [**Bettbox**](https://github.com/appshubcc/Bettbox)，[**Bettbox交流群**](https://t.me/appshub_chat)。如果你曾经是 Flclash 用户，你会很快熟悉并上手。
 ---
 
 ## 📋 代理客户端推荐  
@@ -80,7 +80,7 @@
 
 
 > [!TIP]
-> 在客户端内设置 **“订阅自动更新频率 (Update Interval)”** 为 3 小时为最佳，以减少CF Workers请求数，以免刷爆导致订阅不可用。
+> 在客户端内设置 **“订阅自动更新频率 (Update Interval)”** 为 3 小时为最佳，以减少 CF Workers 请求数，以免刷爆导致订阅不可用。
 
 ------
 
