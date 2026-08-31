@@ -1,29 +1,29 @@
 #机场设置锚点
-base-provider: &base-provider {type: http, interval: 3600, proxy: DIRECT, header: {User-Agent: ['clash.meta/v1.19.29', 'clash-verge/v2.5.2', 'mihomo']}, override: {additional-prefix: '[机场名]'}, health-check: {enable: true, interval: 3600, lazy: true, url: 'https://www.gstatic.com/generate_204'}}
+base-provider: &base-provider { type: http, interval: 3600, proxy: DIRECT, header: { User-Agent: ['clash.meta/v1.19.29', 'clash-verge/v2.5.2', 'mihomo'] }, override: { additional-prefix: '[机场名]' }, health-check: { enable: true, interval: 3600, lazy: true, url: 'https://www.gstatic.com/generate_204' } }
 #过滤器锚点
-base-filter-hk: &base-filter-hk {filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Hong_Kong.png'}
-base-filter-sg: &base-filter-sg {filter: '(?i)(坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|SGP)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Singapore.png'}
-base-filter-jp: &base-filter-jp {filter: '(?i)(日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|JPN)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Japan.png'}
-base-filter-kr: &base-filter-kr {filter: '(?i)(韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Korea.png'}
-base-filter-us: &base-filter-us {filter: '(?i)(美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/United_States.png'}
-base-filter-tw: &base-filter-tw {filter: '(?i)(台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/China.png'}
-base-filter-my: &base-filter-my {filter: '(?i)(马来西亚|🇲🇾|(?<![A-Za-z])MY(?![A-Za-z])|Malaysia|MYS)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Malaysia.png'}
-base-filter-de: &base-filter-de {filter: '(?i)(德国|🇩🇪|法兰克福|(?<![A-Za-z])DE(?![A-Za-z])|Germany|GER)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Germany.png'}
-base-filter-au: &base-filter-au {filter: '(?i)(澳大利亚|澳洲|🇦🇺|悉尼|墨尔本|(?<![A-Za-z])AU(?![A-Za-z])|Australia|AUS)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Australia.png'}
-base-filter-yxym: &base-filter-yxym {filter: '(?i)(优选)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Siri.png'}
-base-filter-other: &base-filter-other {exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|SGP|日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|JPN|韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE|优选|马来西亚|🇲🇾|(?<![A-Za-z])MY(?![A-Za-z])|Malaysia|MYS|德国|🇩🇪|法兰克福|(?<![A-Za-z])DE(?![A-Za-z])|Germany|GER|澳大利亚|澳洲|🇦🇺|悉尼|墨尔本|(?<![A-Za-z])AU(?![A-Za-z])|Australia|AUS)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/World_Map.png'}
+base-filter-hk: &base-filter-hk { filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Hong_Kong.png' }
+base-filter-sg: &base-filter-sg { filter: '(?i)(坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|SGP)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Singapore.png' }
+base-filter-jp: &base-filter-jp { filter: '(?i)(日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|JPN)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Japan.png' }
+base-filter-kr: &base-filter-kr { filter: '(?i)(韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Korea.png' }
+base-filter-us: &base-filter-us { filter: '(?i)(美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/United_States.png' }
+base-filter-tw: &base-filter-tw { filter: '(?i)(台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/China.png' }
+base-filter-my: &base-filter-my { filter: '(?i)(马来西亚|🇲🇾|(?<![A-Za-z])MY(?![A-Za-z])|Malaysia|MYS)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Malaysia.png' }
+base-filter-de: &base-filter-de { filter: '(?i)(德国|🇩🇪|法兰克福|(?<![A-Za-z])DE(?![A-Za-z])|Germany|GER)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Germany.png' }
+base-filter-au: &base-filter-au { filter: '(?i)(澳大利亚|澳洲|🇦🇺|悉尼|墨尔本|(?<![A-Za-z])AU(?![A-Za-z])|Australia|AUS)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Australia.png' }
+base-filter-yxym: &base-filter-yxym { filter: '(?i)(优选)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Siri.png' }
+base-filter-other: &base-filter-other { exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|SGP|日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|JPN|韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE|优选|马来西亚|🇲🇾|(?<![A-Za-z])MY(?![A-Za-z])|Malaysia|MYS|德国|🇩🇪|法兰克福|(?<![A-Za-z])DE(?![A-Za-z])|Germany|GER|澳大利亚|澳洲|🇦🇺|悉尼|墨尔本|(?<![A-Za-z])AU(?![A-Za-z])|Australia|AUS)', icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/World_Map.png' }
 #DNS代理锚点
-base-dns: &base-dns {type: select, proxies: [自动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点]}
+base-dns: &base-dns { type: select, proxies: [自动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点] }
 #默认策略锚点
-urltest-first: &urltest-first {type: select, proxies: [自动选择, DIRECT, 手动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点]}
-direct-first: &direct-first {type: select, proxies: [DIRECT, 自动选择, 手动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点]}
-reject-first: &reject-first {type: select, proxies: [REJECT, 自动选择, 手动选择, DIRECT]}
+urltest-first: &urltest-first { type: select, proxies: [自动选择, DIRECT, 手动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点] }
+direct-first: &direct-first { type: select, proxies: [DIRECT, 自动选择, 手动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点] }
+reject-first: &reject-first { type: select, proxies: [REJECT, 自动选择, 手动选择, DIRECT] }
 #基础策略锚点
-base-urltest: &base-urltest {type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, tolerance: 200, hidden: true, url: 'https://www.gstatic.com/generate_204'}
-base-loadbalance: &base-loadbalance {type: load-balance, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, strategy: sticky-sessions, hidden: true, url: 'https://www.gstatic.com/generate_204'}
+base-urltest: &base-urltest { type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, tolerance: 200, hidden: true, url: 'https://www.gstatic.com/generate_204' }
+base-loadbalance: &base-loadbalance { type: load-balance, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, strategy: sticky-sessions, hidden: true, url: 'https://www.gstatic.com/generate_204' }
 #规则集锚点
-base-ruleset-dn: &base-ruleset-dn {type: http, behavior: domain, proxy: DIRECT, format: mrs, interval: 86400}
-base-ruleset-ip: &base-ruleset-ip {type: http, behavior: ipcidr, proxy: DIRECT, format: mrs, interval: 86400}
+base-ruleset-dn: &base-ruleset-dn { type: http, behavior: domain, proxy: DIRECT, format: mrs, interval: 86400 }
+base-ruleset-ip: &base-ruleset-ip { type: http, behavior: ipcidr, proxy: DIRECT, format: mrs, interval: 86400 }
 
 proxy-providers:
   provider1:
@@ -41,8 +41,8 @@ allow-lan: true
 log-level: info
 external-controller: 0.0.0.0:9090
 bind-address: '*'
-external-ui-url: 'https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
-external-ui-name: 'zashboard'
+external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
+external-ui-name: zashboard
 external-ui: ui
 ipv6: false
 tcp-concurrent: true
@@ -92,7 +92,7 @@ hosts:
   'doh.opendns.com': ['208.67.222.222', '208.67.220.220']
   'services.googleapis.cn': 'services.googleapis.com'
 
-profile: {store-selected: true, store-fake-ip: true}
+profile: { store-selected: true, store-fake-ip: true }
 
 ntp:
   enable: true
@@ -102,48 +102,48 @@ ntp:
   interval: 60
 
 proxy-groups:
-  - {name: 打包代理, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Rocket.png'}
-  - {name: 打包直连, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Daily.png'}
-  - {name: 漏网之鱼, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Drill.png'}
-  - {name: 自动选择, <<: *base-urltest, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/LinkCube.png'}
-  - {name: 手动选择, type: select, include-all: true, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Clubhouse.png'}
-  - {name: 负载均衡, <<: *base-loadbalance, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/friDay.png'}
-  - {name: 广告拦截, <<: *reject-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AdBlack.png'}
+  - { name: 打包代理, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Rocket.png }
+  - { name: 打包直连, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Daily.png }
+  - { name: 漏网之鱼, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Drill.png }
+  - { name: 自动选择, <<: *base-urltest, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/LinkCube.png }
+  - { name: 手动选择, type: select, include-all: true, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Clubhouse.png }
+  - { name: 负载均衡, <<: *base-loadbalance, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/friDay.png }
+  - { name: 广告拦截, <<: *reject-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AdBlack.png }
 
-  - {name: DNS, <<: *base-dns, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cellular.png'}
-  - {name: Cloudflare, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cloudflare.png'}
-  - {name: Telegram, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Telegram.png'}
-  - {name: Google, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png'}
-  - {name: GoogleFCM, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png'}
-  - {name: Youtube, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/YouTube.png'}
-  - {name: AI代理, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png'}
-  - {name: AI直连, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Magic.png'}
-  - {name: Tiktok, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/TikTok.png'}
-  - {name: Netflix, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Netflix.png'}
+  - { name: DNS, <<: *base-dns, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cellular.png }
+  - { name: Cloudflare, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cloudflare.png }
+  - { name: Telegram, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Telegram.png }
+  - { name: Google, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png }
+  - { name: GoogleFCM, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png }
+  - { name: Youtube, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/YouTube.png }
+  - { name: AI代理, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png }
+  - { name: AI直连, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Magic.png }
+  - { name: Tiktok, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/TikTok.png }
+  - { name: Netflix, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Netflix.png }
 
-  - {name: CF优选, <<: *base-filter-yxym, type: select, include-all: true, proxies: [CF优选-自动]}
-  - {name: 美国, <<: *base-filter-us, type: select, include-all: true, proxies: [美国-自动]}
-  - {name: 新加坡, <<: *base-filter-sg, type: select, include-all: true, proxies: [新加坡-自动]}
-  - {name: 香港, <<: *base-filter-hk, type: select, include-all: true, proxies: [香港-自动]}
-  - {name: 日本, <<: *base-filter-jp, type: select, include-all: true, proxies: [日本-自动]}
-  - {name: 韩国, <<: *base-filter-kr, type: select, include-all: true, proxies: [韩国-自动]}
-  - {name: 马来西亚, <<: *base-filter-my, type: select, include-all: true, proxies: [马来西亚-自动]}
-  - {name: 德国, <<: *base-filter-de, type: select, include-all: true, proxies: [德国-自动]}
-  - {name: 澳大利亚, <<: *base-filter-au, type: select, include-all: true, proxies: [澳大利亚-自动]}
-  - {name: 台湾省, <<: *base-filter-tw, type: select, include-all: true, proxies: [台湾省-自动]}
-  - {name: 其他节点, <<: *base-filter-other, type: select, include-all: true, proxies: [其他节点-自动]}
+  - { name: CF优选, <<: *base-filter-yxym, type: select, include-all: true, proxies: [CF优选-自动] }
+  - { name: 美国, <<: *base-filter-us, type: select, include-all: true, proxies: [美国-自动] }
+  - { name: 新加坡, <<: *base-filter-sg, type: select, include-all: true, proxies: [新加坡-自动] }
+  - { name: 香港, <<: *base-filter-hk, type: select, include-all: true, proxies: [香港-自动] }
+  - { name: 日本, <<: *base-filter-jp, type: select, include-all: true, proxies: [日本-自动] }
+  - { name: 韩国, <<: *base-filter-kr, type: select, include-all: true, proxies: [韩国-自动] }
+  - { name: 马来西亚, <<: *base-filter-my, type: select, include-all: true, proxies: [马来西亚-自动] }
+  - { name: 德国, <<: *base-filter-de, type: select, include-all: true, proxies: [德国-自动] }
+  - { name: 澳大利亚, <<: *base-filter-au, type: select, include-all: true, proxies: [澳大利亚-自动] }
+  - { name: 台湾省, <<: *base-filter-tw, type: select, include-all: true, proxies: [台湾省-自动] }
+  - { name: 其他节点, <<: *base-filter-other, type: select, include-all: true, proxies: [其他节点-自动] }
 
-  - {name: CF优选-自动, <<: [*base-urltest, *base-filter-yxym]}
-  - {name: 美国-自动, <<: [*base-urltest, *base-filter-us]}
-  - {name: 新加坡-自动, <<: [*base-urltest, *base-filter-sg]}
-  - {name: 香港-自动, <<: [*base-urltest, *base-filter-hk]}
-  - {name: 日本-自动, <<: [*base-urltest, *base-filter-jp]}
-  - {name: 韩国-自动, <<: [*base-urltest, *base-filter-kr]}
-  - {name: 马来西亚-自动, <<: [*base-urltest, *base-filter-my]}
-  - {name: 德国-自动, <<: [*base-urltest, *base-filter-de]}
-  - {name: 澳大利亚-自动, <<: [*base-urltest, *base-filter-au]}
-  - {name: 台湾省-自动, <<: [*base-urltest, *base-filter-tw]}
-  - {name: 其他节点-自动, <<: [*base-urltest, *base-filter-other]}
+  - { name: CF优选-自动, <<: [*base-urltest, *base-filter-yxym] }
+  - { name: 美国-自动, <<: [*base-urltest, *base-filter-us] }
+  - { name: 新加坡-自动, <<: [*base-urltest, *base-filter-sg] }
+  - { name: 香港-自动, <<: [*base-urltest, *base-filter-hk] }
+  - { name: 日本-自动, <<: [*base-urltest, *base-filter-jp] }
+  - { name: 韩国-自动, <<: [*base-urltest, *base-filter-kr] }
+  - { name: 马来西亚-自动, <<: [*base-urltest, *base-filter-my] }
+  - { name: 德国-自动, <<: [*base-urltest, *base-filter-de] }
+  - { name: 澳大利亚-自动, <<: [*base-urltest, *base-filter-au] }
+  - { name: 台湾省-自动, <<: [*base-urltest, *base-filter-tw] }
+  - { name: 其他节点-自动, <<: [*base-urltest, *base-filter-other] }
 
 rule-providers:
   category-ads-all:
