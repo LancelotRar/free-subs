@@ -117,7 +117,7 @@ proxy-groups:
   - {name: GoogleFCM, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png'}
   - {name: Youtube, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/YouTube.png'}
   - {name: AI代理, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png'}
-  - {name: AI直连, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Additional/Magic.png'}
+  - {name: AI直连, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Magic.png'}
   - {name: Tiktok, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/TikTok.png'}
   - {name: Netflix, <<: *urltest-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Netflix.png'}
 
@@ -220,7 +220,7 @@ rule-providers:
 
   tiktok:
     <<: *base-ruleset-dn
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs        
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs
 
   twitter:
     <<: *base-ruleset-dn
@@ -228,7 +228,7 @@ rule-providers:
 
   netflix:
     <<: *base-ruleset-dn
-    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/netflix.mrs    
+    url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/netflix.mrs
 
   microsoft:
     <<: *base-ruleset-dn
