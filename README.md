@@ -1,7 +1,6 @@
 
-## 🏪 利群公益订阅
-
-欢迎来到 **利群便利店**。本项目致力于通过 Cloudflare 边缘计算技术，提供稳定、高速且永久免费的代理订阅服务。  
+# 🏪 利群公益订阅
+## 本项目致力于通过 Cloudflare 边缘计算技术，提供稳定、高速且永久免费的代理订阅服务 
 
 [🌐 中文](README.md) | [🇮🇷 فارسی](README.fa.md) | [🇷🇺 Русский](README.ru.md)
 
@@ -12,8 +11,7 @@
   <img src="https://count.getloli.com/@:LancelotRar?name=%3ALancelotRar&theme=booru-koe&padding=7&offset=0&align=top&scale=1&pixelated=1&darkmode=auto">
 </p>
 
-> [!IMPORTANT]
->Cloudflare（以下简称 CF）免费搭建科学上网项目盘点，请为这些优秀的开源项目点上您的 **Star** ⭐️⭐️⭐️！  
+## Cloudflare（以下简称 CF）免费搭建科学上网项目盘点，请为这些优秀的开源项目点上您的 **Star** ！  
 
 ### 1. 作者：Cmliu
 * **代表作：** `edgetunnel`
@@ -56,14 +54,16 @@
 ## 👊 节点及分组
 
 <p align="center">
-  <img src="src/free1.png" alt="效果图1">
-</p>
+  <img src="src/PC1.png" alt="效果图" width="430" height="240">
+</p>    
 
-## 📥 订阅地址    
+## 📥 订阅须知    
 
 * **订阅地址获取方式：**  关注上方利群便利店『频道』，注意**置顶信息**。
 * [**自用 Mihomo 配置文件模板**](/src/liqun_example.yaml)，不断优化最佳实践，可fork后自行修改，亦可直接使用。
-* 因CF节点具有**时效性**，本公益推荐使用**Mihomo客户端**。可以做到**定时拉取订阅，自动测延迟，自动选择延迟最低节点**，实现懒人一键代理。个人推荐轻量好用的 [**Bettbox**](https://github.com/appshubcc/Bettbox)，[**Bettbox交流群**](https://t.me/appshub_chat)。如果你曾经是 Flclash 用户，你会很快熟悉并上手。
+* 因CF节点具有**时效性**，本公益推荐使用**Mihomo客户端**。可以做到**定时拉取订阅，自动测延迟，自动选择延迟最低节点**，实现懒人一键代理。设置订阅自动更新间隔 3 小时为最佳。个人推荐轻量好用的 [**Bettbox**](https://github.com/appshubcc/Bettbox)，[**Bettbox交流群**](https://t.me/appshub_chat)。如果你曾经是 Flclash 用户，你会很快熟悉并上手。
+* 如发现滥用或爬虫导致节点异常失效，则**随时拉闸**。
+
 ---
 
 ## 📋 代理客户端推荐  
@@ -77,10 +77,6 @@
 | **iOS** | Surge、Shadowrocket、Stash、[Hiddify](https://github.com/hiddify/hiddify-app/releases)、Loon、Egern、[Clashmi](https://clashmi.app/download)、[Karing](https://karing.app/)、Quantumult X |
 | **macOS** | [FlClash](https://github.com/chen08209/FlClash/releases)、[mihomo-party](https://github.com/mihomo-party-org/clash-party/releases)、[Clash Verge Rev](https://github.com/clash-verge-rev/clash-verge-rev/releases)、Surge、[Clashmi](https://clashmi.app/download)、[Karing](https://karing.app/)、[FlyClash](https://github.com/GtxFury/FlyClash/releases) |
 | **鸿蒙** | [ClashBox](https://github.com/xiaobaigroup/ClashBox/releases) |
-
-
-> [!TIP]
-> 在客户端内设置 **“订阅自动更新频率 (Update Interval)”** 为 3 小时为最佳，以减少 CF Workers 请求数，以免刷爆导致订阅不可用。
 
 ------
 

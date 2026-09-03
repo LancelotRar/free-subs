@@ -1,7 +1,6 @@
 
-## 🏪 اشتراک عمومی فروشگاه رفاه Liqun
-
-به **فروشگاه رفاه Liqun** خوش آمدید. این پروژه با استفاده از فناوری محاسبات لبه‌ای Cloudflare، خدمات اشتراک شبکه عمومی پایدار، پرسرعت و رایگان دائمی را به کاربران اینترنت ارائه می‌دهد.
+# 🏪 اشتراک عمومی فروشگاه رفاه Liqun
+## این پروژه با استفاده از فناوری محاسبات لبه‌ای Cloudflare، خدمات اشتراک پروکسی پایدار، پرسرعت و رایگان دائمی ارائه می‌دهد
 
 [🌐 中文](README.md) | [🇮🇷 فارسی](README.fa.md) | [🇷🇺 Русский](README.ru.md)
 
@@ -12,8 +11,7 @@
   <img src="https://count.getloli.com/@:LancelotRar?name=%3ALancelotRar&theme=booru-koe&padding=7&offset=0&align=top&scale=1&pixelated=1&darkmode=auto">
 </p>
 
-> [!IMPORTANT]
-> بررسی پروژه‌های رایگان دسترسی به اینترنت با Cloudflare (CF)، لطفاً به این پروژه‌های متن‌باز عالی **Star** ⭐️⭐️⭐️ بدهید!
+## بررسی پروژه‌های رایگان دسترسی به اینترنت با Cloudflare (CF)، لطفاً به این پروژه‌های متن‌باز عالی **Star** بدهید!
 
 ### 1. نویسنده: Cmliu
 * **اثر شاخص:** `edgetunnel`
@@ -56,14 +54,15 @@
 ## 👊 گره‌ها و گروه‌ها
 
 <p align="center">
-  <img src="src/free1.png" alt="تصویر ۱">
+  <img src="src/PC1.png" alt="پیش‌نمایش" width="430" height="240">
 </p>
 
-## 📥 آدرس اشتراک
+## 📥 نکات اشتراک
 
 * **روش دریافت اشتراک:** کانال «فروشگاه رفاه Liqun» در بالا را دنبال کنید، به پست‌های سنجاق شده توجه کنید — آنها دارای اعتبار محدود هستند.
 * [**قالب پیکربندی Mihomo برای استفاده شخصی**](/src/liqun_example.yaml)، به‌طور مداوم بهترین روش‌ها را بهینه‌سازی می‌کند. می‌توانید fork کنید و خودتان تغییر دهید یا مستقیماً از آن استفاده کنید.
-* از آنجایی که گره‌های CF دارای **اعتبار محدود** هستند، در این پروژه عمومی استفاده از **کلاینت Mihomo** توصیه می‌شود. این کلاینت می‌تواند **اشتراک را به‌صورت زمان‌بندی‌شده دریافت کند، تأخیر را به‌طور خودکار بررسی کند و به‌طور خودکار گره با کمترین تأخیر را انتخاب کند** تا پروکسی یک‌کلیکی برای کاربران تنبل فراهم شود. شخصاً [**Bettbox**](https://github.com/appshubcc/Bettbox) سبک و کاربردی را پیشنهاد می‌کنم، [**گروه گفتگوی Bettbox**](https://t.me/appshub_chat). اگر قبلاً کاربر FlClash بوده‌اید، به سرعت با آن آشنا خواهید شد.
+* از آنجایی که گره‌های CF دارای **اعتبار محدود** هستند، در این پروژه عمومی استفاده از **کلاینت Mihomo** توصیه می‌شود. این کلاینت می‌تواند **اشتراک را به‌صورت زمان‌بندی‌شده دریافت کند، تأخیر را به‌طور خودکار بررسی کند و به‌طور خودکار گره با کمترین تأخیر را انتخاب کند** تا پروکسی یک‌کلیکی برای کاربران تنبل فراهم شود. تنظیم فاصله به‌روزرسانی خودکار اشتراک روی ۳ ساعت بهترین گزینه است. شخصاً [**Bettbox**](https://github.com/appshubcc/Bettbox) سبک و کاربردی را پیشنهاد می‌کنم، [**گروه گفتگوی Bettbox**](https://t.me/appshub_chat). اگر قبلاً کاربر FlClash بوده‌اید، به سرعت با آن آشنا خواهید شد.
+* در صورت مشاهده سوءاستفاده یا خزنده‌هایی که موجب از کار افتادن غیرعادی گره‌ها شوند، خدمات **در هر لحظه قطع خواهد شد**.
 
 ---
 
@@ -78,9 +77,6 @@
 | **iOS** | Surge、Shadowrocket、Stash、[Hiddify](https://github.com/hiddify/hiddify-app/releases)、Loon、Egern、[Clashmi](https://clashmi.app/download)、[Karing](https://karing.app/)、Quantumult X |
 | **macOS** | [FlClash](https://github.com/chen08209/FlClash/releases)、[mihomo-party](https://github.com/mihomo-party-org/clash-party/releases)、[Clash Verge Rev](https://github.com/clash-verge-rev/clash-verge-rev/releases)、Surge、[Clashmi](https://clashmi.app/download)、[Karing](https://karing.app/)、[FlyClash](https://github.com/GtxFury/FlyClash/releases) |
 | **HarmonyOS** | [ClashBox](https://github.com/xiaobaigroup/ClashBox/releases) |
-
-> [!TIP]
-> تنظیم **"فرکانس به‌روزرسانی خودکار (Update Interval)"** در کلاینت روی ۳ ساعت بهترین گزینه است تا تعداد درخواست‌های CF Workers کاهش یابد و از غیرقابل استفاده شدن اشتراک به دلیل مصرف بیش از حد جلوگیری شود.
 
 ------
 
