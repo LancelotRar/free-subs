@@ -162,7 +162,7 @@ rule-providers:
   steam: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/steam.mrs }
   apple: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple.mrs }
   apple-cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/apple@cn.mrs }
-  gfw: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/gfw.mrs }
+  geolocation-!cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/appshubcc/bett-rules@meta/geo/geosite/geolocation-!cn.mrs }
   github: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/github.mrs }
   spotify: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/spotify.mrs }
   tiktok: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tiktok.mrs }
@@ -194,6 +194,7 @@ rules:
   - DOMAIN-SUFFIX,1panel.live,打包直连
   - DOMAIN-SUFFIX,tabitoken.com,AI代理
   - DOMAIN-SUFFIX,kktoken.cc,AI代理
+  - DOMAIN-SUFFIX,gorouter.app,AI代理
   - DOMAIN-SUFFIX,justwoker.icu,AI直连
   - DOMAIN-SUFFIX,opencode.ai,AI直连
   - DOMAIN-SUFFIX,models.dev,AI代理
@@ -216,7 +217,7 @@ rules:
   - RULE-SET,telegramip,Telegram,no-resolve
   - RULE-SET,googleip,Google,no-resolve
   - RULE-SET,twitterip,打包代理,no-resolve
-  - RULE-SET,gfw,打包代理
+  - RULE-SET,geolocation-!cn,打包代理
   - RULE-SET,geolocation-cn,打包直连
   - RULE-SET,cnip,打包直连
   - MATCH,漏网之鱼
