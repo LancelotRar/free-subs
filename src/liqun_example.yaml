@@ -13,10 +13,10 @@ base-filter-au: &base-filter-au { filter: '(?i)(澳大利亚|澳洲|🇦🇺|悉
 base-filter-yxym: &base-filter-yxym { filter: '(?i)(优选)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Siri.png }
 base-filter-other: &base-filter-other { exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|SGP|日|🇯🇵|(?<![A-Za-z])JP(?![A-Za-z])|Japan|JPN|韩|🇰🇷|韓|首尔|南朝鲜|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|美|🇺🇸|(?<![A-Za-z])US(?![A-Za-z])|USA|台|🇹🇼|(?<![A-Za-z])TW(?![A-Za-z])|tai|TPE|优选|马来西亚|🇲🇾|(?<![A-Za-z])MY(?![A-Za-z])|Malaysia|MYS|德国|🇩🇪|法兰克福|(?<![A-Za-z])DE(?![A-Za-z])|Germany|GER|澳大利亚|澳洲|🇦🇺|悉尼|墨尔本|(?<![A-Za-z])AU(?![A-Za-z])|Australia|AUS)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/World_Map.png }
 #DNS代理锚点
-base-dns: &base-dns { type: select, proxies: [自动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点] }
+base-dns: &base-dns { type: select, proxies: [自动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点] }
 #默认策略锚点
-urltest-first: &urltest-first { type: select, proxies: [自动选择, DIRECT, 手动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点] }
-direct-first: &direct-first { type: select, proxies: [DIRECT, 自动选择, 手动选择, 负载均衡, CF优选, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点] }
+urltest-first: &urltest-first { type: select, proxies: [自动选择, DIRECT, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点] }
+direct-first: &direct-first { type: select, proxies: [DIRECT, 自动选择, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点] }
 reject-first: &reject-first { type: select, proxies: [REJECT, 自动选择, 手动选择, DIRECT] }
 #基础策略锚点
 base-urltest: &base-urltest { type: url-test, interval: 1800, lazy: true, timeout: 3000, max-failed-times: 3, empty-fallback: REJECT, include-all: true, tolerance: 200, hidden: true, url: https://www.gstatic.com/generate_204 }
@@ -117,12 +117,11 @@ proxy-groups:
   - { name: Google, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png }
   - { name: GoogleFCM, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png }
   - { name: Youtube, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/YouTube.png }
-  - { name: AI代理, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png }
-  - { name: AI直连, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Magic.png }
+  - { name: AI, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png }
   - { name: Tiktok, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/TikTok.png }
   - { name: Netflix, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Netflix.png }
 
-  - { name: CF优选, <<: *base-filter-yxym, type: select, include-all: true, proxies: [CF优选-自动] }
+  - { name: 优选域名, <<: *base-filter-yxym, type: select, include-all: true, proxies: [优选域名-自动] }
   - { name: 美国, <<: *base-filter-us, type: select, include-all: true, proxies: [美国-自动] }
   - { name: 新加坡, <<: *base-filter-sg, type: select, include-all: true, proxies: [新加坡-自动] }
   - { name: 香港, <<: *base-filter-hk, type: select, include-all: true, proxies: [香港-自动] }
@@ -134,7 +133,7 @@ proxy-groups:
   - { name: 台湾省, <<: *base-filter-tw, type: select, include-all: true, proxies: [台湾省-自动] }
   - { name: 其他节点, <<: *base-filter-other, type: select, include-all: true, proxies: [其他节点-自动] }
 
-  - { name: CF优选-自动, <<: [*base-urltest, *base-filter-yxym] }
+  - { name: 优选域名-自动, <<: [*base-urltest, *base-filter-yxym] }
   - { name: 美国-自动, <<: [*base-urltest, *base-filter-us] }
   - { name: 新加坡-自动, <<: [*base-urltest, *base-filter-sg] }
   - { name: 香港-自动, <<: [*base-urltest, *base-filter-hk] }
@@ -189,24 +188,27 @@ rules:
   - RULE-SET,microsoft-cn,打包直连
   - RULE-SET,games-cn,打包直连
   - RULE-SET,nvidia-cn,打包直连
+  - DOMAIN-SUFFIX,19882008.xyz,打包直连
   - DOMAIN-SUFFIX,dpdns.org,打包直连
   - DOMAIN-SUFFIX,cnb.cool,打包直连
   - DOMAIN-SUFFIX,1ms.run,打包直连
   - DOMAIN-SUFFIX,1panel.live,打包直连
-  - DOMAIN-SUFFIX,tabitoken.com,AI代理
-  - DOMAIN-SUFFIX,kktoken.cc,AI代理
-  - DOMAIN-SUFFIX,gorouter.app,AI代理
-  - DOMAIN-SUFFIX,justwoker.icu,AI直连
-  - DOMAIN-SUFFIX,opencode.ai,AI直连
-  - DOMAIN-SUFFIX,models.dev,AI代理
-  - DOMAIN-SUFFIX,agentrouter.org,AI代理
+  - DOMAIN-SUFFIX,justwoker.icu,AI
+  - DOMAIN-SUFFIX,opencode.ai,打包直连
+  - DOMAIN-SUFFIX,models.dev,AI
+  - DOMAIN-SUFFIX,agentrouter.org,AI
+  - DOMAIN-SUFFIX,agnes-ai.com,AI
+  - DOMAIN-SUFFIX,tokenharbor.ai,AI
+  - DOMAIN-SUFFIX,developer.amd.com.cn,打包直连
+  - DOMAIN-SUFFIX,cline.bot,AI
+  - DOMAIN-SUFFIX,chat.b.ai,AI
   - RULE-SET,cloudflare,Cloudflare
   - RULE-SET,telegram,Telegram
   - RULE-SET,netflix,Netflix
   - RULE-SET,tiktok,Tiktok
   - RULE-SET,spotify,打包代理
   - RULE-SET,steam,打包代理
-  - RULE-SET,ai,AI代理
+  - RULE-SET,ai,AI
   - RULE-SET,apple,打包代理
   - RULE-SET,youtube,Youtube
   - RULE-SET,googlefcm,GoogleFCM
