@@ -118,6 +118,7 @@ proxy-groups:
   - { name: GoogleFCM, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png }
   - { name: Youtube, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/YouTube.png }
   - { name: AI, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png }
+  - { name: Opencode, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Additional/Opencode.png' }
   - { name: Tiktok, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/TikTok.png }
   - { name: Netflix, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Netflix.png }
 
@@ -194,7 +195,7 @@ rules:
   - DOMAIN-SUFFIX,1ms.run,打包直连
   - DOMAIN-SUFFIX,1panel.live,打包直连
   - DOMAIN-SUFFIX,justwoker.icu,AI
-  - DOMAIN-SUFFIX,opencode.ai,打包直连
+  - DOMAIN-SUFFIX,opencode.ai,Opencode
   - DOMAIN-SUFFIX,models.dev,AI
   - DOMAIN-SUFFIX,agentrouter.org,AI
   - DOMAIN-SUFFIX,agnes-ai.com,AI
