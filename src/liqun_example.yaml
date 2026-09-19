@@ -182,6 +182,7 @@ rule-providers:
   cnip: { <<: *base-ruleset-ip, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs }
 
 rules:
+  - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,geolocation-cn),(RULE-SET,cnip,no-resolve)))))),REJECT
   - RULE-SET,category-ads-all,广告拦截
   - RULE-SET,private,打包直连
   - RULE-SET,privateip,打包直连,no-resolve
