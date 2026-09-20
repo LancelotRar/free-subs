@@ -63,8 +63,7 @@ tun:
   auto-redirect: true
   device: mihomo
   disable-icmp-forwarding: false
-  dns-hijack:
-    - 0.0.0.0:53
+  dns-hijack: ["any:53", "tcp://any:53"]
   stack: mixed
 
 dns:
@@ -80,9 +79,9 @@ dns:
   fake-ip-filter: ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:geolocation-cn']
   default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
   proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
-  nameserver: ['https://dns.google/dns-query#DNS', 'https://doh.opendns.com/dns-query#DNS', 'https://cloudflare-dns.com/dns-query#DNS']
+  nameserver: ['https://dns.google/dns-query#DNS&ecs=223.5.5.0/24', 'https://doh.opendns.com/dns-query#DNS&ecs=223.5.5.0/24', 'https://cloudflare-dns.com/dns-query#DNS&ecs=223.5.5.0/24']
   nameserver-policy:
-    'rule-set:cn': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
+    'rule-set:private,fakeip-filter,geolocation-cn': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
   direct-nameserver: ['223.6.6.6#DIRECT', '119.29.29.29#DIRECT']
 
 hosts:
@@ -105,7 +104,7 @@ ntp:
 proxy-groups:
   - { name: 打包代理, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Rocket.png }
   - { name: 打包直连, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Daily.png }
-  - { name: 漏网之鱼, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Drill.png }
+  - { name: 漏网之鱼, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Drill.png }
   - { name: 自动选择, <<: *base-urltest, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/LinkCube.png }
   - { name: 手动选择, type: select, include-all: true, empty-fallback: REJECT, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Clubhouse.png }
   - { name: 负载均衡, <<: *base-loadbalance, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/friDay.png }
@@ -150,7 +149,6 @@ rule-providers:
   # domain-set
   category-ads-all: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs }
   geolocation-cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/geolocation-cn.mrs }
-  cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/cn.mrs }
   games-cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-games@cn.mrs }
   private: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs }
   fakeip-filter: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/wwqgtxx/clash-rules@release/fakeip-filter.mrs }
