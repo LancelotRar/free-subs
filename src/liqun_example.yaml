@@ -63,6 +63,7 @@ tun:
   auto-redirect: true
   device: mihomo
   disable-icmp-forwarding: false
+  route-exclude-address-set: [cnip]
   dns-hijack: ["any:53", "tcp://any:53"]
   stack: mixed
 
@@ -76,12 +77,12 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/15
   fake-ip-range6: 2001:2::1/48
-  fake-ip-filter: ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:geolocation-cn']
+  fake-ip-filter: ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:cn']
   default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
   proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
   nameserver: ['https://dns.google/dns-query#DNS&ecs=223.5.5.0/24', 'https://doh.opendns.com/dns-query#DNS&ecs=223.5.5.0/24', 'https://cloudflare-dns.com/dns-query#DNS&ecs=223.5.5.0/24']
   nameserver-policy:
-    'rule-set:private,fakeip-filter,geolocation-cn': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
+    'rule-set:private,fakeip-filter,cn': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
   direct-nameserver: ['223.6.6.6#DIRECT', '119.29.29.29#DIRECT']
 
 hosts:
@@ -148,6 +149,7 @@ proxy-groups:
 rule-providers:
   # domain-set
   category-ads-all: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs }
+  cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/appshubcc/bett-rules@meta/geo/geosite/cn.mrs }
   geolocation-cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/appshubcc/bett-rules@meta/geo/geosite/geolocation-cn.mrs }
   geolocation-!cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/appshubcc/bett-rules@meta/geo/geosite/geolocation-!cn.mrs }
   games-cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-games@cn.mrs }
@@ -180,7 +182,7 @@ rule-providers:
   cnip: { <<: *base-ruleset-ip, url: https://testingcf.jsdelivr.net/gh/appshubcc/bett-rules@meta/geo/geoip/cn.mrs }
 
 rules:
-  - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,geolocation-cn),(RULE-SET,cnip,no-resolve)))))),REJECT
+  - AND,((RULE-SET,geolocation-!cn),(DST-PORT,443),(NETWORK,UDP)),REJECT
   - RULE-SET,category-ads-all,广告拦截
   - RULE-SET,private,打包直连
   - RULE-SET,privateip,打包直连,no-resolve
