@@ -77,7 +77,7 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/15
   fake-ip-range6: 2001:2::1/48
-  fake-ip-filter: ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:cn']
+  fake-ip-filter: ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:cn', 'rule-set:googlefcm']
   default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
   proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
   nameserver: ['https://dns.google/dns-query#DNS&ecs=223.5.5.0/24', 'https://doh.opendns.com/dns-query#DNS&ecs=223.5.5.0/24', 'https://cloudflare-dns.com/dns-query#DNS&ecs=223.5.5.0/24']
@@ -109,13 +109,12 @@ proxy-groups:
   - { name: 自动选择, <<: *base-urltest, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/LinkCube.png }
   - { name: 手动选择, type: select, include-all: true, empty-fallback: REJECT, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Clubhouse.png }
   - { name: 负载均衡, <<: *base-loadbalance, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/friDay.png }
-  - { name: 广告拦截, <<: *reject-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AdBlack.png }
 
   - { name: DNS, <<: *base-dns, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cellular.png }
   - { name: Cloudflare, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cloudflare.png }
   - { name: Telegram, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Telegram.png }
   - { name: Google, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png }
-  - { name: GoogleFCM, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png }
+  - { name: GoogleFCM, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Google.png }
   - { name: Youtube, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/YouTube.png }
   - { name: AI, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png }
   - { name: Opencode, <<: *direct-first, icon: 'https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Additional/Opencode.png' }
@@ -148,7 +147,6 @@ proxy-groups:
 
 rule-providers:
   # domain-set
-  category-ads-all: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ads-all.mrs }
   cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/appshubcc/bett-rules@meta/geo/geosite/cn.mrs }
   geolocation-cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/appshubcc/bett-rules@meta/geo/geosite/geolocation-cn.mrs }
   geolocation-!cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/appshubcc/bett-rules@meta/geo/geosite/geolocation-!cn.mrs }
@@ -183,7 +181,6 @@ rule-providers:
 
 rules:
   - AND,((RULE-SET,geolocation-!cn),(DST-PORT,443),(NETWORK,UDP)),REJECT
-  - RULE-SET,category-ads-all,广告拦截
   - RULE-SET,private,打包直连
   - RULE-SET,privateip,打包直连,no-resolve
   - RULE-SET,apple-cn,打包直连
