@@ -171,6 +171,7 @@ rule-providers:
   microsoft-cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/microsoft@cn.mrs }
   nvidia-cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/nvidia@cn.mrs }
   telegram: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs }
+  tailscale: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tailscale.mrs }
 
   # ip-set
   telegramip: { <<: *base-ruleset-ip, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs }
@@ -181,12 +182,6 @@ rule-providers:
 
 rules:
   - AND,((RULE-SET,geolocation-!cn),(DST-PORT,443),(NETWORK,UDP)),REJECT
-  - RULE-SET,private,打包直连
-  - RULE-SET,privateip,打包直连,no-resolve
-  - RULE-SET,apple-cn,打包直连
-  - RULE-SET,microsoft-cn,打包直连
-  - RULE-SET,games-cn,打包直连
-  - RULE-SET,nvidia-cn,打包直连
   - DOMAIN-SUFFIX,19882008.xyz,打包直连
   - DOMAIN-SUFFIX,dpdns.org,打包直连
   - DOMAIN-SUFFIX,cnb.cool,打包直连
@@ -201,6 +196,13 @@ rules:
   - DOMAIN-SUFFIX,developer.amd.com.cn,打包直连
   - DOMAIN-SUFFIX,cline.bot,AI
   - DOMAIN-SUFFIX,chat.b.ai,AI
+  - RULE-SET,private,打包直连
+  - RULE-SET,privateip,打包直连,no-resolve
+  - RULE-SET,tailscale,打包直连
+  - RULE-SET,apple-cn,打包直连
+  - RULE-SET,microsoft-cn,打包直连
+  - RULE-SET,games-cn,打包直连
+  - RULE-SET,nvidia-cn,打包直连
   - RULE-SET,cloudflare,Cloudflare
   - RULE-SET,telegram,Telegram
   - RULE-SET,netflix,Netflix
