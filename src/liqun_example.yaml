@@ -186,6 +186,7 @@ rule-providers:
 
 rules:
   - AND,((RULE-SET,geolocation-!cn),(DST-PORT,443),(NETWORK,UDP)),REJECT
+  - RULE-SET,ip-detect,打包代理
   - DOMAIN-SUFFIX,19882008.xyz,打包直连
   - DOMAIN-SUFFIX,dpdns.org,打包直连
   - DOMAIN-SUFFIX,cnb.cool,打包直连
@@ -208,7 +209,6 @@ rules:
   - RULE-SET,microsoft-cn,打包直连
   - RULE-SET,games-cn,打包直连
   - RULE-SET,nvidia-cn,打包直连
-  - RULE-SET,ip-detect,打包代理
   - RULE-SET,cloudflare,Cloudflare
   - RULE-SET,telegram,Telegram
   - RULE-SET,netflix,Netflix
