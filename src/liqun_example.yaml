@@ -65,7 +65,7 @@ tun:
   disable-icmp-forwarding: false
   route-exclude-address-set: [cnip]
   dns-hijack: ["any:53", "tcp://any:53"]
-  stack: mixed
+  stack: mips
 
 dns:
   enable: true
@@ -84,6 +84,7 @@ dns:
   nameserver-policy:
     'rule-set:private,fakeip-filter,cn,googlefcm': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
   direct-nameserver: ['223.6.6.6#DIRECT', '119.29.29.29#DIRECT']
+  direct-nameserver-follow-policy: true
 
 hosts:
   'dns.alidns.com': ['223.5.5.5', '223.6.6.6']
@@ -105,7 +106,7 @@ ntp:
 proxy-groups:
   - { name: 打包代理, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Rocket.png }
   - { name: 打包直连, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Daily.png }
-  - { name: 漏网之鱼, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Drill.png }
+  - { name: 漏网之鱼, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Drill.png }
   - { name: 自动选择, <<: *base-urltest, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/LinkCube.png }
   - { name: 手动选择, type: select, include-all: true, empty-fallback: REJECT, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Clubhouse.png }
   - { name: 负载均衡, <<: *base-loadbalance, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/friDay.png }
@@ -150,6 +151,7 @@ rule-providers:
   cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/appshubcc/bett-rules@meta/geo/geosite/cn.mrs }
   geolocation-cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/appshubcc/bett-rules@meta/geo/geosite/geolocation-cn.mrs }
   geolocation-!cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/appshubcc/bett-rules@meta/geo/geosite/geolocation-!cn.mrs }
+  gfw: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/gfw.mrs }
   games-cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-games@cn.mrs }
   private: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/private.mrs }
   fakeip-filter: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/wwqgtxx/clash-rules@release/fakeip-filter.mrs }
@@ -223,7 +225,7 @@ rules:
   - RULE-SET,telegramip,Telegram,no-resolve
   - RULE-SET,googleip,Google,no-resolve
   - RULE-SET,twitterip,打包代理,no-resolve
+  - RULE-SET,gfw,打包代理
   - RULE-SET,geolocation-cn,打包直连
-  - RULE-SET,geolocation-!cn,打包代理
   - RULE-SET,cnip,打包直连
   - MATCH,漏网之鱼
