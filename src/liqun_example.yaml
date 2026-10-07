@@ -175,6 +175,7 @@ rule-providers:
   nvidia-cn: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/nvidia@cn.mrs }
   telegram: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/telegram.mrs }
   tailscale: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/tailscale.mrs }
+  ip-detect: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ip-geo-detect.mrs }
 
   # ip-set
   telegramip: { <<: *base-ruleset-ip, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs }
@@ -207,6 +208,7 @@ rules:
   - RULE-SET,microsoft-cn,打包直连
   - RULE-SET,games-cn,打包直连
   - RULE-SET,nvidia-cn,打包直连
+  - RULE-SET,ip-detect,打包代理
   - RULE-SET,cloudflare,Cloudflare
   - RULE-SET,telegram,Telegram
   - RULE-SET,netflix,Netflix
