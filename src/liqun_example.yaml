@@ -107,7 +107,7 @@ ntp:
 proxy-groups:
   - { name: 打包代理, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Rocket.png }
   - { name: 打包直连, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Daily.png }
-  - { name: 规则以外, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Drill.png }
+  - { name: 规则之外, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Drill.png }
   - { name: 自动选择, <<: *base-urltest, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/LinkCube.png }
   - { name: 手动选择, type: select, include-all: true, empty-fallback: REJECT, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Clubhouse.png }
   - { name: 负载均衡, <<: *base-loadbalance, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/friDay.png }
@@ -232,4 +232,4 @@ rules:
   - RULE-SET,geolocation-cn,打包直连
   - RULE-SET,cnip,打包直连
   - RULE-SET,ip-detect,打包代理
-  - MATCH,规则以外
+  - MATCH,规则之外
