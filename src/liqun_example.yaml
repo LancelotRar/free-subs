@@ -63,8 +63,8 @@ tun:
   auto-redirect: true
   device: mihomo
   disable-icmp-forwarding: false
-  route-exclude-address-set: [cnip]
-  dns-hijack: ["any:53", "tcp://any:53"]
+  route-exclude-address-set: ['cnip', 'privateip']
+  dns-hijack: ['any:53', 'tcp://any:53']
   stack: mixed
 
 dns:
@@ -82,7 +82,8 @@ dns:
   proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
   nameserver: ['https://dns.google/dns-query#DNS&ecs=223.5.5.0/24', 'https://doh.opendns.com/dns-query#DNS&ecs=223.5.5.0/24', 'https://cloudflare-dns.com/dns-query#DNS&ecs=223.5.5.0/24']
   nameserver-policy:
-    'rule-set:private,fakeip-filter,cn,googlefcm': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
+    'rule-set:private': system
+    'rule-set:cn': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
   direct-nameserver: ['223.6.6.6#DIRECT', '119.29.29.29#DIRECT']
   direct-nameserver-follow-policy: true
 
@@ -99,14 +100,14 @@ profile: { store-selected: true, store-fake-ip: true }
 ntp:
   enable: true
   write-to-system: false
-  server: 'ntp.aliyun.com'
+  server: ntp.aliyun.com
   port: 123
   interval: 60
 
 proxy-groups:
   - { name: 打包代理, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Rocket.png }
   - { name: 打包直连, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Daily.png }
-  - { name: 漏网之鱼, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Drill.png }
+  - { name: 规则以外, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Drill.png }
   - { name: 自动选择, <<: *base-urltest, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/LinkCube.png }
   - { name: 手动选择, type: select, include-all: true, empty-fallback: REJECT, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Clubhouse.png }
   - { name: 负载均衡, <<: *base-loadbalance, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/friDay.png }
@@ -200,6 +201,7 @@ rules:
   - DOMAIN-SUFFIX,developer.amd.com.cn,打包直连
   - DOMAIN-SUFFIX,cline.bot,AI
   - DOMAIN-SUFFIX,chat.b.ai,AI
+  - DOMAIN-SUFFIX,codeberg.org,打包直连
   - RULE-SET,private,打包直连
   - RULE-SET,privateip,打包直连,no-resolve
   - RULE-SET,tailscale,打包直连
@@ -210,6 +212,7 @@ rules:
   - RULE-SET,nvidia-cn,打包直连
   - RULE-SET,cloudflare,Cloudflare
   - RULE-SET,telegram,Telegram
+  - RULE-SET,telegramip,Telegram,no-resolve
   - RULE-SET,netflix,Netflix
   - RULE-SET,tiktok,Tiktok
   - RULE-SET,spotify,打包代理
@@ -219,15 +222,14 @@ rules:
   - RULE-SET,youtube,Youtube
   - RULE-SET,googlefcm,GoogleFCM
   - RULE-SET,google,Google
+  - RULE-SET,googleip,Google,no-resolve
   - RULE-SET,docker,打包代理
   - RULE-SET,github,打包代理
   - RULE-SET,twitter,打包代理
-  - RULE-SET,microsoft,打包代理
-  - RULE-SET,telegramip,Telegram,no-resolve
-  - RULE-SET,googleip,Google,no-resolve
   - RULE-SET,twitterip,打包代理,no-resolve
+  - RULE-SET,microsoft,打包代理
   - RULE-SET,gfw,打包代理
-  - RULE-SET,ip-detect,打包代理
   - RULE-SET,geolocation-cn,打包直连
   - RULE-SET,cnip,打包直连
-  - MATCH,漏网之鱼
+  - RULE-SET,ip-detect,打包代理
+  - MATCH,规则以外
