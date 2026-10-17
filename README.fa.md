@@ -54,7 +54,7 @@
 ## 👊 گره‌ها و گروه‌ها
 
 <p align="center">
-  <img src="src/PC1.png" alt="پیش‌نمایش" width="430" height="240">
+  <img src="src/pc.png" alt="پیش‌نمایش" width="430" height="240">
 </p>
 
 ## 📥 نکات اشتراک

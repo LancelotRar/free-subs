@@ -54,7 +54,7 @@
 ## 👊 节点及分组
 
 <p align="center">
-  <img src="src/PC1.png" alt="效果图" width="430" height="240">
+  <img src="src/pc.png" alt="效果图" width="430" height="240">
 </p>    
 
 ## 📥 订阅须知    

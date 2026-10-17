@@ -53,7 +53,7 @@
 ## 👊 Узлы и группы
 
 <p align="center">
-  <img src="src/PC1.png" alt="Скриншот" width="430" height="240">
+  <img src="src/pc.png" alt="Скриншот" width="430" height="240">
 </p>
 
 ## 📥 Примечания к подписке
