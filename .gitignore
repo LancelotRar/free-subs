@@ -1,4 +1,24 @@
-# opencode internal state
-.omo/
-.codegraph/
+# 任意层级的 wrangler 本地状态
+.wrangler/
+
+# 本地部署工具与含 Cloudflare 令牌的私密配置，整个目录禁止提交
+src/cf-pages-config/
+# 本地 wrangler 配置（无需入库；pages deploy 只能按标准名自动发现，不能自定义路径）
+wrangler.jsonc
+
+# 部署目录：只跟踪 routes.json（入口表），其余一律不入库。
+# _worker.js 仅存在于本地与 Cloudflare；目录内任何被回写的文件（如 config.yaml）
+# 也被通配覆盖。注意 .gitignore 不约束 Cloudflare 上传：wrangler 仍会上传
+# 该目录内的所有文件，所以部署前应确认目录里只有 _worker.js 与 routes.json。
+src/cf-pages-url-build/*
+!src/cf-pages-url-build/routes.json
+
+# Python 缓存（与所在目录无关，避免任何位置的 __pycache__ 入库）
+__pycache__/
+*.pyc
+
+# 操作系统/编辑器垃圾文件（本仓库含大量图片与网页资源）
+Thumbs.db
+desktop.ini
+.DS_Store
 
