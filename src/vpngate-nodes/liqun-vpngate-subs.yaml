@@ -28,7 +28,7 @@ base-ruleset-ip: &base-ruleset-ip { type: http, behavior: ipcidr, proxy: DIRECT,
 proxy-providers:
   vpngate:
     <<: *base-provider
-    url: 'https://gh-proxy.org/https://raw.githubusercontent.com/LancelotRar/free-subs/main/src/jp50-kr50-nodes-converted.yaml'
+    url: 'https://gh-proxy.org/https://raw.githubusercontent.com/LancelotRar/free-subs/main/src/vpngate-nodes/jp50-kr50-nodes-converted.yaml'
     override: { additional-prefix: '[B利群]' }
     age-secret-key: ''
 
