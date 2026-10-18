@@ -8,12 +8,20 @@ on:
 permissions:
   contents: write
 
+# 这个 job 会提交 SVG 并推送；两次运行重叠会在 push 上互相打架，串行化即可
+concurrency:
+  group: "star-history"
+  cancel-in-progress: false
+
 jobs:
   star-history:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7.0.1
-      - uses: carsteneu/mystarhistory@v1.3.5
+      # 钉到 commit SHA：tag 可被上游移动。mystarhistory 的 v1.3.5 是 annotated tag，
+      # 必须钉 deref 后的 commit（tag 对象 SHA 不是 commit，Actions 解析不了）。
+      # 刻意不动 checkout 的 persist-credentials —— 该 action 复用仓库凭据推送，无法在本地验证。
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: carsteneu/mystarhistory@ec82d645a6df185f4d845b33691a6bcdd02f608a # v1.3.5
         with:
           repos: ${{ github.repository }}
           branch: ${{ github.ref_name }}
