@@ -180,6 +180,7 @@ rule-providers:
 
 rules:
   - AND,((RULE-SET,geolocation-!cn),(DST-PORT,443),(NETWORK,UDP)),REJECT
+  - RULE-SET,ip-detect,打包代理  
   - DOMAIN-SUFFIX,19882008.xyz,打包直连
   - DOMAIN-SUFFIX,dpdns.org,打包直连
   - DOMAIN-SUFFIX,cnb.cool,打包直连
@@ -221,10 +222,9 @@ rules:
   - RULE-SET,twitter,打包代理
   - RULE-SET,twitterip,打包代理,no-resolve
   - RULE-SET,microsoft,打包代理
-  - RULE-SET,gfw,打包代理
+  - RULE-SET,geolocation-!cn,打包代理
   - RULE-SET,geolocation-cn,打包直连
   - RULE-SET,cnip,打包直连
-  - RULE-SET,ip-detect,打包代理
   - MATCH,规则之外
 
 proxy-providers:
