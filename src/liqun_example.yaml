@@ -71,13 +71,13 @@ dns:
   fake-ip-range: 198.18.0.1/15
   fake-ip-range6: 2001:2::1/48
   fake-ip-filter: ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:geolocation-cn', 'rule-set:googlefcm']
-  default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
-  proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
+  default-nameserver: ['223.5.5.5#直连', '119.29.29.29#直连']
+  proxy-server-nameserver: ['https://dns.alidns.com/dns-query#直连', 'https://doh.pub/dns-query#直连']
   nameserver: ['https://dns.google/dns-query#DNS&ecs=223.5.5.0/24', 'https://cloudflare-dns.com/dns-query#DNS&ecs=223.5.5.0/24']
   nameserver-policy:
     'rule-set:private': system
-    'rule-set:geolocation-cn': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
-  direct-nameserver: ['223.6.6.6#DIRECT', '119.29.29.29#DIRECT']
+    'rule-set:geolocation-cn': ['223.5.5.5#直连', '119.29.29.29#直连']
+  direct-nameserver: ['223.6.6.6#直连', '119.29.29.29#直连']
   direct-nameserver-follow-policy: true
 
 hosts:
@@ -96,25 +96,6 @@ ntp:
   server: ntp.aliyun.com
   port: 123
   interval: 60
-
-proxies:
-  - name: 🏅利群公益🏅TG:@liqunchannel
-    type: direct
-    ip-version: ipv4-prefer
-  - name: 直连|双栈
-    type: direct
-  - name: 直连|IPv4优先
-    type: direct
-    ip-version: ipv4-prefer
-  - name: 直连|IPv6优先
-    type: direct
-    ip-version: ipv6-prefer
-  - name: 直连|仅IPv4
-    type: direct
-    ip-version: ipv4
-  - name: 直连|仅IPv6
-    type: direct
-    ip-version: ipv6
 
 proxy-groups:
   - { name: 打包代理, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Rocket.png }
@@ -246,6 +227,25 @@ rules:
   - RULE-SET,geolocation-cn,打包直连
   - RULE-SET,cnip,打包直连
   - MATCH,规则之外
+
+proxies:
+  - name: 🏅利群公益🏅TG:@liqunchannel
+    type: direct
+    ip-version: ipv4-prefer
+  - name: 直连|双栈
+    type: direct
+  - name: 直连|IPv4优先
+    type: direct
+    ip-version: ipv4-prefer
+  - name: 直连|IPv6优先
+    type: direct
+    ip-version: ipv6-prefer
+  - name: 直连|仅IPv4
+    type: direct
+    ip-version: ipv4
+  - name: 直连|仅IPv6
+    type: direct
+    ip-version: ipv6
 
 proxy-providers:
   机场名1:
