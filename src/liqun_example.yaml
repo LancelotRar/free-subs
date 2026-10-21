@@ -196,6 +196,9 @@ rule-providers:
   cnip: { <<: *base-ruleset-ip, url: https://testingcf.jsdelivr.net/gh/appshubcc/bett-rules@meta/geo/geoip/cn.mrs }
 
 rules:
+  - AND,((DST-PORT,7890),(IP-CIDR,127.0.0.0/8,no-resolve)),REJECT
+  - AND,((DST-PORT,7890),(IP-CIDR6,::1/128,no-resolve)),REJECT
+  - AND,((DST-PORT,853),(IP-CIDR,198.51.100.0/30,no-resolve)),REJECT
   - AND,((RULE-SET,geolocation-!cn),(DST-PORT,443),(NETWORK,UDP)),REJECT
   - RULE-SET,ip-detect,打包代理
   - DOMAIN-SUFFIX,19882008.xyz,打包直连
