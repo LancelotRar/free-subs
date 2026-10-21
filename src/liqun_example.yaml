@@ -18,7 +18,7 @@ base-dns: &base-dns { type: select, proxies: [自动选择, 负载均衡, 优选
 urltest-first: &urltest-first { type: select, proxies: [自动选择, 直连, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
 direct-first: &direct-first { type: select, proxies: [直连, 自动选择, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
 #基础策略锚点
-base-direct: &base-direct { type: select, hidden: false, proxies: [直连|双栈, 直连|IPv4优先, 直连|IPv6优先, 直连|仅IPv4, 直连|仅IPv6] }
+base-direct: &base-direct { type: select, hidden: false, proxies: [直连|双栈, 直连|IPv4优先, 直连|IPv6优先, 直连|仅IPv4] }
 base-select: &base-select { type: select, interval: 600, lazy: true, timeout: 3000, max-failed-times: 2, empty-fallback: REJECT, include-all: true, exclude-type: Direct, tolerance: 200, hidden: false, url: https://www.gstatic.com/generate_204 }
 base-urltest-hidden-true: &base-urltest-hidden-true { type: url-test, interval: 600, lazy: true, timeout: 3000, max-failed-times: 2, empty-fallback: REJECT, include-all: true, exclude-type: Direct, tolerance: 200, hidden: true, url: https://www.gstatic.com/generate_204 }
 base-urltest-hidden-false: &base-urltest-hidden-false { type: url-test, interval: 600, lazy: true, timeout: 3000, max-failed-times: 2, empty-fallback: REJECT, include-all: true, exclude-type: Direct, tolerance: 200, hidden: false, url: https://www.gstatic.com/generate_204 }
@@ -243,9 +243,6 @@ proxies:
   - name: 直连|仅IPv4
     type: direct
     ip-version: ipv4
-  - name: 直连|仅IPv6
-    type: direct
-    ip-version: ipv6
 
 proxy-providers:
   机场名1:
