@@ -244,8 +244,8 @@ proxies:
     ip-version: ipv4
 
 proxy-providers:
-  机场名1:
+  机场名:
     <<: *base-provider
-    url: '机场1订阅地址'
-    override: { additional-prefix: '[机场名1]' }
+    url: '机场订阅地址'
+    override: { additional-prefix: '[机场名]' }
     age-secret-key: ''
