@@ -244,13 +244,31 @@ proxies:
     ip-version: ipv4
   - name: '[vpngate家宽] JP 🇯🇵 001'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn933716554.opengw.net:1954?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] JP 🇯🇵 002'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -258,17 +276,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn514414017.opengw.net:1903?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 002'
+  - name: '[vpngate家宽] JP 🇯🇵 003'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -276,89 +294,89 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn410164537.opengw.net:1713?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 003'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn532142349.opengw.net:1394?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] JP 🇯🇵 004'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn732214173.opengw.net:1409?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn244638209.opengw.net:1942?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] JP 🇯🇵 005'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn758610310.opengw.net:1891?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn838674243.opengw.net:1671?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] JP 🇯🇵 006'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn590702886.opengw.net:1250?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn781255925.opengw.net:1674?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] JP 🇯🇵 007'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn615046637.opengw.net:1341?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] JP 🇯🇵 008'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -366,17 +384,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn283378530.opengw.net:1334?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 008'
+  - name: '[vpngate家宽] JP 🇯🇵 009'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -384,17 +402,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn671350283.opengw.net:1820?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 009'
+  - name: '[vpngate家宽] JP 🇯🇵 010'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -402,17 +420,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn525742377.opengw.net:1511?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 010'
+  - name: '[vpngate家宽] JP 🇯🇵 011'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -420,17 +438,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn927671187.opengw.net:1759?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 011'
+  - name: '[vpngate家宽] JP 🇯🇵 012'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -438,35 +456,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn274456822.opengw.net:1664?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 012'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn121128130.opengw.net:1292?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] JP 🇯🇵 013'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -474,17 +474,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn502796298.opengw.net:1957?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] JP 🇯🇵 014'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -492,35 +492,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn578671283.opengw.net:1833?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] JP 🇯🇵 015'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn156555613.opengw.net:1386?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 016'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -528,35 +510,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn253095465.opengw.net:1675?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 017'
+  - name: '[vpngate家宽] JP 🇯🇵 016'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn863787247.opengw.net:1575?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 018'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -564,17 +528,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn835659668.opengw.net:1251?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 019'
+  - name: '[vpngate家宽] JP 🇯🇵 017'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -582,17 +546,35 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn435394266.opengw.net:1495?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 020'
+  - name: '[vpngate家宽] JP 🇯🇵 018'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn666914415.opengw.net:1445?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] JP 🇯🇵 019'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -600,17 +582,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn462278742.opengw.net:1465?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 021'
+  - name: '[vpngate家宽] JP 🇯🇵 020'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -618,17 +600,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn778801553.opengw.net:1602?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 022'
+  - name: '[vpngate家宽] JP 🇯🇵 021'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -636,17 +618,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn416390555.opengw.net:1204?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 023'
+  - name: '[vpngate家宽] JP 🇯🇵 022'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -654,17 +636,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn611260208.opengw.net:1991?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 024'
+  - name: '[vpngate家宽] JP 🇯🇵 023'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -672,17 +654,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn163822504.opengw.net:1775?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 025'
+  - name: '[vpngate家宽] JP 🇯🇵 024'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -690,35 +672,35 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn906763950.opengw.net:1566?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 026'
+  - name: '[vpngate家宽] JP 🇯🇵 025'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn456737026.opengw.net:1432?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn794119202.opengw.net:1592?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 027'
+  - name: '[vpngate家宽] JP 🇯🇵 026'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -726,17 +708,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn291090802.opengw.net:1878?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 028'
+  - name: '[vpngate家宽] JP 🇯🇵 027'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -744,17 +726,35 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn813516587.opengw.net:1534?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 029'
+  - name: '[vpngate家宽] JP 🇯🇵 028'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn392446430.opengw.net:1948?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] JP 🇯🇵 029'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -762,17 +762,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn122916437.opengw.net:1558?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] JP 🇯🇵 030'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -780,35 +780,35 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn764912681.opengw.net:1495?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] JP 🇯🇵 031'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn591212595.opengw.net:1480?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn982001769.opengw.net:1915?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] JP 🇯🇵 032'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -816,17 +816,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn186444521.opengw.net:1674?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] JP 🇯🇵 033'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -834,17 +834,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn303055266.opengw.net:1937?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] JP 🇯🇵 034'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -852,17 +852,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn844843933.opengw.net:1757?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] JP 🇯🇵 035'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -870,17 +870,35 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn366166401.opengw.net:1817?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] JP 🇯🇵 036'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn304176925.opengw.net:1865?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] JP 🇯🇵 037'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -888,17 +906,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn479781942.opengw.net:1539?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 037'
+  - name: '[vpngate家宽] JP 🇯🇵 038'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -906,17 +924,35 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn316730005.opengw.net:1235?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 038'
+  - name: '[vpngate家宽] JP 🇯🇵 039'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn980909101.opengw.net:443?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] JP 🇯🇵 040'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -924,17 +960,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn780698097.opengw.net:1681?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 039'
+  - name: '[vpngate家宽] JP 🇯🇵 041'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -942,17 +978,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn661982.opengw.net:7551?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 040'
+  - name: '[vpngate家宽] JP 🇯🇵 042'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -960,35 +996,53 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn935956948.opengw.net:1723?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 041'
+  - name: '[vpngate家宽] JP 🇯🇵 043'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn830143932.opengw.net:1527?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn-bs4659.opengw.net:992?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 042'
+  - name: '[vpngate家宽] JP 🇯🇵 044'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn113352799.opengw.net:1211?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] JP 🇯🇵 045'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -996,17 +1050,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn619352566.opengw.net:1498?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 043'
+  - name: '[vpngate家宽] JP 🇯🇵 046'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1014,17 +1068,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn716187063.opengw.net:1632?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 044'
+  - name: '[vpngate家宽] JP 🇯🇵 047'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1032,17 +1086,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn473931202.opengw.net:1462?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 045'
+  - name: '[vpngate家宽] JP 🇯🇵 048'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1050,35 +1104,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn601908098.opengw.net:1281?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 046'
+  - name: '[vpngate家宽] JP 🇯🇵 049'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn933450169.opengw.net:1309?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 047'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1086,107 +1122,35 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn451071809.opengw.net:1940?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 048'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn389621244.opengw.net:1338?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] JP 🇯🇵 049'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn254588575.opengw.net:1856?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] JP 🇯🇵 050'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn595249968.opengw.net:1647?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn789702980.opengw.net:1539?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] KR 🇰🇷 001'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn177463451.opengw.net:995?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 002'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn460606822.opengw.net:1427?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 003'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1194,89 +1158,107 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn672943141.opengw.net:1745?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 002'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn233024983.opengw.net:995?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 003'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn617727127.opengw.net:995?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] KR 🇰🇷 004'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn136467805.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn276871149.opengw.net:995?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] KR 🇰🇷 005'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn428888787.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn853978724.opengw.net:995?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] KR 🇰🇷 006'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn231774152.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn827848352.opengw.net:1442?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] KR 🇰🇷 007'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn770383715.opengw.net:1530?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 008'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1284,17 +1266,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn812357243.opengw.net:1752?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 009'
+  - name: '[vpngate家宽] KR 🇰🇷 008'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1302,89 +1284,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn388432584.opengw.net:1201?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 010'
+  - name: '[vpngate家宽] KR 🇰🇷 009'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn677195097.opengw.net:1903?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 011'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn493271266.opengw.net:995?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 012'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn396769883.opengw.net:995?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 013'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn979922810.opengw.net:1875?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 014'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1392,17 +1302,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn122709402.opengw.net:995?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 015'
+  - name: '[vpngate家宽] KR 🇰🇷 010'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1410,53 +1320,107 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn516540073.opengw.net:1981?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 011'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn368694634.opengw.net:1545?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 012'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn964247477.opengw.net:1573?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 013'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn233624145.opengw.net:995?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 014'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn624984613.opengw.net:995?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 015'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn880844592.opengw.net:995?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] KR 🇰🇷 016'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn281352524.opengw.net:1821?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 017'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn607155856.opengw.net:995?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 018'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1464,17 +1428,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn803176295.opengw.net:1529?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 019'
+  - name: '[vpngate家宽] KR 🇰🇷 017'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1482,53 +1446,71 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn239949919.opengw.net:995?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 018'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn348020903.opengw.net:1400?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 019'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn954148468.opengw.net:995?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] KR 🇰🇷 020'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn692936902.opengw.net:1393?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn661206485.opengw.net:1583?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] KR 🇰🇷 021'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn220426447.opengw.net:1411?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 022'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1536,17 +1518,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn855551265.opengw.net:1327?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 023'
+  - name: '[vpngate家宽] KR 🇰🇷 022'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1554,35 +1536,35 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn240836128.opengw.net:1850?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 024'
+  - name: '[vpngate家宽] KR 🇰🇷 023'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn822935875.opengw.net:1239?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn336206941.opengw.net:995?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 025'
+  - name: '[vpngate家宽] KR 🇰🇷 024'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1590,17 +1572,35 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn373296245.opengw.net:1766?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 026'
+  - name: '[vpngate家宽] KR 🇰🇷 025'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn214946447.opengw.net:1786?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 026'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1608,53 +1608,35 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn922577537.opengw.net:1896?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] KR 🇰🇷 027'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn553888344.opengw.net:1824?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn710136103.opengw.net:995?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] KR 🇰🇷 028'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn535457630.opengw.net:1757?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 029'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1662,53 +1644,35 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn368704878.opengw.net:1511?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 029'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn512778891.opengw.net:995?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
   - name: '[vpngate家宽] KR 🇰🇷 030'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn709191086.opengw.net:995?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 031'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn763610422.opengw.net:995?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 032'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1716,35 +1680,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn928731604.opengw.net:1681?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 033'
+  - name: '[vpngate家宽] KR 🇰🇷 031'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn905080157.opengw.net:1979?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 034'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1752,17 +1698,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn400598896.opengw.net:1250?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 035'
+  - name: '[vpngate家宽] KR 🇰🇷 032'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1770,35 +1716,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn783086311.opengw.net:995?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 036'
+  - name: '[vpngate家宽] KR 🇰🇷 033'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn348580824.opengw.net:995?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 037'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1806,89 +1734,35 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn540395112.opengw.net:995?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 038'
+  - name: '[vpngate家宽] KR 🇰🇷 034'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn762979176.opengw.net:1758?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn841769961.opengw.net:995?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 039'
+  - name: '[vpngate家宽] KR 🇰🇷 035'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn436828976.opengw.net:995?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 040'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn906340167.opengw.net:1701?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 041'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn861056312.opengw.net:1542?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 042'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1896,17 +1770,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn991637982.opengw.net:995?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 043'
+  - name: '[vpngate家宽] KR 🇰🇷 036'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1914,17 +1788,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn883939909.opengw.net:1677?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 044'
+  - name: '[vpngate家宽] KR 🇰🇷 037'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1932,17 +1806,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn598566875.opengw.net:995?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 045'
+  - name: '[vpngate家宽] KR 🇰🇷 038'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1950,17 +1824,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn116713335.opengw.net:995?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 046'
+  - name: '[vpngate家宽] KR 🇰🇷 039'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -1968,35 +1842,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn263607325.opengw.net:1547?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 047'
+  - name: '[vpngate家宽] KR 🇰🇷 040'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
-    client-fingerprint: chrome
-    alpn:
-    - h3
-    - h2
-    ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn358819052.opengw.net:995?ed=2560
-      headers:
-        Host: snip.edgeoneai.cc.cd
-        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 048'
-    type: vless
-    server: saas.sin.fan
-    port: 443
-    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
-    network: ws
-    tls: true
-    udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -2004,17 +1860,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn525530565.opengw.net:1282?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 049'
+  - name: '[vpngate家宽] KR 🇰🇷 041'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -2022,17 +1878,17 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn182270293.opengw.net:995?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
-  - name: '[vpngate家宽] KR 🇰🇷 050'
+  - name: '[vpngate家宽] KR 🇰🇷 042'
     type: vless
-    server: saas.sin.fan
+    server: singgcdn.singgnetworkcdn.com
     port: 443
     uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
     network: ws
     tls: true
     udp: false
-    servername: snip.edgeoneai.cc.cd
+    servername: snippet.edgeoneai.cc.cd
     client-fingerprint: chrome
     alpn:
     - h3
@@ -2040,5 +1896,149 @@ proxies:
     ws-opts:
       path: /fdip=sstp://vpn:vpn@vpn408435278.opengw.net:1418?ed=2560
       headers:
-        Host: snip.edgeoneai.cc.cd
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 043'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn655966354.opengw.net:995?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 044'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn461782020.opengw.net:995?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 045'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn511477967.opengw.net:1502?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 046'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn135327885.opengw.net:1369?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 047'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn736525607.opengw.net:995?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 048'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn686835063.opengw.net:1636?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 049'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn833698783.opengw.net:1306?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
+        User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
+  - name: '[vpngate家宽] KR 🇰🇷 050'
+    type: vless
+    server: singgcdn.singgnetworkcdn.com
+    port: 443
+    uuid: 495c7195-85b8-498a-bf20-2ea9ce9175b5
+    network: ws
+    tls: true
+    udp: false
+    servername: snippet.edgeoneai.cc.cd
+    client-fingerprint: chrome
+    alpn:
+    - h3
+    - h2
+    ws-opts:
+      path: /fdip=sstp://vpn:vpn@vpn480854733.opengw.net:1335?ed=2560
+      headers:
+        Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
