@@ -14,10 +14,10 @@ base-filter-yxym: &base-filter-yxym { filter: '(?i)(优选)', icon: https://test
 base-filter-vpngate: &base-filter-vpngate { filter: '(?i)(vpngate)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cydia.png }
 base-filter-other: &base-filter-other { exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|SGP|日|🇯🇵|东京|大阪|京都|Tokyo|Osaka|Kyoto|(?<![A-Za-z])JP(?![A-Za-z])|Japan|JPN|韩|🇰🇷|韓|首尔|南朝鲜|Seoul|Busan|Incheon|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|美|🇺🇸|纽约|洛杉矶|旧金山|芝加哥|休斯顿|迈阿密|西雅图|波士顿|华盛顿|拉斯维加斯|圣何塞|New[\s._-]*York|Los[\s._-]*Angeles|San[\s._-]*Francisco|Chicago|Houston|Miami|Seattle|Boston|Washington|Las[\s._-]*Vegas|San[\s._-]*Jose|(?<![A-Za-z])US(?![A-Za-z])|(?<![A-Za-z])USA(?![A-Za-z])|America|United[\s._-]*States|台|🇹🇼|高雄|Kaohsiung|(?<![A-Za-z])TW(?![A-Za-z])|TWN|tai|TPE|优选|马来西亚|🇲🇾|Kuala[\s._-]*Lumpur|Johor|Penang|(?<![A-Za-z])MY(?![A-Za-z])|Malaysia|MYS|德国|🇩🇪|法兰克福|Frankfurt|Berlin|Munich|München|Hamburg|(?<![A-Za-z])DE(?![A-Za-z])|Germany|GER|澳大利亚|澳洲|🇦🇺|悉尼|墨尔本|Sydney|Melbourne|Brisbane|Perth|(?<![A-Za-z])AU(?![A-Za-z])|Australia|AUS|vpngate)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/World_Map.png }
 # DNS代理锚点
-base-dns: &base-dns { type: select, proxies: [自动选择, 负载均衡, 优选域名, 直连, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
+base-dns: &base-dns { type: select, proxies: [自动选择, 负载均衡, 优选域名, 直连策略, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
 # 默认策略锚点
-urltest-first: &urltest-first { type: select, proxies: [自动选择, 直连, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
-direct-first: &direct-first { type: select, proxies: [直连, 自动选择, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
+urltest-first: &urltest-first { type: select, proxies: [自动选择, 直连策略, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
+direct-first: &direct-first { type: select, proxies: [直连策略, 自动选择, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
 # 基础策略锚点
 base-direct: &base-direct { type: select, hidden: false, proxies: [直连|双栈, 直连|IPv4优先, 直连|IPv6优先, 直连|仅IPv4] }
 base-select: &base-select { type: select, empty-fallback: REJECT, include-all: true, exclude-type: Direct, hidden: false, url: https://www.gstatic.com/generate_204 }
@@ -70,13 +70,13 @@ dns:
   fake-ip-range: 198.18.0.1/15
   fake-ip-range6: 2001:2::1/48
   fake-ip-filter:  ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:cn']
-  default-nameserver: ['223.5.5.5#直连', '119.29.29.29#直连']
-  proxy-server-nameserver: ['https://dns.alidns.com/dns-query#直连', 'https://doh.pub/dns-query#直连']
+  default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
+  proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
   nameserver: ['https://dns.google/dns-query#DNS&ecs=223.5.5.0/24', 'https://cloudflare-dns.com/dns-query#DNS&ecs=223.5.5.0/24']
   nameserver-policy:
     'rule-set:private': system
-    'rule-set:cn': ['223.5.5.5#直连', '119.29.29.29#直连']
-  direct-nameserver: ['223.6.6.6#直连', '119.29.29.29#直连']
+    'rule-set:cn': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
+  direct-nameserver: ['223.6.6.6#DIRECT', '119.29.29.29#DIRECT']
   direct-nameserver-follow-policy: true
 
 hosts:
@@ -103,7 +103,7 @@ proxy-groups:
   - { name: 自动选择, <<: *base-urltest-hidden-false, exclude-filter: '(?i)(vpngate)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/LinkCube.png }
   - { name: 手动选择, <<: *base-select, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Clubhouse.png }
   - { name: 负载均衡, <<: *base-loadbalance, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/friDay.png }
-  - { name: 直连, <<: *base-direct, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Auto.png }
+  - { name: 直连策略, <<: *base-direct, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Auto.png }
 
   - { name: DNS, <<: *base-dns, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cellular.png }
   - { name: Cloudflare, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cloudflare.png }
@@ -169,7 +169,6 @@ rule-providers:
   ip-detect: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ip-geo-detect.mrs }
   nodejs: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/nodejs.mrs }
   codeberg: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/codeberg.mrs }
-
 # ip-set
   telegramip: { <<: *base-ruleset-ip, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs }
   twitterip: { <<: *base-ruleset-ip, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs }
@@ -183,13 +182,14 @@ rules:
 # IP检测
   - RULE-SET,ip-detect,打包代理
 # 直连组
+  - RULE-SET,private,打包直连
+  - RULE-SET,privateip,打包直连,no-resolve
+  - DOMAIN-SUFFIX,pages.dev,打包直连
   - DOMAIN-SUFFIX,cnb.cool,打包直连
   - DOMAIN-SUFFIX,1ms.run,打包直连
   - DOMAIN-SUFFIX,1panel.live,打包直连
   - DOMAIN-SUFFIX,npmmirror.com,打包直连
   - DOMAIN-SUFFIX,amd.com.cn,打包直连
-  - RULE-SET,private,打包直连
-  - RULE-SET,privateip,打包直连,no-resolve
   - RULE-SET,tailscale,打包直连
   - RULE-SET,npmjs,打包直连
   - RULE-SET,nodejs,打包直连
@@ -227,6 +227,7 @@ rules:
   - RULE-SET,twitterip,打包代理,no-resolve
   - RULE-SET,microsoft,打包代理
   - RULE-SET,gfw,打包代理
+# 兜底  
   - RULE-SET,cn,打包直连
   - RULE-SET,cnip,打包直连
   - MATCH,规则之外
@@ -245,53 +246,8 @@ proxies:
   - name: 直连|仅IPv4
     type: direct
     ip-version: ipv4
-  - name: 优选 | shopify.com
-    server: shopify.com
-    port: 443
-    type: vless
-    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
-    tls: true
-    skip-cert-verify: false
-    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /link/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
-      headers:
-        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
-    udp: true
-  - name: 优选 | nexusmods.com
-    server: nexusmods.com
-    port: 443
-    type: vless
-    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
-    tls: true
-    skip-cert-verify: false
-    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /favourites/about/detail/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
-      headers:
-        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
-    udp: true
-  - name: 优选 | mfa.gov.ua
-    server: mfa.gov.ua
-    port: 443
-    type: vless
-    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
-    tls: true
-    skip-cert-verify: false
-    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /groups/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
-      headers:
-        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
-    udp: true
-  - name: 优选 | store.ubi.com
-    server: store.ubi.com
+  - name: JP 🇯🇵
+    server: 172.64.229.39
     port: 443
     type: vless
     uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
@@ -301,102 +257,12 @@ proxies:
     client-fingerprint: chrome
     network: ws
     ws-opts:
-      path: /search/show/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      path: /picture/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
       headers:
         Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
-    udp: true
-  - name: 优选 | cf.877774.xyz
-    server: cf.877774.xyz
-    port: 443
-    type: vless
-    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
-    tls: true
-    skip-cert-verify: false
-    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /shows/star/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
-      headers:
-        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
-    udp: true
-  - name: 优选 | cf.090227.xyz
-    server: cf.090227.xyz
-    port: 443
-    type: vless
-    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
-    tls: true
-    skip-cert-verify: false
-    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /redirect.html/directory/gif/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
-      headers:
-        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
-    udp: true
-  - name: 优选 | 三网 | cloudflare.seeck.cn
-    server: cloudflare.seeck.cn
-    port: 443
-    type: vless
-    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
-    tls: true
-    skip-cert-verify: false
-    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /community/teacher/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
-      headers:
-        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
-    udp: true
-  - name: 优选 | 电信 | ctcc.cloudflare.seeck.cn
-    server: ctcc.cloudflare.seeck.cn
-    port: 443
-    type: vless
-    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
-    tls: true
-    skip-cert-verify: false
-    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /groups/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
-      headers:
-        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
-    udp: true
-  - name: 优选 | 移动 | cmcc.cloudflare.seeck.cn
-    server: cmcc.cloudflare.seeck.cn
-    port: 443
-    type: vless
-    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
-    tls: true
-    skip-cert-verify: false
-    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /user/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
-      headers:
-        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
-    udp: true
-  - name: 优选 | 联通 | cucc.cloudflare.seeck.cn
-    server: cucc.cloudflare.seeck.cn
-    port: 443
-    type: vless
-    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
-    tls: true
-    skip-cert-verify: false
-    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /service/page/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
-      headers:
-        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
     udp: true
   - name: SG 🇸🇬
-    server: 172.64.147.28
+    server: 172.64.151.179
     port: 443
     type: vless
     uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
@@ -406,27 +272,12 @@ proxies:
     client-fingerprint: chrome
     network: ws
     ws-opts:
-      path: /doujin/htm/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      path: /view/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
       headers:
         Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
     udp: true
   - name: SG 🇸🇬 2
-    server: 104.18.43.47
-    port: 443
-    type: vless
-    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
-    tls: true
-    skip-cert-verify: false
-    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /section/group/my/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
-      headers:
-        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
-    udp: true
-  - name: SG 🇸🇬 3
-    server: 172.64.157.42
+    server: 172.64.152.245
     port: 443
     type: vless
     uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
@@ -436,27 +287,27 @@ proxies:
     client-fingerprint: chrome
     network: ws
     ws-opts:
-      path: /article/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      path: /topic/act/intro/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
       headers:
         Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
     udp: true
-  - name: SG 🇸🇬 4
-    server: 104.18.42.232
+  - name: SG 🇸🇬 3
+    server: 172.64.147.160
     port: 443
     type: vless
     uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
     tls: true
     skip-cert-verify: false
-    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
     client-fingerprint: chrome
     network: ws
     ws-opts:
-      path: /ep/images/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      path: /details/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
       headers:
-        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
     udp: true
-  - name: SG 🇸🇬 5
-    server: 172.64.144.37
+  - name: SG 🇸🇬 4
+    server: 172.64.149.44
     port: 443
     type: vless
     uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
@@ -466,12 +317,27 @@ proxies:
     client-fingerprint: chrome
     network: ws
     ws-opts:
-      path: /game/acg/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      path: /shows/product/img/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
       headers:
         Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
     udp: true
+  - name: SG 🇸🇬 5
+    server: 172.64.154.111
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /members/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
   - name: SG 🇸🇬 6
-    server: 104.18.32.18
+    server: 172.64.144.3
     port: 443
     type: vless
     uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
@@ -481,27 +347,12 @@ proxies:
     client-fingerprint: chrome
     network: ws
     ws-opts:
-      path: /articles/qa/discount/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      path: /app/manhua/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
       headers:
         Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
     udp: true
   - name: SG 🇸🇬 7
-    server: 104.18.45.184
-    port: 443
-    type: vless
-    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
-    tls: true
-    skip-cert-verify: false
-    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /ranking/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
-      headers:
-        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
-    udp: true
-  - name: SG 🇸🇬 8
-    server: 104.18.46.104
+    server: 172.64.150.203
     port: 443
     type: vless
     uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
@@ -511,27 +362,27 @@ proxies:
     client-fingerprint: chrome
     network: ws
     ws-opts:
-      path: /view/cart/lib/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      path: /sort/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
       headers:
         Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
     udp: true
-  - name: SG 🇸🇬 9
-    server: 172.64.150.207
+  - name: SG 🇸🇬 8
+    server: 172.64.153.211
     port: 443
     type: vless
     uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
     tls: true
     skip-cert-verify: false
-    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
     client-fingerprint: chrome
     network: ws
     ws-opts:
-      path: /view/favorite/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      path: /shows/members/api/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
       headers:
-        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
     udp: true
-  - name: SG 🇸🇬 10
-    server: 8.39.125.54
+  - name: SG 🇸🇬 9
+    server: 172.64.158.224
     port: 443
     type: vless
     uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
@@ -541,12 +392,27 @@ proxies:
     client-fingerprint: chrome
     network: ws
     ws-opts:
-      path: /jump.html/about/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      path: /go.php/share/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
       headers:
         Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
     udp: true
+  - name: SG 🇸🇬 10
+    server: 172.64.159.247
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /ajax/api/books/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
   - name: SG 🇸🇬 11
-    server: 172.64.151.94
+    server: 104.18.43.125
     port: 443
     type: vless
     uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
@@ -556,27 +422,12 @@ proxies:
     client-fingerprint: chrome
     network: ws
     ws-opts:
-      path: /documents/download/readme/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      path: /www/pics/txt/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
       headers:
         Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
     udp: true
   - name: SG 🇸🇬 12
-    server: 172.64.159.157
-    port: 443
-    type: vless
-    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
-    tls: true
-    skip-cert-verify: false
-    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /photos/list/feedback/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
-      headers:
-        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
-    udp: true
-  - name: SG 🇸🇬 13
-    server: 104.18.37.0
+    server: 172.64.156.171
     port: 443
     type: vless
     uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
@@ -586,12 +437,1242 @@ proxies:
     client-fingerprint: chrome
     network: ws
     ws-opts:
-      path: /tag/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      path: /online/travel/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
       headers:
         Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
     udp: true
+  - name: SG 🇸🇬 13
+    server: 172.64.148.209
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /help/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
   - name: SG 🇸🇬 14
-    server: 172.64.155.111
+    server: 172.64.157.138
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /class/members/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: SG 🇸🇬 15
+    server: 8.35.211.81
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /doc/forums/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: SG 🇸🇬 16
+    server: 8.39.125.237
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /outbound/archive/lessons/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: SG 🇸🇬 17
+    server: 172.64.155.196
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /ask/topic/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: SG 🇸🇬 18
+    server: 104.18.46.142
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /register/blogs/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: SG 🇸🇬 19
+    server: 172.64.146.174
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /download/share/faq/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: SG 🇸🇬 20
+    server: 172.64.145.235
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /lang/ask/album/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸
+    server: 162.159.195.156
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /blog/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 2
+    server: 162.159.141.61
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /content/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 3
+    server: 162.159.130.53
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /settings/episodes/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 4
+    server: 162.159.136.222
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /star/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 5
+    server: 162.159.137.47
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /config/discount/community/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 6
+    server: 162.159.159.175
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /urls/feedback/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 7
+    server: 162.159.147.150
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /source/documents/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 8
+    server: 162.159.146.20
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /channel/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 9
+    server: 162.159.135.140
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /doc/play/products/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 10
+    server: 162.159.154.250
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /channel/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 11
+    server: 162.159.196.172
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /ads/redirect.php/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 12
+    server: 104.18.159.150
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /pics/task/archives/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 13
+    server: 104.16.170.63
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /downloads/friend/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 14
+    server: 104.16.37.12
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /topic/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 15
+    server: 104.18.251.249
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /sort/sale/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 16
+    server: 104.16.68.53
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /cb/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 17
+    server: 104.16.147.6
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /shows/info/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 18
+    server: 104.16.191.198
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /chat/mag/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 19
+    server: 104.17.142.191
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /product/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 20
+    server: 104.18.233.119
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /course/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 21
+    server: 104.19.13.90
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /www/ja/channel/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 22
+    server: 104.19.212.166
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /upload/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 23
+    server: 104.18.200.246
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /edu/lib/categories/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 24
+    server: 104.19.224.51
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /new/lib/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 25
+    server: 104.19.184.82
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /playlist/study/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 26
+    server: 104.16.23.116
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /stream/act/jp/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 27
+    server: 104.16.87.194
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /about/play/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 28
+    server: 104.17.211.163
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /streaming/help/products/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 29
+    server: 162.159.145.213
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /upload/detail/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 30
+    server: 104.17.54.60
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /events/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 31
+    server: 104.16.230.175
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /show/shop/go.php/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 32
+    server: 104.17.97.57
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /doc/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 33
+    server: 104.17.160.153
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /details/channel/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 34
+    server: 162.159.134.232
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /zh/anime/photos/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 35
+    server: 172.64.67.142
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /event/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 36
+    server: 104.17.163.207
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /lives/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 37
+    server: 104.17.166.149
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /u/dl/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 38
+    server: 104.18.213.120
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /about/seller/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 39
+    server: 104.19.3.189
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /game/group/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 40
+    server: 104.16.33.70
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /qa/drama/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 41
+    server: 104.16.161.129
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /zh/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 42
+    server: 104.17.48.112
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /club/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 43
+    server: 104.17.207.98
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /picture/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 44
+    server: 104.18.226.65
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /register/code/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 45
+    server: 162.159.81.53
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /dh/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 46
+    server: 104.16.88.118
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /new/product/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 47
+    server: 104.16.204.102
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /rank/play/redirect.html/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 48
+    server: 104.17.66.97
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /series/bbs/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 49
+    server: 104.17.136.169
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /detail/product/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 50
+    server: 104.17.176.241
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /task/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 51
+    server: 104.19.77.151
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /archives/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 52
+    server: 104.21.230.146
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /group/web/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 53
+    server: 172.64.93.176
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /new/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 54
+    server: 104.16.52.110
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /setting/about/jump.html/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 55
+    server: 104.17.215.85
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /photos/drama/pay/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 56
+    server: 162.159.158.229
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /cn/downloads/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 57
+    server: 104.18.218.16
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /thread/wenku/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 58
+    server: 104.16.109.101
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /programs/tech/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 59
+    server: 104.17.55.172
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /jp/dh/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 60
+    server: 104.17.57.224
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /about/event/archives/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 61
+    server: 104.19.246.171
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /v/m/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 62
+    server: 104.19.248.25
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /www/apps/ja/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 63
+    server: 172.64.90.200
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /team/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 64
+    server: 104.19.72.72
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /m/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 65
+    server: 172.65.213.215
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /resource/avatar/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 66
+    server: 104.16.172.246
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /my/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 67
+    server: 104.17.128.18
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /program/films/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 68
+    server: 104.17.158.85
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /about/favourites/go.html/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 69
+    server: 104.18.147.8
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /doujin/edu/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 70
+    server: 104.18.156.68
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /streaming/friends/blog/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 71
+    server: 162.159.199.239
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /m/topics/setting/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 72
+    server: 172.64.66.106
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /details/jump/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 73
+    server: 104.16.74.72
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /albums/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 74
+    server: 104.16.182.10
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /acg/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: US 🇺🇸 75
+    server: 104.16.243.43
     port: 443
     type: vless
     uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
@@ -605,23 +1686,8 @@ proxies:
       headers:
         Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
     udp: true
-  - name: SG 🇸🇬 15
-    server: 172.64.145.115
-    port: 443
-    type: vless
-    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
-    tls: true
-    skip-cert-verify: false
-    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /view/films/groups/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
-      headers:
-        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
-    udp: true
-  - name: SG 🇸🇬 16
-    server: 172.64.153.174
+  - name: US 🇺🇸 76
+    server: 104.19.90.218
     port: 443
     type: vless
     uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
@@ -631,27 +1697,12 @@ proxies:
     client-fingerprint: chrome
     network: ws
     ws-opts:
-      path: /forums/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      path: /qa/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
       headers:
         Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
     udp: true
-  - name: SG 🇸🇬 17
-    server: 104.18.40.49
-    port: 443
-    type: vless
-    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
-    tls: true
-    skip-cert-verify: false
-    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
-    client-fingerprint: chrome
-    network: ws
-    ws-opts:
-      path: /p/jump.php/cb/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
-      headers:
-        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
-    udp: true
-  - name: SG 🇸🇬 18
-    server: 172.64.152.180
+  - name: US 🇺🇸 77
+    server: 162.159.139.140
     port: 443
     type: vless
     uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
@@ -661,27 +1712,27 @@ proxies:
     client-fingerprint: chrome
     network: ws
     ws-opts:
-      path: /go.php/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      path: /member/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
       headers:
         Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
     udp: true
-  - name: SG 🇸🇬 19
-    server: 172.64.158.47
+  - name: US 🇺🇸 78
+    server: 162.159.241.128
     port: 443
     type: vless
     uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
     tls: true
     skip-cert-verify: false
-    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
     client-fingerprint: chrome
     network: ws
     ws-opts:
-      path: /site/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      path: /services/files/collection/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
       headers:
-        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
     udp: true
-  - name: SG 🇸🇬 20
-    server: 104.18.38.153
+  - name: US 🇺🇸 79
+    server: 172.64.80.59
     port: 443
     type: vless
     uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
@@ -691,7 +1742,157 @@ proxies:
     client-fingerprint: chrome
     network: ws
     ws-opts:
-      path: /discuss/clip/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      path: /retrieve/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: 优选 | shopify.com
+    server: shopify.com
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /channel/pics/setting/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: 优选 | nexusmods.com
+    server: nexusmods.com
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /members/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: 优选 | mfa.gov.ua
+    server: mfa.gov.ua
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /groups/sort/pics/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: 优选 | store.ubi.com
+    server: store.ubi.com
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /events/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: 优选 | cf.877774.xyz
+    server: cf.877774.xyz
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /account/archive/cp/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: 优选 | cf.090227.xyz
+    server: cf.090227.xyz
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /seller/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc4-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: 优选 | 三网 | cloudflare.seeck.cn
+    server: cloudflare.seeck.cn
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /pic/channel/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc6-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: 优选 | 电信 | ctcc.cloudflare.seeck.cn
+    server: ctcc.cloudflare.seeck.cn
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /special/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc2-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: 优选 | 移动 | cmcc.cloudflare.seeck.cn
+    server: cmcc.cloudflare.seeck.cn
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /tech/album/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
+      headers:
+        Host: gy-cffc3-node-project-lb5p6r204ts3xuoz.pages.dev
+    udp: true
+  - name: 优选 | 联通 | cucc.cloudflare.seeck.cn
+    server: cucc.cloudflare.seeck.cn
+    port: 443
+    type: vless
+    uuid: cf92529d-9c4a-4d71-ab87-ae784a2da6bb
+    tls: true
+    skip-cert-verify: false
+    servername: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
+    client-fingerprint: chrome
+    network: ws
+    ws-opts:
+      path: /message/lives/proxyip=ProxyIP.KR.CMLiussss.net?ed=2560
       headers:
         Host: gy-cffc5-node-project-lb5p6r204ts3xuoz.pages.dev
     udp: true
