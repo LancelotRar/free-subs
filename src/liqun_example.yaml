@@ -1,5 +1,5 @@
 # 机场设置锚点
-base-provider: &base-provider { type: http, interval: 3600, proxy: DIRECT, header: { User-Agent: ['clash.meta', 'clash-verge', 'mihomo'] }, health-check: { enable: true, interval: 3600, lazy: true, url: https://www.gstatic.com/generate_204 } }
+base-provider: &base-provider { type: http, interval: 3600, proxy: DIRECT, header: { User-Agent: ['clash.meta', 'clash-verge', 'mihomo'] }, health-check: { enable: true, interval: 600, lazy: true, url: https://www.gstatic.com/generate_204 } }
 # 过滤器锚点
 base-filter-hk: &base-filter-hk { filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Hong_Kong.png }
 base-filter-sg: &base-filter-sg { filter: '(?i)(坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|SGP)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Singapore.png }
@@ -11,12 +11,13 @@ base-filter-my: &base-filter-my { filter: '(?i)(马来西亚|🇲🇾|Kuala[\s._
 base-filter-de: &base-filter-de { filter: '(?i)(德国|🇩🇪|法兰克福|Frankfurt|Berlin|Munich|München|Hamburg|(?<![A-Za-z])DE(?![A-Za-z])|Germany|GER)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Germany.png }
 base-filter-au: &base-filter-au { filter: '(?i)(澳大利亚|澳洲|🇦🇺|悉尼|墨尔本|Sydney|Melbourne|Brisbane|Perth|(?<![A-Za-z])AU(?![A-Za-z])|Australia|AUS)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Australia.png }
 base-filter-yxym: &base-filter-yxym { filter: '(?i)(优选)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Siri.png }
-base-filter-other: &base-filter-other { exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|SGP|日|🇯🇵|东京|大阪|京都|Tokyo|Osaka|Kyoto|(?<![A-Za-z])JP(?![A-Za-z])|Japan|JPN|韩|🇰🇷|韓|首尔|南朝鲜|Seoul|Busan|Incheon|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|美|🇺🇸|纽约|洛杉矶|旧金山|芝加哥|休斯顿|迈阿密|西雅图|波士顿|华盛顿|拉斯维加斯|圣何塞|New[\s._-]*York|Los[\s._-]*Angeles|San[\s._-]*Francisco|Chicago|Houston|Miami|Seattle|Boston|Washington|Las[\s._-]*Vegas|San[\s._-]*Jose|(?<![A-Za-z])US(?![A-Za-z])|(?<![A-Za-z])USA(?![A-Za-z])|America|United[\s._-]*States|台|🇹🇼|高雄|Kaohsiung|(?<![A-Za-z])TW(?![A-Za-z])|TWN|tai|TPE|优选|马来西亚|🇲🇾|Kuala[\s._-]*Lumpur|Johor|Penang|(?<![A-Za-z])MY(?![A-Za-z])|Malaysia|MYS|德国|🇩🇪|法兰克福|Frankfurt|Berlin|Munich|München|Hamburg|(?<![A-Za-z])DE(?![A-Za-z])|Germany|GER|澳大利亚|澳洲|🇦🇺|悉尼|墨尔本|Sydney|Melbourne|Brisbane|Perth|(?<![A-Za-z])AU(?![A-Za-z])|Australia|AUS)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/World_Map.png }
+base-filter-vpngate: &base-filter-vpngate { filter: '(?i)(vpngate)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cydia.png }
+base-filter-other: &base-filter-other { exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|SGP|日|🇯🇵|东京|大阪|京都|Tokyo|Osaka|Kyoto|(?<![A-Za-z])JP(?![A-Za-z])|Japan|JPN|韩|🇰🇷|韓|首尔|南朝鲜|Seoul|Busan|Incheon|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|美|🇺🇸|纽约|洛杉矶|旧金山|芝加哥|休斯顿|迈阿密|西雅图|波士顿|华盛顿|拉斯维加斯|圣何塞|New[\s._-]*York|Los[\s._-]*Angeles|San[\s._-]*Francisco|Chicago|Houston|Miami|Seattle|Boston|Washington|Las[\s._-]*Vegas|San[\s._-]*Jose|(?<![A-Za-z])US(?![A-Za-z])|(?<![A-Za-z])USA(?![A-Za-z])|America|United[\s._-]*States|台|🇹🇼|高雄|Kaohsiung|(?<![A-Za-z])TW(?![A-Za-z])|TWN|tai|TPE|优选|马来西亚|🇲🇾|Kuala[\s._-]*Lumpur|Johor|Penang|(?<![A-Za-z])MY(?![A-Za-z])|Malaysia|MYS|德国|🇩🇪|法兰克福|Frankfurt|Berlin|Munich|München|Hamburg|(?<![A-Za-z])DE(?![A-Za-z])|Germany|GER|澳大利亚|澳洲|🇦🇺|悉尼|墨尔本|Sydney|Melbourne|Brisbane|Perth|(?<![A-Za-z])AU(?![A-Za-z])|Australia|AUS|vpngate)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/World_Map.png }
 # DNS代理锚点
-base-dns: &base-dns { type: select, proxies: [自动选择, 负载均衡, 优选域名, 直连, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
+base-dns: &base-dns { type: select, proxies: [自动选择, 负载均衡, 优选域名, 直连, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
 # 默认策略锚点
-urltest-first: &urltest-first { type: select, proxies: [自动选择, 直连, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
-direct-first: &direct-first { type: select, proxies: [直连, 自动选择, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
+urltest-first: &urltest-first { type: select, proxies: [自动选择, 直连, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
+direct-first: &direct-first { type: select, proxies: [直连, 自动选择, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
 # 基础策略锚点
 base-direct: &base-direct { type: select, hidden: false, proxies: [直连|双栈, 直连|IPv4优先, 直连|IPv6优先, 直连|仅IPv4] }
 base-select: &base-select { type: select, empty-fallback: REJECT, include-all: true, exclude-type: Direct, hidden: false, url: https://www.gstatic.com/generate_204 }
@@ -34,6 +35,7 @@ socks-port: 7892
 redir-port: 7893
 tproxy-port: 7894
 allow-lan: true
+skip-auth-prefixes: ['127.0.0.0/8', '192.168.0.0/16']
 log-level: info
 external-controller: 0.0.0.0:9090
 bind-address: '*'
@@ -53,8 +55,8 @@ tun:
   auto-route: true
   strict-route: true
   auto-redirect: true
+  auto-detect-interface: true
   disable-icmp-forwarding: true
-  route-exclude-address-set: ['cnip', 'privateip']
   dns-hijack: ['any:53', 'tcp://any:53']
   stack: mips
 
@@ -68,7 +70,7 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/15
   fake-ip-range6: 2001:2::1/48
-  fake-ip-filter: ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:cn', 'rule-set:googlefcm']
+  fake-ip-filter:  ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:cn']
   default-nameserver: ['223.5.5.5#直连', '119.29.29.29#直连']
   proxy-server-nameserver: ['https://dns.alidns.com/dns-query#直连', 'https://doh.pub/dns-query#直连']
   nameserver: ['https://dns.google/dns-query#DNS&ecs=223.5.5.0/24', 'https://cloudflare-dns.com/dns-query#DNS&ecs=223.5.5.0/24']
@@ -99,7 +101,7 @@ proxy-groups:
   - { name: 打包代理, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Rocket.png }
   - { name: 打包直连, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Daily.png }
   - { name: 规则之外, <<: *urltest-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Drill.png }
-  - { name: 自动选择, <<: *base-urltest-hidden-false, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/LinkCube.png }
+  - { name: 自动选择, <<: *base-urltest-hidden-false, exclude-filter: '(?i)(vpngate)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/LinkCube.png }
   - { name: 手动选择, <<: *base-select, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Clubhouse.png }
   - { name: 负载均衡, <<: *base-loadbalance, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/friDay.png }
   - { name: 直连, <<: *base-direct, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Auto.png }
@@ -118,6 +120,7 @@ proxy-groups:
   - { name: 香港, <<: *base-filter-hk, type: select, include-all: true, exclude-type: Direct, proxies: [香港-自动] }
   - { name: 日本, <<: *base-filter-jp, type: select, include-all: true, exclude-type: Direct, proxies: [日本-自动] }
   - { name: 韩国, <<: *base-filter-kr, type: select, include-all: true, exclude-type: Direct, proxies: [韩国-自动] }
+  - { name: vpngate家宽, <<: *base-filter-vpngate, type: select, include-all: true, exclude-type: Direct, proxies: [vpngate家宽-自动] }
   - { name: 马来西亚, <<: *base-filter-my, type: select, include-all: true, exclude-type: Direct, proxies: [马来西亚-自动] }
   - { name: 德国, <<: *base-filter-de, type: select, include-all: true, exclude-type: Direct, proxies: [德国-自动] }
   - { name: 澳大利亚, <<: *base-filter-au, type: select, include-all: true, exclude-type: Direct, proxies: [澳大利亚-自动] }
@@ -130,6 +133,7 @@ proxy-groups:
   - { name: 香港-自动, <<: [*base-urltest-hidden-true, *base-filter-hk] }
   - { name: 日本-自动, <<: [*base-urltest-hidden-true, *base-filter-jp] }
   - { name: 韩国-自动, <<: [*base-urltest-hidden-true, *base-filter-kr] }
+  - { name: vpngate家宽-自动, <<: [*base-urltest-hidden-true, *base-filter-vpngate] }
   - { name: 马来西亚-自动, <<: [*base-urltest-hidden-true, *base-filter-my] }
   - { name: 德国-自动, <<: [*base-urltest-hidden-true, *base-filter-de] }
   - { name: 澳大利亚-自动, <<: [*base-urltest-hidden-true, *base-filter-au] }
@@ -175,13 +179,11 @@ rule-providers:
   cnip: { <<: *base-ruleset-ip, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs }
 
 rules:
-  - AND,((DST-PORT,7890-7894),(IP-CIDR,127.0.0.0/8,no-resolve)),REJECT
-  - AND,((DST-PORT,7890-7894),(IP-CIDR6,::1/128,no-resolve)),REJECT
+  - AND,((DST-PORT,7890),(IP-CIDR,127.0.0.0/8,no-resolve)),REJECT
+  - AND,((DST-PORT,7890),(IP-CIDR6,::1/128,no-resolve)),REJECT
 # IP检测
   - RULE-SET,ip-detect,打包代理
 # 直连组
-  - DOMAIN-SUFFIX,19882008.xyz,打包直连
-  - DOMAIN-SUFFIX,dpdns.org,打包直连
   - DOMAIN-SUFFIX,cnb.cool,打包直连
   - DOMAIN-SUFFIX,1ms.run,打包直连
   - DOMAIN-SUFFIX,1panel.live,打包直连
