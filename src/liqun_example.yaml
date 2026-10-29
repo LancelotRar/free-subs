@@ -183,14 +183,14 @@ rules:
 # IP检测
   - RULE-SET,ip-detect,打包代理
 # 直连组
+  - RULE-SET,private,打包直连
+  - RULE-SET,privateip,打包直连,no-resolve
   - DOMAIN-SUFFIX,pages.dev,打包直连
   - DOMAIN-SUFFIX,cnb.cool,打包直连
   - DOMAIN-SUFFIX,1ms.run,打包直连
   - DOMAIN-SUFFIX,1panel.live,打包直连
   - DOMAIN-SUFFIX,npmmirror.com,打包直连
   - DOMAIN-SUFFIX,amd.com.cn,打包直连
-  - RULE-SET,private,打包直连
-  - RULE-SET,privateip,打包直连,no-resolve
   - RULE-SET,tailscale,打包直连
   - RULE-SET,npmjs,打包直连
   - RULE-SET,nodejs,打包直连
