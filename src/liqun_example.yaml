@@ -14,10 +14,10 @@ base-filter-yxym: &base-filter-yxym { filter: '(?i)(优选)', icon: https://test
 base-filter-vpngate: &base-filter-vpngate { filter: '(?i)(vpngate)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cydia.png }
 base-filter-other: &base-filter-other { exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|SGP|日|🇯🇵|东京|大阪|京都|Tokyo|Osaka|Kyoto|(?<![A-Za-z])JP(?![A-Za-z])|Japan|JPN|韩|🇰🇷|韓|首尔|南朝鲜|Seoul|Busan|Incheon|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|美|🇺🇸|纽约|洛杉矶|旧金山|芝加哥|休斯顿|迈阿密|西雅图|波士顿|华盛顿|拉斯维加斯|圣何塞|New[\s._-]*York|Los[\s._-]*Angeles|San[\s._-]*Francisco|Chicago|Houston|Miami|Seattle|Boston|Washington|Las[\s._-]*Vegas|San[\s._-]*Jose|(?<![A-Za-z])US(?![A-Za-z])|(?<![A-Za-z])USA(?![A-Za-z])|America|United[\s._-]*States|台|🇹🇼|高雄|Kaohsiung|(?<![A-Za-z])TW(?![A-Za-z])|TWN|tai|TPE|优选|马来西亚|🇲🇾|Kuala[\s._-]*Lumpur|Johor|Penang|(?<![A-Za-z])MY(?![A-Za-z])|Malaysia|MYS|德国|🇩🇪|法兰克福|Frankfurt|Berlin|Munich|München|Hamburg|(?<![A-Za-z])DE(?![A-Za-z])|Germany|GER|澳大利亚|澳洲|🇦🇺|悉尼|墨尔本|Sydney|Melbourne|Brisbane|Perth|(?<![A-Za-z])AU(?![A-Za-z])|Australia|AUS|vpngate)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/World_Map.png }
 # DNS代理锚点
-base-dns: &base-dns { type: select, proxies: [自动选择, 负载均衡, 优选域名, 直连, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
+base-dns: &base-dns { type: select, proxies: [自动选择, 负载均衡, 优选域名, 直连策略, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
 # 默认策略锚点
-urltest-first: &urltest-first { type: select, proxies: [自动选择, 直连, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
-direct-first: &direct-first { type: select, proxies: [直连, 自动选择, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
+urltest-first: &urltest-first { type: select, proxies: [自动选择, 直连策略, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
+direct-first: &direct-first { type: select, proxies: [直连策略, 自动选择, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
 # 基础策略锚点
 base-direct: &base-direct { type: select, hidden: false, proxies: [直连|双栈, 直连|IPv4优先, 直连|IPv6优先, 直连|仅IPv4] }
 base-select: &base-select { type: select, empty-fallback: REJECT, include-all: true, exclude-type: Direct, hidden: false, url: https://www.gstatic.com/generate_204 }
@@ -70,13 +70,13 @@ dns:
   fake-ip-range: 198.18.0.1/15
   fake-ip-range6: 2001:2::1/48
   fake-ip-filter:  ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:cn']
-  default-nameserver: ['223.5.5.5#直连', '119.29.29.29#直连']
-  proxy-server-nameserver: ['https://dns.alidns.com/dns-query#直连', 'https://doh.pub/dns-query#直连']
+  default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
+  proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
   nameserver: ['https://dns.google/dns-query#DNS&ecs=223.5.5.0/24', 'https://cloudflare-dns.com/dns-query#DNS&ecs=223.5.5.0/24']
   nameserver-policy:
     'rule-set:private': system
-    'rule-set:cn': ['223.5.5.5#直连', '119.29.29.29#直连']
-  direct-nameserver: ['223.6.6.6#直连', '119.29.29.29#直连']
+    'rule-set:cn': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
+  direct-nameserver: ['223.6.6.6#DIRECT', '119.29.29.29#DIRECT']
   direct-nameserver-follow-policy: true
 
 hosts:
@@ -103,7 +103,7 @@ proxy-groups:
   - { name: 自动选择, <<: *base-urltest-hidden-false, exclude-filter: '(?i)(vpngate)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/LinkCube.png }
   - { name: 手动选择, <<: *base-select, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Clubhouse.png }
   - { name: 负载均衡, <<: *base-loadbalance, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/friDay.png }
-  - { name: 直连, <<: *base-direct, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Auto.png }
+  - { name: 直连策略, <<: *base-direct, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Auto.png }
 
   - { name: DNS, <<: *base-dns, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cellular.png }
   - { name: Cloudflare, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cloudflare.png }
