@@ -14,10 +14,10 @@ base-filter-yxym: &base-filter-yxym { filter: '(?i)(优选)', icon: https://test
 base-filter-vpngate: &base-filter-vpngate { filter: '(?i)(vpngate)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cydia.png }
 base-filter-other: &base-filter-other { exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|SGP|日|🇯🇵|东京|大阪|京都|Tokyo|Osaka|Kyoto|(?<![A-Za-z])JP(?![A-Za-z])|Japan|JPN|韩|🇰🇷|韓|首尔|南朝鲜|Seoul|Busan|Incheon|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|美|🇺🇸|纽约|洛杉矶|旧金山|芝加哥|休斯顿|迈阿密|西雅图|波士顿|华盛顿|拉斯维加斯|圣何塞|New[\s._-]*York|Los[\s._-]*Angeles|San[\s._-]*Francisco|Chicago|Houston|Miami|Seattle|Boston|Washington|Las[\s._-]*Vegas|San[\s._-]*Jose|(?<![A-Za-z])US(?![A-Za-z])|(?<![A-Za-z])USA(?![A-Za-z])|America|United[\s._-]*States|台|🇹🇼|高雄|Kaohsiung|(?<![A-Za-z])TW(?![A-Za-z])|TWN|tai|TPE|优选|马来西亚|🇲🇾|Kuala[\s._-]*Lumpur|Johor|Penang|(?<![A-Za-z])MY(?![A-Za-z])|Malaysia|MYS|德国|🇩🇪|法兰克福|Frankfurt|Berlin|Munich|München|Hamburg|(?<![A-Za-z])DE(?![A-Za-z])|Germany|GER|澳大利亚|澳洲|🇦🇺|悉尼|墨尔本|Sydney|Melbourne|Brisbane|Perth|(?<![A-Za-z])AU(?![A-Za-z])|Australia|AUS|vpngate)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/World_Map.png }
 # DNS代理锚点
-base-dns: &base-dns { type: select, proxies: [自动选择, 负载均衡, 优选域名, 直连, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
+base-dns: &base-dns { type: select, proxies: [自动选择, 负载均衡, 优选域名, 直连策略, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
 # 默认策略锚点
-urltest-first: &urltest-first { type: select, proxies: [自动选择, 直连, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
-direct-first: &direct-first { type: select, proxies: [直连, 自动选择, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
+urltest-first: &urltest-first { type: select, proxies: [自动选择, 直连策略, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
+direct-first: &direct-first { type: select, proxies: [直连策略, 自动选择, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, vpngate家宽, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
 # 基础策略锚点
 base-direct: &base-direct { type: select, hidden: false, proxies: [直连|双栈, 直连|IPv4优先, 直连|IPv6优先, 直连|仅IPv4] }
 base-select: &base-select { type: select, empty-fallback: REJECT, include-all: true, exclude-type: Direct, hidden: false, url: https://www.gstatic.com/generate_204 }
@@ -70,13 +70,13 @@ dns:
   fake-ip-range: 198.18.0.1/15
   fake-ip-range6: 2001:2::1/48
   fake-ip-filter:  ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:cn']
-  default-nameserver: ['223.5.5.5#直连', '119.29.29.29#直连']
-  proxy-server-nameserver: ['https://dns.alidns.com/dns-query#直连', 'https://doh.pub/dns-query#直连']
+  default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
+  proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
   nameserver: ['https://dns.google/dns-query#DNS&ecs=223.5.5.0/24', 'https://cloudflare-dns.com/dns-query#DNS&ecs=223.5.5.0/24']
   nameserver-policy:
     'rule-set:private': system
-    'rule-set:cn': ['223.5.5.5#直连', '119.29.29.29#直连']
-  direct-nameserver: ['223.6.6.6#直连', '119.29.29.29#直连']
+    'rule-set:cn': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
+  direct-nameserver: ['223.6.6.6#DIRECT', '119.29.29.29#DIRECT']
   direct-nameserver-follow-policy: true
 
 hosts:
@@ -103,7 +103,7 @@ proxy-groups:
   - { name: 自动选择, <<: *base-urltest-hidden-false, exclude-filter: '(?i)(vpngate)', icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/LinkCube.png }
   - { name: 手动选择, <<: *base-select, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Clubhouse.png }
   - { name: 负载均衡, <<: *base-loadbalance, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/friDay.png }
-  - { name: 直连, <<: *base-direct, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Auto.png }
+  - { name: 直连策略, <<: *base-direct, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Auto.png }
 
   - { name: DNS, <<: *base-dns, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cellular.png }
   - { name: Cloudflare, <<: *direct-first, icon: https://testingcf.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cloudflare.png }
@@ -169,7 +169,6 @@ rule-providers:
   ip-detect: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/category-ip-geo-detect.mrs }
   nodejs: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/nodejs.mrs }
   codeberg: { <<: *base-ruleset-dn, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geosite/codeberg.mrs }
-
 # ip-set
   telegramip: { <<: *base-ruleset-ip, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/telegram.mrs }
   twitterip: { <<: *base-ruleset-ip, url: https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/twitter.mrs }
@@ -183,13 +182,14 @@ rules:
 # IP检测
   - RULE-SET,ip-detect,打包代理
 # 直连组
+  - RULE-SET,private,打包直连
+  - RULE-SET,privateip,打包直连,no-resolve
+  - DOMAIN-SUFFIX,pages.dev,打包直连
   - DOMAIN-SUFFIX,cnb.cool,打包直连
   - DOMAIN-SUFFIX,1ms.run,打包直连
   - DOMAIN-SUFFIX,1panel.live,打包直连
   - DOMAIN-SUFFIX,npmmirror.com,打包直连
   - DOMAIN-SUFFIX,amd.com.cn,打包直连
-  - RULE-SET,private,打包直连
-  - RULE-SET,privateip,打包直连,no-resolve
   - RULE-SET,tailscale,打包直连
   - RULE-SET,npmjs,打包直连
   - RULE-SET,nodejs,打包直连
@@ -227,6 +227,7 @@ rules:
   - RULE-SET,twitterip,打包代理,no-resolve
   - RULE-SET,microsoft,打包代理
   - RULE-SET,gfw,打包代理
+# 兜底  
   - RULE-SET,cn,打包直连
   - RULE-SET,cnip,打包直连
   - MATCH,规则之外
@@ -259,7 +260,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn889393112.opengw.net:1900?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn376743751.opengw.net:1555?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -295,7 +296,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn416641003.opengw.net:1677?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn986036793.opengw.net:1862?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -313,7 +314,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn933256250.opengw.net:1448?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn663500256.opengw.net:1965?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -331,7 +332,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn532142349.opengw.net:1394?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn514414017.opengw.net:1903?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -349,7 +350,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn569909532.opengw.net:1500?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn449242468.opengw.net:1892?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -367,7 +368,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn187444975.opengw.net:1603?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn673257247.opengw.net:1433?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -385,7 +386,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn673257247.opengw.net:1433?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn781255925.opengw.net:1674?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -457,7 +458,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn283378530.opengw.net:1334?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn964630803.opengw.net:1568?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -475,7 +476,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn671350283.opengw.net:1820?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn283378530.opengw.net:1334?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -493,7 +494,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn393802235.opengw.net:1908?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn671350283.opengw.net:1820?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -511,7 +512,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn578671283.opengw.net:1833?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn927671187.opengw.net:1759?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -529,7 +530,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn894594992.opengw.net:1466?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn274456822.opengw.net:1664?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -547,7 +548,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn863787247.opengw.net:1575?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn393802235.opengw.net:1908?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -565,7 +566,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn188345165.opengw.net:1448?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn956199353.opengw.net:1689?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -583,7 +584,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn835659668.opengw.net:1251?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn502796298.opengw.net:1957?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -601,7 +602,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn462278742.opengw.net:1465?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn533408413.opengw.net:1235?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -619,7 +620,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn778801553.opengw.net:1602?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn578671283.opengw.net:1833?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -637,7 +638,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn416390555.opengw.net:1204?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn763460553.opengw.net:1545?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -655,7 +656,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn611260208.opengw.net:1991?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn253095465.opengw.net:1675?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -673,7 +674,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn163822504.opengw.net:1775?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn863787247.opengw.net:1575?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -691,7 +692,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn965182772.opengw.net:1271?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn501734765.opengw.net:1534?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -709,7 +710,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn197759224.opengw.net:1664?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn835659668.opengw.net:1251?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -727,7 +728,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn291090802.opengw.net:1878?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn778801553.opengw.net:1602?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -745,7 +746,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn813516587.opengw.net:1534?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn416390555.opengw.net:1204?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -763,7 +764,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn122916437.opengw.net:1558?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn611260208.opengw.net:1991?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -781,7 +782,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn764912681.opengw.net:1495?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn163822504.opengw.net:1775?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -799,7 +800,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn303055266.opengw.net:1937?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn965182772.opengw.net:1271?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -817,7 +818,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn844843933.opengw.net:1757?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn789082285.opengw.net:1411?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -835,7 +836,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn366166401.opengw.net:1817?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn108364887.opengw.net:1721?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -853,7 +854,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn661982.opengw.net:7551?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn197759224.opengw.net:1664?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -871,7 +872,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn-bs4659.opengw.net:992?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn223114256.opengw.net:1210?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -889,7 +890,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn619352566.opengw.net:1498?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn291090802.opengw.net:1878?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -907,7 +908,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn716187063.opengw.net:1632?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn813516587.opengw.net:1534?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -925,7 +926,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn473931202.opengw.net:1462?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn122916437.opengw.net:1558?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -943,7 +944,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn933450169.opengw.net:1309?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn764912681.opengw.net:1495?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -961,7 +962,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn299982459.opengw.net:1902?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn674668706.opengw.net:1536?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -979,7 +980,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn789702980.opengw.net:1539?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn303055266.opengw.net:1937?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -997,7 +998,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn389621244.opengw.net:1338?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn844843933.opengw.net:1757?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1015,7 +1016,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn599923276.opengw.net:1882?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn366166401.opengw.net:1817?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1033,7 +1034,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn975550277.opengw.net:1514?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn273131016.opengw.net:1602?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1051,7 +1052,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn303552833.opengw.net:1791?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn316730005.opengw.net:1235?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1069,7 +1070,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn186444521.opengw.net:1674?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn661982.opengw.net:7551?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1087,7 +1088,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn440717374.opengw.net:1833?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn935956948.opengw.net:1723?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1105,7 +1106,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn225306834.opengw.net:1935?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn-bs4659.opengw.net:992?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1123,7 +1124,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn953025003.opengw.net:1520?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn830143932.opengw.net:1527?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1141,7 +1142,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn353329268.opengw.net:1508?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn635246086.opengw.net:1311?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1177,7 +1178,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn899500406.opengw.net:1265?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn431045383.opengw.net:1496?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1195,7 +1196,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn736554005.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn899500406.opengw.net:1265?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1231,7 +1232,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn276871149.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn117455722.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1249,7 +1250,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn853978724.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn276871149.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1303,7 +1304,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn388432584.opengw.net:1201?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn488412821.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1321,7 +1322,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn123724987.opengw.net:1356?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn388432584.opengw.net:1201?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1339,7 +1340,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn122709402.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn186778836.opengw.net:1702?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1357,7 +1358,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn368694634.opengw.net:1545?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn123724987.opengw.net:1356?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1375,7 +1376,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn103379316.opengw.net:1727?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn727893093.opengw.net:1292?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1393,7 +1394,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn783665852.opengw.net:1488?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn867547385.opengw.net:1458?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1411,7 +1412,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn183424407.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn846765047.opengw.net:1906?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1429,7 +1430,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn624984613.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn122709402.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1447,7 +1448,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn607155856.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn585300522.opengw.net:1407?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1465,7 +1466,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn343221110.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn103379316.opengw.net:1727?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1483,7 +1484,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn441053045.opengw.net:1972?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn243465846.opengw.net:1574?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1501,7 +1502,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn348020903.opengw.net:1400?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn824438320.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1519,7 +1520,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn838900526.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn802055352.opengw.net:1340?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1537,7 +1538,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn701561709.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn183424407.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1555,7 +1556,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn295573517.opengw.net:1660?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn500645444.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1573,7 +1574,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn855551265.opengw.net:1327?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn624984613.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1591,7 +1592,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn240836128.opengw.net:1850?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn343221110.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1609,7 +1610,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn457942597.opengw.net:1900?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn380769701.opengw.net:1381?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1627,7 +1628,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn698373679.opengw.net:1911?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn239949919.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1645,7 +1646,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn382408128.opengw.net:1846?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn348020903.opengw.net:1400?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1663,7 +1664,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn348580824.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn838900526.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1681,7 +1682,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn368704878.opengw.net:1511?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn701561709.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1699,7 +1700,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn709191086.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn295573517.opengw.net:1660?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1717,7 +1718,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn396344364.opengw.net:1235?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn855551265.opengw.net:1327?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1735,7 +1736,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn411424896.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn750416015.opengw.net:1874?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1753,7 +1754,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn703603871.opengw.net:1272?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn240836128.opengw.net:1850?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1771,7 +1772,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn990249039.opengw.net:1374?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn675512812.opengw.net:1422?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1789,7 +1790,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn928731604.opengw.net:1681?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn457942597.opengw.net:1900?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1807,7 +1808,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn598566875.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn698373679.opengw.net:1911?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1825,7 +1826,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn154489827.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn382408128.opengw.net:1846?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1843,7 +1844,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn436828976.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn368704878.opengw.net:1511?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1861,7 +1862,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn920650317.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn709191086.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1879,7 +1880,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn883939909.opengw.net:1677?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn587535377.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1897,7 +1898,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn629284824.opengw.net:1630?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn571284347.opengw.net:1399?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1915,7 +1916,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn977456594.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn703603871.opengw.net:1272?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1933,7 +1934,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn244218273.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn928731604.opengw.net:1681?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1951,7 +1952,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn981185492.opengw.net:1623?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn598566875.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1969,7 +1970,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn645881192.opengw.net:1857?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn230024862.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -1987,7 +1988,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn182270293.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn400598896.opengw.net:1250?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -2005,7 +2006,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn408435278.opengw.net:1418?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn154489827.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -2023,7 +2024,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn636285774.opengw.net:1296?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn436828976.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
@@ -2041,7 +2042,7 @@ proxies:
     - h3
     - h2
     ws-opts:
-      path: /fdip=sstp://vpn:vpn@vpn461782020.opengw.net:995?ed=2560
+      path: /fdip=sstp://vpn:vpn@vpn920650317.opengw.net:995?ed=2560
       headers:
         Host: snippet.edgeoneai.cc.cd
         User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36
