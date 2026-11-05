@@ -69,22 +69,19 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/15
   fake-ip-range6: 2001:2::1/48
-  fake-ip-filter:  ['rule-set:private', 'rule-set:fakeip-filter', 'rule-set:cn']
-  default-nameserver: ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
+  fake-ip-filter:  ['*', 'rule-set:private', 'rule-set:fakeip-filter','rule-set:cn']
+  default-nameserver: ['223.5.5.5', '119.29.29.29']
   proxy-server-nameserver: ['https://dns.alidns.com/dns-query#DIRECT', 'https://doh.pub/dns-query#DIRECT']
-  nameserver: ['https://dns.google/dns-query#DNS&ecs=223.5.5.0/24', 'https://cloudflare-dns.com/dns-query#DNS&ecs=223.5.5.0/24']
+  nameserver: ['https://dns.google/dns-query#DNS', 'https://cloudflare-dns.com/dns-query#DNS']
   nameserver-policy:
     'rule-set:private': system
-    'rule-set:cn': ['223.5.5.5#DIRECT', '119.29.29.29#DIRECT']
-  direct-nameserver: ['223.6.6.6#DIRECT', '119.29.29.29#DIRECT']
-  direct-nameserver-follow-policy: true
+    'rule-set:cn': ['223.5.5.5', '119.29.29.29']
 
 hosts:
   'dns.alidns.com': ['223.5.5.5', '223.6.6.6']
   'doh.pub': ['1.12.12.12', '120.53.53.53']
   'dns.google': ['8.8.8.8', '8.8.4.4']
   'cloudflare-dns.com': ['1.1.1.1', '1.0.0.1']
-  'doh.opendns.com': ['208.67.222.222', '208.67.220.220']
   'services.googleapis.cn': 'services.googleapis.com'
 
 profile: { store-selected: true, store-fake-ip: true }
