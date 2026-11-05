@@ -252,8 +252,9 @@ proxies:
     ip-version: ipv4
 
 proxy-providers:
-  利群公益:
+  利群公益订阅:
     <<: *base-provider
     url: 'https://gh-proxy.org/https://raw.githubusercontent.com/LancelotRar/free-subs/main/src/liqun-channel-subs/liqun-ch-subs-2026-11-05.age'
     interval: 10800
+    override: { additional-prefix: "[A利群]" }
     age-secret-key: 'AGE-SECRET-KEY-1KCWXGKHKD0A44X6ZC72TWRQMMZZ5YQFVVHV7NK7CQLFSXGRGS55SRC093Y'
