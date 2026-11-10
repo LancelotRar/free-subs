@@ -175,8 +175,8 @@ rule-providers:
   cnip: { <<: *base-ruleset-ip, url: https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo/geoip/cn.mrs }
 
 rules:
-  - AND,((DST-PORT,7890),(IP-CIDR,127.0.0.0/8,no-resolve)),REJECT
-  - AND,((DST-PORT,7890),(IP-CIDR6,::1/128,no-resolve)),REJECT
+  - AND,((DST-PORT,7890-7894),(IP-CIDR,127.0.0.0/8,no-resolve)),REJECT
+  - AND,((DST-PORT,7890-7894),(IP-CIDR6,::1/128,no-resolve)),REJECT
 # IP检测
   - RULE-SET,ip-detect,打包代理
 # 直连组
