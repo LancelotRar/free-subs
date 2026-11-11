@@ -15,8 +15,8 @@ base-filter-vpngate: &base-filter-vpngate { filter: '(?i)(vpngate)', icon: https
 base-filter-masque: &base-filter-masque { filter: '(?i)(masque)', icon: https://fastly.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Proxy.png }
 base-filter-other: &base-filter-other { exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|SGP|日|🇯🇵|东京|大阪|京都|Tokyo|Osaka|Kyoto|(?<![A-Za-z])JP(?![A-Za-z])|Japan|JPN|韩|🇰🇷|韓|首尔|南朝鲜|Seoul|Busan|Incheon|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|美|🇺🇸|纽约|洛杉矶|旧金山|芝加哥|休斯顿|迈阿密|西雅图|波士顿|华盛顿|拉斯维加斯|圣何塞|New[\s._-]*York|Los[\s._-]*Angeles|San[\s._-]*Francisco|Chicago|Houston|Miami|Seattle|Boston|Washington|Las[\s._-]*Vegas|San[\s._-]*Jose|(?<![A-Za-z])US(?![A-Za-z])|(?<![A-Za-z])USA(?![A-Za-z])|America|United[\s._-]*States|台|🇹🇼|高雄|Kaohsiung|(?<![A-Za-z])TW(?![A-Za-z])|TWN|tai|TPE|优选|马来西亚|🇲🇾|Kuala[\s._-]*Lumpur|Johor|Penang|(?<![A-Za-z])MY(?![A-Za-z])|Malaysia|MYS|德国|🇩🇪|法兰克福|Frankfurt|Berlin|Munich|München|Hamburg|(?<![A-Za-z])DE(?![A-Za-z])|Germany|GER|澳大利亚|澳洲|🇦🇺|悉尼|墨尔本|Sydney|Melbourne|Brisbane|Perth|(?<![A-Za-z])AU(?![A-Za-z])|Australia|AUS|vpngate|masque)', icon: https://fastly.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/World_Map.png }
 # 默认策略锚点
-urltest-first: &urltest-first { type: select, proxies: [自动选择, 直连策略, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, masque, vpngate, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
-direct-first: &direct-first { type: select, proxies: [直连策略, 自动选择, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, masque, vpngate, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
+urltest-first: &urltest-first { type: select, proxies: [自动选择, 直连策略, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, masque节点, vpngate节点, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
+direct-first: &direct-first { type: select, proxies: [直连策略, 自动选择, 手动选择, 负载均衡, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, masque节点, vpngate节点, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
 # 基础策略锚点
 base-direct: &base-direct { type: select, hidden: false, proxies: [直连|双栈, 直连|IPv4优先, 直连|IPv6优先, 直连|仅IPv4] }
 base-select: &base-select { type: select, empty-fallback: REJECT, include-all: true, exclude-type: Direct, hidden: false, url: https://www.gstatic.com/generate_204 }
@@ -109,14 +109,14 @@ proxy-groups:
   - { name: AI, <<: *urltest-first, icon: https://fastly.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png }
   - { name: Opencode, <<: *direct-first, icon: https://fastly.jsdelivr.net/gh/LancelotRar/policy-icon-set@main/IconSet/Additional/Opencode.png }
 
+  - { name: masque节点, <<: *base-filter-masque, type: select, include-all: true, exclude-type: Direct, proxies: [masque节点-自动] }
+  - { name: vpngate节点, <<: *base-filter-vpngate, type: select, include-all: true, exclude-type: Direct, proxies: [vpngate节点-自动] }
   - { name: 优选域名, <<: *base-filter-yxym, type: select, include-all: true, exclude-type: Direct, proxies: [优选域名-自动] }
   - { name: 美国, <<: *base-filter-us, type: select, include-all: true, exclude-type: Direct, proxies: [美国-自动] }
   - { name: 新加坡, <<: *base-filter-sg, type: select, include-all: true, exclude-type: Direct, proxies: [新加坡-自动] }
   - { name: 香港, <<: *base-filter-hk, type: select, include-all: true, exclude-type: Direct, proxies: [香港-自动] }
   - { name: 日本, <<: *base-filter-jp, type: select, include-all: true, exclude-type: Direct, proxies: [日本-自动] }
   - { name: 韩国, <<: *base-filter-kr, type: select, include-all: true, exclude-type: Direct, proxies: [韩国-自动] }
-  - { name: masque, <<: *base-filter-masque, type: select, include-all: true, exclude-type: Direct, proxies: [masque-自动] }
-  - { name: vpngate, <<: *base-filter-vpngate, type: select, include-all: true, exclude-type: Direct, proxies: [vpngate-自动] }
   - { name: 马来西亚, <<: *base-filter-my, type: select, include-all: true, exclude-type: Direct, proxies: [马来西亚-自动] }
   - { name: 德国, <<: *base-filter-de, type: select, include-all: true, exclude-type: Direct, proxies: [德国-自动] }
   - { name: 澳大利亚, <<: *base-filter-au, type: select, include-all: true, exclude-type: Direct, proxies: [澳大利亚-自动] }
@@ -129,8 +129,8 @@ proxy-groups:
   - { name: 香港-自动, <<: [*base-urltest-hidden-true, *base-filter-hk] }
   - { name: 日本-自动, <<: [*base-urltest-hidden-true, *base-filter-jp] }
   - { name: 韩国-自动, <<: [*base-urltest-hidden-true, *base-filter-kr] }
-  - { name: masque-自动, <<: [*base-urltest-hidden-true, *base-filter-masque] }
-  - { name: vpngate-自动, <<: [*base-urltest-hidden-true, *base-filter-vpngate] }
+  - { name: masque节点-自动, <<: [*base-urltest-hidden-true, *base-filter-masque] }
+  - { name: vpngate节点-自动, <<: [*base-urltest-hidden-true, *base-filter-vpngate] }
   - { name: 马来西亚-自动, <<: [*base-urltest-hidden-true, *base-filter-my] }
   - { name: 德国-自动, <<: [*base-urltest-hidden-true, *base-filter-de] }
   - { name: 澳大利亚-自动, <<: [*base-urltest-hidden-true, *base-filter-au] }
