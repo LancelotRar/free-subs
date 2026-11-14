@@ -18,7 +18,7 @@ base-filter-other: &base-filter-other { exclude-filter: '(?i)(港|🇭🇰|(?<![
 urltest-first: &urltest-first { type: select, proxies: [自动选择, 直连策略, 手动选择, 负载均衡, MASQUE节点, VPNGATE节点, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
 direct-first: &direct-first { type: select, proxies: [直连策略, 自动选择, 手动选择, 负载均衡, MASQUE节点, VPNGATE节点, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
 # 前置代理
-base-dial: &base-dial { type: select, proxies: [优选域名, MASQUE节点, 手动选择, 负载均衡, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
+base-dial: &base-dial { type: select, proxies: [优选域名, MASQUE节点, 美国, 新加坡, 香港, 🏅利群公益🏅TG:@liqunchannel] }
 # 基础策略锚点
 base-direct: &base-direct { type: select, hidden: false, proxies: [直连|双栈, 直连|IPv4优先, 直连|IPv6优先, 直连|仅IPv4] }
 base-select: &base-select { type: select, empty-fallback: REJECT, include-all: true, exclude-type: Direct, hidden: false, url: https://www.gstatic.com/generate_204 }
@@ -28,7 +28,7 @@ base-loadbalance: &base-loadbalance { type: load-balance, interval: 1800, lazy: 
 # 规则集锚点
 base-ruleset-dn: &base-ruleset-dn { type: http, behavior: domain, proxy: DIRECT, format: mrs, interval: 86400 }
 base-ruleset-ip: &base-ruleset-ip { type: http, behavior: ipcidr, proxy: DIRECT, format: mrs, interval: 86400 }
-
+# 主配置
 mode: rule
 mixed-port: 7890
 port: 7891
@@ -114,7 +114,6 @@ proxy-groups:
 
   - { name: MASQUE节点, <<: *base-filter-masque, type: select, include-all: true, exclude-type: Direct, proxies: [MASQUE节点-自动] }
   - { name: VPNGATE节点, <<: *base-filter-vpngate, type: select, include-all: true, exclude-type: Direct, proxies: [VPNGATE节点-自动] }
-
   - { name: 优选域名, <<: *base-filter-yxym, type: select, include-all: true, exclude-type: Direct, proxies: [优选域名-自动] }
   - { name: 美国, <<: *base-filter-us, type: select, include-all: true, exclude-type: Direct, proxies: [美国-自动] }
   - { name: 新加坡, <<: *base-filter-sg, type: select, include-all: true, exclude-type: Direct, proxies: [新加坡-自动] }
