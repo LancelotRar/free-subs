@@ -7,6 +7,9 @@
    连同紧邻其上的注释块（当前为 ``# 机场设置锚点``）。
 2. 顶格键 ``proxy-providers``：整个字段及其所有子行。
 
+唯一例外：被删字段位于文件末尾时，其上方那行分隔空行会残留成"末尾多一个空行"，
+因此输出会去掉文件尾部空行，让文件仍以最后一行内容结尾。
+
 删除后若仍有被删锚点的引用（``*base-provider``）会直接报错，避免生成出坏配置；
 源文件里本来就没有这两个键时只提示，不报错。
 脚本不依赖任何第三方库，可在本地或 CI 中直接运行：``python3 scripts/gen_noprovider.py``。
@@ -104,7 +107,14 @@ def generate(text: str) -> str:
             file=sys.stderr,
         )
 
-    result = "".join(line for line, gone in zip(lines, drop) if not gone)
+    keep = [line for line, gone in zip(lines, drop) if not gone]
+
+    # 被删块位于文件末尾时，其上方的分隔空行会残留成"末尾多一个空行"，
+    # 这里去掉文件尾部空行；最后一行内容自带的行尾原样保留。
+    while keep and keep[-1].strip() == "":
+        keep.pop()
+
+    result = "".join(keep)
 
     for key in REMOVE_KEYS:
         if re.search(rf"\*{re.escape(key)}\b", result):
