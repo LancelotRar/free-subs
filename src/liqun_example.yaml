@@ -16,8 +16,10 @@ base-filter-masque: &base-filter-masque { filter: '(?i)(MASQUE)', icon: https://
 base-filter-dial: &base-filter-dial { exclude-filter: '(?i)(VPNGATE|日|🇯🇵|东京|大阪|京都|Tokyo|Osaka|Kyoto|(?<![A-Za-z])JP(?![A-Za-z])|Japan|JPN|韩|🇰🇷|韓|首尔|南朝鲜|Seoul|Busan|Incheon|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea)', icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AbemaTV.png }
 base-filter-other: &base-filter-other { exclude-filter: '(?i)(港|🇭🇰|(?<![A-Za-z])HK(?![A-Za-z])|Hong|HKG|坡|狮城|🇸🇬|(?<![A-Za-z])SG(?![A-Za-z])|Singapore|SGP|日|🇯🇵|东京|大阪|京都|Tokyo|Osaka|Kyoto|(?<![A-Za-z])JP(?![A-Za-z])|Japan|JPN|韩|🇰🇷|韓|首尔|南朝鲜|Seoul|Busan|Incheon|(?<![A-Za-z])KR(?![A-Za-z])|KOR|Korea|美|🇺🇸|纽约|洛杉矶|旧金山|芝加哥|休斯顿|迈阿密|西雅图|波士顿|华盛顿|拉斯维加斯|圣何塞|New[\s._-]*York|Los[\s._-]*Angeles|San[\s._-]*Francisco|Chicago|Houston|Miami|Seattle|Boston|Washington|Las[\s._-]*Vegas|San[\s._-]*Jose|(?<![A-Za-z])US(?![A-Za-z])|(?<![A-Za-z])USA(?![A-Za-z])|America|United[\s._-]*States|台|🇹🇼|高雄|Kaohsiung|(?<![A-Za-z])TW(?![A-Za-z])|TWN|tai|TPE|优选|马来西亚|🇲🇾|Kuala[\s._-]*Lumpur|Johor|Penang|(?<![A-Za-z])MY(?![A-Za-z])|Malaysia|MYS|德国|🇩🇪|法兰克福|Frankfurt|Berlin|Munich|München|Hamburg|(?<![A-Za-z])DE(?![A-Za-z])|Germany|GER|澳大利亚|澳洲|🇦🇺|悉尼|墨尔本|Sydney|Melbourne|Brisbane|Perth|(?<![A-Za-z])AU(?![A-Za-z])|Australia|AUS|VPNGATE|MASQUE)', icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/World_Map.png }
 # 默认策略锚点
-urltest-first: &urltest-first { type: select, proxies: [自动选择, 直连策略, 手动选择, 负载均衡, MASQUE节点, VPNGATE节点, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
-direct-first: &direct-first { type: select, proxies: [直连策略, 自动选择, 手动选择, 负载均衡, MASQUE节点, VPNGATE节点, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, 🏅利群公益🏅TG:@liqunchannel] }
+urltest-first: &urltest-first { type: select, proxies: [自动选择, 直连策略, 手动选择, 负载均衡, MASQUE节点, VPNGATE节点, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, '🏅利群公益🏅TG:@liqunchannel'] }
+direct-first: &direct-first { type: select, proxies: [直连策略, 自动选择, 手动选择, 负载均衡, MASQUE节点, VPNGATE节点, 优选域名, 美国, 新加坡, 香港, 日本, 韩国, 马来西亚, 德国, 澳大利亚, 台湾省, 其他节点, '🏅利群公益🏅TG:@liqunchannel'] }
+# 前置代理
+base-dial: &base-dial { type: select, proxies: [前置代理-自动, 优选域名, MASQUE节点, 美国, 新加坡, 香港, 台湾省, 马来西亚, 德国, 澳大利亚] }
 # 基础策略锚点
 base-direct: &base-direct { type: select, hidden: false, proxies: [直连|双栈, 直连|IPv4优先, 直连|IPv6优先, 直连|仅IPv4] }
 base-select: &base-select { type: select, empty-fallback: REJECT, include-all: true, exclude-type: Direct, hidden: false, url: https://www.gstatic.com/generate_204 }
@@ -102,6 +104,7 @@ proxy-groups:
   - { name: 手动选择, <<: *base-select, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Clubhouse.png }
   - { name: 负载均衡, <<: *base-loadbalance, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/friDay.png }
   - { name: 直连策略, <<: *base-direct, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Auto.png }
+  - { name: 前置代理, <<: *base-dial, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AbemaTV.png }
 
   - { name: Cloudflare, <<: *direct-first, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cloudflare.png }
   - { name: Telegram, <<: *urltest-first, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Telegram.png }
@@ -110,7 +113,6 @@ proxy-groups:
   - { name: AI, <<: *urltest-first, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png }
   - { name: Opencode, <<: *direct-first, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Additional/Opencode.png }
 
-  - { name: 前置代理, <<: [*base-filter-dial, *base-select], proxies: [前置代理-自动, 优选域名, MASQUE节点, 美国, 新加坡, 香港, 台湾省, 马来西亚, 德国, 澳大利亚] }
   - { name: MASQUE节点, <<: [*base-filter-masque, *base-select], proxies: [MASQUE节点-自动] }
   - { name: VPNGATE节点, <<: [*base-filter-vpngate, *base-select], proxies: [VPNGATE节点-自动] }
   - { name: 优选域名, <<: [*base-filter-yxym, *base-select], proxies: [优选域名-自动] }
@@ -229,23 +231,23 @@ rules:
   - RULE-SET,twitterip,打包代理,no-resolve
   - RULE-SET,microsoft,打包代理
   - RULE-SET,geolocation-!cn,打包代理
-# 兜底  
+# 兜底
   - RULE-SET,cn,打包直连
   - RULE-SET,cnip,打包直连
   - MATCH,规则之外
 
 proxies:
-  - name: 🏅利群公益🏅TG:@liqunchannel
+  - name: '🏅利群公益🏅TG:@liqunchannel'
     type: direct
-  - name: 直连|双栈
+  - name: '直连|双栈'
     type: direct
-  - name: 直连|IPv4优先
+  - name: '直连|IPv4优先'
     type: direct
     ip-version: ipv4-prefer
-  - name: 直连|IPv6优先
+  - name: '直连|IPv6优先'
     type: direct
     ip-version: ipv6-prefer
-  - name: 直连|仅IPv4
+  - name: '直连|仅IPv4'
     type: direct
     ip-version: ipv4
 
