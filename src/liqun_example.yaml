@@ -104,7 +104,6 @@ proxy-groups:
   - { name: 手动选择, <<: *base-select, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Clubhouse.png }
   - { name: 负载均衡, <<: *base-loadbalance, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/friDay.png }
   - { name: 直连策略, <<: *base-direct, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Auto.png }
-  - { name: 前置代理, <<: *base-dial, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AbemaTV.png }
 
   - { name: Cloudflare, <<: *direct-first, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Cloudflare.png }
   - { name: Telegram, <<: *urltest-first, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/Telegram.png }
@@ -112,6 +111,7 @@ proxy-groups:
   - { name: Youtube, <<: *urltest-first, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/YouTube.png }
   - { name: AI, <<: *urltest-first, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AI.png }
   - { name: Opencode, <<: *direct-first, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Additional/Opencode.png }
+  - { name: 前置代理, <<: *base-dial, icon: https://cdn.jsdmirror.com/gh/LancelotRar/policy-icon-set@main/IconSet/Color/AbemaTV.png }
 
   - { name: MASQUE节点, <<: [*base-filter-masque, *base-select], proxies: [MASQUE节点-自动] }
   - { name: VPNGATE节点, <<: [*base-filter-vpngate, *base-select], proxies: [VPNGATE节点-自动] }
