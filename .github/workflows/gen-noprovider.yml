@@ -1,0 +1,52 @@
+# 源配置 src/liqun_example.yaml 变更后，自动生成去除机场订阅的版本
+# src/liqun_example_noprovider.yaml：去掉 base-provider 锚点与 proxy-providers 字段，
+# 其余内容逐字节保留。生成逻辑见 scripts/gen_noprovider.py。
+name: Generate no-provider config
+
+on:
+  # 只在源配置推送时触发；生成的产物不在触发路径里，不会自我循环
+  push:
+    branches: ["main"]
+    paths:
+      - "src/liqun_example.yaml"
+
+  # 允许在 Actions 页面手动重新生成一次
+  workflow_dispatch:
+
+# 需要把生成结果提交回仓库
+permissions:
+  contents: write
+
+# 同一时间只跑一个生成任务，避免两次提交互相覆盖
+concurrency:
+  group: "gen-noprovider"
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      # 第三方 action 一律钉到 commit SHA：tag 可以被上游移动，SHA 不会。
+      # 右侧注释是解析当时的可读版本，升级时改 SHA 和注释两处。
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # 本 job 要把生成结果推送回仓库，需保留 GITHUB_TOKEN 凭据
+          persist-credentials: true
+
+      - name: Generate liqun_example_noprovider.yaml
+        run: python3 scripts/gen_noprovider.py
+
+      - name: Commit and push if changed
+        run: |
+          set -euo pipefail
+          target=src/liqun_example_noprovider.yaml
+          if [ -z "$(git status --porcelain -- "$target")" ]; then
+            echo "生成结果无变化，跳过提交"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$target"
+          git commit -m "chore: 重新生成 liqun_example_noprovider.yaml [skip ci]"
+          git push
